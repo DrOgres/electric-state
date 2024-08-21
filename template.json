@@ -1,0 +1,22 @@
+{
+
+    "Actor": {
+
+        "types": [
+            "player",
+            "npc",
+            "vehicle"
+        ],
+        
+
+        "templates": {
+            "attributes" : {
+                "strength": 0,
+                "agility": 0,
+                "wits": 0,
+                "empathy": 0
+            }
+        }
+    }
+
+}

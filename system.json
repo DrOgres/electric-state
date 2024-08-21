@@ -1,0 +1,35 @@
+{
+  "id": "electric-state",
+  "title": "Electric State",
+  "description": "A road trip on the verge of reality in visual artist and author Simon Stålenhag's vision of an apocalyptic alternate 1990s ",
+  "authors": [
+    {
+      "name": "Dr Ogres",
+      "url": "https://github.com/DrOgres",
+      "flags": {}
+    }
+  ],
+  "url": "https://github.com/DrOgres/electric-state",
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": "12",
+    "maximum": "12",
+    "verified": "12.331"
+  },
+  "esmodules": ["electric-state.js"],
+  "styles": ["style/electric-state.css"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    }
+  ],
+  "initiative": "1d10",
+  "manifest": "https://github.com/DrOgres/electric-state/releases/latest/download/system.json",
+  "download": "https://github.com/DrOgres/electric-state/releases//download/0.0.1/system.zip",
+  "grid": {
+    "units": "meter"
+  }
+}

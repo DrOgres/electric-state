@@ -7,19 +7,16 @@
         "strength": 0,
         "agility": 0,
         "wits": 0,
-        "empathy": 0
+        "empathy": 0,
+        "health": {
+          "max": 0,
+          "value": 0
+        }
       }
     },
 
     "player": {
-      "strength": 0,
-      "agility": 0,
-      "wits": 0,
-      "empathy": 0,
-      "health": {
-        "max": 0,
-        "value": 0
-      },
+      "templates": ["attributes"],
       "archetype": "",
       "song": "",
       "description": "",

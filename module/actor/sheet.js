@@ -1,7 +1,7 @@
 export default class esActorSheet extends ActorSheet {
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["es", "sheet", "actor"],
             template: "systems/electric-state/templates/actors/player.hbs",
             width: 600,
@@ -23,11 +23,12 @@ export default class esActorSheet extends ActorSheet {
       }
 
       activateListeners(html) {
+        console.log("E-STATE | Activating Actor Sheet Listeners");
         super.activateListeners(html);
-        html.find(".item-create").click(this._onItemCreate.bind(this));
-        html.find(".item-edit").click(this._onItemEdit.bind(this));
-        html.find(".item-delete").click(this._onItemDelete.bind(this));
-        html.find(".item-roll").click(this._onItemRoll.bind(this));
+        // html.find(".item-create").click(this._onItemCreate.bind(this));
+        // html.find(".item-edit").click(this._onItemEdit.bind(this));
+        // html.find(".item-delete").click(this._onItemDelete.bind(this));
+        // html.find(".item-roll").click(this._onItemRoll.bind(this));
       }
 
 

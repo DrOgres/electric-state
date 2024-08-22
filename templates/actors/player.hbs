@@ -1,1 +1,31 @@
-<h1>Player Sheet</h1>
+<form class="actor-sheet {{cssClass}}" autocomplete="off">
+
+  <header class="sheet-header">
+
+  </header>
+
+<div class="flexrow">
+      <div class="portrait">
+    <img
+      src="{{actor.img}}"
+      data-edit="img"
+      title="{{actor.name}}"
+      height="160"
+      width="160"
+    />
+  </div>
+  <div class="flexrow">
+  <h1 class="charname">
+    <lable>Name</lable>
+    <input name="name" type="text" value="{{actor.name}}" placeholder="name" />
+  </h1>
+  <h2> <lable>archetype</lable>
+  {{log actor}}
+    <input name="system.archetype" type="text" value="{{actor.system.archetype}}" placeholder="archetype" />
+  </h2>
+
+  </div>
+
+</div>
+
+</form>

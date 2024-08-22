@@ -3,6 +3,7 @@ export default class esActor extends Actor {
     prepareData() {
         super.prepareData();
         const actorData = this.system;
+        console.log("E-State actor data", actorData);
 
     }
 }

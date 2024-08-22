@@ -36,7 +36,7 @@
  * Custom Die class for Year Zero games.
  * @extends {Die} The Foundry Die class
  */
-class YearZeroDie extends Die {
+class YearZeroDie extends foundry.dice.terms.Die {
     constructor(termData = {}) {
       termData.faces = Number.isInteger(termData.faces) ? termData.faces : 6;
       super(termData);
@@ -396,7 +396,7 @@ class YearZeroDie extends Die {
       'p' : 'setpush',
       'np': 'nopush',
     },
-    Die.MODIFIERS,
+    foundry.dice.terms.Die.MODIFIERS,
   );
   
   /* -------------------------------------------- */

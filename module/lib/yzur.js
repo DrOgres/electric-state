@@ -704,10 +704,10 @@ class YearZeroDie extends foundry.dice.terms.Die {
       diceSorting: ['base', 'skill', 'neg', 'gear', 'arto', 'loc', 'ammo'],
     },
     Roll: {
-      baseTemplate: '/systems/electric-state/model/templates/dice/broll.hbs',
-      chatTemplate: "/systems/electric-state/model/templates/dice/roll.hbs",
-      tooltipTemplate: "/systems/electric-state/model/templates/dice/tooltip.hbs",
-      infosTemplate: "/systems/electric-state/model/templates/dice/infos.hbs",
+      baseTemplate: '/systems/electric-state/templates/dice/broll.hbs',
+      chatTemplate: "/systems/electric-state/templates/dice/roll.hbs",
+      tooltipTemplate: "/systems/electric-state/templates/dice/tooltip.hbs",
+      infosTemplate: "/systems/electric-state/templates/dice/infos.hbs",
     },
     Dice: {
       localizeDieTerms: true,

@@ -2188,7 +2188,7 @@ class YearZeroDie extends foundry.dice.terms.Die {
      * @see DiceTerm.fromData
     */
     static _overrideDiceTermFromData() {
-      DiceTerm.prototype.constructor.fromData = function (data) {
+      foundry.dice.terms.DiceTerm.prototype.constructor.fromData = function (data) {
         let cls = CONFIG.Dice.termTypes[data.class];
         if (!cls) {
           const termkeys = Object.keys(CONFIG.Dice.terms);

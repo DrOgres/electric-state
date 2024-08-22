@@ -48,4 +48,12 @@ Hooks.once("init", function() {
         
         return result;
     });
+
+
+    YearZeroRollManager.register("es", {
+        "ROLL.baseTemplate": "systems/electric-state/templates/dice/broll.hbs",
+        "ROLL.chatTemplate": "systems/electric-state/templates/dice/roll.hbs",
+        "ROLL.tooltipTemplate": "systems/electric-state/templates/dice/tooltip.hbs",
+        "ROLL.infosTemplate": "systems/electric-state/templates/dice/infos.hbs",
+      });
 })

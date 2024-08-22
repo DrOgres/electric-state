@@ -1,0 +1,48 @@
+<div class="card-holder" style="position: relative;">
+
+  {{#if roll.options.token}}
+  <img src="{{roll.options.token}}" width="45" height="45" class="roll-token" />
+  {{/if}}
+  {{#unless roll.options.token}}
+  <img src="systems/electric-state/asset/unkown_roller.svg" width="45" height="45" class="roll-token" />
+  {{/unless}}
+  <div class="electric-state chat-card" data-owner-id="{{roll.owner}}">
+    
+    <div class="card-content borderimg">
+      <div class="dice-roll">
+       
+
+        {{#if flavor}}
+        <div class="dice-flavor">{{flavor}}</div>
+        {{/if}}
+        <div class="dice-result">
+          <div class="dice-formula">{{formula}}</div>
+          {{{tooltip}}}
+
+          {{#if (eq options.type "total")}}
+          <h4 class="dice-total">{{total}}</h4>
+          {{/if}}
+          {{#unless (eq options.type "total")}}
+          {{#if (gt success 0)}}
+          <h4 class="dice-total success">{{localize "CHAT.SUCCESS"}} : {{success}}</h4>
+          {{/if}}
+          {{#if (eq success 0)}}
+          <h4 class="dice-total failure"> {{localize "CHAT.SUCCESS"}} : {{success}}</h4>
+          {{/if}}
+          {{/unless}}
+        </div>
+      </div>
+      {{!-- Extra info added for Year Zero rolls --}}
+      {{#if showInfos}}
+      {{{infos}}}
+      {{/if}}
+      {{!-- Push button --}}
+      {{#if pushable}}
+      <div class="dice-buttons" data-owner-id="{{roll.owner}}">
+        <button class="dice-button push" data-action="push" data-owner-id="{{roll.owner}}">{{localize
+          "YZUR.CHAT.ROLL.Push"}}</button>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

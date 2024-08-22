@@ -14,8 +14,8 @@ export const preloadHandlebarsTemplates = async function() {
         // "systems/electric-state/templates/actors/parts/relationships.hbs",
         // "systems/electric-state/templates/actors/parts/relationships-teen.hbs",
         // "systems/electric-state/templates/actors/parts/item-hideout.hbs",
-        // "systems/electric-state/templates/actors/parts/core-info.hbs",
-        // "systems/electric-state/templates/actors/parts/core-teen.hbs",
+         "systems/electric-state/templates/actors/parts/player-main.hbs",
+         "systems/electric-state/templates/actors/parts/player-gear.hbs",
         // "systems/electric-state/templates/actors/parts/conditions-teen.hbs",
         // "systems/electric-state/templates/actors/parts/teen-item-notes.hbs"
     ];

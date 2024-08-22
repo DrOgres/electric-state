@@ -6,7 +6,7 @@ export default class esActorSheet extends ActorSheet {
             template: "systems/electric-state/templates/actors/player.hbs",
             width: 600,
             height: 600,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "main" }]
         });
     }
 
@@ -17,6 +17,8 @@ export default class esActorSheet extends ActorSheet {
       getData() {
         const data = super.getData();
         const actor = this.actor;
+        console.log("E-STATE | Actor", actor);
+        console.log("E-STATE |  Data", data);
 //TODO break out item types into separate arrays
 
         return data;

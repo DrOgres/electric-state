@@ -32,7 +32,7 @@ Hooks.once("init", function() {
     registerSystemSettings();
 
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("eState", electricStateActorSheet, { makeDefault: true });
+    Actors.registerSheet("electric-state", electricStateActorSheet, { makeDefault: true });
 
     // Items.unregisterSheet("core", ItemSheet);
     // Items.registerSheet("tftloop", tftloopItemSheet, { smakeDefault: true });

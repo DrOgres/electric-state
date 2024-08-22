@@ -7,154 +7,170 @@
         "strength": 0,
         "agility": 0,
         "wits": 0,
-        "empathy": 0,
-        "health": {
-          "max": 0,
-          "value": 0
-        }
+        "empathy": 0
       }
     },
-    "player" : {
-        "templates": ["attributes"],
-        "archetype": "",
-        "song": "",
-        "description": "",
-        "hope": {
-            "max": 0,
-            "value": 0
-        },
-        "bliss": 0,
-        "permanent": 0,
-        "dream": "",
-        "flaw": "",
-        "cash": 0,
-        "journey": {
-            "goal": "",
-            "threat": ""
-        },
-        "notes": ""
 
+    "player": {
+      "strength": 0,
+      "agility": 0,
+      "wits": 0,
+      "empathy": 0,
+      "health": {
+        "max": 0,
+        "value": 0
+      },
+      "archetype": "",
+      "song": "",
+      "description": "",
+      "hope": {
+        "max": 0,
+        "value": 0
+      },
+      "bliss": 0,
+      "permanent": 0,
+      "dream": "",
+      "flaw": "",
+      "cash": 0,
+      "journey": {
+        "goal": "",
+        "threat": ""
+      },
+      "notes": ""
     },
-    "npc" : {
-        "templates": ["attributes"],
-        "cash": 0
+
+    "npc": {
+      "templates": ["attributes"],
+      "cash": 0
     },
-    "vehicle" : {
-        "type": "",
-        "model": "",
-        "fuel": {
-            "max": 0,
-            "value": 0
-        },
-        "description": "",
-        "maneuverability": 0,
-        "speed": 0,
-        "hull": {
-            "max": 0,
-            "value": 0
-        },
-        "armor": 0,
-        "passengers": {
-            "passenger": [],
-            "max": 0,
-            "count": 0
-        }
+
+    "vehicle": {
+      "type": "",
+      "model": "",
+      "fuel": {
+        "max": 0,
+        "value": 0
+      },
+      "description": "",
+      "maneuverability": 0,
+      "speed": 0,
+      "hull": {
+        "max": 0,
+        "value": 0
+      },
+      "armor": 0,
+      "passengers": {
+        "passenger": [],
+        "max": 0,
+        "count": 0
+      }
     },
-    "robot" : {
-        "templates" : ["attributes"]
+
+    "robot": {
+      "templates": ["attributes"]
     }
-
-
   },
   "Item": {
-    "types" : ["gear",  "weapon", "armor", "explosive", "talent", "trait", "drone", "neurocaster", "tension", "trauma", "injury" ],
+    "types": [
+      "gear",
+      "weapon",
+      "armor",
+      "explosive",
+      "talent",
+      "trait",
+      "drone",
+      "neurocaster",
+      "tension",
+      "trauma",
+      "injury"
+    ],
     "templates": {
-        "commonItem": { 
-            "description": "",
-            "cost": 0
-        }
+      "commonItem": {
+        "description": "",
+        "cost": 0
+      }
     },
-    "gear" : {
-        "templates": ["commonItem"],
-        "modifier": "",
-        "weight": 0,
-        "attrribute": "",
-        "isBroken": false
+    "gear": {
+      "templates": ["commonItem"],
+      "modifier": "",
+      "weight": 0,
+      "attrribute": "",
+      "isBroken": false
     },
-    "weapon" : {
-        "templates": ["commonItem"],
-        "type": "",
-        "isFullAuto": false,
-        "requiresNeurocaster": false,
-        "damage": 0,
-        "range": {
-            "max": 0,
-            "min": 0
-        },
-        "modifier": "",
-        "attrribute": "",
-        "isBroken": false
+    "weapon": {
+      "templates": ["commonItem"],
+      "type": "",
+      "isFullAuto": false,
+      "requiresNeurocaster": false,
+      "damage": 0,
+      "range": {
+        "max": 0,
+        "min": 0
+      },
+      "modifier": "",
+      "attrribute": "",
+      "isBroken": false
     },
-    "armor" : {
-        "templates": ["commonItem"],
-        "armor": 0,
-        "modifier": 0,
-        "isBroken": false
+    "armor": {
+      "templates": ["commonItem"],
+      "armor": 0,
+      "modifier": 0,
+      "isBroken": false
     },
-    "explosive" : {
-        "templates": ["commonItem"],
-        "blast": 0
+    "explosive": {
+      "templates": ["commonItem"],
+      "blast": 0
     },
-    "talent" : {
-        "templates": ["commonItem"],
-        "modifier": "",
-        "type": ""
+    "talent": {
+      "templates": ["commonItem"],
+      "modifier": "",
+      "type": ""
     },
-    "trait" : {
-        "templates": ["commonItem"],
-        "modifier": "",
-        "type": ""
+    "trait": {
+      "templates": ["commonItem"],
+      "modifier": "",
+      "type": ""
     },
-    "drone" : {
-        "templates": ["commonItem"],
-        "type": "",
-        "hull": {
-            "max": 0,
-            "value": 0
-        },
-        "attributes" : {
-            "strength": 0,
-            "agility": 0
-        },
-        "armor": 0,
-        "range": {
-            "max": 0,
-            "min": 0
-        },
-        "damage": 0,
-        "isBroken": false
+    "drone": {
+      "templates": ["commonItem"],
+      "type": "",
+      "hull": {
+        "max": 0,
+        "value": 0
+      },
+      "attributes": {
+        "strength": 0,
+        "agility": 0
+      },
+      "armor": 0,
+      "range": {
+        "max": 0,
+        "min": 0
+      },
+      "damage": 0,
+      "isBroken": false
     },
-    "neurocaster" : {
-        "templates": ["commonItem"],
-        "processor": 0,
-        "network": 0,
-        "graphics": 0,
-        "realWorldPenalty": 0
+    "neurocaster": {
+      "templates": ["commonItem"],
+      "processor": 0,
+      "network": 0,
+      "graphics": 0,
+      "realWorldPenalty": 0
     },
-    "tension" : {
-        "templates": ["commonItem"]
+    "tension": {
+      "templates": ["commonItem"]
     },
-    "trauma" : {
-        "templates": ["commonItem"],
-        "modifier" : 0,
-        "type": ""
+    "trauma": {
+      "templates": ["commonItem"],
+      "modifier": 0,
+      "type": ""
     },
-    "injury" : {
-        "templates": ["commonItem"],
-        "modifier" : 0,
-        "type": "",
-        "isPermanent": false,
-        "healingTime": 0
+    "injury": {
+      "templates": ["commonItem"],
+      "modifier": 0,
+      "type": "",
+      "isPermanent": false,
+      "healingTime": 0
     }
   }
 }

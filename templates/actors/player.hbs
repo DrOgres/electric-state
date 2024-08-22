@@ -1,31 +1,52 @@
 <form class="actor-sheet {{cssClass}}" autocomplete="off">
 
-  <header class="sheet-header">
+    <header class="sheet-header">
 
-  </header>
+    </header>
 
-<div class="flexrow">
-      <div class="portrait">
-    <img
-      src="{{actor.img}}"
-      data-edit="img"
-      title="{{actor.name}}"
-      height="160"
-      width="160"
-    />
-  </div>
-  <div class="flexrow">
-  <h1 class="charname">
-    <lable>Name</lable>
-    <input name="name" type="text" value="{{actor.name}}" placeholder="name" />
-  </h1>
-  <h2> <lable>archetype</lable>
-  {{log actor}}
-    <input name="system.archetype" type="text" value="{{actor.system.archetype}}" placeholder="archetype" />
-  </h2>
+    <div class="flexrow">
+        <div class="portrait">
+            <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="160" width="160" />
+        </div>
+        <div class="flexrow">
+            <h1 class="charname">
+                <lable>Name</lable>
+                <input name="name" type="text" value="{{actor.name}}" placeholder="name" />
+            </h1>
+            <h2>
+                <lable>archetype</lable>
+                {{log actor}}
+                <input name="system.archetype" type="text" value="{{actor.system.archetype}}" placeholder="archetype" />
+            </h2>
 
-  </div>
+        </div>
 
-</div>
+    </div>
+    <div class="flexcol">
+        <div class="sheet-tabs tabs flexrow" data-group="primary">
+            <b class="item" data-tab="main">Main</b>
+            <b class="item" data-tab="gear">Gear</b>
+            <b class="item" data-tab="notes">Notes</b>
+        </div>
+        <div class="sheet-body">
+            <div class="tab" data-group="primary" data-tab="main">
+                <div class="main flexcol">
+                    {{> "systems/electric-state/templates/actors/parts/player-main.hbs"}}
+                </div>
+            </div>
+
+            <div class="tab" data-group="primary" data-tab="gear">
+                <div class="main flexcol">
+                    {{> "systems/electric-state/templates/actors/parts/player-gear.hbs"}}
+                </div>
+            </div>
+
+            <div class="tab" data-group="primary" data-tab="notes">
+                <div class="main flexcol">
+                    {{> "systems/electric-state/templates/actors/parts/player-main.hbs"}}
+                </div>
+            </div>
+        </div>
+    </div>
 
 </form>

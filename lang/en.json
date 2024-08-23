@@ -1,6 +1,42 @@
 {
 
     "estate": {
-    "ATTRIBUTE.STR": "Strength"
-    }
+    "ATTRIBUTE.STR": "Strength",
+    "ATTRIBUTE.AGI": "Agility",
+    "ATTRIBUTE.WIT": "Wits",
+    "ATTRIBUTE.EMP": "Empathy",
+    "ATTRIBUTE.HEALTH": "Health",
+    "ATTRIBUTE.HOPE": "Hope",
+    "ATTRIBUTE.BLISS": "Bliss",
+    "ATTRIBUTE.PERM": "Permanent",
+
+    "HEAD.NAME": "Name",
+    "HEAD.ARCHETYPE": "Archetype",
+    "HEAD.DESC": "Description",
+    "HEAD.SONG": "Favorite Song",
+
+
+    "UI.MAIN": "Main",
+    "UI.GEAR": "Gear",
+    "UI.OTHER": "Other",
+    "UI.NOTES": "Notes"   
+    
+},
+
+  "CHAT.SUCCESS": "Successes",
+  "ROLL.BASE.POOL": "Base Dice Pool",
+  "ROLL.TEST" : "Test",
+  "ROLL.ROLL" : "Roll",
+  "ROLL.PUSH": "Push",
+  "ROLL.CANCEL" : "Cancel",
+  "ROLL.SKILL": "Skill",
+  "ROLL.PREC": "Physical Recovery",
+  "ROLL.MREC": "Mental Recovery",
+  "ROLL.BONUS": "Bonus Dice",
+  "ROLL.DAMAGE": "Damage",
+
+  "YZUR.CHAT.ROLL.Push" : "Push",
+  "YZUR.DIETYPES.SkillDie" : "Success Count",
+  "YZUR.DIETERMS.SkillDie" : "Skill Success Count",
+  "YZUR.DIETERMS.GearDie" : "Gear Success Count"
 }

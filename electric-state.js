@@ -4,6 +4,8 @@ import { preloadHandlebarsTemplates } from "./module/templates.js";
 import { registerSystemSettings } from "./module/settings.js";
 import electricStateActorSheet from "./module/actor/sheet.js";
 import electricStateActor from "./module/actor/entity.js";
+import electricStateItemSheet from "./module/item/sheet.js";
+import electricStateItem from "./module/item/entity.js";
 
 
 
@@ -14,13 +16,13 @@ Hooks.once("init", function() {
         applications: {
             electricStateActor,
             electricStateActorSheet,
-            // tftloopItem,
-            // tftloopItemSheet
+            electricStateItem,
+            electricStateItemSheet
         },
         config: eState,
         entities: {
             electricStateActor,
-            // tftloopItem
+            electricStateItem
         }
     }
 
@@ -34,8 +36,8 @@ Hooks.once("init", function() {
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("electric-state", electricStateActorSheet, { makeDefault: true });
 
-    // Items.unregisterSheet("core", ItemSheet);
-    // Items.registerSheet("tftloop", tftloopItemSheet, { smakeDefault: true });
+    Items.unregisterSheet("core", ItemSheet);
+    Items.registerSheet("electric-state", electricStateItemSheet, { smakeDefault: true });
 
     preloadHandlebarsTemplates();
 

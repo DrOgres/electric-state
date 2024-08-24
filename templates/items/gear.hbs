@@ -17,9 +17,9 @@
     <label for="roll-modifier">Roll Modifier</label>
     <input id="roll-modifier" name="system.modifier" type="text" value="{{item.system.modifier}}" />
   </div>
-  {{/if}}
 
- {{#if item.system.isModifier}}
+  <!-- select list for attribute -->
+
   <div class="broken">
     <label for="broken">Broken</label>
     <input id="broken" name="system.isBroken" type="checkbox" {{checked item.system.isBroken}} />

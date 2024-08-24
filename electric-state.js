@@ -27,6 +27,7 @@ Hooks.once("init", function() {
     }
 
     CONFIG.eState = eState;
+    console.log(CONFIG.eState);
     CONFIG.Actor.documentClass = electricStateActor; 
     // CONFIG.Item.documentClass = tftloopItem;  
     

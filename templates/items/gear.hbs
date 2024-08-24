@@ -8,17 +8,21 @@
       {{localize "estate.HEAD.COST"}}
     </label>
     <input id="cost" name="system.cost" type="text" value="{{item.system.cost}}" />
+
   </h1>
   <label for="description">description</label>
   <textarea id="description" name="system.description">{{item.system.description}}</textarea>
-  Roll Modifier? <input type="checkbox" name="system.isModifier" id="roll-modifier-boolean" {{checked item.system.isModifier}} />
+  Roll Modifier? <input type="checkbox" name="system.isModifier" id="roll-modifier-boolean" {{checked
+    item.system.isModifier}} />
   {{#if item.system.isModifier}}
   <div id="roll-modifier" class="flexrow">
     <label for="roll-modifier">Roll Modifier</label>
     <input id="roll-modifier" name="system.modifier" type="text" value="{{item.system.modifier}}" />
   </div>
-
-  <!-- select list for attribute -->
+  Modified Attribute
+  <select name="system.attribute">
+    {{selectOptions config.attributeSelectOptions selected=item.system.attribute}}
+  </select>
 
   <div class="broken">
     <label for="broken">Broken</label>

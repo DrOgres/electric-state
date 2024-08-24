@@ -8,25 +8,45 @@
         <div class="portrait">
             <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="160" width="160" />
         </div>
-        <div class="flexrow">
-            <h1 class="charname">
-                <lable>{{localize "estate.HEAD.NAME"}}</lable>
-                <input name="name" type="text" value="{{actor.name}}" placeholder="name" />
-            </h1>
-            <h2>
-                <lable>{{localize "estate.HEAD.ARCHETYPE"}}</lable>
-                {{log actor}}
-                <input name="system.archetype" type="text" value="{{actor.system.archetype}}" placeholder="archetype" />
-            </h2>
+        <div class="flexcol">
+            <div class="flexrow">
+                <h1 class="charname">
+                    <lable>{{localize "estate.HEAD.NAME"}}</lable>
+                    <input name="name" type="text" value="{{actor.name}}" placeholder="name" />
+                </h1>
+                <h2>
+                    <lable>{{localize "estate.HEAD.ARCHETYPE"}}</lable>
+                    {{log actor}}
+                    <input name="system.archetype" type="text" value="{{actor.system.archetype}}"
+                        placeholder="archetype" />
+                </h2>
 
+            </div>
+            <div class="flexrow">
+                favorite song <input name="system.song" type="text" value="{{actor.system.song}}"
+                    placeholder="favorite song" />
+            </div>
+            <div class="flexrow">
+                description <textarea name="system.description">{{actor.system.description}}</textarea>
+            </div>
+            <div class="flexrow">
+                <div class="dream">Dream
+                    <input name="system.dream" type="text" value="{{actor.system.dream}}" placeholder="dream" />
+                </div>
+                <div class="flaw">
+                    Flaw
+                    <input name="system.flaw" type="text" value="{{actor.system.flaw}}" placeholder="flaw" />
+                </div>
+            </div>
         </div>
 
     </div>
+
     <div class="flexcol">
         <div class="sheet-tabs tabs flexrow" data-group="primary">
             <b class="item" data-tab="main">{{localize "estate.UI.MAIN"}}</b>
             <b class="item" data-tab="gear">{{localize "estate.UI.GEAR"}}</b>
-            <b class="item" data-tab="notes">{{localize "estate.UI.NOTES"}}</b>
+            <b class="item" data-tab="notes">{{localize "estate.UI.JOURNEY"}}</b>
         </div>
         <div class="sheet-body">
             <div class="tab" data-group="primary" data-tab="main">

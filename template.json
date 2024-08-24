@@ -91,6 +91,7 @@
       "templates": ["commonItem"],
       "modifier": "",
       "weight": 0,
+      "isModifier": false,
       "attrribute": "",
       "isBroken": false
     },
@@ -155,7 +156,8 @@
       "realWorldPenalty": 0
     },
     "tension": {
-      "templates": ["commonItem"]
+      "templates": ["commonItem"],
+      "score": 0
     },
     "trauma": {
       "templates": ["commonItem"],

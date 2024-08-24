@@ -5,7 +5,7 @@ export default class esItemSheet extends ItemSheet {
 
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             width : 650, 
             height: 350,
             classes: ["es", "sheet", "item"],

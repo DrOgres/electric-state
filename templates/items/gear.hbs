@@ -16,8 +16,10 @@
     item.system.isModifier}} />
   {{#if item.system.isModifier}}
   <div id="roll-modifier" class="flexrow">
-    <label for="roll-modifier">Roll Modifier</label>
-    <input id="roll-modifier" name="system.modifier" type="text" value="{{item.system.modifier}}" />
+    <label for="roll-modifier">Gear Dice</label>
+    <input id="roll-modifier" name="system.modifier.value" type="number" value="{{item.system.modifier.value}}" /> / 
+    <input id="max-roll-modifier" name="system.modifier.max" type="number" value="{{item.system.modifier.max}}" />
+    
   </div>
   Modified Attribute
   <select name="system.attribute">

@@ -25,11 +25,12 @@
   <select name="system.attribute">
     {{selectOptions config.attributeSelectOptions selected=item.system.attribute}}
   </select>
-
+  {{#if item.system.isBroken}}
   <div class="broken">
-    <label for="broken">Broken</label>
-    <input id="broken" name="system.isBroken" type="checkbox" {{checked item.system.isBroken}} />
+    <h3>Broken</h3>
   </div>
+  {{/if}}
+
   {{/if}}
 
 </form>

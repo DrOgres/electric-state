@@ -84,12 +84,15 @@
     "templates": {
       "commonItem": {
         "description": "",
-        "cost": 0
+        "cost": 0,
+        "modifier": {
+        "max": 0,
+        "value": 0
+      }
       }
     },
     "gear": {
       "templates": ["commonItem"],
-      "modifier": "",
       "weight": 0,
       "isModifier": false,
       "attribute": "",
@@ -105,14 +108,12 @@
         "max": 0,
         "min": 0
       },
-      "modifier": "",
       "attribute": "",
       "isBroken": false
     },
     "armor": {
       "templates": ["commonItem"],
       "armor": 0,
-      "modifier": 0,
       "isBroken": false
     },
     "explosive": {
@@ -121,12 +122,10 @@
     },
     "talent": {
       "templates": ["commonItem"],
-      "modifier": "",
       "type": ""
     },
     "trait": {
       "templates": ["commonItem"],
-      "modifier": "",
       "type": ""
     },
     "drone": {
@@ -161,12 +160,10 @@
     },
     "trauma": {
       "templates": ["commonItem"],
-      "modifier": 0,
       "type": ""
     },
     "injury": {
       "templates": ["commonItem"],
-      "modifier": 0,
       "type": "",
       "isPermanent": false,
       "healingTime": 0

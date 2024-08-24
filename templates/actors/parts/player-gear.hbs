@@ -2,7 +2,40 @@
 
 <div>
     weapons
+    {{#each items as |item|}}
+        {{#if item.isWeapon}}
+            <div>{{item.name}}</div>
+        {{/if}}
+    {{/each}}
+    explosives
+    {{#each items as |item|}}
+        {{#if item.isExplosive}}
+            <div>{{item.name}}</div>
+        {{/if}}
+    {{/each}}
     armor
+        {{#each items as |item|}}
+        {{#if item.isArmor}}
+            <div>{{item.name}}</div>
+        {{/if}}
+    {{/each}}
+    gear
+     {{#each items as |item|}}
+        {{#if item.isGear}}
+            <div>{{item.name}}</div>
+        {{/if}}
+    {{/each}}
     drone
-    other gear
+        {{#each items as |item|}}
+        {{#if item.isDrone}}
+            <div>{{item.name}}</div>
+        {{/if}}
+    {{/each}}
+    neurocaster
+        {{#each items as |item|}}
+        {{#if item.isNeurocaster}}
+            <div>{{item.name}}</div>
+        {{/if}}
+    {{/each}}
+  
 </div>

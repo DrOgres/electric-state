@@ -2,39 +2,49 @@
     weapons <div class="item-create" data-type="weapon">new weapon</div>
     {{#each items as |item|}}
         {{#if item.isWeapon}}
-        {{log item._id}}
-            <div>{{item.name}}</div> <div class="item-edit" data-item-id="{{item._id}}">edit</div>
-             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+            <div>{{item.name}}</div> 
+            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
+            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
         {{/if}}
     {{/each}}
-    explosives
+    explosives <div class="item-create" data-type="explosive">new explosive</div>
     {{#each items as |item|}}
         {{#if item.isExplosive}}
             <div>{{item.name}}</div>
+            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
+            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
         {{/if}}
     {{/each}}
-    armor
+    armor <div class="item-create" data-type="armor">new armor</div>
         {{#each items as |item|}}
         {{#if item.isArmor}}
             <div>{{item.name}}</div>
+            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
+            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
         {{/if}}
     {{/each}}
-    gear
+    gear <div class="item-create" data-type="gear">new gear</div>
      {{#each items as |item|}}
         {{#if item.isGear}}
             <div>{{item.name}}</div>
+            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
+            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
         {{/if}}
     {{/each}}
-    drone
+    drone <div class="item-create" data-type="drone">new drone</div>
         {{#each items as |item|}}
         {{#if item.isDrone}}
             <div>{{item.name}}</div>
+            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
+            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
         {{/if}}
     {{/each}}
-    neurocaster
+    neurocaster <div class="item-create" data-type="neurocaster">new neurocaster</div>
         {{#each items as |item|}}
         {{#if item.isNeurocaster}}
             <div>{{item.name}}</div>
+            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
+            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
         {{/if}}
     {{/each}}
   

@@ -1,51 +1,92 @@
-<div>
-    weapons <div class="item-create" data-type="weapon">new weapon</div>
-    {{#each items as |item|}}
+<div class="flexcol">
+    <div class="weapon-group">
+        <div class="group-header flexrow">
+            <h4>weapons</h4>
+            <div class="item-create" data-type="weapon">new weapon</div>
+        </div>
+        {{#each items as |item|}}
         {{#if item.isWeapon}}
-            <div>{{item.name}}</div> 
-            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
-            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
-        {{/if}}
-    {{/each}}
-    explosives <div class="item-create" data-type="explosive">new explosive</div>
-    {{#each items as |item|}}
-        {{#if item.isExplosive}}
+        <div class="item-row flexrow">
             <div>{{item.name}}</div>
             <div class="item-edit" data-item-id="{{item._id}}">edit</div>
             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+        </div>
         {{/if}}
-    {{/each}}
-    armor <div class="item-create" data-type="armor">new armor</div>
+        {{/each}}
+    </div>
+    <div class="explosives-group">
+        <div class="group-header flexrow">
+            <h4>explosives</h4>
+            <div class="item-create" data-type="explosive">new explosive</div>
+        </div>
+        {{#each items as |item|}}
+        {{#if item.isExplosive}}
+        <div class="item-row flexrow">
+            <div>{{item.name}}</div>
+            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
+            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+        </div>
+        {{/if}}
+        {{/each}}
+    </div>
+    <div class="armor-group">
+        <div class="group-header flexrow">
+            <h4>armor</h4>
+            <div class="item-create" data-type="armor">new armor</div>
+        </div>
         {{#each items as |item|}}
         {{#if item.isArmor}}
+        <div class="item-row flexrow">
             <div>{{item.name}}</div>
             <div class="item-edit" data-item-id="{{item._id}}">edit</div>
             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+        </div>
         {{/if}}
-    {{/each}}
-    gear <div class="item-create" data-type="gear">new gear</div>
-     {{#each items as |item|}}
+        {{/each}}
+    </div>
+    <div class="gear-group">
+        <div class="group-header flexrow">
+            <h4>gear</h4>
+            <div class="item-create" data-type="gear">new gear</div>
+        </div>
+        {{#each items as |item|}}
         {{#if item.isGear}}
+        <div class="item-row flexrow">
             <div>{{item.name}}</div>
             <div class="item-edit" data-item-id="{{item._id}}">edit</div>
             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+        </div>
         {{/if}}
-    {{/each}}
-    drone <div class="item-create" data-type="drone">new drone</div>
+        {{/each}}
+    </div>
+    <div class="drone-gorup">
+        <div class="group-header flexrow">
+            <h4>drone</h4>
+            <div class="item-create" data-type="drone">new drone</div>
+        </div>
         {{#each items as |item|}}
         {{#if item.isDrone}}
+        <div class="item-row flexrow">
             <div>{{item.name}}</div>
             <div class="item-edit" data-item-id="{{item._id}}">edit</div>
             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+        </div>
         {{/if}}
-    {{/each}}
-    neurocaster <div class="item-create" data-type="neurocaster">new neurocaster</div>
+        {{/each}}
+    </div>
+    <div class="neurocaster-group">
+        <div class="group-header flexrow">
+            <h4>neurocaster</h4>
+            <div class="item-create" data-type="neurocaster">new neurocaster</div>
+        </div>
         {{#each items as |item|}}
         {{#if item.isNeurocaster}}
+        <div class="item-row flexrow">
             <div>{{item.name}}</div>
             <div class="item-edit" data-item-id="{{item._id}}">edit</div>
             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+        </div>
         {{/if}}
-    {{/each}}
-  
+        {{/each}}
+    </div>
 </div>

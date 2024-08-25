@@ -33,10 +33,37 @@ export default class esActorSheet extends ActorSheet {
   activateListeners(html) {
     console.log("E-STATE | Activating Actor Sheet Listeners");
     super.activateListeners(html);
-    // html.find(".item-create").click(this._onItemCreate.bind(this));
-    // html.find(".item-edit").click(this._onItemEdit.bind(this));
-    // html.find(".item-delete").click(this._onItemDelete.bind(this));
+
+    html.find(".item-create").click(this._onItemCreate.bind(this));
+    html.find(".item-edit").click(this._onItemEdit.bind(this));
+    html.find(".item-delete").click(this._onItemDelete.bind(this));
     // html.find(".item-roll").click(this._onItemRoll.bind(this));
+  }
+
+  _onItemEdit(event) {
+    event.preventDefault();
+    const itemID = event.currentTarget.dataset.itemId;
+    const item = this.actor.items.get(itemID);
+    item.sheet.render(true);
+  }
+
+  _onItemDelete(event) {
+    console.log("E-STATE | Deleting Item");
+    event.preventDefault();
+    const itemId = event.currentTarget.dataset.itemId;
+    this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+  }
+
+  _onItemCreate(event) {
+    event.preventDefault();
+    const type = event.currentTarget.dataset.type;
+    const itemName = "New " + type;
+    const data = {
+      name: itemName,
+      type: type,
+    };
+
+    this.actor.createEmbeddedDocuments("Item", [data]);
   }
 
   //   "gear",

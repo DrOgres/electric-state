@@ -1,10 +1,10 @@
-<h2>gear tab</h2>
-
 <div>
-    weapons
+    weapons <div class="item-create" data-type="weapon">new weapon</div>
     {{#each items as |item|}}
         {{#if item.isWeapon}}
-            <div>{{item.name}}</div>
+        {{log item._id}}
+            <div>{{item.name}}</div> <div class="item-edit" data-item-id="{{item._id}}">edit</div>
+             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
         {{/if}}
     {{/each}}
     explosives

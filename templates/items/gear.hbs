@@ -17,9 +17,9 @@
   {{#if item.system.isModifier}}
   <div id="roll-modifier" class="flexrow">
     <label for="roll-modifier">Gear Dice</label>
-    <input id="roll-modifier" name="system.modifier.value" type="number" value="{{item.system.modifier.value}}" /> / 
+    <input id="roll-modifier" name="system.modifier.value" type="number" value="{{item.system.modifier.value}}" /> /
     <input id="max-roll-modifier" name="system.modifier.max" type="number" value="{{item.system.modifier.max}}" />
-    
+
   </div>
   Modified Attribute
   <select name="system.attribute">
@@ -32,5 +32,13 @@
   {{/if}}
 
   {{/if}}
+
+  Limited Uses? <input type="checkbox" name="system.isConsumable" id="roll-modifier-boolean" {{checked
+    item.system.isConsumable}} />
+  {{#if item.system.isConsumable}}
+  <div id="consumable" class="flexrow">
+    <label for="consumable">Uses</label>
+    <input id="consumable" name="system.uses" type="number" value="{{item.system.uses}}" />
+    {{/if}}
 
 </form>

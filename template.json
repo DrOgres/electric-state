@@ -93,7 +93,6 @@
     },
     "gear": {
       "templates": ["commonItem"],
-      "weight": 0,
       "isModifier": false,
       "attribute": "",
       "uses": 0,

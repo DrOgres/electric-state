@@ -34,8 +34,21 @@ export default class esItemSheet extends ItemSheet {
       EMP: localizedAttributes[3],
     };
     data.config.default = "STR";
+    this.testBroken(data);
 
 
     return data;
+  }
+
+  testBroken(data) {
+    const currentModifier = data.item.system.modifier.value;
+    if (currentModifier === 0) {
+      data.item.system.modifier.value = 0;
+      data.item.system.isBroken = true;
+    } else {
+      data.item.system.isBroken = false;
+    }
+    
+    
   }
 }

@@ -52,9 +52,18 @@
         {{#each items as |item|}}
         {{#if item.isGear}}
         <div class="item-row flexrow">
+            <div class="item-icon"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25" width="25" /></div>
             <div>{{item.name}}</div>
+            {{#if item.system.isBroken}}
+            <div class="broken">broken {{item.system.isBroken}}</div>
+            {{/if}}
+            {{#unless item.system.isBroken}}
+            <div class="hold"></div>
+            {{/unless}}
+            <div class="button-group">
             <div class="item-edit" data-item-id="{{item._id}}">edit</div>
             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+            </div>
         </div>
         {{/if}}
         {{/each}}

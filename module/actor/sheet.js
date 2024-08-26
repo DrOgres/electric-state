@@ -22,9 +22,8 @@ export default class esActorSheet extends ActorSheet {
   getData() {
     const data = super.getData();
     const actor = this.actor;
-    console.log("E-STATE | Actor", actor);
-    console.log("E-STATE |  Data", data);
-
+    // console.log("E-STATE | Actor", actor);
+    // console.log("E-STATE |  Data", data);
     this.computeItems(data);
 
     return data;
@@ -81,7 +80,6 @@ export default class esActorSheet extends ActorSheet {
   computeItems(data) {
     console.log("E-STATE | Computing Items", data);
     for (let item of Object.values(data.items)) {
-      console.log("E-STATE | Item", item);
       item.isGear = item.type === "gear";
       item.isWeapon = item.type === "weapon";
       item.isArmor = item.type === "armor";

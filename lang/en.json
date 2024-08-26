@@ -14,6 +14,7 @@
     "HEAD.ARCHETYPE": "Archetype",
     "HEAD.DESC": "Description",
     "HEAD.SONG": "Favorite Song",
+    "HEAD.COST": "Cost",
 
 
     "UI.MAIN": "Main",

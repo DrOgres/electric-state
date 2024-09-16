@@ -18,3 +18,19 @@ select[multiple] {
     background-color: whitesmoke;
     color: black;
   }
+
+
+
+.app.sheet .editor {
+    min-height: 55px;
+  }
+  
+  
+  .editor-content {
+    padding: 0.5rem;
+    min-height: 50px;
+  }
+
+  .editor {
+    height: 100%;
+  }

@@ -1,15 +1,43 @@
 <h2>other stuff and notes tab</h2>
 
-<div>
-    JOURNEY
-    goal
-    threat
+<div class="flexcol">
+    <h2>JOURNEY</h2>
+    <div>
+        <h3>goal</h3>
+        <input name="system.goal" type="text" value="{{actor.system.journey.goal}}" placeholder="goal" />
+    </div>
+    <div>
+        <h3>threat</h3>
+        <input name="system.threat" type="text" value="{{actor.system.journey.threat}}" placeholder="threat" />
+    
+    </div>
+</div>
+
+<div></div>
+  <div class="tension-group">
+        <div class="group-header flexrow">
+            <h4>Tensions</h4>
+            <div class="item-create" data-type="tension">new tension</div>
+        </div>
+        {{#each items as |item|}}
+        {{#if item.isTension}}
+        <div class="item-row flexrow">
+            <div>{{item.name}}</div>
+            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
+            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+        </div>
+        {{/if}}
+        {{/each}}
+    </div>
 </div>
 
 <div>
-    notes
+   <div class="container">
+        {{log actor.system.notes}}
+        <b class="title" >{{localize "estate.UI.NOTES"}}</b>
+        <div class="full-size">
+      {{editor notesHTML target="system.notes" button=true owner=owner editable=editable}}
+    </div>
+    </div>
 </div>
 
-<div>
-    tensions
-</div>

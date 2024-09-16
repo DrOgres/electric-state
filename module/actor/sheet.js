@@ -35,13 +35,17 @@ export default class esActorSheet extends ActorSheet {
   }
 
 
-  getData() {
+  async getData() {
     const data = super.getData();
     const actor = this.actor;
     // console.log("E-STATE | Actor", actor);
     // console.log("E-STATE |  Data", data);
     this.computeItems(data);
     this.computeMaxStats(actor);
+
+    (data.notesHTML = await TextEditor.enrichHTML(actor.system.notes, {
+      async: true,
+    }));
 
     return data;
   }

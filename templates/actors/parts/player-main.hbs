@@ -35,4 +35,15 @@
              {{localize "estate.ATTRIBUTE.PERM"}} <input type="number" name="system.permanent" value="{{actor.system.permanent}}" data-dtype="Number" /> 
         </div>
     </div>
+     <div class="flexcol">
+        <h4>Talents</h4>
+        {{#each items as |talent|}}
+        {{#if talent.isTalent}}
+            <div class="flexrow">
+                <div class="item" data-item-id="{{talent._id}}">{{talent.name}}</div><div class="item-edit" data-item-id="{{talent._id}}">edit </div> <div class="item-delete" data-item-id="{{talent._id}}">delete</div>
+                
+            </div>
+        {{/if}}
+        {{/each}}
+     </div>
 </div>

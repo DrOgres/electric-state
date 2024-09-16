@@ -25,6 +25,7 @@ export default class esActorSheet extends ActorSheet {
     // console.log("E-STATE | Actor", actor);
     // console.log("E-STATE |  Data", data);
     this.computeItems(data);
+    this.computeMaxStats(actor);
 
     return data;
   }
@@ -63,6 +64,28 @@ export default class esActorSheet extends ActorSheet {
     };
 
     this.actor.createEmbeddedDocuments("Item", [data]);
+  }
+
+  async computeMaxStats(actor) {
+    console.log("E-STATE | Computing Max Stats");
+    let health = 0;
+    let hope = 0;
+
+    health = Math.ceil((actor.system.strength + actor.system.agility)/2); 
+    hope = Math.ceil((actor.system.wits + actor.system.empathy)/2);
+    const talents = actor.items.filter((item) => item.type === "talent");
+
+    // look for taents that modify health or hope
+    for (let talent of talents) {
+      if (talent.system.type.includes("health")) {
+        health += talent.system.modifier.value;
+      } else if (talent.system.type.includes("hope")) {
+        hope += talent.system.modifier.value;
+      }
+    }
+    //update actor with new values
+    await actor.update({"system.health.max": health, "system.hope.max": hope});
+
   }
 
   //   "gear",

@@ -1,8 +1,23 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-
+<div class="flexrow">
+  <div class="portrait"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" /></div>
+  <div class="content flexcol">
   <h1 class="charname">
     <input name="name" type="text" value="{{item.name}}" />
   </h1>
-  <h2>talent</h2>
+  <lable> Type </lable> 
+            <select multiple name="system.type" style="height:150px;width: 100%;">
+                {{#each config.modifierTarget as |attr key|}}
+                <option value="{{key}}" {{#ifIn key ../item.system.type}}selected{{/ifIn}}>{{localize attr}}
+                </option>
+                {{/each}}               
+            </select>
 
+            {{item.system.type}}
+            <lable>Bonus</lable> <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}">
+            <lable>Description</lable> <textarea name="system.description"
+                value="{{item.system.description}}">{{item.system.description}}</textarea>
+
+ </div>
+</div>
 </form>

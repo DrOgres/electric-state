@@ -21,7 +21,17 @@
     "UI.GEAR": "Gear",
     "UI.OTHER": "Other",
     "UI.NOTES": "Notes",
-    "UI.JOURNEY": "Journey"   
+    "UI.JOURNEY": "Journey",
+    
+    
+    "UI.DAMAGE": "Damage",
+    "UI.WEAPON": "Weapon",
+    "UI.TENSION": "Tension",
+    "UI.NEUROCASTER": "Neurocaster",
+    "UI.DRONE": "Drone",
+    "UI.GENERAL": "General",
+    "UI.DEATH": "Death",
+    "UI.NONE": "None"
     
 },
 

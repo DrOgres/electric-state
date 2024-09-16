@@ -53,6 +53,14 @@ Hooks.once("init", function() {
     });
 
 
+Handlebars.registerHelper("ifIn", function (elem, list, options) {
+    if (list && list.indexOf(elem) > -1) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
+
+
     YearZeroRollManager.register("es", {
         "ROLL.baseTemplate": "systems/electric-state/templates/dice/broll.hbs",
         "ROLL.chatTemplate": "systems/electric-state/templates/dice/roll.hbs",

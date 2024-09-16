@@ -30,6 +30,9 @@
     "UI.HULL": "Hull",
     "UI.PASSENGERS": "Passengers",
     "UI.REPAIRS": "Repairs",
+
+    "UI.MELEE": "Close Combat",
+    "UI.RANGED": "Ranged Combat",
     
     
     "UI.DAMAGE": "Damage",

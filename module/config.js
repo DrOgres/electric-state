@@ -49,6 +49,11 @@ eState.traitTarget = {
     "repairs": "estate.UI.REPAIRS",
 }
 
+eState.weaponType = {
+    "melee": "estate.UI.MELEE",
+    "ranged": "estate.UI.RANGED"
+}
+
 eState.ranges ={
 
     "engaged": "estate.UI.ENGAGED",

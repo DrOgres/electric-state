@@ -1,9 +1,31 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-  <h1 class="charname">
-    <input name="name" type="text" value="{{item.name}}" />
-  </h1>
-  <h2>Explosive
-  </h2>
+  <div class="flexrow">
+    <div class="portrait"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" />
+    </div>
+    <div class="content flexcol">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{item.name}}" />
+      </h1>
+      <lable for="cost">
+      {{localize "estate.HEAD.COST"}}
+    </lable>
+    <input id="cost" name="system.cost" type="text" value="{{item.system.cost}}" />
+  
+      <lable>Bonus</lable> <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}">
+      <lable>Description</lable> <textarea name="system.description"
+        value="{{item.system.description}}">{{item.system.description}}</textarea>
+  <lable >Blast Power</lable> <input type="number" name="system.blast" value="{{item.system.blast}}">
+   <lable>Minimum Range</lable>
+      <select name="system.range.min">
+        {{selectOptions config.ranges selected=item.system.range.min localize=true}}
+      </select>
+      <lable>Maximum Range</lable>
+      <select name="system.range.max">
+        {{selectOptions config.ranges selected=item.system.range.max localize=true}}
+      </select>
+    
+    </div>
+  </div>
 
 </form>

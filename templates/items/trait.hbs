@@ -1,8 +1,21 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-  <h1 class="charname">
-    <input name="name" type="text" value="{{item.name}}" />
-  </h1>
-  <h2>Trait</h2>
+  <div class="flexrow">
+    <div class="portrait"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" />
+    </div>
+    <div class="content flexcol">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{item.name}}" />
+      </h1>
+      <lable> Type </lable>
+      <select name="system.type">
+        {{selectOptions config.traitTarget selected=item.system.type localize=true}}
+      </select>
+      <lable>Bonus</lable> <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}">
+      <lable>Description</lable> <textarea name="system.description"
+        value="{{item.system.description}}">{{item.system.description}}</textarea>
+
+    </div>
+  </div>
 
 </form>

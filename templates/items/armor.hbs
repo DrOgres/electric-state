@@ -1,8 +1,20 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-  <h1 class="charname">
-    <input name="name" type="text" value="{{item.name}}" />
-  </h1>
-  <h2>Armor</h2>
+  <div class="flexrow">
+    <div class="portrait"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" />
+    </div>
+    <div class="content flexcol">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{item.name}}" />
+      </h1>
+      <lable>Armor</lable> <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}"> / <input type="number" name="system.modifier.max" value="{{item.system.modifier.max}}"> 
+      <lable>Agility Modifier</lable> <input type="number" name="system.agiltyModifier" value="{{item.system.agiltyModifier}}">
+      
+      <lable>Description</lable> <textarea name="system.description"
+        value="{{item.system.description}}">{{item.system.description}}</textarea>
+
+      <lable>Price</lable> <input type="text" name="system.cost" value="{{item.system.cost}}">
+    </div>
+  </div>
 
 </form>

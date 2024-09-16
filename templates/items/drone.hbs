@@ -1,8 +1,63 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-  <h1 class="charname">
-    <input name="name" type="text" value="{{item.name}}" />
-  </h1>
-  <h2>Drone</h2>
+  <div class="flexrow">
+    <div class="portrait"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" />
+    </div>
+    <div class="content flexcol">
+      {{#if item.system.isBroken}}
+      <div class="broken">
+        <h3>Broken</h3>
+      </div>
+      {{/if}}
+      <h1 class="charname">
+        <input name="name" type="text" value="{{item.name}}" />
+      </h1>
+      <div class="attribute cost">
+      <label for="cost">Cost</label>
+      <input id="cost" type="number" name="system.cost" value="{{item.system.cost}}">
+    </div>
+      <div class="grid">
+        <div class="attribute strength">
+          <label for="strength">Strength</label>
+          <input id="strength" type="number" name="system.attributes.strength"
+            value="{{item.system.attributes.strength}}">
+        </div>
+
+        <div class="attribute agility">
+          <label for="agility">Agility</label>
+          <input id="agility" type="number" name="system.attributes.agility" value="{{item.system.attributes.agility}}">
+        </div>
+
+        <div class="attribute hull">
+          <label for="hull">Hull</label>
+          <input id="hull" type="number" name="system.hull.value" value="{{item.system.hull.value}}"> / <input id="hull"
+            type="number" name="system.hull.max" value="{{item.system.hull.max}}">
+        </div>
+
+        <div class="attribute armor">
+          <label for="armor">Armor</label>
+          <input id="armor" type="number" name="system.armor" value="{{item.system.armor}}">
+        </div>
+
+        <div class="attribute damage">
+          <label for="damage">Damage</label>
+          <input id="damage" type="number" name="system.damage" value="{{item.system.damage}}">
+        </div>
+      </div>
+      <lable>Minimum Range</lable>
+      <select name="system.range.min">
+        {{selectOptions config.ranges selected=item.system.range.min localize=true}}
+      </select>
+      <lable>Maximum Range</lable>
+      <select name="system.range.max">
+        {{selectOptions config.ranges selected=item.system.range.max localize=true}}
+      </select>
+      <lable>Description</lable> <textarea name="system.description"
+        value="{{item.system.description}}">{{item.system.description}}</textarea>
+
+      
+
+  </div>
+  </div>
 
 </form>

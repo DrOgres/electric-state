@@ -19,6 +19,22 @@ export default class esActorSheet extends ActorSheet {
     return `systems/electric-state/templates/actors/${this.actor.type}.hbs`;
   }
 
+  _getHeaderButtons() {
+    let buttons = super._getHeaderButtons();
+    if (this.actor.isOwner) {
+      buttons = [
+        {
+          label: game.i18n.localize("estate.UI.DEATHROLL"),
+          class: "push-roll",
+          icon: "fas fa-skull",
+          onclick: (ev) => this._deathRoll(this),
+        },
+      ].concat(buttons);
+    }
+    return buttons;
+  }
+
+
   getData() {
     const data = super.getData();
     const actor = this.actor;
@@ -38,6 +54,11 @@ export default class esActorSheet extends ActorSheet {
     html.find(".item-edit").click(this._onItemEdit.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
     // html.find(".item-roll").click(this._onItemRoll.bind(this));
+  }
+
+  _deathRoll(actor){
+    console.log("E-STATE | Death Roll", actor);
+
   }
 
   _onItemEdit(event) {

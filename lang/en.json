@@ -22,6 +22,14 @@
     "UI.OTHER": "Other",
     "UI.NOTES": "Notes",
     "UI.JOURNEY": "Journey",
+
+   
+    "UI.SPEED": "Speed",
+    "UI.MANEUVER": "Maneuverability",
+    "UI.ARMOR": "Armor",
+    "UI.HULL": "Hull",
+    "UI.PASSENGERS": "Passengers",
+    "UI.REPAIRS": "Repairs",
     
     
     "UI.DAMAGE": "Damage",
@@ -31,7 +39,15 @@
     "UI.DRONE": "Drone",
     "UI.GENERAL": "General",
     "UI.DEATH": "Death",
-    "UI.NONE": "None"
+    "UI.NONE": "None",
+    "UI.DEATHROLL": "Death Roll",
+    "UI.MOVEMENT": "Movement",
+
+    "UI.ENGAGED" : "Engaged",
+    "UI.SHORT" : "Short",
+    "UI.MEDIUM" : "Medium",
+    "UI.LONG" : "Long",
+    "UI.EXTREME": "Extreme"
     
 },
 

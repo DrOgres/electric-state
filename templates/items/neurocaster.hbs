@@ -1,8 +1,36 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-  <h1 class="charname">
-    <input name="name" type="text" value="{{item.name}}" />
+<h1 class="itemname">
+    <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" />
+    <label for="item-name">{{localize "estate.HEAD.NAME"}}</label>
+    <input id="item-name" name="name" type="text" value="{{item.name}}" />
+    <label for="cost">
+      {{localize "estate.HEAD.COST"}}
+    </label>
+    <input id="cost" name="system.cost" type="text" value="{{item.system.cost}}" />
+
   </h1>
-  <h2>Neurocaster</h2>
+
+  {{#if item.system.isBroken}}
+   <div class="broken">
+    <h3>Broken</h3>
+  </div>
+  {{/if}}
+  <label for="description">description</label>
+  <textarea id="description" name="system.description">{{item.system.description}}</textarea>
+  <label for="proc">Processor</label>
+  <input id="proc" name="system.processor.value" type="number" value="{{item.system.processor.value}}" /> / 
+  <input id="max-proc" name="system.processor.max" type="number" value="{{item.system.processor.max}}" />
+  
+  <label for="net">Network</label>
+  <input id="net" name="system.network.value" type="number" value="{{item.system.network.value}}" /> /
+  <input id="max-net" name="system.network.max" type="number" value="{{item.system.network.max}}" />
+
+  <label for="graphhics">graphics</label>
+  <input id="graphics" name="system.graphics.value" type="number" value="{{item.system.graphics.value}}" /> /  
+  <input id="max-graphics" name="system.graphics.max" type="number" value="{{item.system.graphics.max}}" />
+
+  <label for="rw-penalty">Real World Penalty</label>
+  <input id="rw-penalty" name="system.modifier.value" type="number" value="{{item.system.modifier.value}}" />
 
 </form>

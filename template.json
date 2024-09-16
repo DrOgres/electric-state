@@ -114,12 +114,16 @@
     },
     "armor": {
       "templates": ["commonItem"],
-      "armor": 0,
+      "agiltyModifier": 0,
       "isBroken": false
     },
     "explosive": {
       "templates": ["commonItem"],
-      "blast": 0
+      "blast": 0,
+      "range": {
+        "max": "",
+        "min": ""
+      }
     },
     "talent": {
       "templates": ["commonItem"],
@@ -142,18 +146,28 @@
       },
       "armor": 0,
       "range": {
-        "max": 0,
-        "min": 0
+        "max": "",
+        "min": ""
       },
       "damage": 0,
       "isBroken": false
     },
     "neurocaster": {
       "templates": ["commonItem"],
-      "processor": 0,
-      "network": 0,
-      "graphics": 0,
-      "realWorldPenalty": 0
+      "processor": {
+        "max": 0,
+        "value": 0
+      },
+      "network": {
+        "max": 0,
+        "value": 0
+      },
+      "graphics":  {
+        "max": 0,
+        "value": 0
+      },
+      "isBroken": false,
+      "realWorldPenalty": 2
     },
     "tension": {
       "templates": ["commonItem"],

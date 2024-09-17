@@ -1,36 +1,17 @@
-select[multiple] {
-    padding-right: 0;
-    height: 6rem;
-  }
-
-    
-  option {
-    white-space: normal;
-    outline-color: black;
-  }
-
-  option:checked {
-    background-color: #007bff;
-    color: white;
-  }
-
-  select:-internal-list-box option:checked {
-    background-color: whitesmoke;
-    color: black;
-  }
-
-
+.rollable {
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}
+.rollable:hover {
+  text-shadow: #fae6ca 0 0 5px;
+}
 
 .app.sheet .editor {
-    min-height: 55px;
-  }
-  
-  
-  .editor-content {
-    padding: 0.5rem;
-    min-height: 50px;
-  }
+  min-height: 55px;
+}
 
-  .editor {
-    height: 100%;
-  }
+.editor-content {
+  padding: 0.5rem;
+  min-height: 50px;
+}/*# sourceMappingURL=electric-state.css.map */

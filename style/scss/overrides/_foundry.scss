@@ -1,0 +1,12 @@
+@use "../abstracts" as *;
+
+.app.sheet .editor {
+    min-height: 55px;
+  }
+  
+  
+  .editor-content {
+    padding: 0.5rem;
+    min-height: 50px;
+  }
+  

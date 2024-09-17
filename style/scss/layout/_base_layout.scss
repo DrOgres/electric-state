@@ -1,0 +1,9 @@
+@use "../abstracts" as *;
+
+.rollable {
+    cursor: pointer;
+    backdrop-filter: blur(2px);
+    &:hover {
+      text-shadow: $field-color 0 0 5px;
+    }
+  }

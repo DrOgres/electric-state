@@ -1,22 +1,22 @@
 <div class="flexcol">
     <div class="flexrow">
         <div>
-            <span class="rollable">{{localize "estate.ATTRIBUTE.STR"}}</span>
+            <div class="rollable" data-type="attribute" data-attribute="strength">{{localize "estate.ATTRIBUTE.STR"}}</div>
             <input type="number" name="system.strength" value="{{actor.system.strength}}" data-dtype="Number" />
         </div>
         <div>
-            <span class="rollable">
-                {{localize "estate.ATTRIBUTE.AGI"}}</span>
+            <div class="rollable" data-type="attribute" data-attribute="agility">
+                {{localize "estate.ATTRIBUTE.AGI"}}</div>
             <input type="number" name="system.agility" value="{{actor.system.agility}}" data-dtype="Number" />
         </div>
         <div>
-            <span class="rollable">
-                {{localize "estate.ATTRIBUTE.WIT"}}</span>
+            <div class="rollable" data-type="attribute" data-attribute="wits">
+                {{localize "estate.ATTRIBUTE.WIT"}}</div>
             <input type="number" name="system.wits" value="{{actor.system.wits}}" data-dtype="Number" />
         </div>
         <div>
-            <span class="rollable">
-                {{localize "estate.ATTRIBUTE.EMP"}}</span>
+            <div class="rollable" data-type="attribute" data-attribute="empathy">
+                {{localize "estate.ATTRIBUTE.EMP"}}</div>
             <input type="number" name="system.empathy" value="{{actor.system.empathy}}" data-dtype="Number" />
         </div>
     </div>
@@ -26,6 +26,8 @@
             {{localize "estate.ATTRIBUTE.HEALTH"}} <input type="number" name="system.health.value"
                 value="{{actor.system.health.value}}" data-dtype="Number" /> / {{actor.system.health.max}}
         </div>
+
+        
 
         <div>
             {{localize "estate.ATTRIBUTE.HOPE"}} <input type="number" name="system.hope.value"

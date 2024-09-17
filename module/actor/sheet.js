@@ -58,6 +58,13 @@ export default class esActorSheet extends ActorSheet {
     html.find(".item-edit").click(this._onItemEdit.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
     // html.find(".item-roll").click(this._onItemRoll.bind(this));
+    html.find(".rollable").click(this._onRoll.bind(this));
+  }
+
+
+  _onRoll(event) {
+    console.log("E-STATE | Rolling", event);
+    
   }
 
   _deathRoll(actor){

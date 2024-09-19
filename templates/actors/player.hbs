@@ -27,16 +27,19 @@
                     <input name="system.song" type="text" value="{{actor.system.song}}" placeholder="favorite song" />
                 </div>
             </div>
-            <div class="description grid col-20-80 align-bottom border-bottom w-100">
-                <lable class="shrink">{{localize "estate.HEAD.DESC"}}</lable>
-                <textarea name="system.description">{{actor.system.description}}</textarea>
+            <div class="flexrow align-content-start gap-small">
+                <div class="description grid col-20-80 align-bottom border-bottom">
+                    <lable class="shrink">{{localize "estate.HEAD.DESC"}}</lable>
+                    <textarea name="system.description">{{actor.system.description}}</textarea>
+                </div>
             </div>
             <div class="flexrow align-content-start gap-small">
-                <div class="dream">
+                <div class="dream grid col-20-80 align-bottom border-bottom">
+
                     <lable class="shrink">{{localize "estate.HEAD.DREAM"}}</lable>
                     <input name="system.dream" type="text" value="{{actor.system.dream}}" placeholder="dream" />
                 </div>
-                <div class="flaw">
+                <div class="flaw  grid col-20-80 align-bottom border-bottom">
                     <lable class="shrink">{{localize "estate.HEAD.FLAW"}}</lable>
                     <input name="system.flaw" type="text" value="{{actor.system.flaw}}" placeholder="flaw" />
                 </div>

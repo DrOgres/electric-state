@@ -1,2 +1,13 @@
 @use "../abstracts" as *;
 
+.item-edit{
+    cursor: pointer;
+  }
+
+  .item-delete{
+    cursor: pointer;
+  }
+
+  .toggle-on-hand{
+    cursor: pointer;
+  }

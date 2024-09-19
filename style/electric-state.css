@@ -1,3 +1,15 @@
+.item-edit {
+  cursor: pointer;
+}
+
+.item-delete {
+  cursor: pointer;
+}
+
+.toggle-on-hand {
+  cursor: pointer;
+}
+
 .grid {
   display: grid;
 }
@@ -12,11 +24,15 @@
           backdrop-filter: blur(2px);
 }
 .rollable:hover {
-  text-shadow: #fae6ca 0 0 5px;
+  text-shadow: rgba(255, 255, 255, 0.431372549) 0 0 5px;
 }
 
 .portrait {
   padding: 10px;
+}
+
+.border-thick {
+  border: 5px solid #2c2e35;
 }
 
 .app.sheet .editor {
@@ -26,4 +42,121 @@
 .editor-content {
   padding: 0.5rem;
   min-height: 50px;
+}
+
+body {
+  background-color: #f0f7f5;
+}
+body .assistant-sc-regular {
+  font-family: "Assistant", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.window-app .window-content {
+  color: #2c2e35;
+  background: #f0f7f5;
+}
+
+input[type=text], input[type=number] {
+  color: #2c2e35;
+  background-color: rgba(255, 255, 255, 0.431372549);
+  font-family: "Assistant", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid #2c2e35;
+}
+
+#curve {
+  fill: transparent;
+}
+
+text {
+  font-family: "Assistant", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 3em;
+  letter-spacing: 16px;
+  text-transform: uppercase;
+  fill: #2c2e35;
+}
+
+.circle-container .att-input {
+  color: #2c2e35;
+  font-size: 2rem;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1001;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.small-label {
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+select[multiple] {
+  padding-right: 0;
+  height: 6rem;
+}
+select[multiple] option {
+  white-space: normal;
+  outline-color: #2c2e35;
+}
+select[multiple] option:checked {
+  background-color: #f0f7f5;
+  color: #2c2e35;
+}
+
+select:-internal-list-box option:checked {
+  background-color: #f0f7f5;
+  color: #2c2e35;
 }/*# sourceMappingURL=electric-state.css.map */

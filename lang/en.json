@@ -14,6 +14,8 @@
     "HEAD.ARCHETYPE": "Archetype",
     "HEAD.DESC": "Description",
     "HEAD.SONG": "Favorite Song",
+    "HEAD.DREAM": "Dream",
+    "HEAD.FLAW": "Flaw",
     "HEAD.COST": "Cost",
 
 

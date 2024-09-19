@@ -1,11 +1,38 @@
 @use "../abstracts" as *;
 
+
+.gap-small{
+  gap: 3px;
+}
+
 .grid{
   display: grid;
 }
 
 .col-160-1fr{
   grid-template-columns: 160px 1fr;
+}
+
+.col-20-80{
+  grid-template-columns: 20% 80%;
+}
+
+.col-30-70{
+  grid-template-columns: 30% 70%;
+}
+
+.col-33-67{
+  grid-template-columns: 33% 66%;
+}
+
+.align-bottom{
+  align-items: end;
+  align-self: end;
+}
+
+.align-content-start{
+  align-content: flex-start;
+ 
 }
 
 .rollable {
@@ -22,4 +49,24 @@
 
   .border-thick {
     border: 5px solid $text-color;
+  }
+
+  .border-thin {
+    border: 1px solid $text-color;
+  }
+
+  .padding-small {
+    padding: 5px;
+  }
+
+  .padding-medium {
+    padding: 10px;
+  }
+
+  .padding-large {
+    padding: 20px;
+  }
+
+  .w-100 {
+    width: 100%;
   }

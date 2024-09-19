@@ -1,3 +1,11 @@
+.grid {
+  display: grid;
+}
+
+.col-160-1fr {
+  grid-template-columns: 160px 1fr;
+}
+
 .rollable {
   cursor: pointer;
   -webkit-backdrop-filter: blur(2px);
@@ -5,6 +13,10 @@
 }
 .rollable:hover {
   text-shadow: #fae6ca 0 0 5px;
+}
+
+.portrait {
+  padding: 10px;
 }
 
 .app.sheet .editor {

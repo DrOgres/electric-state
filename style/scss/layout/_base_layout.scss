@@ -1,9 +1,21 @@
 @use "../abstracts" as *;
 
+.grid{
+  display: grid;
+}
+
+.col-160-1fr{
+  grid-template-columns: 160px 1fr;
+}
+
 .rollable {
     cursor: pointer;
     backdrop-filter: blur(2px);
     &:hover {
       text-shadow: $field-color 0 0 5px;
     }
+  }
+
+  .portrait {
+    padding: 10px;
   }

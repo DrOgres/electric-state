@@ -1,104 +1,114 @@
-<div class="grid col-70-30">
+<div class="grid col-70-30 gap-small">
 
-<div class="flexcol">
-    <div class="flexrow">
-        <div>
-            <div class="rollable" data-type="attribute" data-attribute="strength">{{localize "estate.ATTRIBUTE.STR"}}
-            </div>
-            <input type="number" name="system.strength" value="{{actor.system.strength}}" data-dtype="Number" />
-        </div>
-        <div>
-            <div class="rollable" data-type="attribute" data-attribute="agility">
-                {{localize "estate.ATTRIBUTE.AGI"}}</div>
-            <input type="number" name="system.agility" value="{{actor.system.agility}}" data-dtype="Number" />
-        </div>
-        <div>
-            <div class="rollable" data-type="attribute" data-attribute="wits">
-                {{localize "estate.ATTRIBUTE.WIT"}}</div>
-            <input type="number" name="system.wits" value="{{actor.system.wits}}" data-dtype="Number" />
-        </div>
-        <div>
-            <div class="rollable" data-type="attribute" data-attribute="empathy">
-                {{localize "estate.ATTRIBUTE.EMP"}}</div>
-            <input type="number" name="system.empathy" value="{{actor.system.empathy}}" data-dtype="Number" />
-        </div>
-    </div>
-    <div class="flexrow">
-        <div>
-
-            {{localize "estate.ATTRIBUTE.HEALTH"}} <input type="number" name="system.health.value"
-                value="{{actor.system.health.value}}" data-dtype="Number" /> / {{actor.system.health.max}}
-        </div>
-
-
-
-        <div>
-            {{localize "estate.ATTRIBUTE.HOPE"}} <input type="number" name="system.hope.value"
-                value="{{actor.system.hope.value}}" data-dtype="Number" /> / {{actor.system.hope.max}}
-        </div>
-    </div>
-    <div class="flexrow">
-        <div>
-            {{localize "estate.ATTRIBUTE.BLISS"}} <input type="number" name="system.bliss"
-                value="{{actor.system.bliss}}" data-dtype="Number" />
-        </div>
-
-        <div>
-            {{localize "estate.ATTRIBUTE.PERM"}} <input type="number" name="system.permanent"
-                value="{{actor.system.permanent}}" data-dtype="Number" />
-        </div>
-    </div>
-    <div class="flexrow">
-        <div class="flexcol">
-            <div class="flexcol">
-                <h4>Talents</h4>
-                {{#each items as |talent|}}
-                {{#if talent.isTalent}}
-                <div class="flexrow">
-                    <div class="item" data-item-id="{{talent._id}}">{{talent.name}}</div>
-                    <div class="modify">{{talent.system.type}}</div>
-                    <div class="mod">{{talent.system.modifier.value}}</div>
-                    <div class="item-edit" data-item-id="{{talent._id}}">edit </div>
-                    <div class="item-delete" data-item-id="{{talent._id}}">delete</div>
-
+    <div class="flexcol border-right-thick padding-small">
+        <div class="grid cols-4-25 gap-small">
+            <div class="grid border-thick padding-small">
+                <div class="rollable center all-caps" data-type="attribute" data-attribute="strength">{{localize
+                    "estate.ATTRIBUTE.STR"}}
                 </div>
-                {{/if}}
-                {{/each}}
-            </div>
-            <div class="flexcol">
-                <h4>Injuries</h4>
-                {{#each items as |injury|}}
-                {{#if injury.isInjury}}
-                <div class="flexrow">
-                    <div class="item" data-item-id="{{injury._id}}">{{injury.name}}</div>
-                    <div class="item-edit" data-item-id="{{injury._id}}">edit </div>
-                    <div class="item-delete" data-item-id="{{injury._id}}">delete</div>
+                <div class="input-container center fs-600 w-100">
+                    <input type="number" name="system.strength" value="{{actor.system.strength}}" style="height: 100%;"
+                        data-dtype="Number" />
                 </div>
-                {{/if}}
-                {{/each}}
             </div>
-            <div class="flexcol">
-                <h4>Traumas</h4>
-                {{#each items as |trauma|}}
-                {{#if trauma.isTrauma}}
-                <div class="flexrow">
-                    <div class="item" data-item-id="{{trauma._id}}">{{trauma.name}}</div>
-                    <div class="item-edit" data-item-id="{{trauma._id}}">edit </div>
-                    <div class="item-delete" data-item-id="{{trauma._id}}">delete</div>
+            <div class="grid border-thick padding-small">
+                <div class="rollable center all-caps" data-type="attribute" data-attribute="agility">
+                    {{localize "estate.ATTRIBUTE.AGI"}}</div>
+                <div class="input-container center fs-600 w-100">
+                    <input type="number" name="system.agility" value="{{actor.system.agility}}" style="height: 100%;" data-dtype="Number" />
                 </div>
-                {{/if}}
-                {{/each}}
+            </div>
+            <div class="grid border-thick padding-small">
+                <div class="rollable center all-caps" data-type="attribute" data-attribute="wits">
+                    {{localize "estate.ATTRIBUTE.WIT"}}</div>
+                <div class="input-container center fs-600 w-100">
+                    <input type="number" name="system.wits" value="{{actor.system.wits}}" style="height: 100%;" data-dtype="Number" />
+                </div>
+            </div>
+            <div class="grid border-thick padding-small">
+                <div class="rollable center all-caps" data-type="attribute" data-attribute="empathy">
+                    {{localize "estate.ATTRIBUTE.EMP"}}</div>
+                <div class="input-container center fs-600 w-100">
+                    <input type="number" name="system.empathy" value="{{actor.system.empathy}}" style="height: 100%;" data-dtype="Number" />
+                </div>
             </div>
         </div>
-        <div class="flexcol">
-            favorite items
-        </div>
+        <div class="flexrow">
+            <div>
 
+                {{localize "estate.ATTRIBUTE.HEALTH"}} <input type="number" name="system.health.value"
+                    value="{{actor.system.health.value}}" data-dtype="Number" /> / {{actor.system.health.max}}
+            </div>
+
+
+
+            <div>
+                {{localize "estate.ATTRIBUTE.HOPE"}} <input type="number" name="system.hope.value"
+                    value="{{actor.system.hope.value}}" data-dtype="Number" /> / {{actor.system.hope.max}}
+            </div>
+        </div>
+        <div class="flexrow">
+            <div>
+                {{localize "estate.ATTRIBUTE.BLISS"}} <input type="number" name="system.bliss"
+                    value="{{actor.system.bliss}}" data-dtype="Number" />
+            </div>
+
+            <div>
+                {{localize "estate.ATTRIBUTE.PERM"}} <input type="number" name="system.permanent"
+                    value="{{actor.system.permanent}}" data-dtype="Number" />
+            </div>
+        </div>
+        <div class="flexrow">
+            <div class="flexcol">
+                <div class="flexcol">
+                    <h4>Talents</h4>
+                    {{#each items as |talent|}}
+                    {{#if talent.isTalent}}
+                    <div class="flexrow">
+                        <div class="item" data-item-id="{{talent._id}}">{{talent.name}}</div>
+                        <div class="modify">{{talent.system.type}}</div>
+                        <div class="mod">{{talent.system.modifier.value}}</div>
+                        <div class="item-edit" data-item-id="{{talent._id}}">edit </div>
+                        <div class="item-delete" data-item-id="{{talent._id}}">delete</div>
+
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="flexcol">
+                    <h4>Injuries</h4>
+                    {{#each items as |injury|}}
+                    {{#if injury.isInjury}}
+                    <div class="flexrow">
+                        <div class="item" data-item-id="{{injury._id}}">{{injury.name}}</div>
+                        <div class="item-edit" data-item-id="{{injury._id}}">edit </div>
+                        <div class="item-delete" data-item-id="{{injury._id}}">delete</div>
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="flexcol">
+                    <h4>Traumas</h4>
+                    {{#each items as |trauma|}}
+                    {{#if trauma.isTrauma}}
+                    <div class="flexrow">
+                        <div class="item" data-item-id="{{trauma._id}}">{{trauma.name}}</div>
+                        <div class="item-edit" data-item-id="{{trauma._id}}">edit </div>
+                        <div class="item-delete" data-item-id="{{trauma._id}}">delete</div>
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+            <div class="flexcol">
+                favorite items
+            </div>
+
+        </div>
     </div>
-</div>
-<div class="favs-group">
-    here will be favs
-</div>
+    <div class="favs-group">
+        here will be favs
+    </div>
 
 
 </div>

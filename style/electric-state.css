@@ -14,12 +14,60 @@
   border-bottom: 1px solid #2c2e35;
 }
 
+.all-caps {
+  text-transform: uppercase;
+}
+
+.fs-800 {
+  font-size: 3rem;
+}
+
+.fs-700 {
+  font-size: 2.5rem;
+}
+
+.fs-600 {
+  font-size: 2rem;
+}
+
+.fs-500 {
+  font-size: 1.5rem;
+}
+
+.fs-400 {
+  font-size: 1.25rem;
+}
+
+.fs-300 {
+  font-size: 1rem;
+}
+
+.fs-200 {
+  font-size: 0.75rem;
+}
+
+.fs-100 {
+  font-size: 0.5rem;
+}
+
 .gap-small {
   gap: 3px;
 }
 
+.gap-med {
+  gap: 10px;
+}
+
 .grid {
   display: grid;
+}
+
+.four-col {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cols-4-25 {
+  grid-template-columns: repeat(4, 25%);
 }
 
 .col-160-1fr {
@@ -54,6 +102,12 @@
   grid-template-columns: 33% 66%;
 }
 
+.center {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .align-bottom {
   align-items: end;
   align-self: end;
@@ -80,6 +134,14 @@
   border: 5px solid #2c2e35;
 }
 
+.border-right-thick {
+  border-right: 5px solid #2c2e35;
+}
+
+.border-left-thick {
+  border-left: 5px solid #2c2e35;
+}
+
 .border-3-4-thick {
   border-bottom: 5px solid #2c2e35;
   border-left: 5px solid #2c2e35;
@@ -88,6 +150,10 @@
 
 .border-thin {
   border: 1px solid #2c2e35;
+}
+
+.margin-small {
+  margin: 5px;
 }
 
 .padding-small {
@@ -104,6 +170,10 @@
 
 .w-100 {
   width: 100%;
+}
+
+.bg-color-highlight {
+  background: #cdeef0;
 }
 
 :root {
@@ -205,11 +275,6 @@ text {
   letter-spacing: 16px;
   text-transform: uppercase;
   fill: #2c2e35;
-}
-
-.circle-container .att-input {
-  color: #2c2e35;
-  font-size: 2rem;
 }
 
 /* Tooltip container */

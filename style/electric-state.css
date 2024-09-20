@@ -26,6 +26,22 @@
   grid-template-columns: 160px 1fr;
 }
 
+.col-80-20 {
+  grid-template-columns: 80% 20%;
+}
+
+.col-70-30 {
+  grid-template-columns: 70% 30%;
+}
+
+.col-66-33 {
+  grid-template-columns: 66% 33%;
+}
+
+.col-60-40 {
+  grid-template-columns: 60% 40%;
+}
+
 .col-20-80 {
   grid-template-columns: 20% 80%;
 }
@@ -62,6 +78,12 @@
 
 .border-thick {
   border: 5px solid #2c2e35;
+}
+
+.border-3-4-thick {
+  border-bottom: 5px solid #2c2e35;
+  border-left: 5px solid #2c2e35;
+  border-right: 5px solid #2c2e35;
 }
 
 .border-thin {

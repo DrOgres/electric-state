@@ -84,6 +84,57 @@
   width: 100%;
 }
 
+:root {
+  --color-shadow-primary: rgb(150, 248, 255);
+  --color-shadow-highlight: rgb(105, 255, 230);
+  --color-shadow-dark: rgb(44, 46, 53);
+  --color-border-highlight-alt: rgb(185, 255, 228);
+  --color-border-highlight: rgb(105, 255, 230);
+  --color-border-light-highlight: #e0ebf0;
+  --color-border-light-primary: #a4b4b5;
+  --color-border-light-secondary: #b8c5c9;
+  --color-border-light-tertiary: #71777a;
+  --color-border-dark: #000;
+  --color-border-dark-primary: #131619;
+  --color-border-dark-secondary: #1d1f23;
+  --color-border-dark-tertiary: #44454b;
+  --color-scrollbar: rgb(44, 46, 53);
+  --color-scrollbar-thumb: rgb(95, 109, 107);
+  --color-scrollbar-border: rgb(44, 46, 53);
+  --color-underline-active: rgb(53, 55, 63);
+  --color-underline-header: rgb(73, 79, 87);
+  --color-bg-btn-minor-inactive: #b8c4c9;
+  --color-bg-btn-minor-active: #c9d4f8;
+}
+
+body {
+  --color-scrollbar: rgb(44, 46, 53);
+  --color-scrollbar-thumb: rgb(95, 109, 107);
+  --color-scrollbar-border: rgb(44, 46, 53);
+  --color-warm-1: hsl(194, 50%, 82%);
+  --color-warm-2: #3f96c9;
+  --color-warm-3: #564957;
+  --color-cool-3: #584a75;
+  --color-cool-4: #302831;
+  --color-cool-5: #0b0a13;
+  --color-cool-5-25: rgba(11, 10, 19, 0.25);
+  --color-cool-5-50: rgba(11, 10, 19, 0.5);
+  --color-cool-5-75: rgba(11, 10, 19, 0.75);
+  --color-cool-5-90: rgba(11, 10, 19, 0.9);
+  --color-light-1: #e8f2f7;
+  --color-light-2: #d8e5ef;
+  --color-light-3: #b1d8e7;
+  --color-light-4: #a3c2d0;
+  --color-light-5: #75979f;
+  --color-light-6: #667581;
+  --color-dark-1: #111111;
+  --color-dark-2: #222222;
+  --color-dark-3: #444444;
+  --color-dark-4: #555555;
+  --color-dark-5: #666666;
+  --color-dark-6: #777777;
+}
+
 .app.sheet .editor {
   min-height: 55px;
 }

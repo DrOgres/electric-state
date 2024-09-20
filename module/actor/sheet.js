@@ -1,3 +1,6 @@
+import { eState } from "../config.js";
+import { prepareRollDialog } from "../lib/roll.js";
+
 export default class esActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -64,6 +67,33 @@ export default class esActorSheet extends ActorSheet {
 
   _onRoll(event) {
     console.log("E-STATE | Rolling", event);
+    const rollSource = event.currentTarget.dataset.type;
+
+    let options = {
+      type: rollSource,
+      sheet: this,
+      actorType: this.actor.type,
+      testName: "",
+      testModifier: 0,
+    }
+
+    switch (rollSource) {
+      case "attribute":{
+        const attribute = event.currentTarget.dataset.attribute;
+        options.attribute = attribute;
+        console.log("E-STATE | Rolling Attribute", attribute);
+        options.testName = game.i18n.localize(`estate.ATTRIBUTE.${eState.attributesAbv[attribute]}`);
+        options.dicePool = this.actor.system[attribute];
+
+        console.log("E-STATE | Rolling Attribute", options);
+
+        
+        break;
+      }
+    }
+
+    prepareRollDialog(options);
+
     
   }
 

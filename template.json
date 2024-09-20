@@ -64,7 +64,12 @@
     },
 
     "robot": {
-      "templates": ["attributes"]
+      "templates": ["attributes"],
+      "armor": 0,
+      "hull": {
+        "max": 0,
+        "value": 0
+      }
     }
   },
   "Item": {

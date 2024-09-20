@@ -52,7 +52,12 @@
     "UI.SHORT" : "Short",
     "UI.MEDIUM" : "Medium",
     "UI.LONG" : "Long",
-    "UI.EXTREME": "Extreme"
+    "UI.EXTREME": "Extreme",
+
+    "UI.SUBTOTAL": "Subtotal",
+    "UI.TOTAL": "Total",
+    "UI.TALENT": "Talent"
+
     
 },
 

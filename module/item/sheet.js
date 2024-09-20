@@ -23,16 +23,24 @@ export default class esItemSheet extends ItemSheet {
     const data = super.getData();
     data.config = eState;
     const attributesAbv = data.config.attributesAbv;
-    const localizedAttributes = attributesAbv.map((a) =>
-      game.i18n.localize(`estate.ATTRIBUTE.${a}`)
+    console.log("E-STATE | Item", attributesAbv);
+    let  localizedAttributes = [];
+    
+    Object.keys(attributesAbv).forEach(function (key){ 
+      console.log("E-STATE | Key", attributesAbv[key]);
+      localizedAttributes.push(game.i18n.localize(`estate.ATTRIBUTE.${attributesAbv[key]}`));
+    }
     );
 
+    console.log("E-STATE | Localized Attributes", localizedAttributes);
     data.config.attributeSelectOptions = {
-      STR: localizedAttributes[0],
-      AGI: localizedAttributes[1],
-      WIT: localizedAttributes[2],
-      EMP: localizedAttributes[3],
+      strength: localizedAttributes[0],
+      agility: localizedAttributes[1],
+      wits: localizedAttributes[2],
+      empathy: localizedAttributes[3],
     };
+
+    console.log("E-STATE | Data", data);
     data.config.default = "STR";
     this.testBroken(data);
 

@@ -13,10 +13,13 @@ export function prepareRollDialog(options) {
   let drones = actor.items.filter((i) => i.type === "drone");
   let traits = actor.items.filter((i) => i.type === "trait");
   let explosives = actor.items.filter((i) => i.type === "explosive");
-  let trauma = actor.items.filter((i) => i.type === "trauma");
+  let traumas = actor.items.filter((i) => i.type === "trauma");
   let injuries = actor.items.filter((i) => i.type === "injury");
 
   console.log("building dialog");
+
+  options.penalty = 0;
+  options.bonusDefault = 0;
 
   let dialogHTML = "";
 
@@ -51,6 +54,19 @@ export function prepareRollDialog(options) {
         options.attribute
       );
 
+      // if there is an injury or trauma that affects the attribute add it to options.penalty
+      for (let injury of injuries) {
+        if (injury.system.type.includes(options.attribute)) {
+          options.penalty += injury.system.modifier.value;
+        }
+      }
+      for (let trauma of traumas) {
+        if (trauma.system.type.includes(options.attribute)) {
+          options.penalty += trauma.system.modifier.value;
+        }
+      }
+      console.log("penalty after injury and trauma check", options.penalty);
+
       console.log(options.penalty);
       dialogHTML += buildSubtotalDialog(options);
       dialogHTML += buildTalentSelectDialog(options, talents);
@@ -67,7 +83,88 @@ export function prepareRollDialog(options) {
       break;
   }
 
+  let bonusHtml = buildInputDialog(
+    game.i18n.localize("estate.ROLL.BONUS"),
+    options.bonusDefault,
+    "bonus"
+  );
+
   console.log(dialogHTML);
+
+  let dialog = new Dialog(
+    {
+      title: game.i18n.localize("estate.UI.ROLL") + " : " + options.testName,
+      content: buildDivHtmlDialog(
+        `
+            <div class="roll-fields pi-8 mb-1">
+            <h2>` +
+          game.i18n.localize("estate.ROLL.TEST") +
+          ": " +
+          ` ${options.testName}</h2>
+            ${dialogHTML}
+            </hr>
+            ${bonusHtml}
+            </div>
+            `
+      ),
+      buttons: {
+        roll: {
+          icon: '<i class="fas fa-dice-d6"></i>',
+          label: game.i18n.localize("estate.UI.ROLL"),
+          callback: (html) => {
+            console.log("Rolling", options);
+            let baseDice = options.dicePool - options.penalty;
+
+            //TODO if there is no gear that matches the attribute this will be an error so we need to check for that
+
+            let selectedGearItemId;
+
+            if (html.find("#gear")[0] !== undefined) {
+              selectedGearItemId = html.find("#gear")[0].value;
+            }
+            const item = gear.find((i) => i.id === selectedGearItemId);
+
+            console.log("Item", item);
+            let gearDice = 0;
+            if (item !== undefined) {
+              options.gearUsed = selectedGearItemId;
+              gearDice = item.system.modifier.value;
+            }
+            console.log("Gear Dice", gearDice);
+            const selectedTalentItemId = html.find("#talent")[0].value;
+            const talent = talents.find((i) => i.id === selectedTalentItemId);
+            let talentDice = 0;
+            if (talent !== undefined) {
+              options.talentUsed = selectedTalentItemId;
+              talentDice = talent.system.modifier.value;
+            }
+            console.log("Talent", talent);
+
+            let bonus = parseInt(html.find("#bonus")[0].value);
+
+            options.baseDice = baseDice + talentDice + bonus;
+            options.gearDice = gearDice;
+            if (options.baseDice < +0) {
+              options.baseDice = 1;
+            }
+            console.log("Bonus", bonus);
+            console.log("Options", options);
+            roll(options);
+          },
+        },
+        cancel: {
+          icon: '<i class="fas fa-times"></i>',
+          label: game.i18n.localize("estate.UI.CANCEL"),
+        },
+      },
+      default: "roll",
+      close: () => {},
+    },
+    {
+      width: 400,
+    }
+  );
+  dialog.render(true);
 }
 
 function buildGearSelectDialog(options, gear) {
@@ -149,16 +246,27 @@ function buildTalentSelectDialog(options, talents) {
 
 function buildSubtotalDialog(options) {
   console.log("Building subtotal Dialog", options);
-  const subtotal = options.dicePool;
+  const subtotal = options.dicePool - options.penalty;
+
   return (
     `
+        <div class="flexcol">
+     <div class="flexrow">
+        <h4 class="subheader middle">` +
+    game.i18n.localize("estate.UI.PENALTY") +
+    ` : &nbsp;</h4>
+        <p id="penalty" style="text-align: right" class="grow pi-2 border-bottom">` +
+    options.penalty +
+    `</p></div>
+    <hr />
       <div class="flexrow">
       <h4 class="subheader middle">` +
     game.i18n.localize("estate.UI.SUBTOTAL") +
     ` : &nbsp;</h4>
         <p id="subtotal" style="text-align: right" class="grow pi-2 border-bottom">` +
     subtotal +
-    `</p></div>`
+    `</p></div>
+    </div>`
   );
 }
 
@@ -175,4 +283,99 @@ function buildHTMLDialog(diceName, diceValue, type) {
     diceValue +
     `</p></div>`
   );
+}
+
+function buildInputDialog(name, value, type) {
+  return (
+    `
+          <div class="flexrow pi-1" style="flex-basis: 35%; justify-content: space-between;">
+          <p style="text-transform: capitalize; white-space:nowrap;">` +
+    name +
+    `: </p>
+          <input id="` +
+    type +
+    `" style="text-align: right" type="text" value="` +
+    value +
+    `"/></div>`
+  );
+}
+
+function buildDivHtmlDialog(divContent) {
+  return (
+    "<div class='estate roll-dialog sidebar-dark'>" + divContent + "</div>"
+  );
+}
+
+Hooks.on("renderChatLog", (app, html, data) => {
+  html.on("click", ".dice-button.push", _onPush);
+});
+
+async function _onPush(event) {
+  event.preventDefault();
+
+  // Get the message.
+  let chatCard = event.currentTarget.closest(".chat-message");
+  let messageId = chatCard.dataset.messageId;
+  let message = game.messages.get(messageId);
+  let actor = game.actors.get(message.speaker.actor);
+
+  // Copy the roll.
+  let roll = message.rolls[0].duplicate();
+
+  // Delete the previous message.
+  await message.delete();
+
+  // Push the roll and send it.
+  await roll.push({ async: true });
+  //TODO if we used gear and the gear dice roll a 1 we should reduce the gear modifier by 1 for each 1 rolled
+  //TODO if the push results in any 1s we should reuduce hope on the actor by 1 for each 1 rolled
+
+  await roll.toMessage();
+}
+
+export async function roll(options) {
+  console.log("Rolling", options);
+
+  const sheet = options.sheet;
+  sheet.roll = new YearZeroRoll();
+  sheet.lastTestName = options.testName;
+  sheet.lastDamage = options.damage;
+
+  let actor = game.actors.get(sheet.object._id);
+  let token = actor.prototypeToken.texture.src;
+
+  let formula = options.baseDice + "db" + " + " + options.gearDice + "dg";
+
+  let dice = {
+    term: "b",
+    number: options.baseDice,
+  };
+
+  let data = {
+    owner: actor.id,
+    name: sheet.lastTestName,
+    damage: sheet.lastDamage,
+  };
+
+  let rollOptions = {
+    name: sheet.lastTestName,
+    damage: sheet.lastDamage,
+    token: token,
+    owner: actor.id,
+    actorType: actor.type,
+    formula: formula,
+  };
+
+  let r;
+
+  if (options.gearDice > 0) {
+    r = new YearZeroRoll(formula, data, rollOptions);
+  } else {
+    r = YearZeroRoll.forge(dice, data, rollOptions);
+  }
+
+  await r.toMessage({
+    speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),
+  });
+  sheet.roll = r.duplicate();
 }

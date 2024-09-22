@@ -55,6 +55,8 @@
     "UI.EXTREME": "Extreme",
 
     "UI.SUBTOTAL": "Subtotal",
+    "UI.DICEPOOL": "Dice Pool",
+    "UI.PENALTY": "Penalty",
     "UI.TOTAL": "Total",
     "UI.TALENT": "Talent"
 
@@ -76,5 +78,6 @@
   "YZUR.CHAT.ROLL.Push" : "Push",
   "YZUR.DIETYPES.SkillDie" : "Success Count",
   "YZUR.DIETERMS.SkillDie" : "Skill Success Count",
-  "YZUR.DIETERMS.GearDie" : "Gear Success Count"
+  "YZUR.DIETERMS.GearDie" : "Gear Success Count",
+  "YZUR.DIETERMS.BaseDie" : "Base Success Count"
 }

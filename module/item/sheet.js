@@ -40,6 +40,27 @@ export default class esItemSheet extends ItemSheet {
       empathy: localizedAttributes[3],
     };
 
+    if(this.item.type === "tension"){
+      console.log("E-STATE | Tension", data);
+      // get a list of all player actors the user has at least limited access to and add them to the select options
+      const actors = game.actors;
+
+      data.config.actorSelectOptions = [];
+      for (let actor of actors) {
+        if (actor.type === "player") {
+          // if the actor has this tension in its documnent collection do not add the actor to the list
+          const actorItems = actor.items;
+          let hasTension = actor.items.find((item) => item.type === "tension" && item.id === this.item.id);
+          let hasPermisions = actor.testUserPermission(game.user, "LIMITED");
+          if (hasPermisions && !hasTension) {
+            data.config.actorSelectOptions.push({ 
+            actor: actor.name,
+            id: actor.id,});
+        }
+      }
+    }
+  }
+
     console.log("E-STATE | Data", data);
     data.config.default = "STR";
     this.testBroken(data);

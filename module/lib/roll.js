@@ -3,6 +3,17 @@ import { YearZeroRoll } from "./yzur.js";
 export function prepareRollDialog(options) {
   console.log("Roll Dialog", options);
 
+  const user = game.user;
+  console.log("roll dialog user:", user.targets);
+
+  if (user.targets.size > 0) {
+    console.log("Targeted");
+    let target = Array.from(user.targets)[0];
+    console.log(target.document.actorId);
+  }
+
+  //[0].value.document.actorId
+
   const actor = options.sheet.object;
   console.log(actor);
   let talents = actor.items.filter((i) => i.type === "talent");
@@ -15,6 +26,9 @@ export function prepareRollDialog(options) {
   let explosives = actor.items.filter((i) => i.type === "explosive");
   let traumas = actor.items.filter((i) => i.type === "trauma");
   let injuries = actor.items.filter((i) => i.type === "injury");
+  let tensions = actor.items.filter((i) => i.type === "tension");
+
+
 
   console.log("building dialog");
 
@@ -71,6 +85,10 @@ export function prepareRollDialog(options) {
       dialogHTML += buildSubtotalDialog(options);
       dialogHTML += buildTalentSelectDialog(options, talents);
       dialogHTML += buildGearSelectDialog(options, gear);
+
+      // if there is a target for the user and the target actorId matches the actorID of any of the tensions use add a check box to allow the user to add the tension to the roll
+
+
       break;
     case "weapon":
       console.log("Weapon Roll", options);

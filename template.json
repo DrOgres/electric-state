@@ -176,7 +176,8 @@
     },
     "tension": {
       "templates": ["commonItem"],
-      "score": 0
+      "score": 0,
+      "actorId": ""
     },
     "trauma": {
       "templates": ["commonItem"],

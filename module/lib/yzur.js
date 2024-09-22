@@ -782,7 +782,7 @@ class YearZeroDie extends foundry.dice.terms.Die {
       },
       es: {
         base: {
-          '1': '💥',
+          '1': '☹',
           '2': 2,
           '3': 3,
           '4': 4,

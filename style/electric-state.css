@@ -337,6 +337,11 @@ input[type=text], input[type=number] {
   fill: transparent;
 }
 
+img {
+  border: none;
+  border-radius: 0;
+}
+
 text {
   font-family: "Assistant", sans-serif;
   font-optical-sizing: auto;

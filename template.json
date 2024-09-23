@@ -38,6 +38,7 @@
 
     "npc": {
       "templates": ["attributes"],
+      "description": "",
       "cash": 0
     },
 
@@ -65,6 +66,7 @@
 
     "robot": {
       "templates": ["attributes"],
+      "description": "",
       "armor": 0,
       "hull": {
         "max": 0,

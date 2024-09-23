@@ -12,14 +12,14 @@
           "max": 0,
           "value": 0
         }
-      }
+      },
+      "description": ""
     },
 
     "player": {
       "templates": ["attributes"],
       "archetype": "",
       "song": "",
-      "description": "",
       "hope": {
         "max": 0,
         "value": 0
@@ -48,7 +48,6 @@
         "max": 0,
         "value": 0
       },
-      "description": "",
       "maneuverability": 0,
       "speed": 0,
       "hull": {

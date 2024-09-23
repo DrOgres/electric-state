@@ -10,10 +10,13 @@ export const preloadHandlebarsTemplates = async function() {
     // Define template paths to load
     const templatePaths = [
         // Actor Sheet Partials
-    
-         "systems/electric-state/templates/actors/parts/player-main.hbs",
-         "systems/electric-state/templates/actors/parts/player-gear.hbs",
-         "systems/electric-state/templates/actors/parts/player-notes.hbs",
+        "systems/electric-state/templates/actors/parts/stats.hbs",
+        "systems/electric-state/templates/actors/parts/talents.hbs",
+        "systems/electric-state/templates/actors/parts/gear.hbs",
+        "systems/electric-state/templates/actors/parts/player-main.hbs",
+        "systems/electric-state/templates/actors/parts/player-notes.hbs",
+        "systems/electric-state/templates/actors/parts/npc-main.hbs",
+        "systems/electric-state/templates/actors/parts/npc-notes.hbs",
 
     ];
   

@@ -1,0 +1,25 @@
+<div class="flexcol margin-top-med">
+    <div class="grid cols-4-25 all-caps fw-600 border-bottom-thin">
+        <div class="name ">{{localize "estate.UI.TALENT"}}</div>
+        <div class="type ">{{localize "estate.UI.TYPE"}}</div>
+        <div class="bonus center">{{localize "estate.UI.BONUS"}}</div>
+        <div class="item-create align-bottom mi-small text-right" data-type="talent">&plus;</div>
+    </div>
+    <div class="talent-group list">
+        {{#each items as |talent|}}
+        {{#if talent.isTalent}}
+        <div class="grid cols-4-25 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin">
+            <div class="item overflow-elipsis" data-item-id="{{talent._id}}">{{talent.name}}</div>
+            <div class="modify text-left overflow-elipsis">{{talent.system.type}}</div>
+            <div class="mod center">{{talent.system.modifier.value}}</div>
+            <div class="button-group align-bottom flexrow text-right justify-content-end">
+                <div class="item-edit mw-fit" data-item-id="{{talent._id}}"><i
+                        class="fa-solid fa-pen-to-square"></i></div>
+                <div class="item-delete mw-fit" data-item-id="{{talent._id}}"><i
+                        class="fa-solid fa-trash"></i></div>
+            </div>
+        </div>
+        {{/if}}
+        {{/each}}
+    </div>
+</div>

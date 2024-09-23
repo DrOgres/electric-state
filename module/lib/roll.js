@@ -149,14 +149,19 @@ export function prepareRollDialog(options) {
               gearDice = item.system.modifier.value;
             }
             console.log("Gear Dice", gearDice);
-            const selectedTalentItemId = html.find("#talent")[0].value;
-            const talent = talents.find((i) => i.id === selectedTalentItemId);
+
             let talentDice = 0;
-            if (talent !== undefined) {
-              options.talentUsed = selectedTalentItemId;
-              talentDice = talent.system.modifier.value;
+            if (html.find("#talent")[0] !== undefined) {
+              const selectedTalentItemId = html.find("#talent")[0].value;
+              const talent = talents.find((i) => i.id === selectedTalentItemId);
+              
+              if (talent !== undefined) {
+                options.talentUsed = selectedTalentItemId;
+                talentDice = talent.system.modifier.value;
+              }
+              console.log("Talent", talent);
             }
-            console.log("Talent", talent);
+            console.log("Talent Dice", talentDice);
 
             let bonus = parseInt(html.find("#bonus")[0].value);
 
@@ -225,13 +230,14 @@ function buildGearSelectDialog(options, gear) {
 
 function buildTalentSelectDialog(options, talents) {
   console.log("Building Talent Select Dialog", talents, options);
-  let html = "";
-  let selectOptions = "";
-
+  
   if (talents.length === 0) {
-    return;
+    return "";
   }
 
+  let html = "";
+  let selectOptions = "";
+  
   for (let talent of talents) {
     console.log(talent);
     // check the array talent.system.attribute to see if it contains a match for options.attribute

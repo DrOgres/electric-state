@@ -1,6 +1,5 @@
 {
-
-    "estate": {
+  "estate": {
     "ATTRIBUTE.STR": "Strength",
     "ATTRIBUTE.AGI": "Agility",
     "ATTRIBUTE.WIT": "Wits",
@@ -18,14 +17,12 @@
     "HEAD.FLAW": "Flaw",
     "HEAD.COST": "Cost",
 
-
     "UI.MAIN": "Main",
     "UI.GEAR": "Gear",
     "UI.OTHER": "Other",
     "UI.NOTES": "Notes",
     "UI.JOURNEY": "Journey",
 
-   
     "UI.SPEED": "Speed",
     "UI.MANEUVER": "Maneuverability",
     "UI.ARMOR": "Armor",
@@ -35,8 +32,7 @@
 
     "UI.MELEE": "Close Combat",
     "UI.RANGED": "Ranged Combat",
-    
-    
+
     "UI.DAMAGE": "Damage",
     "UI.WEAPON": "Weapon",
     "UI.TENSION": "Tension",
@@ -48,10 +44,10 @@
     "UI.DEATHROLL": "Death Roll",
     "UI.MOVEMENT": "Movement",
 
-    "UI.ENGAGED" : "Engaged",
-    "UI.SHORT" : "Short",
-    "UI.MEDIUM" : "Medium",
-    "UI.LONG" : "Long",
+    "UI.ENGAGED": "Engaged",
+    "UI.SHORT": "Short",
+    "UI.MEDIUM": "Medium",
+    "UI.LONG": "Long",
     "UI.EXTREME": "Extreme",
 
     "UI.SUBTOTAL": "Subtotal",
@@ -64,30 +60,30 @@
     "UI.BONUS": "Bonus",
     "UI.INJURY": "Injury",
     "UI.PERMANENT": "Perm",
+    "UI.TRAUMA": "Trauma",
 
     "UI.YES": "Yes",
-    "UI.NO": "No"
-   
-
+    "UI.NO": "No",
+    "UI.ROLL": "Roll",
+    "UI.CANCEL": "Cancel",
 
     
-},
+    "ROLL.BASE.POOL": "Base Dice Pool",
+    "ROLL.TEST": "Test",
+    "ROLL.ROLL": "Roll",
+    "ROLL.PUSH": "Push",
+    "ROLL.CANCEL": "Cancel",
+    "ROLL.SKILL": "Skill",
+    "ROLL.PREC": "Physical Recovery",
+    "ROLL.MREC": "Mental Recovery",
+    "ROLL.BONUS": "Bonus Dice",
+    "ROLL.DAMAGE": "Damage"
+  },
 
   "CHAT.SUCCESS": "Successes",
-  "ROLL.BASE.POOL": "Base Dice Pool",
-  "ROLL.TEST" : "Test",
-  "ROLL.ROLL" : "Roll",
-  "ROLL.PUSH": "Push",
-  "ROLL.CANCEL" : "Cancel",
-  "ROLL.SKILL": "Skill",
-  "ROLL.PREC": "Physical Recovery",
-  "ROLL.MREC": "Mental Recovery",
-  "ROLL.BONUS": "Bonus Dice",
-  "ROLL.DAMAGE": "Damage",
-
-  "YZUR.CHAT.ROLL.Push" : "Push",
-  "YZUR.DIETYPES.SkillDie" : "Success Count",
-  "YZUR.DIETERMS.SkillDie" : "Skill Success Count",
-  "YZUR.DIETERMS.GearDie" : "Gear Success Count",
-  "YZUR.DIETERMS.BaseDie" : "Base Success Count"
+  "YZUR.CHAT.ROLL.Push": "Push",
+  "YZUR.DIETYPES.SkillDie": "Success Count",
+  "YZUR.DIETERMS.SkillDie": "Skill Success Count",
+  "YZUR.DIETERMS.GearDie": "Gear Success Count",
+  "YZUR.DIETERMS.BaseDie": "Base Success Count"
 }

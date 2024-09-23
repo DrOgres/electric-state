@@ -241,6 +241,10 @@
   margin-top: 10px;
 }
 
+.margin-top-close {
+  margin-top: -10px;
+}
+
 .padding-small {
   padding: 5px;
 }

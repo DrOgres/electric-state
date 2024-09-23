@@ -27,8 +27,14 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isExplosive}}
-        <div class="item-row flexrow">
+        <div class=" item item-row flexrow " data-item-id="{{item._id}}">
             <div>{{item.name}}</div>
+            {{#if item.flags.isFav}}
+            <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+            {{/if}}
+            {{#unless item.flags.isFav}}
+            <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+            {{/unless}}
             <div class="item-edit" data-item-id="{{item._id}}">edit</div>
             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
         </div>
@@ -42,8 +48,14 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isArmor}}
-        <div class="item-row flexrow">
+        <div class=" item item-row flexrow " data-item-id="{{item._id}}">
             <div>{{item.name}}</div>
+            {{#if item.flags.isFav}}
+            <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+            {{/if}}
+            {{#unless item.flags.isFav}}
+            <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+            {{/unless}}
             <div class="item-edit" data-item-id="{{item._id}}">edit</div>
             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
         </div>
@@ -67,7 +79,13 @@
             {{#unless item.system.isBroken}}
             <div class="hold"></div>
             {{/unless}}
-            <div class="button-group">
+            <div class="button-group item" data-item-id="{{item._id}}">
+                {{#if item.flags.isFav}}
+            <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+            {{/if}}
+            {{#unless item.flags.isFav}}
+            <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+            {{/unless}}
                 <div class="item-edit" data-item-id="{{item._id}}">edit</div>
                 <div class="item-delete" data-item-id="{{item._id}}">delete</div>
             </div>
@@ -82,8 +100,14 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isDrone}}
-        <div class="item-row flexrow">
+         <div class=" item item-row flexrow " data-item-id="{{item._id}}">
             <div>{{item.name}}</div>
+            {{#if item.flags.isFav}}
+            <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+            {{/if}}
+            {{#unless item.flags.isFav}}
+            <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+            {{/unless}}
             <div class="item-edit" data-item-id="{{item._id}}">edit</div>
             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
         </div>
@@ -97,8 +121,14 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isNeurocaster}}
-        <div class="item-row flexrow">
+         <div class=" item item-row flexrow " data-item-id="{{item._id}}">
             <div>{{item.name}}</div>
+            {{#if item.flags.isFav}}
+            <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+            {{/if}}
+            {{#unless item.flags.isFav}}
+            <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+            {{/unless}}
             <div class="item-edit" data-item-id="{{item._id}}">edit</div>
             <div class="item-delete" data-item-id="{{item._id}}">delete</div>
         </div>

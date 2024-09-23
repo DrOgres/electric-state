@@ -158,33 +158,39 @@
                     {{/each}}
                 </div>
             </div>
-            <div class="flexcol">
-                <h2>favorite items</h2>
-               
-                {{#each items as |item|}}
-                {{#if item.flags.isFav}}
+            <div class="flexcol padding-small">
+                <div class="fs-400 fw-800 all-caps border-thick margin-small padding-small">favorite items</div>
+                <div class="border-3-4-thick fexcol padding-small margin-small margin-top-close">
+                    {{#each items as |item|}}
+                    {{#if item.flags.isFav}}
                     {{#if item.isGear}}
-                    {{item.name}}
+                    <div class="item">
+                        {{item.name}}</div>
                     {{/if}}
                     {{#if item.isArmor}}
-                    {{item.name}}
+                    <div class="item">
+                        {{item.name}}</div>
                     {{/if}}
                     {{#if item.isExplosive}}
-                    {{item.name}}
+                    <div class="item">
+                        {{item.name}}</div>
                     {{/if}}
                     {{#if item.isWeapon}}
-                    {{item.name}}
+                    <div class="item">
+                        {{item.name}}</div>
                     {{/if}}
                     {{#if item.isDrone}}
-                    {{item.name}}
+                    <div class="item">
+                        {{item.name}}</div>
                     {{/if}}
                     {{#if item.isNeurocaster}}
-                    {{item.name}}
+                    <div class="item">
+                        {{item.name}}</div>
                     {{/if}}
 
-                {{/if}}
-                {{/each}}
-
+                    {{/if}}
+                    {{/each}}
+                </div>
             </div>
 
         </div>

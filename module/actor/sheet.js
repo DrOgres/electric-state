@@ -65,8 +65,22 @@ export default class esActorSheet extends ActorSheet {
     html.find(".item-delete").click(this._onItemDelete.bind(this));
     // html.find(".item-roll").click(this._onItemRoll.bind(this));
     html.find(".rollable").click(this._onRoll.bind(this));
+    html.find(".toggle-fav").click(this._onToggleFav.bind(this));
+
   }
 
+
+  async _onToggleFav(event) {
+    console.log("E-STATE | Toggling Favorite");
+
+    const parent = $(event.currentTarget).parents(".item");
+    event.preventDefault();
+    const itemId = parent[0].dataset.itemId;
+    const item = this.actor.items.get(itemId);
+    let favStatus = !item.flags.isFav;
+
+    await item.update({ "flags.isFav": favStatus });
+  }
 
   _onRoll(event) {
     console.log("E-STATE | Rolling", event);

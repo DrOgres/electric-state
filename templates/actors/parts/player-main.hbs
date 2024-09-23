@@ -159,9 +159,10 @@
                 </div>
             </div>
             <div class="flexcol">
-                favorite items
+                <h2>favorite items</h2>
+               
                 {{#each items as |item|}}
-                {{#if item.flags.isFavorite}}
+                {{#if item.flags.isFav}}
                     {{#if item.isGear}}
                     {{item.name}}
                     {{/if}}
@@ -180,7 +181,7 @@
                     {{#if item.isNeurocaster}}
                     {{item.name}}
                     {{/if}}
-                    
+
                 {{/if}}
                 {{/each}}
 

@@ -45,6 +45,9 @@ export default class esActorSheet extends ActorSheet {
     // console.log("E-STATE |  Data", data);
     this.computeItems(data);
     this.computeMaxStats(actor);
+    this.checkBliss(actor);
+    this.checkHealth(actor);
+    this.checkHope(actor);
 
     (data.notesHTML = await TextEditor.enrichHTML(actor.system.notes, {
       async: true,
@@ -126,6 +129,50 @@ export default class esActorSheet extends ActorSheet {
     };
 
     this.actor.createEmbeddedDocuments("Item", [data]);
+  }
+
+
+  async checkHope(actor) {
+    console.log("E-STATE | Checking Hope");
+    let hope = 0;
+    let maxHope = 0;
+
+    hope = actor.system.hope.value;
+    maxHope = actor.system.hope.max;
+
+    if (hope > maxHope) {
+      hope = maxHope;
+    }
+    await actor.update({"system.hope.value": hope});
+  }
+
+
+  async checkHealth(actor) {
+    console.log("E-STATE | Checking Health");
+    let health = 0;
+    let maxHealth = 0;
+
+    health = actor.system.health.value;
+    maxHealth = actor.system.health.max;
+
+    if (health > maxHealth) {
+      health = maxHealth;
+    }
+    await actor.update({"system.health.value": health});
+  }
+
+  async checkBliss(actor) {
+    console.log("E-STATE | Checking Bliss");
+    let bliss = 0;
+    let permanentBliss = 0;
+
+    bliss = actor.system.bliss;
+    permanentBliss = actor.system.permanent;
+
+    if (bliss < permanentBliss) {
+      bliss = permanentBliss;
+    }
+    await actor.update({"system.bliss": bliss});
   }
 
   async computeMaxStats(actor) {

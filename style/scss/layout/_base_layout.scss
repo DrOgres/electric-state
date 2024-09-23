@@ -60,9 +60,18 @@
   text-align: center;
 }
 
+.text-right{
+  text-align: right;
+}
+
 .align-bottom{
   align-items: end;
   align-self: end;
+}
+
+.align-start{
+  align-items: start;
+  align-self: start;
 }
 
 .align-content-start{
@@ -111,7 +120,7 @@
   .border-top-thin {
     border-top: 1px solid $text-color;
   }
-  
+
   .border-right-thin {
     border-right: 1px solid $text-color;
   }
@@ -130,6 +139,10 @@
 
   .margin-small {
     margin: 5px;
+  }
+
+  .margin-top-med{
+    margin-top: 10px;
   }
 
   .padding-small {

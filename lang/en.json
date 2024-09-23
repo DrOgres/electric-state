@@ -58,7 +58,10 @@
     "UI.DICEPOOL": "Dice Pool",
     "UI.PENALTY": "Penalty",
     "UI.TOTAL": "Total",
-    "UI.TALENT": "Talent"
+    "UI.TALENT": "Talent",
+    "UI.TALENTS": "Talents",
+    "UI.TYPE": "Type",
+    "UI.BONUS": "Bonus"
 
     
 },

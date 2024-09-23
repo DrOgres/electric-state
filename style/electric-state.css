@@ -82,6 +82,12 @@
   font-size: 0.5rem;
 }
 
+.overflow-elipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .gap-small {
   gap: 3px;
 }
@@ -140,9 +146,18 @@
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .align-bottom {
   align-items: end;
   align-self: end;
+}
+
+.align-start {
+  align-items: start;
+  align-self: start;
 }
 
 .align-content-start {
@@ -155,7 +170,7 @@
           backdrop-filter: blur(2px);
 }
 .rollable:hover {
-  text-shadow: rgba(255, 255, 255, 0.431372549) 0 0 5px;
+  text-shadow: #ffffff 0 0 5px;
 }
 
 .portrait {
@@ -208,6 +223,10 @@
 
 .margin-small {
   margin: 5px;
+}
+
+.margin-top-med {
+  margin-top: 10px;
 }
 
 .padding-small {
@@ -322,9 +341,19 @@ b.item.active:hover {
   background: #f0f7f5;
 }
 
+#pause img {
+  content: url("../assets/es-logo-wht-no-stroke.svg");
+  width: 150px;
+  height: 150px;
+  top: -30px;
+  left: calc(50% - 75px);
+  opacity: 0.25;
+  filter: drop-shadow(0px 0px 5px #cdeef0);
+}
+
 input[type=text], input[type=number] {
   color: #2c2e35;
-  background-color: rgba(255, 255, 255, 0.431372549);
+  background-color: #ffffff;
   font-family: "Assistant", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;

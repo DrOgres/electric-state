@@ -99,6 +99,16 @@ b.item{
   background: $background-color;
 }
 
+#pause img {
+  content: url("../assets/es-logo-wht-no-stroke.svg");
+  width: 150px;
+  height: 150px;
+  top: -30px;
+  left: calc(50% - 75px);
+  opacity: 0.25;
+  filter: drop-shadow(0px 0px 5px $background-color-highlight);
+}
+
 
 input[type="text"], input[type="number"] {
   color: $text-color;

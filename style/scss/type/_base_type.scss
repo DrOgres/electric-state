@@ -52,7 +52,7 @@
     font-weight: 100;
   }
 
-  
+
 
   .fs-800{
     font-size: 3rem;
@@ -84,6 +84,12 @@
 
     .fs-100{
         font-size: 0.5rem;
+    }
+
+    .overflow-elipsis{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     

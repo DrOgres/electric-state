@@ -21,6 +21,10 @@
   grid-template-columns: repeat(4, 25%);
 }
 
+.cols-5-20{
+  grid-template-columns: repeat(5, 20%);
+}
+
 .col-160-1fr{
   grid-template-columns: 160px 1fr;
 }
@@ -77,6 +81,14 @@
 .align-content-start{
   align-content: flex-start;
  
+}
+
+.align-content-end{
+  align-content: flex-end;
+}
+
+.justify-content-end{
+  justify-content: flex-end;
 }
 
 .rollable {
@@ -167,4 +179,8 @@
 
   .mi-small{
     margin-inline: 5px;
+  }
+
+  .mw-fit{
+    max-width: fit-content;
   }

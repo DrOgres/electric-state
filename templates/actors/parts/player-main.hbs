@@ -94,9 +94,9 @@
                         <div class="item" data-item-id="{{talent._id}}">{{talent.name}}</div>
                         <div class="modify text-left overflow-elipsis">{{talent.system.type}}</div>
                         <div class="mod center">{{talent.system.modifier.value}}</div>
-                        <div class="button-group align-bottom flexrow text-right">
-                            <div class="item-edit" data-item-id="{{talent._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
-                            <div class="item-delete" data-item-id="{{talent._id}}"><i class="fa-solid fa-trash"></i></div>
+                        <div class="button-group align-bottom flexrow text-right justify-content-end">
+                            <div class="item-edit mw-fit" data-item-id="{{talent._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+                            <div class="item-delete mw-fit" data-item-id="{{talent._id}}"><i class="fa-solid fa-trash"></i></div>
                         </div>
 
                     </div>
@@ -105,14 +105,26 @@
                     {{/each}}
                     </div>
                 </div>
-                <div class="flexcol">
-                    <h4>Injuries</h4>
+                <div class="flexcol margin-top-med">
+                    <div class="grid cols-5-20 all-caps fw-600 border-bottom-thin">
+                        <div class="name ">{{localize "estate.UI.INJURY"}}</div>
+                        <div class="type ">{{localize "estate.UI.TYPE"}}</div>
+                        <div class="bonus center">{{localize "estate.UI.PENALTY"}}</div>
+                        <div class="permanent center">{{localize "estate.UI.PERMANENT"}}</div>
+                        <div class="item-create align-bottom mi-small text-right" data-type="injury">&plus;</div>
+                    </div>
                     {{#each items as |injury|}}
                     {{#if injury.isInjury}}
-                    <div class="flexrow">
+                    <div class="grid cols-5-20 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin">
                         <div class="item" data-item-id="{{injury._id}}">{{injury.name}}</div>
-                        <div class="item-edit" data-item-id="{{injury._id}}">edit </div>
-                        <div class="item-delete" data-item-id="{{injury._id}}">delete</div>
+                        <div class="modify text-left overflow-elipsis">{{injury.system.type}}</div>
+                        <div class="mod center">&minus;{{injury.system.modifier.value}}</div>
+                        <div class="mod center">{{#if injury.system.isPermanent}}{{localize "estate.UI.YES"}}{{else}}{{localize "estate.UI.NO"}}{{/if}}</div>
+                        <div class="button-group align-bottom flexrow text-right justify-content-end">
+                            <div class="item-edit mw-fit" data-item-id="{{injury._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+                            <div class="item-delete mw-fit" data-item-id="{{injury._id}}"><i class="fa-solid fa-trash"></i></div>
+                        </div>
+                        
                     </div>
                     {{/if}}
                     {{/each}}

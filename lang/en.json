@@ -56,12 +56,19 @@
 
     "UI.SUBTOTAL": "Subtotal",
     "UI.DICEPOOL": "Dice Pool",
-    "UI.PENALTY": "Penalty",
+    "UI.PENALTY": "Mod",
     "UI.TOTAL": "Total",
     "UI.TALENT": "Talent",
     "UI.TALENTS": "Talents",
     "UI.TYPE": "Type",
-    "UI.BONUS": "Bonus"
+    "UI.BONUS": "Bonus",
+    "UI.INJURY": "Injury",
+    "UI.PERMANENT": "Perm",
+
+    "UI.YES": "Yes",
+    "UI.NO": "No"
+   
+
 
     
 },

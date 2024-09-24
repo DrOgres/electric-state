@@ -1,41 +1,7 @@
 <div class="grid gap-small">
 
     <div class="flexcol  border-3-4-thick padding-small">
-        <div class="grid cols-4-25">
-            <div class="grid border-thick margin-small padding-small">
-                <div class="rollable center all-caps fw-700" data-type="attribute" data-attribute="strength">{{localize
-                    "estate.ATTRIBUTE.STR"}}
-                </div>
-                <div class="input-container center fs-600 fw-700 w-100">
-                    <input type="number" name="system.strength" value="{{actor.system.strength}}" style="height: 100%;"
-                        data-dtype="Number" />
-                </div>
-            </div>
-            <div class="grid border-thick margin-small padding-small">
-                <div class="rollable center all-caps fw-700" data-type="attribute" data-attribute="agility">
-                    {{localize "estate.ATTRIBUTE.AGI"}}</div>
-                <div class="input-container center fs-600 fw-700 w-100">
-                    <input type="number" name="system.agility" value="{{actor.system.agility}}" style="height: 100%;"
-                        data-dtype="Number" />
-                </div>
-            </div>
-            <div class="grid border-thick margin-small padding-small">
-                <div class="rollable center all-caps fw-700" data-type="attribute" data-attribute="wits">
-                    {{localize "estate.ATTRIBUTE.WIT"}}</div>
-                <div class="input-container center fs-600 fw-700 w-100">
-                    <input type="number" name="system.wits" value="{{actor.system.wits}}" style="height: 100%;"
-                        data-dtype="Number" />
-                </div>
-            </div>
-            <div class="grid border-thick margin-small padding-small">
-                <div class="rollable center all-caps fw-700" data-type="attribute" data-attribute="empathy">
-                    {{localize "estate.ATTRIBUTE.EMP"}}</div>
-                <div class="input-container center fs-600 fw-700 w-100">
-                    <input type="number" name="system.empathy" value="{{actor.system.empathy}}" style="height: 100%;"
-                        data-dtype="Number" />
-                </div>
-            </div>
-        </div>
+         {{> "systems/electric-state/templates/actors/parts/stats.hbs"}}
         <div class="flexrow">
             <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
                 {{localize "estate.ATTRIBUTE.HEALTH"}}
@@ -46,9 +12,6 @@
                     <div> {{actor.system.health.max}}</div>
                 </div>
             </div>
-
-
-
             <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
                 {{localize "estate.ATTRIBUTE.HOPE"}}
                 <div class="input-container mi-small center">
@@ -79,34 +42,7 @@
         </div>
         <div class="flexrow gap-small">
             <div class="flexcol padding-small">
-                <div class="flexcol margin-top-med">
-
-                    <div class="grid cols-4-25 all-caps fw-600 border-bottom-thin">
-                        <div class="name ">{{localize "estate.UI.TALENT"}}</div>
-                        <div class="type ">{{localize "estate.UI.TYPE"}}</div>
-                        <div class="bonus center">{{localize "estate.UI.BONUS"}}</div>
-                        <div class="item-create align-bottom mi-small text-right" data-type="talent">&plus;</div>
-                    </div>
-                    <div class="talent-group list">
-                        {{#each items as |talent|}}
-                        {{#if talent.isTalent}}
-                        <div class="grid cols-4-25 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin">
-                            <div class="item overflow-elipsis" data-item-id="{{talent._id}}">{{talent.name}}</div>
-                            <div class="modify text-left overflow-elipsis">{{talent.system.type}}</div>
-                            <div class="mod center">{{talent.system.modifier.value}}</div>
-                            <div class="button-group align-bottom flexrow text-right justify-content-end">
-                                <div class="item-edit mw-fit" data-item-id="{{talent._id}}"><i
-                                        class="fa-solid fa-pen-to-square"></i></div>
-                                <div class="item-delete mw-fit" data-item-id="{{talent._id}}"><i
-                                        class="fa-solid fa-trash"></i></div>
-                            </div>
-
-                        </div>
-
-                        {{/if}}
-                        {{/each}}
-                    </div>
-                </div>
+                {{> "systems/electric-state/templates/actors/parts/talents.hbs"}}
                 <div class="flexcol margin-top-med">
                     <div class="grid cols-5-20 all-caps fw-600 border-bottom-thin">
                         <div class="name overflow-elipsis">{{localize "estate.UI.INJURY"}}</div>

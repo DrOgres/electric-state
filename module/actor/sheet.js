@@ -5,7 +5,6 @@ export default class esActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["es", "sheet", "actor"],
-      template: "systems/electric-state/templates/actors/player.hbs",
       width: 600,
       height: 600,
       tabs: [
@@ -24,7 +23,7 @@ export default class esActorSheet extends ActorSheet {
 
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
-    if (this.actor.isOwner) {
+    if (this.actor.isOwner && this.actor.type === "player") {
       buttons = [
         {
           label: game.i18n.localize("estate.UI.DEATHROLL"),

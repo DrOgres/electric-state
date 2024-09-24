@@ -3,6 +3,10 @@
     "types": ["player", "npc", "vehicle", "robot"],
 
     "templates": {
+      "commonActor": {
+        "description": "",
+        "notes": ""
+      },
       "attributes": {
         "strength": 0,
         "agility": 0,
@@ -14,12 +18,10 @@
         }
       }
     },
-
     "player": {
-      "templates": ["attributes"],
+      "templates": ["commonActor", "attributes"],
       "archetype": "",
       "song": "",
-      "description": "",
       "hope": {
         "max": 0,
         "value": 0
@@ -32,23 +34,20 @@
       "journey": {
         "goal": "",
         "threat": ""
-      },
-      "notes": ""
+      }
     },
-
     "npc": {
-      "templates": ["attributes"],
+      "templates": ["commonActor", "attributes"],
       "cash": 0
     },
-
     "vehicle": {
+      "templates": ["commonActor"],
       "type": "",
       "model": "",
       "fuel": {
         "max": 0,
         "value": 0
       },
-      "description": "",
       "maneuverability": 0,
       "speed": 0,
       "hull": {
@@ -62,9 +61,8 @@
         "count": 0
       }
     },
-
     "robot": {
-      "templates": ["attributes"],
+      "templates": ["commonActor", "attributes"],
       "armor": 0,
       "hull": {
         "max": 0,

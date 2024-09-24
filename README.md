@@ -3,6 +3,9 @@
 
 This system is currently Pre-Alpha, meaning it is incomplete and may change drastically before the final feature set is compleated. Use at your own risk.
 
+
+
+
 TODO LIST:
 
 - Player Character Sheets
@@ -13,7 +16,7 @@ TODO LIST:
     - dialog and tracking for death rolls
     - Damage in weapon rolls
 - Vehicle Sheets
-- NPC sheets
+
 - Robot Sheets
 - Item Sheets
     - Style and UI design for each item type.
@@ -26,5 +29,6 @@ Version History:
 
 v0.0.1 a
 - Pre-Alpha release 
+- special thank you to [Felix Trepanier](https://github.com/coderunner) for their contributions!
 
 

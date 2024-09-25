@@ -42,6 +42,7 @@ export default class esActorSheet extends ActorSheet {
     // console.log("E-STATE | Actor", actor);
     // console.log("E-STATE |  Data", data);
     this.computeItems(data);
+    this.computeGear(actor);
     this.computeMaxStats(actor);
     this.checkBliss(actor);
     this.checkHealth(actor);
@@ -80,6 +81,22 @@ export default class esActorSheet extends ActorSheet {
 
     await item.update({ "flags.isEquipped": equipStatus });
     console.log("E-STATE | Item", item);
+  }
+
+  _isPlayer() {
+    return this.actor.type === "player";
+  }
+
+  _isNpc() {
+    return this.actor.type === "npc";
+  }
+
+  _isRobot() {
+    return this.actor.type === "robot";
+  }
+
+  _isVehicule() {
+    return this.actor.type === "vehicle";
   }
 
   async _onToggleFav(event) {
@@ -333,5 +350,14 @@ export default class esActorSheet extends ActorSheet {
       item.isTrauma = item.type === "trauma";
       item.isInjury = item.type === "injury";
     }
+  }
+
+  computeGear(actor) {
+    actor.hasWeapon = this._isPlayer() || this._isNpc() || this._isRobot();
+    actor.hasExplosive = this._isPlayer() || this._isNpc();
+    actor.hasGear= this._isPlayer() || this._isNpc();
+    actor.hasArmor = this._isPlayer() || this._isNpc() || this._isRobot();
+    actor.hasDrone = this._isPlayer() || this._isNpc();
+    actor.hasNeurocaster = this._isPlayer() || this._isNpc();
   }
 }

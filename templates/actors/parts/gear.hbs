@@ -1,4 +1,5 @@
 <div class="flexcol">
+    {{#if actor.hasWeapon}}
     <div class="weapon-group">
         <div class="group-header flexrow">
             <h4>weapons</h4>
@@ -20,6 +21,8 @@
         {{/if}}
         {{/each}}
     </div>
+    {{/if}}
+    {{#if actor.hasExplosive}}
     <div class="explosives-group">
         <div class="group-header flexrow">
             <h4>explosives</h4>
@@ -41,6 +44,8 @@
         {{/if}}
         {{/each}}
     </div>
+    {{/if}}
+    {{#if actor.hasArmor}}
     <div class="armor-group">
         <div class="group-header flexrow">
             <h4>armor</h4>
@@ -68,6 +73,8 @@
         {{/if}}
         {{/each}}
     </div>
+    {{/if}}
+    {{#if actor.hasGear}}
     <div class="gear-group">
         <div class="group-header flexrow">
             <h4>gear</h4>
@@ -99,7 +106,9 @@
         {{/if}}
         {{/each}}
     </div>
-    <div class="drone-gorup">
+    {{/if}}
+    {{#if actor.hasDrone}}
+    <div class="drone-group">
         <div class="group-header flexrow">
             <h4>drone</h4>
             <div class="item-create" data-type="drone">new drone</div>
@@ -128,6 +137,8 @@
         {{/if}}
         {{/each}}
     </div>
+    {{/if}}
+    {{#if actor.hasNeurocaster}}
     <div class="neurocaster-group">
         <div class="group-header flexrow">
             <h4>neurocaster</h4>
@@ -155,4 +166,5 @@
         {{/if}}
         {{/each}}
     </div>
+    {{/if}}
 </div>

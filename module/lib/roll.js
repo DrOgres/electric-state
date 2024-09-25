@@ -28,8 +28,6 @@ export function prepareRollDialog(options) {
   let injuries = actor.items.filter((i) => i.type === "injury");
   let tensions = actor.items.filter((i) => i.type === "tension");
 
-
-
   console.log("building dialog");
 
   options.penalty = 0;
@@ -54,26 +52,26 @@ export function prepareRollDialog(options) {
           for (let neurocaster of neurocasters) {
             if ((neurocaster.flags.isEquipped = true)) {
               options.dicePool += neurocaster.system.network.value;
-                foundCaster = true;
+              foundCaster = true;
             }
           }
-            if (!foundCaster) {
-                ui.notifications.warn(
-                "You need to equip a neurocaster to use a drone"
-                );
-                return;
-            }
+          if (!foundCaster) {
+            ui.notifications.warn(
+              "You need to equip a neurocaster to use a drone"
+            );
+            return;
+          }
         }
       }
 
       //TODO for agility rolls check to see if the actor has armor equipped and if so apply the armor penalty and show this in the dialog
-        for (let armor of armors) {
-            if ((armor.flags.isEquipped = true)) {
-                if (options.attribute === "agility") {
-                    options.armorPenalty = armor.system.agiltyModifier;
-                }
-            }
+      for (let armor of armors) {
+        if ((armor.flags.isEquipped = true)) {
+          if (options.attribute === "agility") {
+            options.armorPenalty = armor.system.agiltyModifier;
+          }
         }
+      }
 
       console.log("dicepool after drone check", options.dicePool);
 
@@ -103,7 +101,6 @@ export function prepareRollDialog(options) {
 
       //TODO if there is a target for the user and the target actorId matches the actorID of any of the tensions use add a check box to allow the user to add the tension to the roll
 
-
       break;
     case "weapon":
       console.log("Weapon Roll", options);
@@ -115,9 +112,8 @@ export function prepareRollDialog(options) {
       console.log("Death Roll", options);
       break;
     case "drone":
-        console.log("Drone Roll", options);
-        break;
-
+      console.log("Drone Roll", options);
+      break;
   }
 
   let bonusHtml = buildInputDialog(
@@ -176,7 +172,7 @@ export function prepareRollDialog(options) {
             if (html.find("#talent")[0] !== undefined) {
               const selectedTalentItemId = html.find("#talent")[0].value;
               const talent = talents.find((i) => i.id === selectedTalentItemId);
-              
+
               if (talent !== undefined) {
                 options.talentUsed = selectedTalentItemId;
                 talentDice = talent.system.modifier.value;
@@ -252,14 +248,14 @@ function buildGearSelectDialog(options, gear) {
 
 function buildTalentSelectDialog(options, talents) {
   console.log("Building Talent Select Dialog", talents, options);
-  
+
   if (talents.length === 0) {
     return "";
   }
 
   let html = "";
   let selectOptions = "";
-  
+
   for (let talent of talents) {
     console.log(talent);
     // check the array talent.system.attribute to see if it contains a match for options.attribute
@@ -292,45 +288,50 @@ function buildTalentSelectDialog(options, talents) {
 
 function buildSubtotalDialog(options) {
   console.log("Building subtotal Dialog", options);
- let  subtotal = options.dicePool - options.penalty;
-    if(options.armorPenalty > 0){
-        subtotal -= options.armorPenalty;
-    }
+  let subtotal = options.dicePool - options.penalty;
+  if (options.armorPenalty > 0) {
+    subtotal -= options.armorPenalty;
+  }
 
-    let html =`<div class="flexcol">
+  let html = "";
+
+  if (options.penalty > 0) {
+    html +=
+      `<div class="flexcol">
                  <div class="flexrow">
                      <h4 class="subheader middle">` +
-                    game.i18n.localize("estate.UI.PENALTY") +
-                    ` : &nbsp;</h4>
+      game.i18n.localize("estate.UI.PENALTY") +
+      ` : &nbsp;</h4>
                     <p id="penalty" style="text-align: right" class="grow pi-2 border-bottom"> &minus;` +
-                    options.penalty +
-                   `</p></div>`;
-    if(options.armorPenalty > 0){
-        html+=`
+      options.penalty +
+      `</p></div>`;
+  }
+  if (options.armorPenalty > 0) {
+    html +=
+      `
         <div class="flexrow">
             <h4 class="subheader middle">` +
-            game.i18n.localize("estate.UI.ARMOR_PENALTY") +
-            ` : &nbsp;</h4>
+      game.i18n.localize("estate.UI.ARMOR_PENALTY") +
+      ` : &nbsp;</h4>
         <p id="armorPenalty" style="text-align: right" class="grow pi-2 border-bottom"> &minus;` +
-        options.armorPenalty +
-        `</p></div>`;
-    }
+      options.armorPenalty +
+      `</p></div>`;
+  }
 
-     html+=` 
+  html +=
+    ` 
                 <hr />
                 <div class="flexrow">
                     <h4 class="subheader middle">` +
-                    game.i18n.localize("estate.UI.SUBTOTAL") +
-                    ` : &nbsp;</h4>
+    game.i18n.localize("estate.UI.SUBTOTAL") +
+    ` : &nbsp;</h4>
                     <p id="subtotal" style="text-align: right" class="grow pi-2 border-bottom">` +
-                    subtotal +
-                    `</p>
+    subtotal +
+    `</p>
                 </div>
             </div>`;
 
- 
-
-  return (html);
+  return html;
 }
 
 function buildHTMLDialog(diceName, diceValue, type) {

@@ -128,6 +128,14 @@ export function prepareRollDialog(options) {
       break;
     case "armor":
       console.log("Armor Roll", options);
+      const armor = armors.find((i) => i.id === options.armorId);
+      console.log("Armor", armor);
+      dialogHTML += buildHTMLDialog(
+        options.testName,
+        options.dicePool,
+        game.i18n.localize("estate.UI.ARMOR")
+      );
+      dialogHTML += buildSubtotalDialog(options);
       break;
     case "death":
       console.log("Death Roll", options);

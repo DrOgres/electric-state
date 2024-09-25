@@ -53,7 +53,9 @@
     "UI.SUBTOTAL": "Subtotal",
     "UI.DICEPOOL": "Dice Pool",
     "UI.ARMOR_PENALTY": "Armor Penalty",
-    "UI.PENALTY": "Mod",
+    "UI.MOD": "Mod",
+    "UI.MODIFIER": "Modifier",
+    "UI.PENALTY": "Penalty",
     "UI.TOTAL": "Total",
     "UI.TALENT": "Talent",
     "UI.TALENTS": "Talents",
@@ -78,7 +80,8 @@
     "ROLL.PREC": "Physical Recovery",
     "ROLL.MREC": "Mental Recovery",
     "ROLL.BONUS": "Bonus Dice",
-    "ROLL.DAMAGE": "Damage"
+    "ROLL.DAMAGE": "Damage",
+    "ROLL.MODIFIER": "Dice Pool Modifier"
   },
 
   "CHAT.SUCCESS": "Successes",

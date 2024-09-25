@@ -104,6 +104,26 @@ export function prepareRollDialog(options) {
       break;
     case "weapon":
       console.log("Weapon Roll", options);
+      const weapon = weapons.find((i) => i.id === options.weaponId);
+      console.log("Weapon", weapon);
+      options.dicePool = weapon.system.modifier.value;
+      options.damage = weapon.system.damage;
+      if (weapon.system.type === "melee") {
+        options.attribute = "strength";
+        options.dicePool += actor.system.strength;
+      } else {
+        options.attribute = "agility";
+        options.dicePool += actor.system.agility;
+      }
+      dialogHTML += buildHTMLDialog(
+        options.testName,
+        options.dicePool,
+        options.attribute
+      );
+
+      dialogHTML += buildSubtotalDialog(options);
+      dialogHTML += buildTalentSelectDialog(options, talents);
+
       break;
     case "armor":
       console.log("Armor Roll", options);
@@ -117,7 +137,7 @@ export function prepareRollDialog(options) {
   }
 
   let bonusHtml = buildInputDialog(
-    game.i18n.localize("estate.ROLL.BONUS"),
+    game.i18n.localize("estate.ROLL.MODIFIER"),
     options.bonusDefault,
     "bonus"
   );
@@ -356,9 +376,10 @@ function buildInputDialog(name, value, type) {
           <p style="text-transform: capitalize; white-space:nowrap;">` +
     name +
     `: </p>
+     
           <input id="` +
     type +
-    `" style="text-align: right" type="text" value="` +
+    `" style="text-align: center" type="number" value="` +
     value +
     `"/></div>`
   );

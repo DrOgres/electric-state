@@ -50,6 +50,12 @@
         {{#if item.isArmor}}
         <div class=" item item-row flexrow " data-item-id="{{item._id}}">
             <div>{{item.name}}</div>
+             {{#if item.flags.isEquipped}}
+            <div class="toggle-equip"><i class="fa-solid fa-hand-back-fist"></i></div>
+            {{/if}}
+            {{#unless item.flags.isEquipped}}
+            <div class="toggle-equip"><i class="fa-solid fa-hand"></i></div>
+            {{/unless}}
             {{#if item.flags.isFav}}
             <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
             {{/if}}

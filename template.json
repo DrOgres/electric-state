@@ -90,7 +90,8 @@
         "cost": 0,
         "modifier": {
         "max": 0,
-        "value": 0
+        "value": 0,
+        "isBroken": false
       }
       }
     },
@@ -99,8 +100,8 @@
       "isModifier": false,
       "attribute": "",
       "uses": 0,
-      "isConsumable": false,
-      "isBroken": false
+      "isConsumable": false
+      
     },
     "weapon": {
       "templates": ["commonItem"],
@@ -112,13 +113,12 @@
         "max": 0,
         "min": 0
       },
-      "attribute": "",
-      "isBroken": false
+      "attribute": ""
+      
     },
     "armor": {
       "templates": ["commonItem"],
-      "agiltyModifier": 0,
-      "isBroken": false
+      "agiltyModifier": 0
     },
     "explosive": {
       "templates": ["commonItem"],
@@ -152,8 +152,8 @@
         "max": "",
         "min": ""
       },
-      "damage": 0,
-      "isBroken": false
+      "damage": 0
+      
     },
     "neurocaster": {
       "templates": ["commonItem"],
@@ -169,7 +169,6 @@
         "max": 0,
         "value": 0
       },
-      "isBroken": false,
       "realWorldPenalty": 2
     },
     "tension": {

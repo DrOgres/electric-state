@@ -1973,6 +1973,7 @@ class YearZeroDie extends foundry.dice.terms.Die {
         // with the HTML returned by roll.render(), but only if content is left unchanged.
         // So you can overwrite it here with a custom content in messageData.
         content: this.total,
+        //TODO this is deprecated in core foundry v12 we should move to the new constant
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         // sound: CONFIG.sounds.dice, // Already added in super.
       }, messageData);

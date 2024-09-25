@@ -18,7 +18,7 @@ export function prepareRollDialog(options) {
   console.log(actor);
   let talents = actor.items.filter((i) => i.type === "talent");
   let gear = actor.items.filter((i) => i.type === "gear");
-  let armor = actor.items.filter((i) => i.type === "armor");
+  let armors = actor.items.filter((i) => i.type === "armor");
   let weapons = actor.items.filter((i) => i.type === "weapon");
   let neurocasters = actor.items.filter((i) => i.type === "neurocaster");
   let drones = actor.items.filter((i) => i.type === "drone");
@@ -40,8 +40,6 @@ export function prepareRollDialog(options) {
   switch (options.type) {
     case "attribute":
       console.log("Attribute Roll", options);
-      // check to see if they are using a drone if so use the drone attribute for strength or agility, and add the network attribute of their eqipped neurocaster
-
       for (let drone of drones) {
         /** set dice pool equal to drone str or agi depending on the attribute we passed in */
         if ((drone.flags.isEquipped = true)) {
@@ -67,6 +65,15 @@ export function prepareRollDialog(options) {
             }
         }
       }
+
+      //TODO for agility rolls check to see if the actor has armor equipped and if so apply the armor penalty and show this in the dialog
+        for (let armor of armors) {
+            if ((armor.flags.isEquipped = true)) {
+                if (options.attribute === "agility") {
+                    options.armorPenalty = armor.system.agiltyModifier;
+                }
+            }
+        }
 
       console.log("dicepool after drone check", options.dicePool);
 
@@ -144,6 +151,9 @@ export function prepareRollDialog(options) {
           callback: (html) => {
             console.log("Rolling", options);
             let baseDice = options.dicePool - options.penalty;
+            if (options.armorPenalty > 0) {
+              baseDice -= options.armorPenalty;
+            }
 
             //TODO if there is no gear that matches the attribute this will be an error so we need to check for that
 
@@ -282,28 +292,45 @@ function buildTalentSelectDialog(options, talents) {
 
 function buildSubtotalDialog(options) {
   console.log("Building subtotal Dialog", options);
-  const subtotal = options.dicePool - options.penalty;
+ let  subtotal = options.dicePool - options.penalty;
+    if(options.armorPenalty > 0){
+        subtotal -= options.armorPenalty;
+    }
 
-  return (
-    `
-        <div class="flexcol">
-     <div class="flexrow">
-        <h4 class="subheader middle">` +
-    game.i18n.localize("estate.UI.PENALTY") +
-    ` : &nbsp;</h4>
-        <p id="penalty" style="text-align: right" class="grow pi-2 border-bottom">` +
-    options.penalty +
-    `</p></div>
-    <hr />
-      <div class="flexrow">
-      <h4 class="subheader middle">` +
-    game.i18n.localize("estate.UI.SUBTOTAL") +
-    ` : &nbsp;</h4>
-        <p id="subtotal" style="text-align: right" class="grow pi-2 border-bottom">` +
-    subtotal +
-    `</p></div>
-    </div>`
-  );
+    let html =`<div class="flexcol">
+                 <div class="flexrow">
+                     <h4 class="subheader middle">` +
+                    game.i18n.localize("estate.UI.PENALTY") +
+                    ` : &nbsp;</h4>
+                    <p id="penalty" style="text-align: right" class="grow pi-2 border-bottom"> &minus;` +
+                    options.penalty +
+                   `</p></div>`;
+    if(options.armorPenalty > 0){
+        html+=`
+        <div class="flexrow">
+            <h4 class="subheader middle">` +
+            game.i18n.localize("estate.UI.ARMOR_PENALTY") +
+            ` : &nbsp;</h4>
+        <p id="armorPenalty" style="text-align: right" class="grow pi-2 border-bottom"> &minus;` +
+        options.armorPenalty +
+        `</p></div>`;
+    }
+
+     html+=` 
+                <hr />
+                <div class="flexrow">
+                    <h4 class="subheader middle">` +
+                    game.i18n.localize("estate.UI.SUBTOTAL") +
+                    ` : &nbsp;</h4>
+                    <p id="subtotal" style="text-align: right" class="grow pi-2 border-bottom">` +
+                    subtotal +
+                    `</p>
+                </div>
+            </div>`;
+
+ 
+
+  return (html);
 }
 
 function buildHTMLDialog(diceName, diceValue, type) {
@@ -364,6 +391,7 @@ async function _onPush(event) {
   // Push the roll and send it.
   await roll.push({ async: true });
   //TODO if we used gear and the gear dice roll a 1 we should reduce the gear modifier by 1 for each 1 rolled
+  //TODO check rules for neurocasters to see where a push damages them
   //TODO if the push results in any 1s we should reuduce hope on the actor by 1 for each 1 rolled
 
   await roll.toMessage();

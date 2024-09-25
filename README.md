@@ -10,14 +10,10 @@ TODO LIST:
 
 - Player Character Sheets
     - Target token to use Tension on opposed rolls
-    - Equip Drone to use their physical stats and neurocaster in your rolls
     - Automatically apply damage to gear for 1's on pushed rolls
     - Automattically apply -1 hope for 1's on pushed rolls
     - dialog and tracking for death rolls
-    - Damage in weapon rolls
 - Vehicle Sheets
-
-- Robot Sheets
 - Item Sheets
     - Style and UI design for each item type.
 - General styling and UI improvement for clarity and use

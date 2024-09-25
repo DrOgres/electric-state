@@ -36,7 +36,6 @@ export default class esActorSheet extends ActorSheet {
     return buttons;
   }
 
-
   async getData() {
     const data = super.getData();
     const actor = this.actor;
@@ -48,9 +47,9 @@ export default class esActorSheet extends ActorSheet {
     this.checkHealth(actor);
     this.checkHope(actor);
 
-    (data.notesHTML = await TextEditor.enrichHTML(actor.system.notes, {
+    data.notesHTML = await TextEditor.enrichHTML(actor.system.notes, {
       async: true,
-    }));
+    });
 
     return data;
   }
@@ -66,7 +65,6 @@ export default class esActorSheet extends ActorSheet {
     html.find(".rollable").click(this._onRoll.bind(this));
     html.find(".toggle-fav").click(this._onToggleFav.bind(this));
     html.find(".toggle-equip").click(this._onToggleEquip.bind(this));
-
   }
 
   async _onToggleEquip(event) {
@@ -83,8 +81,6 @@ export default class esActorSheet extends ActorSheet {
     await item.update({ "flags.isEquipped": equipStatus });
     console.log("E-STATE | Item", item);
   }
-
-
 
   async _onToggleFav(event) {
     console.log("E-STATE | Toggling Favorite");
@@ -109,51 +105,113 @@ export default class esActorSheet extends ActorSheet {
       testName: "",
       testModifier: 0,
       dicePool: 0,
-    }
+    };
 
     switch (rollSource) {
-      case "attribute":{
-        const attribute = event.currentTarget.dataset.attribute;
-        options.attribute = attribute;
-        options.testName = game.i18n.localize(`estate.ATTRIBUTE.${eState.attributesAbv[attribute]}`);
-        options.dicePool += this.actor.system[attribute];
-      }
+      case "attribute":
+        {
+          const attribute = event.currentTarget.dataset.attribute;
+          options.attribute = attribute;
+          options.testName = game.i18n.localize(
+            `estate.ATTRIBUTE.${eState.attributesAbv[attribute]}`
+          );
+          options.dicePool += this.actor.system[attribute];
+        }
         break;
-      case "weapon":{
-        console.log("E-STATE | Rolling Weapon");
-        const itemId = event.currentTarget.dataset.itemId;
-        const item = this.actor.items.get(itemId);
-        options.testName = item.name;
-        options.dicePool = item.system.modifier.value;
-        options.damage = item.system.damage;
-        options.attribute = item.system.attribute;
-        options.weaponId = itemId;
-      } break;
-      case "armor":{
-        console.log("E-STATE | Rolling Armor");
-        const itemId = event.currentTarget.dataset.itemId;
-        const item = this.actor.items.get(itemId);
-        options.testName = item.name;
-        options.dicePool = item.system.modifier.value;
-        options.armorId = itemId;
-      } break;
-      case "drone-attack":{
-        console.log("E-STATE | Rolling Drone Attack");
-        const itemId = event.currentTarget.dataset.itemId;
-        const item = this.actor.items.get(itemId);
-        options.testName = item.name;
-        //TODO set the dice pool based on the max and min ranges of the drone
-      } break;
+      case "weapon":
+        {
+          console.log("E-STATE | Rolling Weapon");
+          const itemId = event.currentTarget.dataset.itemId;
+          const item = this.actor.items.get(itemId);
+          options.testName = item.name;
+          options.dicePool = item.system.modifier.value;
+          options.damage = item.system.damage;
+          options.attribute = item.system.attribute;
+          options.weaponId = itemId;
+        }
+        break;
+      case "armor":
+        {
+          console.log("E-STATE | Rolling Armor");
+          const itemId = event.currentTarget.dataset.itemId;
+          const item = this.actor.items.get(itemId);
+          options.testName = item.name;
+          options.dicePool = item.system.modifier.value;
+          options.armorId = itemId;
+        }
+        break;
+      case "drone-attack":
+        {
+          console.log("E-STATE | Rolling Drone Attack");
+          const itemId = event.currentTarget.dataset.itemId;
+          const item = this.actor.items.get(itemId);
+          console.log("E-STATE | Item", item);
+          const neurocasters = this.actor.items.filter(
+            (item) => item.type === "neurocaster"
+          );
+          console.log("E-STATE | Neurocasters", neurocasters);
+
+          if (!item.flags.isEquipped) {
+            ui.notifications.warn(
+              "Drone and Neurocaster must be equipped to use this action"
+            );
+            return;
+          }
+          if (neurocasters.length === 0) {
+            ui.notifications.warn(
+              "Drone and Neurocaster must be equipped to use this action"
+            );
+            return;
+          } else {
+            let status = false;
+            for (let neurocaster of neurocasters) {
+              if (neurocaster.flags.isEquipped) {
+                status = true;
+              }
+            }
+            if (!status) {
+              ui.notifications.warn(
+                "Drone and Neurocaster must be equipped to use this action"
+              );
+              return;
+            }
+          }
+
+          options.testName = item.name + " " + game.i18n.localize("estate.UI.WEAPON");
+          options.damage = item.system.damage;
+          options.type = "drone";
+          const maxRange = item.system.range.max;
+          const minRange = item.system.range.min;
+          console.log("E-STATE | Max Range", maxRange, "Min Range", minRange);
+          if (maxRange === "engaged") {
+            options.dicePool = item.system.attributes.strength;
+            options.attribute = "strength";
+          } else {
+            options.dicePool = item.system.attributes.agility;
+            options.attribute = "agility";
+            options.maxRange = maxRange;
+            options.minRange = minRange;
+          }
+
+          //TODO set the dice pool based on the max and min ranges of the drone
+        }
+        break;
+        case "drone-armor": {
+          console.log("E-STATE | Rolling Drone Armor");
+          const itemId = event.currentTarget.dataset.itemId;
+          const item = this.actor.items.get(itemId);
+          options.testName = item.name + " " + game.i18n.localize("estate.UI.ARMOR");
+          options.dicePool = item.system.armor;
+          options.type = "drone";
+
+        } break;
     }
 
     prepareRollDialog(options);
-
-    
   }
 
-  _deathRoll(actor){
+  _deathRoll(actor) {
     console.log("E-STATE | Death Roll", actor);
-
   }
 
   _onItemEdit(event) {
@@ -182,7 +240,6 @@ export default class esActorSheet extends ActorSheet {
     this.actor.createEmbeddedDocuments("Item", [data]);
   }
 
-
   async checkHope(actor) {
     console.log("E-STATE | Checking Hope");
     let hope = 0;
@@ -194,9 +251,8 @@ export default class esActorSheet extends ActorSheet {
     if (hope > maxHope) {
       hope = maxHope;
     }
-    await actor.update({"system.hope.value": hope});
+    await actor.update({ "system.hope.value": hope });
   }
-
 
   async checkHealth(actor) {
     console.log("E-STATE | Checking Health");
@@ -209,7 +265,7 @@ export default class esActorSheet extends ActorSheet {
     if (health > maxHealth) {
       health = maxHealth;
     }
-    await actor.update({"system.health.value": health});
+    await actor.update({ "system.health.value": health });
   }
 
   async checkBliss(actor) {
@@ -223,7 +279,7 @@ export default class esActorSheet extends ActorSheet {
     if (bliss < permanentBliss) {
       bliss = permanentBliss;
     }
-    await actor.update({"system.bliss": bliss});
+    await actor.update({ "system.bliss": bliss });
   }
 
   async computeMaxStats(actor) {
@@ -231,8 +287,8 @@ export default class esActorSheet extends ActorSheet {
     let health = 0;
     let hope = 0;
 
-    health = Math.ceil((actor.system.strength + actor.system.agility)/2); 
-    hope = Math.ceil((actor.system.wits + actor.system.empathy)/2);
+    health = Math.ceil((actor.system.strength + actor.system.agility) / 2);
+    hope = Math.ceil((actor.system.wits + actor.system.empathy) / 2);
     const talents = actor.items.filter((item) => item.type === "talent");
 
     // look for taents that modify health or hope
@@ -244,8 +300,10 @@ export default class esActorSheet extends ActorSheet {
       }
     }
     //update actor with new values
-    await actor.update({"system.health.max": health, "system.hope.max": hope});
-
+    await actor.update({
+      "system.health.max": health,
+      "system.hope.max": hope,
+    });
   }
 
   //   "gear",

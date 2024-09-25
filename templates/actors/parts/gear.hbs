@@ -109,6 +109,7 @@
          <div class="item item-row flexrow " data-item-id="{{item._id}}">
             <div>{{item.name}}</div>
             <div class="drone-attack rollable" data-type="drone-attack"  data-item-id="{{item._id}}"><i class="fa-solid fa-gun"></i></div>
+            <div class="drone-armor rollable" data-type="drone-armor" data-item-id="{{item._id}}"><i class="fa-solid fa-shield"></i></div>
             {{#if item.flags.isEquipped}}
             <div class="toggle-equip" ><i class="fa-solid fa-robot"></i></div>
             {{/if}}
@@ -137,10 +138,10 @@
          <div class=" item item-row flexrow " data-item-id="{{item._id}}">
             <div>{{item.name}}</div>
             {{#if item.flags.isEquipped}}
-            <div class="toggle-equip"><i class="fa-solid fa-hand-back-fist"></i></div>
+            <div class="toggle-equip"><i class="fa-solid fa-head-side-gear"></i></div>
             {{/if}}
             {{#unless item.flags.isEquipped}}
-            <div class="toggle-equip"><i class="fa-solid fa-hand"></i></div>
+            <div class="toggle-equip"><i class="fa-light fa-head-side-gear"></i></div>
             {{/unless}}
             {{#if item.flags.isFav}}
             <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>

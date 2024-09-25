@@ -53,6 +53,7 @@ export function prepareRollDialog(options) {
           for (let neurocaster of neurocasters) {
             if (neurocaster.flags.isEquipped) {
               options.dicePool += neurocaster.system.network.value;
+              console.log("dicepool after neurocaster", options.dicePool);
               foundCaster = true;
             }
           }
@@ -97,14 +98,14 @@ export function prepareRollDialog(options) {
 
       console.log(options.penalty);
       dialogHTML += buildSubtotalDialog(options);
-      dialogHTML += buildTalentSelectDialog(options, talents);
+      dialogHTML += buildTalentSelectDialog(options, talents, drones);
       dialogHTML += buildGearSelectDialog(options, gear);
 
       //TODO if there is a target for the user and the target actorId matches the actorID of any of the tensions use add a check box to allow the user to add the tension to the roll
 
       break;
     case "weapon":
-        //TODO allow a range selection for the weapon and adjust the dice pool based on the range selected if applicable
+      //TODO allow a range selection for the weapon and adjust the dice pool based on the range selected if applicable
       console.log("Weapon Roll", options);
       const weapon = weapons.find((i) => i.id === options.weaponId);
       console.log("Weapon", weapon);
@@ -143,6 +144,25 @@ export function prepareRollDialog(options) {
       break;
     case "drone":
       console.log("Drone Roll", options);
+      //TODO for drone rolls add the equipped neurocaster network value to the dice pool
+
+      const neurocaster = neurocasters.find((i) => i.flags.isEquipped);
+      console.log("Neurocaster", neurocaster);
+      if (neurocaster !== undefined) {
+        options.dicePool += neurocaster.system.network.value;
+      } else {
+        ui.notifications.warn("You need to equip a neurocaster to use a drone");
+        return;
+      }
+
+      dialogHTML += buildHTMLDialog(
+        options.testName,
+        options.dicePool,
+        options.attribute
+      );
+      dialogHTML += buildSubtotalDialog(options);
+      dialogHTML += buildTalentSelectDialog(options, talents, drones);
+
       break;
   }
 
@@ -215,7 +235,8 @@ export function prepareRollDialog(options) {
 
             options.baseDice = baseDice + talentDice + bonus;
             options.gearDice = gearDice;
-            if (options.baseDice < +0) {
+            // Always roll at least one die
+            if (options.baseDice <= 0) {
               options.baseDice = 1;
             }
             console.log("Bonus", bonus);
@@ -276,7 +297,7 @@ function buildGearSelectDialog(options, gear) {
   return html;
 }
 
-function buildTalentSelectDialog(options, talents) {
+function buildTalentSelectDialog(options, talents, drones) {
   console.log("Building Talent Select Dialog", talents, options);
 
   if (talents.length === 0) {
@@ -287,11 +308,22 @@ function buildTalentSelectDialog(options, talents) {
 
   let html = "";
   let selectOptions = "";
+  console.log("Talents", talents);
+  console.log("Options", options);
+  console.log("Drones", drones);
+
+  const drone = drones.find((i) => i.flags.isEquipped);
+  console.log("Drone", drone);
 
   for (let talent of talents) {
     console.log(talent);
     // check the array talent.system.attribute to see if it contains a match for options.attribute
-
+    if (options.type === "drone" || drone.flags.isEquipped) {
+      if (talent.system.type.includes("drone")) {
+        count++;
+        selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
+      }
+    }
     if (
       talent.system.type.includes(options.attribute) ||
       talent.system.type.includes("all")

@@ -65,8 +65,21 @@ export default class esActorSheet extends ActorSheet {
     // html.find(".item-roll").click(this._onItemRoll.bind(this));
     html.find(".rollable").click(this._onRoll.bind(this));
     html.find(".toggle-fav").click(this._onToggleFav.bind(this));
+    html.find(".toggle-equip").click(this._onToggleEquip.bind(this));
 
   }
+
+  async _onToggleEquip(event) {
+    console.log("E-STATE | Toggling Equip");
+    const parent = $(event.currentTarget).parents(".item");
+    event.preventDefault();
+    const itemId = parent[0].dataset.itemId;
+    const item = this.actor.items.get(itemId);
+    let equipStatus = !item.flags.isEquipped;
+
+    await item.update({ "flags.isEquipped": equipStatus });
+  }
+
 
 
   async _onToggleFav(event) {

@@ -49,14 +49,22 @@ export function prepareRollDialog(options) {
             options.attribute === "strength" ||
             options.attribute === "agility"
           ) {
-            options.dicePool = drone.system[options.attribute];
+            options.dicePool = drone.system.attributes[options.attribute];
           }
 
+          let foundCaster = false;
           for (let neurocaster of neurocasters) {
             if ((neurocaster.flags.isEquipped = true)) {
               options.dicePool += neurocaster.system.network.value;
+                foundCaster = true;
             }
           }
+            if (!foundCaster) {
+                ui.notifications.warn(
+                "You need to equip a neurocaster to use a drone"
+                );
+                return;
+            }
         }
       }
 
@@ -86,7 +94,7 @@ export function prepareRollDialog(options) {
       dialogHTML += buildTalentSelectDialog(options, talents);
       dialogHTML += buildGearSelectDialog(options, gear);
 
-      // if there is a target for the user and the target actorId matches the actorID of any of the tensions use add a check box to allow the user to add the tension to the roll
+      //TODO if there is a target for the user and the target actorId matches the actorID of any of the tensions use add a check box to allow the user to add the tension to the roll
 
 
       break;
@@ -99,6 +107,10 @@ export function prepareRollDialog(options) {
     case "death":
       console.log("Death Roll", options);
       break;
+    case "drone":
+        console.log("Drone Roll", options);
+        break;
+
   }
 
   let bonusHtml = buildInputDialog(

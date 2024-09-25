@@ -51,10 +51,10 @@
         <div class=" item item-row flexrow " data-item-id="{{item._id}}">
             <div class="rollable" data-type="armor">{{item.name}}</div>
              {{#if item.flags.isEquipped}}
-            <div class="toggle-equip"><i class="fa-solid fa-hand-back-fist"></i></div>
+            <div class="toggle-equip"><i class="fa-solid fa-shield"></i></div>
             {{/if}}
             {{#unless item.flags.isEquipped}}
-            <div class="toggle-equip"><i class="fa-solid fa-hand"></i></div>
+            <div class="toggle-equip"><i class="fa-regular fa-shield"></i></div>
             {{/unless}}
             {{#if item.flags.isFav}}
             <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>

@@ -261,6 +261,10 @@
   width: 100%;
 }
 
+.h-3 {
+  height: 3rem;
+}
+
 .bg-color-highlight {
   background: #cdeef0;
 }

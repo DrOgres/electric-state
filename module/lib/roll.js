@@ -312,24 +312,29 @@ function buildTalentSelectDialog(options, talents, drones) {
   console.log("Options", options);
   console.log("Drones", drones);
 
-  const drone = drones.find((i) => i.flags.isEquipped);
-  console.log("Drone", drone);
+  let drone = undefined;
+  if (drones !== undefined) {
+    drone = drones.find((i) => i.flags.isEquipped);
+    console.log("Drone", drone);
+  }
 
   for (let talent of talents) {
     console.log(talent);
     // check the array talent.system.attribute to see if it contains a match for options.attribute
-    if (options.type === "drone" || drone.flags.isEquipped) {
-      if (talent.system.type.includes("drone")) {
+    if (drone !== undefined) {
+      if (options.type === "drone" || drone.flags.isEquipped) {
+        if (talent.system.type.includes("drone")) {
+          count++;
+          selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
+        }
+      }
+      if (
+        talent.system.type.includes(options.attribute) ||
+        talent.system.type.includes("all")
+      ) {
         count++;
         selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
       }
-    }
-    if (
-      talent.system.type.includes(options.attribute) ||
-      talent.system.type.includes("all")
-    ) {
-      count++;
-      selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
     }
   }
 

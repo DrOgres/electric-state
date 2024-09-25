@@ -504,6 +504,7 @@ export async function roll(options) {
     owner: actor.id,
     actorType: actor.type,
     formula: formula,
+    maxPush: actor.type === "player" ? 1 : 0,
   };
 
   let r;

@@ -6,8 +6,8 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isWeapon}}
-        <div class=" item item-row flexrow rollable" data-type="weapon" data-item-id="{{item._id}}">
-            <div>{{item.name}}</div>
+        <div class=" item item-row flexrow" data-item-id="{{item._id}}" >
+            <div class="rollable" data-type="weapon" data-item-id="{{item._id}}">{{item.name}}</div>
             {{#if item.flags.isFav}}
             <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
             {{/if}}

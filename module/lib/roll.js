@@ -38,9 +38,10 @@ export function prepareRollDialog(options) {
   switch (options.type) {
     case "attribute":
       console.log("Attribute Roll", options);
+      options.dicePool = actor.system[options.attribute];
       for (let drone of drones) {
         /** set dice pool equal to drone str or agi depending on the attribute we passed in */
-        if ((drone.flags.isEquipped = true)) {
+        if ((drone.flags.isEquipped === true)) {
           if (
             options.attribute === "strength" ||
             options.attribute === "agility"
@@ -50,7 +51,7 @@ export function prepareRollDialog(options) {
 
           let foundCaster = false;
           for (let neurocaster of neurocasters) {
-            if ((neurocaster.flags.isEquipped = true)) {
+            if ((neurocaster.flags.isEquipped === true)) {
               options.dicePool += neurocaster.system.network.value;
               foundCaster = true;
             }
@@ -66,7 +67,7 @@ export function prepareRollDialog(options) {
 
       //TODO for agility rolls check to see if the actor has armor equipped and if so apply the armor penalty and show this in the dialog
       for (let armor of armors) {
-        if ((armor.flags.isEquipped = true)) {
+        if ((armor.flags.isEquipped === true)) {
           if (options.attribute === "agility") {
             options.armorPenalty = armor.system.agiltyModifier;
           }
@@ -273,6 +274,8 @@ function buildTalentSelectDialog(options, talents) {
     return "";
   }
 
+  let count = 0;
+
   let html = "";
   let selectOptions = "";
 
@@ -284,8 +287,13 @@ function buildTalentSelectDialog(options, talents) {
       talent.system.type.includes(options.attribute) ||
       talent.system.type.includes("all")
     ) {
+      count++;
       selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
     }
+  }
+
+  if (count === 0) {
+    return "";
   }
 
   html +=

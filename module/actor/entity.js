@@ -7,3 +7,5 @@ export default class esActor extends Actor {
 
     }
 }
+
+//TODO on pre-create actor create a weapon item for the actor with the unarmed weapon properties

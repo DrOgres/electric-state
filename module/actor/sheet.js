@@ -70,14 +70,18 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _onToggleEquip(event) {
-    console.log("E-STATE | Toggling Equip");
+    console.log("E-STATE | Toggling Equip", event);
     const parent = $(event.currentTarget).parents(".item");
+    console.log("E-STATE | Parent", parent);
     event.preventDefault();
     const itemId = parent[0].dataset.itemId;
     const item = this.actor.items.get(itemId);
+    console.log("E-STATE | Item", item);
     let equipStatus = !item.flags.isEquipped;
+    console.log("E-STATE | Equip Status", equipStatus);
 
     await item.update({ "flags.isEquipped": equipStatus });
+    console.log("E-STATE | Item", item);
   }
 
 
@@ -104,22 +108,19 @@ export default class esActorSheet extends ActorSheet {
       actorType: this.actor.type,
       testName: "",
       testModifier: 0,
+      dicePool: 0,
     }
 
     switch (rollSource) {
       case "attribute":{
         const attribute = event.currentTarget.dataset.attribute;
         options.attribute = attribute;
-        console.log("E-STATE | Rolling Attribute", attribute);
         options.testName = game.i18n.localize(`estate.ATTRIBUTE.${eState.attributesAbv[attribute]}`);
-        options.dicePool = this.actor.system[attribute];
-
-        console.log("E-STATE | Rolling Attribute", options);
-
-        
-        break;
+        options.dicePool += this.actor.system[attribute];
       }
+        break;
       case "weapon":{
+        console.log("E-STATE | Rolling Weapon");
         const itemId = event.currentTarget.dataset.itemId;
         const item = this.actor.items.get(itemId);
         options.testName = item.name;
@@ -127,8 +128,7 @@ export default class esActorSheet extends ActorSheet {
         options.damage = item.system.damage;
         options.attribute = item.system.attribute;
         options.weaponId = itemId;
-        break;
-      }
+      } break;
     }
 
     prepareRollDialog(options);

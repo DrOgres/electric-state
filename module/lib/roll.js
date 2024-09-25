@@ -104,6 +104,7 @@ export function prepareRollDialog(options) {
 
       break;
     case "weapon":
+        //TODO allow a range selection for the weapon and adjust the dice pool based on the range selected if applicable
       console.log("Weapon Roll", options);
       const weapon = weapons.find((i) => i.id === options.weaponId);
       console.log("Weapon", weapon);

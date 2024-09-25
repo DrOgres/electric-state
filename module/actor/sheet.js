@@ -137,6 +137,13 @@ export default class esActorSheet extends ActorSheet {
         options.dicePool = item.system.modifier.value;
         options.armorId = itemId;
       } break;
+      case "drone-attack":{
+        console.log("E-STATE | Rolling Drone Attack");
+        const itemId = event.currentTarget.dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        options.testName = item.name;
+        //TODO set the dice pool based on the max and min ranges of the drone
+      } break;
     }
 
     prepareRollDialog(options);

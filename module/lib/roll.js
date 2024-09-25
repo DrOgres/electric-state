@@ -41,7 +41,7 @@ export function prepareRollDialog(options) {
       options.dicePool = actor.system[options.attribute];
       for (let drone of drones) {
         /** set dice pool equal to drone str or agi depending on the attribute we passed in */
-        if ((drone.flags.isEquipped === true)) {
+        if (drone.flags.isEquipped) {
           if (
             options.attribute === "strength" ||
             options.attribute === "agility"
@@ -51,7 +51,7 @@ export function prepareRollDialog(options) {
 
           let foundCaster = false;
           for (let neurocaster of neurocasters) {
-            if ((neurocaster.flags.isEquipped === true)) {
+            if (neurocaster.flags.isEquipped) {
               options.dicePool += neurocaster.system.network.value;
               foundCaster = true;
             }
@@ -67,7 +67,7 @@ export function prepareRollDialog(options) {
 
       //TODO for agility rolls check to see if the actor has armor equipped and if so apply the armor penalty and show this in the dialog
       for (let armor of armors) {
-        if ((armor.flags.isEquipped === true)) {
+        if (armor.flags.isEquipped) {
           if (options.attribute === "agility") {
             options.armorPenalty = armor.system.agiltyModifier;
           }

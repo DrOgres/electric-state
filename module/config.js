@@ -57,6 +57,7 @@ eState.traitTarget = {
 eState.weaponType = {
   melee: "estate.UI.MELEE",
   ranged: "estate.UI.RANGED",
+  neuroscape: "estate.UI.NEUROSCAPE",
 };
 
 eState.ranges = {

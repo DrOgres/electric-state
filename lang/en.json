@@ -33,6 +33,7 @@
 
     "UI.MELEE": "Close Combat",
     "UI.RANGED": "Ranged Combat",
+    "UI.NEUROSCAPE": "Neuroscape Combat",
 
     "UI.DAMAGE": "Damage",
     "UI.WEAPON": "Weapon",

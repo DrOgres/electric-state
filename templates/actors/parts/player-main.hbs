@@ -1,6 +1,6 @@
 <div class="grid gap-small">
     <div class="flexcol">
-         {{> "systems/electric-state/templates/actors/parts/stats.hbs"}}
+        {{> "systems/electric-state/templates/actors/parts/stats.hbs"}}
         <div class="flexrow">
             <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
                 {{localize "estate.ATTRIBUTE.HEALTH"}}
@@ -94,35 +94,86 @@
                 </div>
             </div>
             <div class="grid padding-small h-3">
-                <div class="fs-400 fw-800 all-caps border-thick margin-small padding-small">{{localize "estate.HEAD.FAVS"}}</div>
+                <div class="fs-400 fw-800 all-caps border-thick margin-small padding-small">{{localize
+                    "estate.HEAD.FAVS"}}</div>
                 <div class="border-3-4-thick fexcol padding-small margin-small margin-top-close">
                     {{#each items as |item|}}
-                    {{#if item.flags.isFav}}
                     {{#if item.isGear}}
+                    {{#if item.flags.isFav}}
                     <div class="item">
                         {{item.name}}</div>
                     {{/if}}
-                    {{#if item.isArmor}}
-                    <div class="item rollable" data-type="armor" data-item-id="{{item._id}}">
-                        {{item.name}}</div>
                     {{/if}}
-                    {{#if item.isExplosive}}
-                    <div class="item">
-                        {{item.name}}</div>
-                    {{/if}}
-                    {{#if item.isWeapon}}
-                    <div class="item rollable" data-type="weapon" data-item-id="{{item._id}}">
-                        {{item.name}}</div>
-                    {{/if}}
-                    {{#if item.isDrone}}
-                    <div class="item">
-                        {{item.name}}</div>
-                    {{/if}}
-                    {{#if item.isNeurocaster}}
-                    <div class="item">
-                        {{item.name}}</div>
-                    {{/if}}
+                    {{/each}}
 
+                    {{#each items as |item|}}
+                    {{#if item.isArmor}}
+                    {{#if item.flags.isFav}}
+                    <div class="flexrow">
+                        <div class="item rollable" data-type="armor" data-item-id="{{item._id}}">
+                            {{item.name}}</div>
+                        {{#if item.flags.isEquipped}}
+                        <div class="toggle-equip"><i class="fa-solid fa-shield"></i></div>
+                        {{/if}}
+                        {{#unless item.flags.isEquipped}}
+                        <div class="toggle-equip"><i class="fa-regular fa-shield"></i></div>
+                        {{/unless}}
+                        {{#if item.flags.isFav}}
+                        <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                        {{/if}}
+                        {{#unless item.flags.isFav}}
+                        <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                        {{/unless}}
+                         <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                        <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
+                    </div>
+                    {{/if}}
+                    {{/if}}
+                    {{/each}}
+
+                    {{#each items as |item|}}
+                    {{#if item.isExplosive}}
+                    {{#if item.flags.isFav}}
+                    <div class="item">
+                        {{item.name}}</div>
+                    {{/if}}
+                    {{/if}}
+                    {{/each}}
+                    {{#each items as |item|}}
+                    {{#if item.isWeapon}}
+                    {{#if item.flags.isFav}}
+                    <div class=" item item-row flexrow" data-item-id="{{item._id}}">
+                        <div class="rollable" data-type="weapon" data-item-id="{{item._id}}">{{item.name}}</div>
+                        {{#if item.flags.isFav}}
+                        <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                        {{/if}}
+                        {{#unless item.flags.isFav}}
+                        <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                        {{/unless}}
+                        <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                        <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
+                    </div>
+                    {{/if}}
+                    {{/if}}
+                    {{/each}}
+
+                    {{#each items as |item|}}
+                    {{#if item.isDrone}}
+                    {{#if item.flags.isFav}}
+                    <div class="item">
+                        {{item.name}}</div>
+                    {{/if}}
+                    {{/if}}
+                    {{/each}}
+
+                    {{#each items as |item|}}
+                    {{#if item.isNeurocaster}}
+                    {{#if item.flags.isFav}}
+                    <div class="item">
+                        {{item.name}}</div>
+                    {{/if}}
                     {{/if}}
                     {{/each}}
                 </div>

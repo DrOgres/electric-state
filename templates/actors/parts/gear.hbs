@@ -7,7 +7,7 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isWeapon}}
-        <div class=" item item-row flexrow" data-item-id="{{item._id}}" >
+        <div class=" item item-row flexrow" data-item-id="{{item._id}}">
             <div class="rollable" data-type="weapon" data-item-id="{{item._id}}">{{item.name}}</div>
             {{#if item.flags.isFav}}
             <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
@@ -15,8 +15,8 @@
             {{#unless item.flags.isFav}}
             <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
             {{/unless}}
-            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
-            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+            <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+            <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
         </div>
         {{/if}}
         {{/each}}
@@ -38,8 +38,8 @@
             {{#unless item.flags.isFav}}
             <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
             {{/unless}}
-            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
-            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+            <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+            <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
         </div>
         {{/if}}
         {{/each}}
@@ -55,7 +55,7 @@
         {{#if item.isArmor}}
         <div class=" item item-row flexrow " data-item-id="{{item._id}}">
             <div class="rollable" data-type="armor">{{item.name}}</div>
-             {{#if item.flags.isEquipped}}
+            {{#if item.flags.isEquipped}}
             <div class="toggle-equip"><i class="fa-solid fa-shield"></i></div>
             {{/if}}
             {{#unless item.flags.isEquipped}}
@@ -67,8 +67,8 @@
             {{#unless item.flags.isFav}}
             <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
             {{/unless}}
-            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
-            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+            <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+            <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
         </div>
         {{/if}}
         {{/each}}
@@ -94,13 +94,13 @@
             {{/unless}}
             <div class="button-group item" data-item-id="{{item._id}}">
                 {{#if item.flags.isFav}}
-            <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
-            {{/if}}
-            {{#unless item.flags.isFav}}
-            <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
-            {{/unless}}
-                <div class="item-edit" data-item-id="{{item._id}}">edit</div>
-                <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+                <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                {{/if}}
+                {{#unless item.flags.isFav}}
+                <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                {{/unless}}
+                <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+                <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
             </div>
         </div>
         {{/if}}
@@ -115,12 +115,14 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isDrone}}
-         <div class="item item-row flexrow " data-item-id="{{item._id}}">
+        <div class="item item-row flexrow " data-item-id="{{item._id}}">
             <div>{{item.name}}</div>
-            <div class="drone-attack rollable" data-type="drone-attack"  data-item-id="{{item._id}}"><i class="fa-solid fa-gun"></i></div>
-            <div class="drone-armor rollable" data-type="drone-armor" data-item-id="{{item._id}}"><i class="fa-solid fa-shield"></i></div>
+            <div class="drone-attack rollable" data-type="drone-attack" data-item-id="{{item._id}}"><i
+                    class="fa-solid fa-gun"></i></div>
+            <div class="drone-armor rollable" data-type="drone-armor" data-item-id="{{item._id}}"><i
+                    class="fa-solid fa-shield"></i></div>
             {{#if item.flags.isEquipped}}
-            <div class="toggle-equip" ><i class="fa-solid fa-robot"></i></div>
+            <div class="toggle-equip"><i class="fa-solid fa-robot"></i></div>
             {{/if}}
             {{#unless item.flags.isEquipped}}
             <div class="toggle-equip"><i class="fa-regular fa-robot"></i></div>
@@ -131,8 +133,8 @@
             {{#unless item.flags.isFav}}
             <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
             {{/unless}}
-            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
-            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+            <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+            <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
         </div>
         {{/if}}
         {{/each}}
@@ -146,7 +148,7 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isNeurocaster}}
-         <div class=" item item-row flexrow " data-item-id="{{item._id}}">
+        <div class=" item item-row flexrow " data-item-id="{{item._id}}">
             <div>{{item.name}}</div>
             {{#if item.flags.isEquipped}}
             <div class="toggle-equip"><i class="fa-solid fa-head-side-gear"></i></div>
@@ -160,8 +162,8 @@
             {{#unless item.flags.isFav}}
             <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
             {{/unless}}
-            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
-            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
+            <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+            <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
         </div>
         {{/if}}
         {{/each}}

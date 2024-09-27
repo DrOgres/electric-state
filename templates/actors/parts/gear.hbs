@@ -54,7 +54,7 @@
         {{#each items as |item|}}
         {{#if item.isArmor}}
         <div class=" item item-row flexrow " data-item-id="{{item._id}}">
-            <div class="rollable" data-type="armor">{{item.name}}</div>
+            <div class="rollable" data-type="armor" data-item-id="{{item._id}}">{{item.name}}</div>
             {{#if item.flags.isEquipped}}
             <div class="toggle-equip"><i class="fa-solid fa-shield"></i></div>
             {{/if}}

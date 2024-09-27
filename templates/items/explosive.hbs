@@ -7,20 +7,20 @@
       <h1 class="charname">
         <input name="name" type="text" value="{{item.name}}" />
       </h1>
-      <lable for="cost">
+      <label for="cost">
       {{localize "estate.HEAD.COST"}}
-    </lable>
+    </label>
     <input id="cost" name="system.cost" type="text" value="{{item.system.cost}}" />
   
-      <lable>Bonus</lable> <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}">
-      <lable>Description</lable> <textarea name="system.description"
+      <label>Bonus</label> <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}">
+      <label>Description</label> <textarea name="system.description"
         value="{{item.system.description}}">{{item.system.description}}</textarea>
-  <lable >Blast Power</lable> <input type="number" name="system.blast" value="{{item.system.blast}}">
-   <lable>Minimum Range</lable>
+  <label >Blast Power</label> <input type="number" name="system.blast" value="{{item.system.blast}}">
+   <label>Minimum Range</label>
       <select name="system.range.min">
         {{selectOptions config.ranges selected=item.system.range.min localize=true}}
       </select>
-      <lable>Maximum Range</lable>
+      <label>Maximum Range</label>
       <select name="system.range.max">
         {{selectOptions config.ranges selected=item.system.range.max localize=true}}
       </select>

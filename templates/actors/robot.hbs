@@ -1,38 +1,38 @@
-<form class="actor-sheet {{cssClass}}" autocomplete="off">
-    <div class="grid col-160-1fr border-thick">
+<form class="actor-sheet {{cssClass}} border-thick" autocomplete="off">
+    <div class="grid col-160-1fr border-bottom-thick">
         <div class="portrait">
             <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="160" width="160" />
         </div>
         <div class="flexcol padding-small">
             <div class="flexrow align-content-start gap-small">
                 <div class="charname grid col-20-80 align-bottom border-bottom">
-                    <lable class="shrink">{{localize "estate.HEAD.NAME"}}</lable>
+                    <label class="shrink">{{localize "estate.HEAD.NAME"}}</label>
                     <input name="name" type="text" value="{{actor.name}}" placeholder="name" />
                 </div>
             </div>
             <div class="flexrow align-content-start gap-small">
                 <div class="description grid col-20-80 align-bottom border-bottom">
-                    <lable class="shrink">{{localize "estate.HEAD.DESC"}}</lable>
-                    <textarea name="system.description">{{actor.system.description}}</textarea>
+                    <label class="shrink">{{localize "estate.HEAD.DESC"}}</label>
+                    <textarea name="system.description" rows="8">{{actor.system.description}}</textarea>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="flexcol">
-        <div class="sheet-tabs tabs flexrow border-3-4-thick" data-group="primary">
+        <div class="sheet-tabs tabs flexrow border-bottom-thick" data-group="primary">
             <b class="item border-right-thick padding-small" data-tab="main">{{localize "estate.UI.MAIN"}}</b>
             <b class="item padding-small" data-tab="notes">{{localize "estate.UI.NOTES"}}</b>
         </div>
         <div class="sheet-body">
             <div class="tab" data-group="primary" data-tab="main">
-                <div class="main flexcol">
+                <div class="main flexcol padding-small">
                     {{> "systems/electric-state/templates/actors/parts/robot-main.hbs"}}
                 </div>
             </div>
 
             <div class="tab" data-group="primary" data-tab="notes">
-                <div class="main flexcol">
+                <div class="main flexcol padding-small">
                     {{> "systems/electric-state/templates/actors/parts/robot-notes.hbs"}}
                 </div>
             </div>

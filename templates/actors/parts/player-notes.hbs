@@ -7,12 +7,10 @@
     <div>
         <h3>threat</h3>
         <input name="system.threat" type="text" value="{{actor.system.journey.threat}}" placeholder="threat" />
-    
     </div>
 </div>
 
-<div></div>
-  <div class="tension-group">
+<div class="tension-group">
         <div class="group-header flexrow">
             <h4>Tensions</h4>
             <div class="item-create" data-type="tension">new tension</div>
@@ -29,12 +27,13 @@
     </div>
 </div>
 
-<div>
-   <div class="container">
+<div>   
+    <div class="container">
         <b class="title" >{{localize "estate.UI.NOTES"}}</b>
         <div class="full-size">
-      {{editor notesHTML target="system.notes" button=true owner=owner editable=editable}}
-    </div>
+        {{editor notesHTML target="system.notes" button=true owner=owner editable=editable}}
+        </div>
     </div>
 </div>
+
 

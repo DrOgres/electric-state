@@ -13,6 +13,7 @@ TODO LIST:
     - Automatically apply damage to gear for 1's on pushed rolls
     - Automattically apply -1 hope for 1's on pushed rolls
     - dialog and tracking for death rolls
+    - limited actor sheet 
 - Vehicle Sheets
 - Item Sheets
     - Style and UI design for each item type.

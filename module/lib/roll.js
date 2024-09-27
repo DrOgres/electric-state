@@ -120,7 +120,7 @@ export function prepareRollDialog(options) {
         options.attribute = "agility";
         options.dicePool += actor.system.agility;
       } else if (weapon.system.type === "neuroscape") {
-
+        console.log("Neuroscape Weapon", actor);
         let foundCaster = false;
         for (let neurocaster of neurocasters) {
           if (neurocaster.flags.isEquipped) {
@@ -128,7 +128,8 @@ export function prepareRollDialog(options) {
             foundCaster = true;
           }
         }
-        if (!foundCaster) {
+        if (!foundCaster && actor.type === "player") {
+          //allow non-player actors to roll neuroscape weapons without a neurocaster for robots and the like
           ui.notifications.warn(
             "You need to equip a neurocaster to use a neuroscape weapon"
           );

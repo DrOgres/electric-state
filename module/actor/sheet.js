@@ -62,22 +62,19 @@ export default class esActorSheet extends ActorSheet {
     html.find(".item-create").click(this._onItemCreate.bind(this));
     html.find(".item-edit").click(this._onItemEdit.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
-    // html.find(".item-roll").click(this._onItemRoll.bind(this));
     html.find(".rollable").click(this._onRoll.bind(this));
     html.find(".toggle-fav").click(this._onToggleFav.bind(this));
     html.find(".toggle-equip").click(this._onToggleEquip.bind(this));
   }
 
   async _onToggleEquip(event) {
-    console.log("E-STATE | Toggling Equip", event);
     const parent = $(event.currentTarget).parents(".item");
-    console.log("E-STATE | Parent", parent);
     event.preventDefault();
     const itemId = parent[0].dataset.itemId;
     const item = this.actor.items.get(itemId);
-    console.log("E-STATE | Item", item);
     let equipStatus = !item.flags.isEquipped;
-    console.log("E-STATE | Equip Status", equipStatus);
+
+    //TODO unequip all other items of the same type ensuring that only one item of that type is equipped
 
     await item.update({ "flags.isEquipped": equipStatus });
     console.log("E-STATE | Item", item);

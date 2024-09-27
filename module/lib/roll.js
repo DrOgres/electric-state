@@ -75,6 +75,8 @@ export function prepareRollDialog(options) {
         }
       }
 
+      
+
       console.log("dicepool after drone check", options.dicePool);
 
       dialogHTML += buildHTMLDialog(
@@ -101,6 +103,8 @@ export function prepareRollDialog(options) {
       dialogHTML += buildTalentSelectDialog(options, talents, drones);
       dialogHTML += buildGearSelectDialog(options, gear);
 
+      //TODO if the actor has an equipped neurocaster add a check box to apply the real world penalty to the roll
+
       //TODO if there is a target for the user and the target actorId matches the actorID of any of the tensions use add a check box to allow the user to add the tension to the roll
 
       break;
@@ -114,16 +118,24 @@ export function prepareRollDialog(options) {
       if (weapon.system.type === "melee") {
         options.attribute = "strength";
         options.dicePool += actor.system.strength;
-      } else {
+      } else if (weapon.system.type === "ranged") {
         options.attribute = "agility";
         options.dicePool += actor.system.agility;
+      } else if (weapon.system.type === "neuroscape") {
+        options.attribute = "wits";
+        options.dicePool += actor.system.wits;
+        for (let neurocaster of neurocasters) {
+          if (neurocaster.flags.isEquipped) {
+            options.dicePool += neurocaster.system.graphics.value;
+          }
+        }
       }
       dialogHTML += buildHTMLDialog(
         options.testName,
         options.dicePool,
         options.attribute
       );
-
+      //TODO break out subtotal items in options
       dialogHTML += buildSubtotalDialog(options);
       dialogHTML += buildTalentSelectDialog(options, talents);
 
@@ -144,8 +156,6 @@ export function prepareRollDialog(options) {
       break;
     case "drone":
       console.log("Drone Roll", options);
-      //TODO for drone rolls add the equipped neurocaster network value to the dice pool
-
       const neurocaster = neurocasters.find((i) => i.flags.isEquipped);
       console.log("Neurocaster", neurocaster);
       if (neurocaster !== undefined) {

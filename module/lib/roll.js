@@ -75,8 +75,6 @@ export function prepareRollDialog(options) {
         }
       }
 
-      
-
       console.log("dicepool after drone check", options.dicePool);
 
       dialogHTML += buildHTMLDialog(
@@ -122,20 +120,29 @@ export function prepareRollDialog(options) {
         options.attribute = "agility";
         options.dicePool += actor.system.agility;
       } else if (weapon.system.type === "neuroscape") {
-        options.attribute = "wits";
-        options.dicePool += actor.system.wits;
+
+        let foundCaster = false;
         for (let neurocaster of neurocasters) {
           if (neurocaster.flags.isEquipped) {
             options.dicePool += neurocaster.system.graphics.value;
+            foundCaster = true;
           }
         }
+        if (!foundCaster) {
+          ui.notifications.warn(
+            "You need to equip a neurocaster to use a neuroscape weapon"
+          );
+          return;
+        }
+        options.attribute = "wits";
+        options.dicePool += actor.system.wits;
       }
       dialogHTML += buildHTMLDialog(
         options.testName,
         options.dicePool,
         options.attribute
       );
-      //TODO break out subtotal items in options
+
       dialogHTML += buildSubtotalDialog(options);
       dialogHTML += buildTalentSelectDialog(options, talents);
 
@@ -370,6 +377,7 @@ function buildTalentSelectDialog(options, talents, drones) {
   return html;
 }
 
+//TODO break out subtotal items in options
 function buildSubtotalDialog(options) {
   console.log("Building subtotal Dialog", options);
   let subtotal = options.dicePool - options.penalty;

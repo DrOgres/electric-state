@@ -19,6 +19,8 @@ export const preloadHandlebarsTemplates = async function() {
         "systems/electric-state/templates/actors/parts/npc-notes.hbs",
         "systems/electric-state/templates/actors/parts/robot-main.hbs",
         "systems/electric-state/templates/actors/parts/robot-notes.hbs",
+        "systems/electric-state/templates/actors/parts/vehicle-main.hbs",
+        "systems/electric-state/templates/actors/parts/vehicle-notes.hbs",
     ];
   
     // Load the template parts

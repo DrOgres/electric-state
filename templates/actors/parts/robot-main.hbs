@@ -2,14 +2,24 @@
     <div class="flexcol">
          {{> "systems/electric-state/templates/actors/parts/stats.hbs"}}
         <div class="flexrow">
-            <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
-                {{localize "estate.UI.HULL"}}
-                <div class="input-container mi-small center"> 
-                    <input type="text" name="system.hull.value" value="{{actor.system.hull.value}}" style="width: 50px" data-dtype="Number" />
+            <div class="flexrow">
+                <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
+                    {{localize "estate.UI.HULL"}}
+                    <div class="input-container mi-small center">
+                        <input type="text" name="system.hull.value" value="{{actor.system.hull.value}}" style="width: 50px" data-dtype="Number" />
+                    </div>
+                    <div>/</div>
+                    <div class="input-container mi-small center">
+                        <input type="text" name="system.hull.max" value="{{actor.system.hull.max}}" style="width: 50px" data-dtype="Number" />
+                    </div>
                 </div>
-                <div>/</div>
-                <div class="input-container mi-small center">
-                    <input type="text" name="system.hull.max" value="{{actor.system.hull.max}}" style="width: 50px" data-dtype="Number" />
+            </div>
+            <div class="flexrow">
+                <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
+                    {{localize "estate.UI.ARMOR"}}
+                    <div class="input-container mi-small center">
+                        <input type="text" name="system.armor" value="{{actor.system.armor}}" style="width: 50px" data-dtype="Number" />
+                    </div>
                 </div>
             </div>
         </div>

@@ -435,7 +435,7 @@ export default class esActorSheet extends ActorSheet {
     actor.hasWeapon = this._isPlayer() || this._isNpc() || this._isRobot();
     actor.hasExplosive = this._isPlayer() || this._isNpc();
     actor.hasGear= this._isPlayer() || this._isNpc();
-    actor.hasArmor = this._isPlayer() || this._isNpc() || this._isRobot();
+    actor.hasArmor = this._isPlayer() || this._isNpc();
     actor.hasDrone = this._isPlayer() || this._isNpc();
     actor.hasNeurocaster = this._isPlayer() || this._isNpc();
   }

@@ -17,6 +17,8 @@
     "HEAD.FLAW": "Flaw",
     "HEAD.COST": "Cost",
     "HEAD.FAVS": "Favorite Items",
+    "HEAD.VEHICLE_TYPE": "Vehicle Type",
+    "HEAD.MODEL": "Model",
 
     "UI.EQUIP": "Equip",
     "UI.TOGGLEFAV": "Toggle Favorite",
@@ -32,6 +34,7 @@
 
     "UI.SPEED": "Speed",
     "UI.MANEUVER": "Maneuverability",
+    "UI.FUEL": "Fuel",
     "UI.ARMOR": "Armor",
     "UI.HULL": "Hull",
     "UI.PASSENGERS": "Passengers",

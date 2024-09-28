@@ -100,7 +100,11 @@
       "isModifier": false,
       "attribute": "",
       "uses": 0,
-      "isConsumable": false
+      "isConsumable": false,
+      "useType": "",
+      "useValue": 0,
+      "usePenaltyType": "",
+      "usePenalty": 0
       
     },
     "weapon": {

@@ -229,6 +229,7 @@ export function prepareRollDialog(options) {
             const item = gear.find((i) => i.id === selectedGearItemId);
 
             console.log("Item", item);
+            //TODO if the gear selected is consumable we need to reduce the uses value by 1
             let gearDice = 0;
             if (item !== undefined) {
               options.gearUsed = selectedGearItemId;
@@ -287,10 +288,29 @@ function buildGearSelectDialog(options, gear) {
     return "";
   }
 
+   //test gear to see if isConsumable if so check item.system.uses if it is 0 remove it from the list
+   for (let item of gear) {
+    if (item.system.isConsumable) {
+      console.log("Consumable Gear", item);
+      if (item.system.uses === 0) {
+        console.log("Removing Consumable Gear", item);
+        gear = gear.filter((i) => i.id !== item.id);
+        continue;
+      }
+    }
+    //Also if the item is Broken remove it from the list
+    if (item.system.isBroken) {
+      gear = gear.filter((i) => i.id !== item.id);
+      continue;
+    }
+  }
+
+
   for (let item of gear) {
     console.log(item);
     // check the array talent.system.attribute to see if it contains a match for options.attribute
-    if (item.system.attribute === options.attribute) {
+   
+    if (item.system.attribute === options.attribute ) {
       count++;
       selectOptions += `<option value="${item.id}">${item.name}  ${item.system.modifier.value}</option>`;
     }

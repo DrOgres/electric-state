@@ -99,6 +99,13 @@
     }
   }
 
+  .item-user {
+    cursor: pointer;
+    &:hover {
+      text-shadow: $field-color 0 0 5px;
+    }
+  }
+
   .portrait {
     padding: 10px;
   }

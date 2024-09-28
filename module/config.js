@@ -9,6 +9,13 @@ eState.attributesAbv = {
   empathy: "EMP",
 };
 
+eState.attributeSelectOptions = {
+  strength: "estate.ATTRIBUTE.STR",
+  agility: "estate.ATTRIBUTE.AGI",
+  wits: "estate.ATTRIBUTE.WIT",
+  empathy: "estate.ATTRIBUTE.EMP",
+};
+
 eState.modifierTarget = {
   none: "estate.UI.NONE",
   agility: "estate.ATTRIBUTE.AGI",
@@ -59,6 +66,22 @@ eState.weaponType = {
   ranged: "estate.UI.RANGED",
   neuroscape: "estate.UI.NEUROSCAPE",
 };
+
+
+eState.useTypeOptions ={
+  none: "estate.UI.NONE",
+  food: "estate.UI.FOOD",
+  stabalize: "estate.UI.STABALIZE",
+  healthUp: "estate.UI.HEALTHUP",
+  hopeUp: "estate.UI.HOPEUP",
+  empathy: "estate.ATTRIBUTE.EMP",
+}
+
+eState.usePenaltyOptions ={
+  none: "estate.UI.NONE",
+  healthDown: "estate.UI.HEALTHDOWN",
+  addictive: "estate.UI.ADDICTIVE"
+}
 
 eState.ranges = {
   engaged: "estate.UI.ENGAGED",

@@ -45,6 +45,15 @@
     "UI.NONE": "None",
     "UI.DEATHROLL": "Death Roll",
     "UI.MOVEMENT": "Movement",
+    "UI.BUSTED": "Busted",
+
+    "UI.USES": "Uses",
+    "UI.FOOD": "Food",
+    "UI.STABALIZE": "Stabalize",
+    "UI.HEALTHUP": "Health Up",
+    "UI.HOPEUP": "Hope Up",
+    "UI.HEALTHDOWN": "Health Down",
+    "UI.ADDICTIVE": "Addictive",
 
     "UI.ENGAGED": "Engaged",
     "UI.SHORT": "Short",

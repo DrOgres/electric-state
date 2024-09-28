@@ -100,8 +100,48 @@
                     {{#each items as |item|}}
                     {{#if item.isGear}}
                     {{#if item.flags.isFav}}
-                    <div class="item">
-                        {{item.name}}</div>
+                    <div class="flexrow">
+                        <div class="item overflow-elipsis">
+                            {{item.name}}
+                        </div>
+
+                        {{#if item.system.isModifier}}
+                        <div class="bonus">
+                            &plus; {{item.system.modifier.value}}
+                        </div>
+                        <div class="attribute">
+                            {{!-- TODO LOCALIZE --}}
+                            {{#dataLocalization item.system.attribute "attribute"}}{{this}}{{/dataLocalization}}
+                        </div>
+                        {{/if}}
+
+                        {{#if item.system.isBroken}}
+                        <div class="broken">{{localize "estate.UI.BUSTED"}}</div>
+                        {{/if}}
+
+                        {{#if item.system.isConsumable}}
+                        <div class="uses">
+                            <div class="item-use" data-item-id="{{item._id}}">
+                                <span class="label-text">
+                                    {{localize "estate.UI.USES"}}:
+                                </span>
+                                <div class="use-count">
+                                    {{item.system.uses}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+
+
+                        {{#if item.flags.isFav}}
+                        <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                        {{/if}}
+                        {{#unless item.flags.isFav}}
+                        <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                        {{/unless}}
+                        <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                    </div>
                     {{/if}}
                     {{/if}}
                     {{/each}}
@@ -124,10 +164,10 @@
                         {{#unless item.flags.isFav}}
                         <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
                         {{/unless}}
-                         <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i>
+                        <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i>
                         </div>
-                        <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
                     </div>
+
                     {{/if}}
                     {{/if}}
                     {{/each}}
@@ -153,8 +193,8 @@
                         {{/unless}}
                         <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i>
                         </div>
-                        <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
                     </div>
+
                     {{/if}}
                     {{/if}}
                     {{/each}}

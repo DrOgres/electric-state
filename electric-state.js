@@ -61,6 +61,19 @@ Hooks.once("init", function () {
     return options.inverse(this);
   });
 
+  Handlebars.registerHelper("dataLocalization", function (data, group) {
+    console.log("E-STATE | Localize Data", data, group);
+    let string = "";
+    switch(group){
+      case "attribute":
+        const atrributeString = eState.attributesAbv[data];
+        string = game.i18n.localize(`estate.ATTRIBUTE.${atrributeString}`);
+        break;
+    }
+
+    return string;
+  });
+
   YearZeroRollManager.register("es", {
     "ROLL.baseTemplate": "systems/electric-state/templates/dice/broll.hbs",
     "ROLL.chatTemplate": "systems/electric-state/templates/dice/roll.hbs",

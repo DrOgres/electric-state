@@ -25,11 +25,11 @@
 
   {{log config.attributeSelectOptions}}
   <select name="system.attribute">
-    {{selectOptions config.attributeSelectOptions selected=item.system.attribute}}
+    {{selectOptions config.attributeSelectOptions selected=item.system.attribute localize=true}}
   </select>
   {{#if item.system.isBroken}}
   <div class="broken">
-    <h3>Broken</h3>
+    <h3>{{localize "estate.UI.BUSTED"}}</h3>
   </div>
   {{/if}}
 
@@ -38,9 +38,24 @@
   Limited Uses? <input type="checkbox" name="system.isConsumable" id="roll-modifier-boolean" {{checked
     item.system.isConsumable}} />
   {{#if item.system.isConsumable}}
-  <div id="consumable" class="flexrow">
-    <label for="consumable">Uses</label>
+  <div id="consumable" class="flexcol">
+    <div class="flexrow">
+    <label for="consumable">{{localize "estate.UI.USES"}}</label>
     <input id="consumable" name="system.uses" type="number" value="{{item.system.uses}}" />
+    </div>
+    <label for="useType">Use For</label>
+    <select name="system.useType">
+      {{selectOptions config.useTypeOptions selected=item.system.useType localize=true}}
+    </select>
+    <div class="use-value">&plus;<input id="use-value" name="system.useValue" type="number" value="{{item.system.useValue}}" />
+     </div>
+    <label for="useType">Drawback</label>
+    <select name="system.usePenaltyType">
+      {{selectOptions config.usePenaltyOptions selected=item.system.usePenaltyType localize=true}}
+    </select>
+<div class="use-penalty">&minus;<input id="use-value" name="system.usePenalty" type="number" value="{{item.system.usePenalty}}" />
+     </div>
+  </div>
     {{/if}}
 
 </form>

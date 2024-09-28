@@ -62,9 +62,89 @@ export default class esActorSheet extends ActorSheet {
     html.find(".item-create").click(this._onItemCreate.bind(this));
     html.find(".item-edit").click(this._onItemEdit.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
+    html.find(".item-use").click(this._onItemUse.bind(this));
     html.find(".rollable").click(this._onRoll.bind(this));
     html.find(".toggle-fav").click(this._onToggleFav.bind(this));
     html.find(".toggle-equip").click(this._onToggleEquip.bind(this));
+  }
+
+
+  async _onItemUse(event) {
+    console.log("E-STATE | Using Item");
+    const itemId = event.currentTarget.dataset.itemId;
+    const item = this.actor.items.get(itemId);
+    console.log("E-STATE | Item", item);
+    if(!item.system.isConsumable || item.system.uses <= 0){
+      //TODO localize this message
+      ui.notifications.warn("This item is not consumable or out of uses");
+      return;
+    }
+    const type = item.system.useType;
+    const penalty = item.system.usePenalty;
+    let uses = item.system.uses;
+
+    console.log("E-STATE | Item Type", type); 
+  //   none: "estate.UI.NONE",
+  // food: "estate.UI.FOOD",
+  // stabalize: "estate.UI.STABALIZE",
+  // healthUp: "estate.UI.HEALTHUP",
+  // hopeUp: "estate.UI.HOPEUP",
+  // empathy: "estate.ATTRIBUTE.EMP",
+    switch(type){
+      case "none":
+      case "food":
+      case "stabalize":
+        uses -= 1;
+      break;
+      case "healthUp":
+        let health = this.actor.system.health.value;
+        let maxHealth = this.actor.system.health.max;
+        if(health < maxHealth){
+          health += item.system.useValue;
+        } else {
+          ui.notifications.info("Health is already at max");
+          return;
+        }
+        await this.actor.update({"system.health.value": health});
+        uses -= 1;
+      break;
+      case "hopeUp":
+        let hope = this.actor.system.hope.value;
+        let maxHope = this.actor.system.hope.max;
+        if(hope < maxHope){
+          hope += item.system.useValue;
+        } else {
+          ui.notifications.info("Hope is already at max");
+          return;
+        }
+        await this.actor.update({"system.hope.value": hope});
+        uses -= 1;
+    }
+
+    // apply any penaties to the actor
+    // none: "estate.UI.NONE",
+    // healthDown: "estate.UI.HEALTHDOWN",
+    // addictive: "estate.UI.ADDICTIVE"
+    switch(penalty){
+      case "none":
+        // do nothing
+      case "addictive":
+        //TODO prompt the user to make a wits test to avoid addiction
+      break;
+      case "healthDown":
+        let health = this.actor.system.health.value;
+        health -= item.system.penaltyValue;
+        await this.actor.update({"system.health.value": health});
+      break;
+     
+    }
+
+
+    await item.update({"system.uses": uses});
+    ui.notifications.info("Used: " + item.name);
+    //TODO make a chat card to indicate item use and effect
+
+
   }
 
   async _onToggleEquip(event) {

@@ -18,6 +18,12 @@
     "HEAD.COST": "Cost",
     "HEAD.FAVS": "Favorite Items",
 
+    "UI.EQUIP": "Equip",
+    "UI.TOGGLEFAV": "Toggle Favorite",
+    "UI.EDIT": "Edit",
+    "UI.DELETE": "Delete",
+    "UI.ADD": "Add",
+
     "UI.MAIN": "Main",
     "UI.GEAR": "Gear",
     "UI.OTHER": "Other",

@@ -6,7 +6,7 @@ export default class esActorSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["es", "sheet", "actor"],
       width: 600,
-      height: 600,
+      height: 700,
       tabs: [
         {
           navSelector: ".sheet-tabs",
@@ -179,7 +179,7 @@ export default class esActorSheet extends ActorSheet {
   async _onToggleFav(event) {
     console.log("E-STATE | Toggling Favorite");
 
-    const parent = $(event.currentTarget).parents(".item");
+    const parent = $(event.currentTarget).parents(".button-group");
     event.preventDefault();
     const itemId = parent[0].dataset.itemId;
     const item = this.actor.items.get(itemId);
@@ -309,16 +309,18 @@ export default class esActorSheet extends ActorSheet {
   }
 
   _onItemEdit(event) {
+    const parent = $(event.currentTarget).parents(".button-group");
     event.preventDefault();
-    const itemID = event.currentTarget.dataset.itemId;
-    const item = this.actor.items.get(itemID);
+    const itemId = parent[0].dataset.itemId;
+    const item = this.actor.items.get(itemId);
     item.sheet.render(true);
   }
 
   _onItemDelete(event) {
     console.log("E-STATE | Deleting Item");
+    const parent = $(event.currentTarget).parents(".button-group");
     event.preventDefault();
-    const itemId = event.currentTarget.dataset.itemId;
+    const itemId = parent[0].dataset.itemId;
     this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }
 

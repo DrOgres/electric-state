@@ -1,6 +1,14 @@
 @use "../abstracts" as *;
 
 
+.block{
+  display: block;
+}
+
+.no-break{
+  white-space: nowrap;
+}
+
 .gap-small{
   gap: 3px;
 }
@@ -11,6 +19,10 @@
 
 .grid{
   display: grid;
+}
+
+.two-col{
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .four-col{
@@ -91,6 +103,18 @@
   justify-content: flex-end;
 }
 
+.space-between{
+  justify-content: space-between;
+}
+
+.shrink{
+  flex-shrink: 1;
+}
+
+.grow{
+  flex-grow: 1;
+}
+
 .rollable {
     cursor: pointer;
     backdrop-filter: blur(2px);
@@ -99,7 +123,7 @@
     }
   }
 
-  .item-user {
+  .item-use {
     cursor: pointer;
     &:hover {
       text-shadow: $field-color 0 0 5px;
@@ -120,6 +144,10 @@
 
   .border-left-thick {
     border-left: 5px solid $text-color;
+  }
+
+  .border-bottom-thick {
+    border-bottom: 5px solid $text-color;
   }
 
   .border-3-4-thick {
@@ -182,6 +210,14 @@
 
   .w-100 {
     width: 100%;
+  }
+
+  .w-50px {
+    width: 50px;
+  }
+
+  .mw-50px {
+    max-width: 50px;
   }
 
   .h-3{

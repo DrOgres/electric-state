@@ -38,7 +38,10 @@
     "UI.ARMOR": "Armor",
     "UI.HULL": "Hull",
     "UI.PASSENGERS": "Passengers",
+    "UI.PASSENGER": "Passenger",
+    "UI.POSITION": "Position",
     "UI.REPAIRS": "Repairs",
+    "UI.TRUNK": "Trunk",
 
     "UI.MELEE": "Close Combat",
     "UI.RANGED": "Ranged Combat",

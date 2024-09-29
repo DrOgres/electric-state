@@ -96,3 +96,11 @@ Hooks.once("init", function () {
 
 });
 
+Hooks.on('dropActorSheetData', async (actor, actorSheet, data) => {
+  console.log("E-STATE | On Drop Actor Sheet Data", actor, actorSheet, data);
+  if (actor.type === 'vehicle') {
+    const passenger = await fromUuid(data.uuid);
+    if (data.type === 'Actor') await actorSheet.dropPassenger(passenger.id);  
+  }
+});
+

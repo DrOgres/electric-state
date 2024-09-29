@@ -34,7 +34,7 @@
     <div class="flexcol">
         <div class="sheet-tabs tabs flexrow border-bottom-thick" data-group="primary">
             <b class="item border-right-thick padding-small" data-tab="main">{{localize "estate.UI.MAIN"}}</b>
-            <b class="item border-right-thick padding-small" data-tab="passengers">{{localize "estate.UI.PASSENGERS"}}</b>
+            <b class="item border-right-thick padding-small" data-tab="trunk">{{localize "estate.UI.TRUNK"}}</b>
             <b class="item padding-small" data-tab="notes">{{localize "estate.UI.NOTES"}}</b>
         </div>
         <div class="sheet-body">
@@ -43,7 +43,10 @@
                     {{> "systems/electric-state/templates/actors/parts/vehicle-main.hbs"}}
                 </div>
             </div>
-            <div class="tab" data-group="primary" data-tab="passengers">
+            <div class="tab" data-group="primary" data-tab="trunk">
+                <div class="main flexcol padding-small">
+                    {{> "systems/electric-state/templates/actors/parts/gear.hbs"}}
+                </div>
             </div>
             <div class="tab" data-group="primary" data-tab="notes">
                 <div class="main flexcol padding-small">

@@ -182,6 +182,9 @@ export function prepareRollDialog(options) {
       dialogHTML += buildTalentSelectDialog(options, talents, drones);
 
       break;
+    case "explosive":
+      console.log("Explosive Roll", options);
+      break;
   }
 
   let bonusHtml = buildInputDialog(

@@ -183,14 +183,16 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _onToggleFav(event) {
-    console.log("E-STATE | Toggling Favorite");
+    console.log("E-STATE | Toggling Favorite", event);
 
-    const parent = $(event.currentTarget).parents(".button-group");
+    const parent = event.currentTarget.parentElement;
+    console.log("E-STATE | Parent", parent);
     event.preventDefault();
-    const itemId = parent[0].dataset.itemId;
+    const itemId = parent.dataset.itemId;
+    console.log("E-STATE | Item Id", itemId);
     const item = this.actor.items.get(itemId);
+    console.log("E-STATE | Item", item);
     let favStatus = !item.flags.isFav;
-
     await item.update({ "flags.isFav": favStatus });
   }
 

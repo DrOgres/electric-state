@@ -6,7 +6,7 @@
   cursor: pointer;
 }
 
-.toggle-on-hand {
+.toggle-fav {
   cursor: pointer;
 }
 
@@ -97,20 +97,18 @@
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: calc(-moz-fit-content + 10px);
-  width: calc(fit-content + 10px);
   background-color: #2c2e35;
   color: #ffffff;
   text-align: center;
-  padding: 3px 0;
+  padding: 3px 15px;
   margin: 3px;
-  border-radius: none;
+  border-radius: 0;
   /* Position the tooltip text */
   position: absolute;
   z-index: 1001;
-  bottom: 125%;
+  bottom: 100%;
   left: 50%;
-  margin-left: -60px;
+  margin-left: -100%;
   /* Fade in tooltip */
   opacity: 0;
   transition: opacity 0.3s;

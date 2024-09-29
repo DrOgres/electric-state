@@ -45,7 +45,9 @@
     "UI.NEUROSCAPE": "Neuroscape Combat",
 
     "UI.DAMAGE": "Damage",
+    "UI.BP": "Blast Power",
     "UI.WEAPON": "Weapon",
+    "UI.EXPLOSIVE": "Explosive",
     "UI.TENSION": "Tension",
     "UI.NEUROCASTER": "Neurocaster",
     "UI.DRONE": "Drone",

@@ -23,7 +23,7 @@ export default class esActorSheet extends ActorSheet {
 
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
-    if (this.actor.isOwner && this.actor.type === "player") {
+    if (this.actor.isOwner && this._isPlayer()) {
       buttons = [
         {
           label: game.i18n.localize("estate.UI.DEATHROLL"),
@@ -44,14 +44,18 @@ export default class esActorSheet extends ActorSheet {
     this.computeItems(data);
     
    
-    if (actor.type === "player") {
+    if (this._isPlayer()) {
       this.checkBliss(actor);
       this.checkHope(actor);
     }
 
-    if (actor.type === "player" || actor.type === "npc") {
-    this.computeMaxStats(actor);
-    this.checkHealth(actor);
+    if (this._isPlayer() || this._isNpc()) {
+      this.computeMaxStats(actor);
+      this.checkHealth(actor);
+    }
+
+    if (this._isVehicule()){
+      this._preparePassengers(data, actor);
     }
     
     data.notesHTML = await TextEditor.enrichHTML(actor.system.notes, {
@@ -72,6 +76,7 @@ export default class esActorSheet extends ActorSheet {
     html.find(".rollable").click(this._onRoll.bind(this));
     html.find(".toggle-fav").click(this._onToggleFav.bind(this));
     html.find(".toggle-equip").click(this._onToggleEquip.bind(this));
+    html.find(".remove-passenger").click(this._onRemovePassenger.bind(this));
   }
 
 
@@ -149,8 +154,6 @@ export default class esActorSheet extends ActorSheet {
     await item.update({"system.uses": uses});
     ui.notifications.info("Used: " + item.name);
     //TODO make a chat card to indicate item use and effect
-
-
   }
 
   async _onToggleEquip(event) {
@@ -164,22 +167,6 @@ export default class esActorSheet extends ActorSheet {
 
     await item.update({ "flags.isEquipped": equipStatus });
     console.log("E-STATE | Item", item);
-  }
-
-  _isPlayer() {
-    return this.actor.type === "player";
-  }
-
-  _isNpc() {
-    return this.actor.type === "npc";
-  }
-
-  _isRobot() {
-    return this.actor.type === "robot";
-  }
-
-  _isVehicule() {
-    return this.actor.type === "vehicle";
   }
 
   async _onToggleFav(event) {
@@ -342,6 +329,14 @@ export default class esActorSheet extends ActorSheet {
     this.actor.createEmbeddedDocuments("Item", [data]);
   }
 
+  async _onRemovePassenger(event) {
+    console.log("E-STATE | Removing Passenger", event);
+    event.preventDefault();
+    const parent = $(event.currentTarget).parents(".button-group");
+    const passengerId = parent[0].dataset.passengerId;
+    this.actor.removeVehiclePassenger(passengerId);
+  }
+
   async checkHope(actor) {
     console.log("E-STATE | Checking Hope");
     let hope = 0;
@@ -406,19 +401,46 @@ export default class esActorSheet extends ActorSheet {
   }
 
     //update actor with new values
-    if(actor.type === "player"){
-    await actor.update({
-      "system.health.max": health,
-      "system.hope.max": hope,
-    });
+    if (this._isPlayer()){
+      await actor.update({
+        "system.health.max": health,
+        "system.hope.max": hope,
+      });
     }
     //NPCs do not have hope
-    if (actor.type === "npc") {
+    if (this._isNpc()) {
       await actor.update({
         "system.health.max": health
       });
     }
   }
+
+  async _preparePassengers(data, actor) {
+    data.passengers = actor.system.passengers.passenger.reduce((arr, actor) => {
+      console.log("E-STATE | Preparing Passengers", actor.id);
+      const passenger = game.actors.get(actor.id);
+      if (passenger) {
+        arr.push(passenger);
+      }
+      return arr;
+    }, []); 
+    return data;
+  }
+
+  async dropPassenger(actorId) {
+    console.log("E-STATE | Dropping Passenger on Vehicle", actorId);
+    const passenger = game.actors.get(actorId);
+    const actorData = this.actor;
+
+    if (!passenger) return;
+
+    if (passenger.type !== 'player' && passenger.type !== 'npc') return;
+
+    if (actorData.system.passengers.count >= actorData.system.passengers.max) {
+      return ui.notifications.warn(game.i18n.localize('ESTATE.UI.VEHICLEFULL'));
+    }
+    return await actorData.addVehiclePassenger(actorId); 
+	}
 
   computeItems(data) {
     console.log("E-STATE | Computing Items", data);
@@ -437,5 +459,19 @@ export default class esActorSheet extends ActorSheet {
     }
   }
 
+  _isPlayer() {
+    return this.actor.type === "player";
+  }
 
+  _isNpc() {
+    return this.actor.type === "npc";
+  }
+
+  _isRobot() {
+    return this.actor.type === "robot";
+  }
+
+  _isVehicule() {
+    return this.actor.type === "vehicle";
+  }
 }

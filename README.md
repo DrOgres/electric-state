@@ -15,6 +15,8 @@ TODO LIST:
     - dialog and tracking for death rolls
     - limited actor sheet 
 - Vehicle Sheets
+    - set driver 
+    - rolls on maneuver
 - Item Sheets
     - Style and UI design for each item type.
 - General styling and UI improvement for clarity and use

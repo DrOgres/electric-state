@@ -58,11 +58,10 @@
                         <div class="mod center">&minus;{{injury.system.modifier.value}}</div>
                         <div class="mod center">{{#if injury.system.isPermanent}}{{localize
                             "estate.UI.YES"}}{{else}}{{localize "estate.UI.NO"}}{{/if}}</div>
-                        <div class="button-group align-bottom flexrow text-right justify-content-end" data-item-id="{{item._id}}">
-                            <div class="item-edit mw-fit" data-item-id="{{injury._id}}"><i
-                                    class="fa-solid fa-pen-to-square"></i></div>
-                            <div class="item-delete mw-fit" data-item-id="{{injury._id}}"><i
-                                    class="fa-solid fa-trash"></i></div>
+                        <div class="button-group align-bottom flexrow text-right justify-content-end"
+                            data-item-id="{{injury._id}}">
+                            <div class="item-edit mw-fit"><i class="fa-solid fa-pen-to-square"></i></div>
+                            <div class="item-delete mw-fit"><i class="fa-solid fa-trash"></i></div>
                         </div>
 
                     </div>
@@ -82,11 +81,10 @@
                         <div class="item overflow-elipsis" data-item-id="{{trauma._id}}">{{trauma.name}}</div>
                         <div class="modify text-left overflow-elipsis">{{trauma.system.type}}</div>
                         <div class="mod center">&minus;{{trauma.system.modifier.value}}</div>
-                        <div class="button-group align-bottom flexrow text-right justify-content-end" data-item-id="{{item._id}}">
-                            <div class="item-edit mw-fit" data-item-id="{{trauma._id}}"><i
-                                    class="fa-solid fa-pen-to-square"></i></div>
-                            <div class="item-delete mw-fit" data-item-id="{{trauma._id}}"><i
-                                    class="fa-solid fa-trash"></i></div>
+                        <div class="button-group align-bottom flexrow text-right justify-content-end"
+                            data-item-id="{{trauma._id}}">
+                            <div class="item-edit mw-fit"><i class="fa-solid fa-pen-to-square"></i></div>
+                            <div class="item-delete mw-fit"><i class="fa-solid fa-trash"></i></div>
                         </div>
                     </div>
                     {{/if}}
@@ -139,7 +137,8 @@
                         {{/if}}
 
 
-                        <div class="button-group grid two-col shrink mw-50px" data-item-id="{{item._id}}">
+                        <div class="button-group grid two-col shrink mw-50px text-right justify-content-end"
+                            data-item-id="{{item._id}}">
                             {{#if item.flags.isFav}}
                             <div class="toggle-fav tooltip"><i class="fa-solid fa-star"></i> <span
                                     class="tooltiptext">{{localize "estate.UI.TOGGLEFAV"}}</span></div>
@@ -174,20 +173,21 @@
                         </div>
                         {{/if}}
                         {{#unless item.flags.isEquipped}}
-                        <div class="toggle-equip tooltip" >
+                        <div class="toggle-equip tooltip">
                             <i class="fa-regular fa-shield"></i>
                             <span class="tooltiptext">{{localize "estate.UI.EQUIP"}}</span>
                         </div>
                         {{/unless}}
 
-                        <div class="button-group grid two-col shrink mw-50px" data-item-id="{{item._id}}">
+                        <div class="button-group grid two-col shrink mw-50px text-right justify-content-end"
+                            data-item-id="{{item._id}}">
                             {{#if item.flags.isFav}}
-                            <div class="toggle-fav tooltip" >
+                            <div class="toggle-fav tooltip">
                                 <i class="fa-solid fa-star"></i>
                                 <span class="tooltiptext">{{localize "estate.UI.TOGGLEFAV"}}</span>
                             </div>
                             {{/if}}
-                            <div class="item-edit tooltip" >
+                            <div class="item-edit tooltip">
                                 <i class="fa-solid fa-pen-to-square"></i>
                                 <span class="tooltiptext">{{localize "estate.UI.EDIT"}}</span>
                             </div>
@@ -203,67 +203,117 @@
                     {{#if item.flags.isFav}}
                     <div class="item">
                         {{item.name}}</div>
-                    {{/if}}
-                    {{/if}}
-                    {{/each}}
 
-
-                    {{#each items as |item|}}
-                    {{#if item.isWeapon}}
+                    <div class="button-group grid two-col shrink mw-50px text-right justify-content-end"
+                        data-item-id="{{item._id}}"></div>
                     {{#if item.flags.isFav}}
-                    <div class=" item item-row flexrow  border-bottom-thin space-between gap-med" data-item-id="{{item._id}}">
-                        <div class="rollable mw-50px" data-type="weapon" data-item-id="{{item._id}}">
-                            <div class="item tooltip no-break">
+                    <div class="toggle-fav tooltip">
+                        <i class="fa-solid fa-star"></i>
+                        <span class="tooltiptext">{{localize "estate.UI.TOGGLEFAV"}}</span>
+                    </div>
+                    {{/if}}
+                    <div class="item-edit tooltip">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span class="tooltiptext">{{localize "estate.UI.EDIT"}}</span>
+                    </div>
+                </div>
+                {{/if}}
+                {{/if}}
+                {{/each}}
+
+
+                {{#each items as |item|}}
+                {{#if item.isWeapon}}
+                {{#if item.flags.isFav}}
+                <div class=" item item-row flexrow  border-bottom-thin space-between gap-med"
+                    data-item-id="{{item._id}}">
+                    <div class="rollable mw-50px" data-type="weapon" data-item-id="{{item._id}}">
+                        <div class="item tooltip no-break">
                             <span class="name block overflow-elipsis w-100">
-                            {{item.name}}
+                                {{item.name}}
                             </span>
 
                             <span class="tooltiptext">{{localize "estate.UI.ROLL"}} {{item.name}}</span>
-                            </div>
                         </div>
+                    </div>
 
-                        <div class="button-group  grid two-col shrink mw-50px" data-item-id="{{item._id}}">
+                    <div class="button-group  grid two-col shrink mw-50px text-right justify-content-end"
+                        data-item-id="{{item._id}}">
                         {{#if item.flags.isFav}}
                         <div class="toggle-fav tooltip">
                             <i class="fa-solid fa-star"></i>
                             <span class="tooltiptext">{{localize "estate.UI.TOGGLEFAV"}}</span>
                         </div>
                         {{/if}}
-                        
+
                         <div class="item-edit tooltip" data-item-id="{{item._id}}">
                             <i class="fa-solid fa-pen-to-square"></i>
                             <span class="tooltiptext">{{localize "estate.UI.EDIT"}}</span>
                         </div>
-                        
-                        </div>
+
+                    </div>
+                </div>
+
+                {{/if}}
+                {{/if}}
+                {{/each}}
+
+                {{#each items as |item|}}
+                {{#if item.isDrone}}
+                {{#if item.flags.isFav}}
+                <div class="flexrow border-bottom-thin space-between gap-med">
+                    <div class="item tooltip mw-50px">
+                        <span class="name block overflow-elipsis w-100">
+                            {{item.name}}
+                        </span>
+
+                        <span class="tooltiptext">{{item.name}}</span>
                     </div>
 
-                    {{/if}}
-                    {{/if}}
-                    {{/each}}
+                    <div class="button-group grid two-col shrink mw-50px text-right justify-content-end"
+                        data-item-id="{{item._id}}">
+                        {{#if item.flags.isFav}}
+                        <div class="toggle-fav tooltip">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="tooltiptext">{{localize "estate.UI.TOGGLEFAV"}}</span>
+                        </div>
+                        {{/if}}
+                        <div class="item-edit tooltip">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span class="tooltiptext">{{localize "estate.UI.EDIT"}}</span>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                {{/if}}
+                {{/each}}
 
-                    {{#each items as |item|}}
-                    {{#if item.isDrone}}
-                    {{#if item.flags.isFav}}
-                    <div class="item">
-                        {{item.name}}</div>
-                    {{/if}}
-                    {{/if}}
-                    {{/each}}
+                {{#each items as |item|}}
+                {{#if item.isNeurocaster}}
+                {{#if item.flags.isFav}}
+                <div class="item">
+                    {{item.name}}</div>
 
-                    {{#each items as |item|}}
-                    {{#if item.isNeurocaster}}
-                    {{#if item.flags.isFav}}
-                    <div class="item">
-                        {{item.name}}</div>
-                    {{/if}}
-                    {{/if}}
-                    {{/each}}
+                <div class="button-group grid two-col shrink mw-50px" data-item-id="{{item._id}}"></div>
+                {{#if item.flags.isFav}}
+                <div class="toggle-fav tooltip">
+                    <i class="fa-solid fa-star"></i>
+                    <span class="tooltiptext">{{localize "estate.UI.TOGGLEFAV"}}</span>
+                </div>
+                {{/if}}
+                <div class="item-edit tooltip">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span class="tooltiptext">{{localize "estate.UI.EDIT"}}</span>
                 </div>
             </div>
-
+            {{/if}}
+            {{/if}}
+            {{/each}}
         </div>
     </div>
+
+</div>
+</div>
 
 
 

@@ -25,8 +25,16 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+.three-col{
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .four-col{
   grid-template-columns: repeat(4, 1fr);
+}
+
+.five-col{
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .cols-4-25{
@@ -76,6 +84,10 @@
   text-align: center;
 }
 
+.middle{
+  align-items: center;
+}
+
 .text-right{
   text-align: right;
 }
@@ -88,6 +100,7 @@
 .align-start{
   align-items: start;
   align-self: start;
+  align-content: start;
 }
 
 .align-content-start{
@@ -216,8 +229,24 @@
     width: 50px;
   }
 
+  .mw-35px {
+    max-width: 35px;
+  }
+
   .mw-50px {
     max-width: 50px;
+  }
+
+  .mw-75px {
+    max-width: 75px;
+  }
+
+  .mw-100px {
+    max-width: 100px;
+  }
+
+  .mw-150px {
+    max-width: 150px;
   }
 
   .h-3{

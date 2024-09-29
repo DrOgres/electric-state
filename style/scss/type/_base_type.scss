@@ -103,7 +103,7 @@
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 170px;
+  width: calc(fit-content + 10px);
   background-color: $text-color;
   color: $field-color;
   text-align: center;

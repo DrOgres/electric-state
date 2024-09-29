@@ -48,7 +48,10 @@
         "max": 0,
         "value": 0
       },
-      "maneuverability": 0,
+      "maneuverability": {
+        "max": 0,
+        "value": 0
+      },
       "speed": 0,
       "hull": {
         "max": 0,

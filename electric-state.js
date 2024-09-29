@@ -78,6 +78,10 @@ Hooks.once("init", function () {
         const range = eState.ranges[data];
         string = game.i18n.localize(`${range}`);
         break;
+      case "useType":
+        const useType = eState.useTypeOptions[data];
+        string = game.i18n.localize(`${useType}`);
+        break;
     }
 
     return string;

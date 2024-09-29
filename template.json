@@ -91,11 +91,11 @@
       "commonItem": {
         "description": "",
         "cost": 0,
+        "isBroken": false,
         "modifier": {
-        "max": 0,
-        "value": 0,
-        "isBroken": false
-      }
+          "max": 0,
+          "value": 0
+        }
       }
     },
     "gear": {
@@ -108,7 +108,6 @@
       "useValue": 0,
       "usePenaltyType": "",
       "usePenalty": 0
-      
     },
     "weapon": {
       "templates": ["commonItem"],
@@ -121,7 +120,6 @@
         "min": 0
       },
       "attribute": ""
-      
     },
     "armor": {
       "templates": ["commonItem"],
@@ -160,7 +158,6 @@
         "min": ""
       },
       "damage": 0
-      
     },
     "neurocaster": {
       "templates": ["commonItem"],
@@ -172,7 +169,7 @@
         "max": 0,
         "value": 0
       },
-      "graphics":  {
+      "graphics": {
         "max": 0,
         "value": 0
       },

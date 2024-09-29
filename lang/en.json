@@ -68,6 +68,7 @@
     "UI.HOPEUP": "Hope Up",
     "UI.HEALTHDOWN": "Health Down",
     "UI.ADDICTIVE": "Addictive",
+    "UI.ATTRIBUTE": "Attribute",
 
     "UI.ENGAGED": "Engaged",
     "UI.SHORT": "Short",
@@ -80,8 +81,8 @@
     "UI.ARMOR_PENALTY": "Armor Penalty",
     "UI.MOD": "Mod",
     "UI.DMG": "Damage",
-    "UI.RANGE_MIN": "Minimum",
-    "UI.RANGE_MAX": "Maximum",
+    "UI.RANGE_MIN": "Minimum Range",
+    "UI.RANGE_MAX": "Maximum Range",
     "UI.MODIFIER": "Modifier",
     "UI.PENALTY": "Penalty",
     "UI.TOTAL": "Total",

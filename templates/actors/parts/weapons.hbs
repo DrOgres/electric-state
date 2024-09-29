@@ -1,6 +1,17 @@
-<div class="group-header flexrow border-bottom-thin">
-    <h4>weapons</h4>
-    <div class="item-create" data-type="weapon">new weapon</div>
+<div class="group-header flexrow middle border-bottom-thin space-between gap-med fw-600 fs-200">
+    <div class="rollable mw-150px flexrow middle">{{localize "estate.UI.WEAPON"}}</div>
+    <div class="stat-group grid five-col gap-med">
+        <div>{{localize "estate.UI.BONUS"}}</div>
+        <div>{{localize "estate.UI.TYPE"}}</div>
+        <div>{{localize "estate.UI.DMG"}}</div>
+        <div>{{localize "estate.UI.RANGE_MIN"}}</div>
+        <div>{{localize "estate.UI.RANGE_MAX"}}</div>
+    </div>
+    <div class="button-group grid three-col mw-75px">
+        <div class="holder"></div>
+        <div class="item-create fs-500"  data-type="weapon">&plus;</div>
+        <div class="holder"></div>
+    </div>
 </div>
 {{#each items as |item|}}
 {{#if item.isWeapon}}
@@ -15,13 +26,12 @@
         </div>
     </div>
 
-    <div class="stat-group grid five-col gap-med">
+    <div class="stat-group grid five-col gap-med middle">
         <div>&plus; {{item.system.modifier.value}}</div>
-        <div>{{item.system.type}}</div>
+        <div>{{#dataLocalization item.system.type 'w_type'}}{{/dataLocalization}}</div>  
         <div>{{item.system.damage}}</div>
-        <div>{{item.system.range.min}}</div>
-        <div>{{item.system.range.max}}</div>
-
+        <div>{{#dataLocalization item.system.range.min 'range'}}{{/dataLocalization}}</div>
+        <div>{{#dataLocalization item.system.range.max 'range'}}{{/dataLocalization}}</div>
     </div>
 
     <div class="button-group grid three-col mw-75px" data-item-id="{{item._id}}">

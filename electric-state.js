@@ -69,6 +69,15 @@ Hooks.once("init", function () {
         const atrributeString = eState.attributesAbv[data];
         string = game.i18n.localize(`estate.ATTRIBUTE.${atrributeString}`);
         break;
+      case "w_type":
+        const weaponType = eState.weaponType[data];
+        console.log("E-STATE | Weapon Type", weaponType);
+        string = game.i18n.localize(`${weaponType}`);
+        break;
+      case "range":
+        const range = eState.ranges[data];
+        string = game.i18n.localize(`${range}`);
+        break;
     }
 
     return string;

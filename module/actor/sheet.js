@@ -54,9 +54,6 @@ export default class esActorSheet extends ActorSheet {
     this.checkHealth(actor);
     }
     
-   
-   
-
     data.notesHTML = await TextEditor.enrichHTML(actor.system.notes, {
       async: true,
     });
@@ -388,8 +385,6 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async computeMaxStats(actor) {
-
-
     console.log("E-STATE | Computing Max Stats");
     let health = 0;
     let hope = 0;
@@ -410,9 +405,7 @@ export default class esActorSheet extends ActorSheet {
     }
   }
 
-
     //update actor with new values
-    
     if(actor.type === "player"){
     await actor.update({
       "system.health.max": health,
@@ -426,18 +419,6 @@ export default class esActorSheet extends ActorSheet {
       });
     }
   }
-
-  //   "gear",
-  //   "weapon",
-  //   "armor",
-  //   "explosive",
-  //   "talent",
-  //   "trait",
-  //   "drone",
-  //   "neurocaster",
-  //   "tension",
-  //   "trauma",
-  //   "injury"
 
   computeItems(data) {
     console.log("E-STATE | Computing Items", data);

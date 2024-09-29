@@ -54,7 +54,7 @@ export default class esActorSheet extends ActorSheet {
       this.checkHealth(actor);
     }
 
-    if (this._isVehicule()){
+    if (this._isVehicle()){
       this._preparePassengers(data, actor);
     }
     
@@ -473,7 +473,7 @@ export default class esActorSheet extends ActorSheet {
     return this.actor.type === "robot";
   }
 
-  _isVehicule() {
+  _isVehicle() {
     return this.actor.type === "vehicle";
   }
 }

@@ -1,45 +1,7 @@
 <div class="flexcol gap-small">
 
     <div class="weapon-group border-bottom-thick">
-        <div class="group-header flexrow border-bottom-thin">
-            <h4>weapons</h4>
-            <div class="item-create" data-type="weapon">new weapon</div>
-        </div>
-        {{#each items as |item|}}
-        {{#if item.isWeapon}}
-        <div class=" item item-row flexrow middle border-bottom-thin space-between gap-med" data-item-id="{{item._id}}">
-
-            <div class="rollable mw-150px flexrow middle" data-type="weapon" data-item-id="{{item._id}}">
-
-                <div class="item-icon mw-35px"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25"
-                        width="25" /></div>
-                <div class="name no-break middle">
-                    {{item.name}}
-                </div>
-            </div>
-
-            <div class="stat-group grid five-col gap-med">
-                <div>&plus; {{item.system.modifier.value}}</div>
-                <div>{{item.system.type}}</div>
-                <div>{{item.system.damage}}</div>
-                <div>{{item.system.range.min}}</div>
-                <div>{{item.system.range.max}}</div>
-
-            </div>
-
-            <div class="button-group grid three-col mw-75px" data-item-id="{{item._id}}">
-                {{#if item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
-                {{/if}}
-                {{#unless item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
-                {{/unless}}
-                <div class="item-edit"><i class="fa-solid fa-pen-to-square"></i></div>
-                <div class="item-delete"><i class="fa-solid fa-trash"></i></div>
-            </div>
-        </div>
-        {{/if}}
-        {{/each}}
+       {{> "systems/electric-state/templates/actors/parts/weapons.hbs"}}
     </div>
 
     <div class="explosives-group">

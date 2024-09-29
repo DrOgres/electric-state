@@ -27,7 +27,7 @@ export default class esActorSheet extends ActorSheet {
       buttons = [
         {
           label: game.i18n.localize("estate.UI.DEATHROLL"),
-          class: "push-roll",
+          class: "death-roll",
           icon: "fas fa-skull",
           onclick: (ev) => this._deathRoll(this),
         },
@@ -42,11 +42,20 @@ export default class esActorSheet extends ActorSheet {
     // console.log("E-STATE | Actor", actor);
     // console.log("E-STATE |  Data", data);
     this.computeItems(data);
-    this.computeGear(actor);
+    
+   
+    if (actor.type === "player") {
+      this.checkBliss(actor);
+      this.checkHope(actor);
+    }
+
+    if (actor.type === "player" || actor.type === "npc") {
     this.computeMaxStats(actor);
-    this.checkBliss(actor);
     this.checkHealth(actor);
-    this.checkHope(actor);
+    }
+    
+   
+   
 
     data.notesHTML = await TextEditor.enrichHTML(actor.system.notes, {
       async: true,
@@ -379,6 +388,8 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async computeMaxStats(actor) {
+
+
     console.log("E-STATE | Computing Max Stats");
     let health = 0;
     let hope = 0;
@@ -387,6 +398,8 @@ export default class esActorSheet extends ActorSheet {
     hope = Math.ceil((actor.system.wits + actor.system.empathy) / 2);
     const talents = actor.items.filter((item) => item.type === "talent");
 
+    // If there are no talents we can skip the loop
+    if(talents.length > 0){
     // look for taents that modify health or hope
     for (let talent of talents) {
       if (talent.system.type.includes("health")) {
@@ -395,11 +408,23 @@ export default class esActorSheet extends ActorSheet {
         hope += talent.system.modifier.value;
       }
     }
+  }
+
+
     //update actor with new values
+    
+    if(actor.type === "player"){
     await actor.update({
       "system.health.max": health,
       "system.hope.max": hope,
     });
+    }
+    //NPCs do not have hope
+    if (actor.type === "npc") {
+      await actor.update({
+        "system.health.max": health
+      });
+    }
   }
 
   //   "gear",
@@ -431,12 +456,5 @@ export default class esActorSheet extends ActorSheet {
     }
   }
 
-  computeGear(actor) {
-    actor.hasWeapon = this._isPlayer() || this._isNpc() || this._isRobot();
-    actor.hasExplosive = this._isPlayer() || this._isNpc();
-    actor.hasGear= this._isPlayer() || this._isNpc();
-    actor.hasArmor = this._isPlayer() || this._isNpc();
-    actor.hasDrone = this._isPlayer() || this._isNpc();
-    actor.hasNeurocaster = this._isPlayer() || this._isNpc();
-  }
+
 }

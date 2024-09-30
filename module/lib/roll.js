@@ -186,10 +186,111 @@ export function prepareRollDialog(options) {
       console.log("Explosive Roll", options);
       break;
     case "neurocaster":
+      options.gearDice = 0;
       console.log("Neurocaster Roll", options);
       if (options.cast === "info") {
         console.log("Info Cast");
+        //TODO add the wits attribute to the dice pool
+        //TODO add the processor attribute of the neurocaster to the gear dice pool
+        //TODO check for any talents that affect the neurocaster and add them to the dice pool
+        options.attribute = "wits";
+        options.dicePool = actor.system.wits;
+        let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
+        if (neurocaster !== undefined) {
+          console.log("Neurocaster", neurocaster.system.processor.value);
+          options.gearName = neurocaster.name + " " + game.i18n.localize("estate.UI.PROCESSOR"); 
+          options.gearDice += neurocaster.system.processor.value;
+        } else {
+          ui.notifications.warn("You need to equip a neurocaster to cast");
+          return;
+        }
+
+        dialogHTML += buildHTMLDialog(
+          game.i18n.localize("estate.ATTRIBUTE.WIT"),
+          options.dicePool,
+          options.attribute
+        );
       }
+
+      if (options.cast === "hack") {
+        console.log("Hack Cast");
+        options.attribute = "wits";
+        let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
+        if (neurocaster !== undefined) {
+          console.log("Neurocaster", neurocaster.system.network.value);
+          options.gearName = neurocaster.name + " " + game.i18n.localize("estate.UI.NETWORK");
+          options.gearDice += neurocaster.system.network.value;
+        } else {
+          ui.notifications.warn("You need to equip a neurocaster to cast");
+          return;
+        }
+        dialogHTML += buildHTMLDialog(
+          game.i18n.localize("estate.ATTRIBUTE.WIT"),
+          options.dicePool,
+          options.attribute
+        );
+      }
+
+      if (options.cast === "coms") {
+        console.log("Comms Cast");
+        options.attribute = "empathy";
+        let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
+        if (neurocaster !== undefined) {
+          console.log("Neurocaster", neurocaster.system.graphics.value);
+          options.gearName = neurocaster.name + " " + game.i18n.localize("estate.UI.GRAPHICS");
+          options.gearDice += neurocaster.system.graphics.value;
+        } else {
+          ui.notifications.warn("You need to equip a neurocaster to cast");
+          return;
+        }
+
+        dialogHTML += buildHTMLDialog(
+          game.i18n.localize("estate.ATTRIBUTE.EMP"),
+          options.dicePool,
+          options.attribute
+        );
+      }
+
+      if(options.cast === "block"){
+        console.log("Block Cast");
+        options.attribute = "wits";
+        let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
+        if (neurocaster !== undefined) {
+          console.log("Neurocaster", neurocaster.system.network.value);
+          options.gearName = neurocaster.name + " " + game.i18n.localize("estate.UI.NETWORK");
+          options.gearDice += neurocaster.system.network.value;
+        } else {
+          ui.notifications.warn("You need to equip a neurocaster to cast");
+          return;
+        }
+        dialogHTML += buildHTMLDialog(
+          game.i18n.localize("estate.ATTRIBUTE.WIT"),
+          options.dicePool,
+          options.attribute
+        );
+      }
+
+      if(options.cast === "combat"){
+        console.log("Combat Cast");
+        options.attribute = "wits";
+        let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
+        if (neurocaster !== undefined) {
+          console.log("Neurocaster", neurocaster.system.graphics.value);
+          options.gearName = neurocaster.name + " " + game.i18n.localize("estate.UI.GRAPHICS");
+          options.gearDice += neurocaster.system.graphics.value;
+        } else {
+          ui.notifications.warn("You need to equip a neurocaster to cast");
+          return;
+        }
+        dialogHTML += buildHTMLDialog(
+          game.i18n.localize("estate.ATTRIBUTE.WIT"),
+          options.dicePool,
+          options.attribute
+        );
+      }
+      
+      dialogHTML += buildSubtotalDialog(options);
+      dialogHTML += buildTalentSelectDialog(options, talents);
       break;
   }
 
@@ -239,7 +340,7 @@ export function prepareRollDialog(options) {
 
             console.log("Item", item);
             //TODO if the gear selected is consumable we need to reduce the uses value by 1
-            let gearDice = 0;
+            let gearDice = options.gearDice || 0;
             if (item !== undefined) {
               options.gearUsed = selectedGearItemId;
               gearDice = item.system.modifier.value;
@@ -297,8 +398,8 @@ function buildGearSelectDialog(options, gear) {
     return "";
   }
 
-   //test gear to see if isConsumable if so check item.system.uses if it is 0 remove it from the list
-   for (let item of gear) {
+  //test gear to see if isConsumable if so check item.system.uses if it is 0 remove it from the list
+  for (let item of gear) {
     if (item.system.isConsumable) {
       console.log("Consumable Gear", item);
       if (item.system.uses === 0) {
@@ -314,12 +415,11 @@ function buildGearSelectDialog(options, gear) {
     }
   }
 
-
   for (let item of gear) {
     console.log(item);
     // check the array talent.system.attribute to see if it contains a match for options.attribute
-   
-    if (item.system.attribute === options.attribute ) {
+
+    if (item.system.attribute === options.attribute) {
       count++;
       selectOptions += `<option value="${item.id}">${item.name}  ${item.system.modifier.value}</option>`;
     }
@@ -344,7 +444,7 @@ function buildGearSelectDialog(options, gear) {
   return html;
 }
 
-function buildTalentSelectDialog(options, talents, drones) {
+function buildTalentSelectDialog(options, talents, actor, drones) {
   console.log("Building Talent Select Dialog", talents, options);
 
   if (talents.length === 0) {
@@ -365,9 +465,15 @@ function buildTalentSelectDialog(options, talents, drones) {
     console.log("Drone", drone);
   }
 
+  let neurocaster = false;
+  if (options.type === "neurocaster") {
+    neurocaster = true;
+    console.log("Neurocaster", neurocaster);
+  }
+
   for (let talent of talents) {
     console.log(talent);
-    // check the array talent.system.attribute to see if it contains a match for options.attribute
+    // check the array talent.system.attribute to see if it contains a match for options.attribute 
     if (drone !== undefined) {
       if (options.type === "drone" || drone.flags.isEquipped) {
         if (talent.system.type.includes("drone")) {
@@ -375,14 +481,27 @@ function buildTalentSelectDialog(options, talents, drones) {
           selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
         }
       }
-      if (
-        talent.system.type.includes(options.attribute) ||
-        talent.system.type.includes("all")
-      ) {
-        count++;
-        selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
+      
+    }
+
+    if (neurocaster) {
+      if (options.type === "neurocaster" || neurocaster.flags.isEquipped) {
+        if (talent.system.type.includes("neurocaster")) {
+          count++;
+          selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
+        }
       }
     }
+
+    if (
+      talent.system.type.includes(options.attribute) ||
+      talent.system.type.includes("all")
+    ) {
+      count++;
+      selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
+    }
+
+
   }
 
   if (count === 0) {
@@ -417,6 +536,18 @@ function buildSubtotalDialog(options) {
 
   let html = "";
 
+  if(options.gearDice > 0){
+    subtotal += options.gearDice;
+    html += `<div class="flexcol">
+    <div class="flexrow">
+        <h4 class="subheader middle">` +
+    options.gearName +
+    ` : &nbsp;</h4>
+    <p id="gear" style="text-align: right" class="grow pi-2 border-bottom"> &plus;` +
+    options.gearDice +
+    `</p></div>`;
+  }
+
   if (options.penalty > 0) {
     html +=
       `<div class="flexcol">
@@ -441,10 +572,9 @@ function buildSubtotalDialog(options) {
   }
 
   html +=
-    ` 
-                <hr />
-                <div class="flexrow">
-                    <h4 class="subheader middle">` +
+    ` <hr />
+        <div class="flexrow">
+          <h4 class="subheader middle">` +
     game.i18n.localize("estate.UI.SUBTOTAL") +
     ` : &nbsp;</h4>
                     <p id="subtotal" style="text-align: right" class="grow pi-2 border-bottom">` +
@@ -457,6 +587,7 @@ function buildSubtotalDialog(options) {
 }
 
 function buildHTMLDialog(diceName, diceValue, type) {
+  console.log("Building HTML Dialog", diceName, diceValue, type);
   return (
     `
       <div class="flexrow " style="flex-basis: 35%; justify-content: space-between;">

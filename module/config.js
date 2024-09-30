@@ -90,3 +90,11 @@ eState.ranges = {
   long: "estate.UI.LONG",
   extreme: "estate.UI.EXTREME",
 };
+
+eState.castType = {
+    info: "estate.UI.INFO",
+    hack: "estate.UI.HACK",
+    coms: "estate.UI.COMS",
+    block: "estate.UI.BLOCK",
+    combat: "estate.UI.COMBAT"
+};

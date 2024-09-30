@@ -299,29 +299,36 @@
                     {{#each items as |item|}}
                     {{#if item.isNeurocaster}}
                     {{#if item.flags.isFav}}
-                    <div class="item">
-                        {{item.name}}</div>
+                    <div class=" item item-row flexrow  border-bottom-thin space-between gap-med" data-item-id="{{item._id}}">
+                        <div class="item tooltip mw-150px">
+                            <span class="name block overflow-elipsis w-100">
+                            {{item.name}}
+                            </span>
+                             <span class="tooltiptext">{{item.name}}</span>
+                        </div>
 
-                    <div class="button-group grid two-col shrink mw-50px" data-item-id="{{item._id}}"></div>
-                    {{#if item.flags.isFav}}
-                    <div class="toggle-fav tooltip">
-                        <i class="fa-solid fa-star"></i>
-                        <span class="tooltiptext">{{localize "estate.UI.TOGGLEFAV"}}</span>
+                        <div class="button-group grid two-col shrink mw-50px text-right justify-content-end"
+                            data-item-id="{{item._id}}">
+                            {{#if item.flags.isFav}}
+                            <div class="toggle-fav tooltip">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="tooltiptext">{{localize "estate.UI.TOGGLEFAV"}}</span>
+                            </div>
+                            {{/if}}
+                            <div class="item-edit tooltip">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                <span class="tooltiptext">{{localize "estate.UI.EDIT"}}</span>
+                            </div>
+                        </div>
                     </div>
                     {{/if}}
-                    <div class="item-edit tooltip">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <span class="tooltiptext">{{localize "estate.UI.EDIT"}}</span>
-                    </div>
+                    {{/if}}
+                    {{/each}}
                 </div>
-                {{/if}}
-                {{/if}}
-                {{/each}}
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
 
 
 

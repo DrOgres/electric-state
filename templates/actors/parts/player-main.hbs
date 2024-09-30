@@ -280,15 +280,21 @@
 
                         <div class="attack-group grid three-col">
                             {{#if item.flags.isEquipped}}
-                            <div class="toggle-equip mw-50px"><i class="fa-solid fa-robot"></i></div>
+                            <div class="toggle-equip mw-50px tooltip"><i class="fa-solid fa-robot"></i>
+                            <span class="tooltiptext">{{localize "estate.UI.EQUIP"}}</span></div>
                             {{/if}}
                             {{#unless item.flags.isEquipped}}
-                            <div class="toggle-equip mw-50px"><i class="fa-regular fa-robot"></i></div>
+                            <div class="toggle-equip mw-50px tooltip"><i class="fa-regular fa-robot"></i>
+                            <span class="tooltiptext">{{localize "estate.UI.EQUIP"}}</span>
+                            </div>
                             {{/unless}}
-                            <div class="drone-attack rollable mw-50px" data-type="drone-attack"
-                                data-item-id="{{item._id}}"><i class="fa-solid fa-gun"></i></div>
-                            <div class="drone-armor rollable mw-50px" data-type="drone-armor"
-                                data-item-id="{{item._id}}"><i class="fa-solid fa-shield"></i></div>
+                            <div class="drone-attack rollable mw-50px tooltip" data-type="drone-attack"
+                                data-item-id="{{item._id}}"><i class="fa-solid fa-gun"></i>
+                                <span class="tooltiptext">{{localize "estate.UI.ROLL"}} {{localize "estate.UI.ATTACK"}}</span>
+                                </div>
+                            <div class="drone-armor rollable mw-50px tooltip" data-type="drone-armor"
+                                data-item-id="{{item._id}}"><i class="fa-solid fa-shield"></i>
+                                <span class="tooltiptext">{{localize "estate.UI.ROLL"}} {{localize "estate.UI.ARMOR"}}</span></div>
 
                         </div>
 

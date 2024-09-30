@@ -278,6 +278,20 @@
                             <span class="tooltiptext">{{item.name}}</span>
                         </div>
 
+                        <div class="attack-group grid three-col">
+                            {{#if item.flags.isEquipped}}
+                            <div class="toggle-equip mw-50px"><i class="fa-solid fa-robot"></i></div>
+                            {{/if}}
+                            {{#unless item.flags.isEquipped}}
+                            <div class="toggle-equip mw-50px"><i class="fa-regular fa-robot"></i></div>
+                            {{/unless}}
+                            <div class="drone-attack rollable mw-50px" data-type="drone-attack"
+                                data-item-id="{{item._id}}"><i class="fa-solid fa-gun"></i></div>
+                            <div class="drone-armor rollable mw-50px" data-type="drone-armor"
+                                data-item-id="{{item._id}}"><i class="fa-solid fa-shield"></i></div>
+
+                        </div>
+
                         <div class="button-group grid two-col shrink mw-50px text-right justify-content-end"
                             data-item-id="{{item._id}}">
                             {{#if item.flags.isFav}}
@@ -299,12 +313,13 @@
                     {{#each items as |item|}}
                     {{#if item.isNeurocaster}}
                     {{#if item.flags.isFav}}
-                    <div class=" item item-row flexrow  border-bottom-thin space-between gap-med" data-item-id="{{item._id}}">
+                    <div class=" item item-row flexrow  border-bottom-thin space-between gap-med"
+                        data-item-id="{{item._id}}">
                         <div class="item tooltip mw-100px">
                             <span class="name block overflow-elipsis w-100">
-                            {{item.name}}
+                                {{item.name}}
                             </span>
-                             <span class="tooltiptext">{{item.name}}</span>
+                            <span class="tooltiptext">{{item.name}}</span>
                         </div>
 
                         <div class="button-group grid two-col shrink mw-50px text-right justify-content-end"

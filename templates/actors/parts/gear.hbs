@@ -189,10 +189,22 @@
         {{/each}}
     </div>
 
-    <div class="drone-group">
-        <div class="group-header flexrow">
+    <div class="drone-group border-bottom-thick">
+        <div class="group-header flexrow border-bottom-thin space-between gap-med fw-600 fs-200 all-caps">
             <div class="mw-150px flexrow middle">{{localize "estate.UI.DRONE"}}</div>
+            <div class="stat-group grid two-col center middle">
+                <div class="attack-group grid three-col">
+                    <div class="equip">{{localize "estate.UI.EQUIP"}}</div>
+                    <div class="attack">{{localize "estate.UI.ATTACK"}}</div>
+                    <div class="armor">{{localize "estate.UI.ARMOR"}}</div>
+                </div>
+                <div class="attributes grid three-col">
 
+                    <div>{{localize "estate.ATTRIBUTE.STR_ABV"}}</div>
+                    <div>{{localize "estate.ATTRIBUTE.AGI_ABV"}}</div>
+                    <div>{{localize "estate.UI.HULL"}}</div>
+                </div>
+            </div>
             <div class="button-group grid three-col mw-75px">
                 <div class="holder"></div>
                 <div class="item-create fs-500" data-type="drone">&plus;</div>
@@ -201,18 +213,39 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isDrone}}
-        <div class="item item-row flexrow " data-item-id="{{item._id}}">
-            <div>{{item.name}}</div>
-            <div class="drone-attack rollable" data-type="drone-attack" data-item-id="{{item._id}}"><i
-                    class="fa-solid fa-gun"></i></div>
-            <div class="drone-armor rollable" data-type="drone-armor" data-item-id="{{item._id}}"><i
-                    class="fa-solid fa-shield"></i></div>
-            {{#if item.flags.isEquipped}}
-            <div class="toggle-equip"><i class="fa-solid fa-robot"></i></div>
-            {{/if}}
-            {{#unless item.flags.isEquipped}}
-            <div class="toggle-equip"><i class="fa-regular fa-robot"></i></div>
-            {{/unless}}
+        <div class="item item-row flexrow  middle border-bottom-thin space-between gap-med" data-item-id="{{item._id}}">
+
+            <div class="mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
+                <div class="item-icon">
+                    <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25" width="25" />
+                </div>
+                <div>{{item.name}}</div>
+            </div>
+
+
+            <div class="stat-group grid two-col center middle">
+
+                <div class="attack-group grid three-col">
+                    {{#if item.flags.isEquipped}}
+                    <div class="toggle-equip mw-50px"><i class="fa-solid fa-robot"></i></div>
+                    {{/if}}
+                    {{#unless item.flags.isEquipped}}
+                    <div class="toggle-equip mw-50px"><i class="fa-regular fa-robot"></i></div>
+                    {{/unless}}
+                    <div class="drone-attack rollable mw-50px" data-type="drone-attack" data-item-id="{{item._id}}"><i
+                            class="fa-solid fa-gun"></i></div>
+                    <div class="drone-armor rollable mw-50px" data-type="drone-armor" data-item-id="{{item._id}}"><i
+                            class="fa-solid fa-shield"></i></div>
+
+                </div>
+
+
+                <div class="attributes grid three-col">
+                    <div class="strength">{{item.system.attributes.strength}}</div>
+                    <div class="agility">{{item.system.attributes.agility}}</div>
+                    <div class="hull">{{item.system.hull.value}} / {{item.system.hull.max}}</div>
+                </div>
+            </div>
 
             <div class="button-group grid three-col mw-75px" data-item-id="{{item._id}}">
                 {{#if item.flags.isFav}}

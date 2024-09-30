@@ -294,6 +294,15 @@ export default class esActorSheet extends ActorSheet {
           options.type = "drone";
 
         } break;
+        case "neurocaster": {
+          console.log("E-STATE | Rolling Neurocaster");
+          const itemId = event.currentTarget.parentElement.dataset.itemId;
+          const item = this.actor.items.get(itemId);
+          options.cast = event.currentTarget.dataset.cast;
+          options.testName = item.name + " " + game.i18n.localize("estate.UI.NEUROCASTER");
+          options.dicePool = item.system.modifier.value;
+          options.type = "neurocaster";
+        } break;
     }
 
     prepareRollDialog(options);

@@ -185,6 +185,12 @@ export function prepareRollDialog(options) {
     case "explosive":
       console.log("Explosive Roll", options);
       break;
+    case "neurocaster":
+      console.log("Neurocaster Roll", options);
+      if (options.cast === "info") {
+        console.log("Info Cast");
+      }
+      break;
   }
 
   let bonusHtml = buildInputDialog(

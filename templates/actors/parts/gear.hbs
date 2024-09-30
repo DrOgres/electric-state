@@ -275,23 +275,47 @@
         {{#each items as |item|}}
         {{#if item.isNeurocaster}}
         <div class=" item item-row flexrow " data-item-id="{{item._id}}">
-            <div>{{item.name}}</div>
-            {{#if item.flags.isEquipped}}
-            <div class="toggle-equip"><i class="fa-solid fa-head-side-gear"></i></div>
-            {{/if}}
-            {{#unless item.flags.isEquipped}}
-             <div class="toggle-equip"><i class="fa-light fa-head-side-gear"></i></div>
-         {{/unless}}
+            <div class="mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
+                <div class="item-icon">
+                    <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25" width="25" />
+                </div>
+                <div>{{item.name}}</div>
+            </div>
 
-            <div class="button-group grid three-col mw-75px" data-item-id="{{item._id}}">
-               
+            <div class="stat-group grid two-col center middle">
+                {{#if item.flags.isEquipped}}
+                <div class="toggle-equip"><i class="fa-solid fa-head-side-gear"></i></div>
+                {{/if}}
+                {{#unless item.flags.isEquipped}}
+                <div class="toggle-equip"><i class="fa-light fa-head-side-gear"></i></div>
+                {{/unless}}
+                <div class="action-group flexrow" data-item-id="{{item._id}}">
+                    <div class="rollable" data-type="neurocaster" data-cast="info">
+                        <i class="fa-solid fa-print-magnifying-glass"></i>
+                    </div>
+                    <div class="rollable" data-type="neurocaster" data-cast="hack">
+                        <i class="fa-solid fa-gear-code"></i>
+                    </div>
+                    <div class="rollable" data-type="neurocaster" data-cast="coms">
+                        <i class="fa-solid fa-signal-stream"></i>
+                    </div>
+                    <div class="rollable" data-type="neurocaster" data-cast="block">
+                        <i class="fa-solid fa-signal-stream-slash"></i>
+                    </div>
+                    <div class="rollable" data-type="neurocaster" data-cast="combat">
+                        <i class="fa-solid fa-hand-fist"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="button-group grid three-col mw-75px middle" data-item-id="{{item._id}}">
+
                 {{#if item.flags.isFav}}
                 <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
                 {{/if}}
                 {{#unless item.flags.isFav}}
                 <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
                 {{/unless}}
-                
+
                 <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
                 <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
             </div>

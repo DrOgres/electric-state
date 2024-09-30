@@ -9,6 +9,10 @@
   white-space: nowrap;
 }
 
+.gap-x-small{
+  gap: 1px;
+}
+
 .gap-small{
   gap: 3px;
 }
@@ -76,6 +80,22 @@
 
 .col-33-67{
   grid-template-columns: 33% 66%;
+}
+
+.col-35-fr{
+  grid-template-columns: 35px 1fr;
+}
+
+.col-40-fr{
+  grid-template-columns: 40px 1fr;
+}
+
+.col-45-fr{
+  grid-template-columns: 45px 1fr;
+}
+
+.col-50-fr{
+  grid-template-columns: 50px 1fr;
 }
 
 .center{

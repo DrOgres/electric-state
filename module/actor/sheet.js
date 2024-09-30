@@ -5,7 +5,7 @@ export default class esActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["es", "sheet", "actor"],
-      width: 600,
+      width: 650,
       height: 700,
       tabs: [
         {

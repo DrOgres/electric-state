@@ -1,39 +1,52 @@
-<div class="flexcol">
-    <h2>JOURNEY</h2>
-    <div>
-        <h3>goal</h3>
-        <input name="system.goal" type="text" value="{{actor.system.journey.goal}}" placeholder="goal" />
+<div class="container grid col-60-40">
+    <div class="left-col">
+        <div class="flexcol">
+            <div class="fs-400 fw-800 all-caps border-thick margin-small padding-small">{{localize "estate.UI.JOURNEY"}}
+            </div>
+            <div class="border-3-4-thick fexcol padding-small margin-small margin-top-close">
+                <div class="goal-group flexrow fs-300 margin-small border-bottom-thin">
+                    <label for="goal" class="all-caps fw-700 middle">{{localize "estate.UI.GOAL"}}</label>
+                    <input id="goal" name="system.goal" type="text" value="{{actor.system.journey.goal}}"
+                        placeholder="goal" />
+                </div>
+                <div class="threat-group flexrow fs-300 margin-small border-bottom-thin">
+                    <label for="threat" class="all-caps fw-700 middle">{{localize "estate.UI.THREAT"}}</label>
+                    <input id="threat" name="system.threat" type="text" value="{{actor.system.journey.threat}}"
+                        placeholder="threat" />
+                </div>
+            </div>
+        </div>
+
+        <div class="container flex-col margin-top-large">
+            <div class="title fs-400 fw-800 all-caps margin-small padding-small border-thick">{{localize
+                "estate.UI.NOTES"}}</div>
+            <div class="full-size border-thick margin-small padding-small margin-top-close min-h-200px">
+                {{editor notesHTML target="system.notes" button=true owner=owner editable=editable}}
+            </div>
+        </div>
+
     </div>
-    <div>
-        <h3>threat</h3>
-        <input name="system.threat" type="text" value="{{actor.system.journey.threat}}" placeholder="threat" />
+    <div class="right-col">
+        <div class="tension-group flexcol margin-top-med">
+            <div class="grid cols-4-25 all-caps fw-600 fs-300 border-bottom-thin">
+                <div class="name ">{{localize "estate.UI.TENSION"}}</div>
+                <div class="type ">&nbsp;</div>
+                <div class="bonus center">{{localize "estate.UI.BONUS"}}</div>
+                <div class="item-create align-bottom mi-small text-right" data-type="tension">&plus;</div>
+            </div>
+            {{#each items as |item|}}
+            {{#if item.isTension}}
+
+            <div class="item-row flexrow fs-300 fw-400 middle w-100 border-bottom-thin">
+                <div>{{#actorName item.system.actorId}}{{/actorName}}</div>
+                <div class="stat">{{item.system.score}}</div>
+                <div class="button-group grid two-col mw-75px middle" data-item-id="{{item._id}}">
+                    <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+                    <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
+                </div>
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>
     </div>
 </div>
-
-<div class="tension-group">
-        <div class="group-header flexrow">
-            <h4>Tensions</h4>
-            <div class="item-create" data-type="tension">new tension</div>
-        </div>
-        {{#each items as |item|}}
-        {{#if item.isTension}}
-        <div class="item-row flexrow">
-            <div>{{item.name}}</div>
-            <div class="item-edit" data-item-id="{{item._id}}">edit</div>
-            <div class="item-delete" data-item-id="{{item._id}}">delete</div>
-        </div>
-        {{/if}}
-        {{/each}}
-    </div>
-</div>
-
-<div>   
-    <div class="container">
-        <b class="title" >{{localize "estate.UI.NOTES"}}</b>
-        <div class="full-size">
-        {{editor notesHTML target="system.notes" button=true owner=owner editable=editable}}
-        </div>
-    </div>
-</div>
-
-

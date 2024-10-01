@@ -54,6 +54,11 @@ Hooks.once("init", function () {
     return result;
   });
 
+  Handlebars.registerHelper("actorName", function (actorId) {
+    const actor = game.actors.get(actorId);
+    return actor ? actor.name : "";
+  });
+
   Handlebars.registerHelper("ifIn", function (elem, list, options) {
     if (list && list.indexOf(elem) > -1) {
       return options.fn(this);

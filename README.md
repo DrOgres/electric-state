@@ -17,6 +17,7 @@ TODO LIST:
 - Vehicle Sheets
     - set driver 
     - rolls on maneuver
+    - add traits
 - Item Sheets
     - Style and UI design for each item type.
 - General styling and UI improvement for clarity and use

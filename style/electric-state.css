@@ -233,6 +233,7 @@
 
 .middle {
   align-items: center;
+  align-self: center;
 }
 
 .text-right {
@@ -350,6 +351,10 @@
   margin-top: 10px;
 }
 
+.margin-top-large {
+  margin-top: 20px;
+}
+
 .margin-top-close {
   margin-top: -10px;
 }
@@ -396,6 +401,10 @@
 
 .h-3 {
   height: 3rem;
+}
+
+.min-h-200px {
+  min-height: 200px;
 }
 
 .bg-color-highlight {

@@ -35,6 +35,8 @@
     "UI.OTHER": "Other",
     "UI.NOTES": "Notes",
     "UI.JOURNEY": "Journey",
+    "UI.GOAL": "Goal",
+    "UI.THREAT": "Threat",
 
     "UI.SPEED": "Speed",
     "UI.MANEUVER": "Maneuverability",

@@ -10,6 +10,7 @@ TODO LIST:
 
 - Player Character Sheets
     - Target token to use Tension on opposed rolls
+    - Target to allow damage to be applied for attacks
     - Automatically apply damage to gear for 1's on pushed rolls
     - Automattically apply -1 hope for 1's on pushed rolls
     - dialog and tracking for death rolls

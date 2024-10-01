@@ -1,5 +1,5 @@
 import { eState } from "../config.js";
-import { prepareRollDialog } from "../lib/roll.js";
+import { prepareRollDialog, prepareDeathRollDialog } from "../lib/roll.js";
 
 export default class esActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -311,6 +311,16 @@ export default class esActorSheet extends ActorSheet {
 
   _deathRoll(actor) {
     console.log("E-STATE | Death Roll", actor);
+    //TODO build a dialog to prompt the user to make a death roll track the results and apply them to the actor
+    const talents = this.actor.items.filter((item) => item.type === "talent");
+
+    let options = {
+      actor: this.actor,
+      talents: talents,
+    }
+
+    prepareDeathRollDialog(options);
+
   }
 
   _onItemEdit(event) {

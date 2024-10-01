@@ -1,5 +1,36 @@
 import { YearZeroRoll } from "./yzur.js";
 
+export function prepareDeathRollDialog(options) {
+  console.log("Death Roll Dialog", options);
+
+  const actor = options.actor;
+
+  let dialogHTML = "";
+  let sucessCount = actor.flags.deathSucessCount || 0;
+  let failureCount = actor.flags.deathFailureCount || 0;
+
+  let dicePool = 4;
+  let bonus = 0;
+
+  console.log("talents", options.talents);
+  for (let talent of options.talents) {
+    if (talent.system.type.includes("death")) {
+      console.log("Death Talent", talent);
+      bonus += talent.system.modifier.value;
+    }
+  }
+
+  options.dicePool = dicePool;
+  options.bonusDefault = bonus;
+  options.sucessCount = sucessCount;
+  options.failureCount = failureCount;
+
+
+  console.log("building dialog", options);
+
+  return;
+}
+
 export function prepareRollDialog(options) {
   console.log("Roll Dialog", options);
 
@@ -288,7 +319,7 @@ export function prepareRollDialog(options) {
           options.attribute
         );
       }
-      
+
       dialogHTML += buildSubtotalDialog(options);
       dialogHTML += buildTalentSelectDialog(options, talents);
       break;

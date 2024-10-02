@@ -231,6 +231,17 @@ export default class esActorSheet extends ActorSheet {
           options.armorId = itemId;
         }
         break;
+      case "vehicle-armor":
+        {
+          if (this.actor.type !== "vehicle") return;
+
+          console.log("E-STATE | Rolling Vehicle Armor");
+          options.testName = game.i18n.localize(
+            `estate.UI.VEHICLEARMOR`
+          );
+          options.dicePool += this.actor.system.armor;
+        }
+        break;
       case "drone-attack":
         {
           console.log("E-STATE | Rolling Drone Attack");

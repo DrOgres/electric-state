@@ -71,30 +71,36 @@
             </div>
         </div>
     </div>
-   <div class="flexcol padding-small">
-        <div class="group-header flexrow middle border-bottom-thin space-between gap-med fw-600 fs-200">
-            <div class="mw-150px flexrow middle">{{localize "estate.HEAD.NAME"}}</div>
-            <div class="passenger-position">
-                <div>{{localize "estate.UI.POSITION"}}</div>
-            </div>
-            <div class="button-group mw-75px">
-                <div class="holder"></div>
-                <div class="fs-500">&plus;</div>
-                <div class="holder"></div>
-            </div>
-        </div>
-        {{#each passengers as |passenger|}}
-        <div class=" item item-row flexrow middle border-bottom-thin space-between gap-med" data-passenger-id="{{item._id}}">
-            <div class="mw-150px flexrow middle" data-type="actor" data-passenger-id="{{passenger._id}}">
-                <div class="name no-break middle">
-                    {{passenger.name}}
+    <div class="flexcol gap-small">
+        <div class="passengers-group">
+            <div class="group-header flexrow middle border-bottom-thin space-between gap-med fw-600 fs-200 all-caps">
+                <div class="mw-150px flexrow middle">{{localize "estate.HEAD.NAME"}}</div>
+                <div class="passenger-position">
+                    <div>{{localize "estate.UI.POSITION"}}</div>
+                </div>
+                <div class="button-group mw-75px">
+                    <div class="holder"></div>
+                    <div class="fs-500">&plus;</div>
+                    <div class="holder"></div>
                 </div>
             </div>
-            <div>{{localize "estate.UI.PASSENGER"}}</div>
-            <div class="button-group mw-75px" data-passenger-id="{{passenger._id}}">
-                <div class="remove-passenger"><i class="fa-solid fa-trash"></i></div>
+            {{#each passengers as |passenger|}}
+            <div class="passenger passenger-row flexrow middle border-bottom-thin space-between gap-med" data-passenger-id="{{passenger._id}}">
+                <div class="mw-150px flexrow middle" data-type="actor" data-passenger-id="{{passenger._id}}">
+                    <div class="name no-break middle">
+                        {{passenger.name}}
+                    </div>
+                </div>
+                <div>
+                    <select class="passenger-position" style="width: 175px">
+                         {{selectOptions @root.config.passengerOptions selected=passenger.position localize=true}} 
+                    </select> 
+                </div>
+                <div class="button-group mw-75px" data-passenger-id="{{passenger._id}}">
+                    <div class="remove-passenger"><i class="fa-solid fa-trash"></i></div>
+                </div>
             </div>
-        </div>
-        {{/each}}
-    </div> 
+            {{/each}}
+        </div> 
+    </div>
 </div>

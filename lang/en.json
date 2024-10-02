@@ -45,10 +45,12 @@
     "UI.HULL": "Hull",
     "UI.PASSENGERS": "Passengers",
     "UI.PASSENGER": "Passenger",
+    "UI.DRIVER": "Driver",
     "UI.POSITION": "Position",
     "UI.REPAIRS": "Repairs",
     "UI.TRUNK": "Trunk",
     "UI.VEHICLEARMOR": "Vehicle Armor",
+    "UI.VEHICLEFULL": "The vehicle is full.",
 
     "UI.MELEE": "Close Combat",
     "UI.RANGED": "Ranged Combat",

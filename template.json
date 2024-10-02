@@ -61,7 +61,8 @@
       "passengers": {
         "passenger": [],
         "max": 0,
-        "count": 0
+        "count": 0,
+        "driverActorId": ""
       }
     },
     "robot": {

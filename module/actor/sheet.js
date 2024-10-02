@@ -38,6 +38,7 @@ export default class esActorSheet extends ActorSheet {
 
   async getData() {
     const data = super.getData();
+    data.config = eState;
     const actor = this.actor;
     // console.log("E-STATE | Actor", actor);
     // console.log("E-STATE |  Data", data);
@@ -77,6 +78,7 @@ export default class esActorSheet extends ActorSheet {
     html.find(".toggle-fav").click(this._onToggleFav.bind(this));
     html.find(".toggle-equip").click(this._onToggleEquip.bind(this));
     html.find(".remove-passenger").click(this._onRemovePassenger.bind(this));
+    html.find(".passenger-position").change(this._onAssignPassengerPosition.bind(this));
   }
 
 
@@ -370,6 +372,14 @@ export default class esActorSheet extends ActorSheet {
     this.actor.removeVehiclePassenger(passengerId);
   }
 
+  async _onAssignPassengerPosition(event) {
+    console.log("E-STATE | Assigning Passenger Position", event);
+    event.preventDefault();
+    const parent = $(event.currentTarget).parents(".passenger");
+    const passengerId = parent[0].dataset.passengerId;
+    this.actor.assignPassengerPosition(passengerId, event.currentTarget.value);
+  }
+
   async checkHope(actor) {
     console.log("E-STATE | Checking Hope");
     let hope = 0;
@@ -449,11 +459,15 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _preparePassengers(data, actor) {
-    data.passengers = actor.system.passengers.passenger.reduce((arr, actor) => {
-      console.log("E-STATE | Preparing Passengers", actor.id);
-      const passenger = game.actors.get(actor.id);
+    data.passengers = actor.system.passengers.passenger.reduce((arr, a) => {
+      console.log("E-STATE | Preparing Passengers", a.id);
+      const passenger = game.actors.get(a.id);
       if (passenger) {
+        passenger.position = actor.system.passengers?.driverActorId === a.id ? "driver" : "passenger";
         arr.push(passenger);
+      } else {
+        // passenger doesn't exist anymore, remove from vehicle
+        this.actor.removeVehiclePassenger(a.id);
       }
       return arr;
     }, []); 
@@ -470,7 +484,7 @@ export default class esActorSheet extends ActorSheet {
     if (passenger.type !== 'player' && passenger.type !== 'npc') return;
 
     if (actorData.system.passengers.count >= actorData.system.passengers.max) {
-      return ui.notifications.warn(game.i18n.localize('ESTATE.UI.VEHICLEFULL'));
+      return ui.notifications.warn(game.i18n.localize('estate.UI.VEHICLEFULL'));
     }
     return await actorData.addVehiclePassenger(actorId); 
 	}

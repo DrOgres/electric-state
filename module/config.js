@@ -98,3 +98,8 @@ eState.castType = {
     block: "estate.UI.BLOCK",
     combat: "estate.UI.COMBAT"
 };
+
+eState.passengerOptions = {
+  driver: "estate.UI.DRIVER",
+  passenger: "estate.UI.PASSENGER",
+};

@@ -330,6 +330,7 @@ export default class esActorSheet extends ActorSheet {
     let options = {
       actor: this.actor,
       talents: talents,
+      sheet: this,
     }
 
     prepareDeathRollDialog(options);

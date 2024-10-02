@@ -96,6 +96,14 @@
   text-overflow: ellipsis;
 }
 
+.successes {
+  color: red;
+}
+
+.failures {
+  color: rgb(37, 0, 37);
+}
+
 /* Tooltip container */
 .tooltip {
   position: relative;

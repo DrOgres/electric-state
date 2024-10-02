@@ -25,6 +25,7 @@
     "HEAD.MODEL": "Model",
 
     "UI.EQUIP": "Equip",
+    "UI.UNEQUIP": "Unequip",
     "UI.TOGGLEFAV": "Toggle Favorite",
     "UI.EDIT": "Edit",
     "UI.DELETE": "Delete",

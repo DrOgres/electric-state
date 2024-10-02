@@ -6,8 +6,8 @@ export function prepareDeathRollDialog(options) {
   const actor = options.actor;
 
   let dialogHTML = "";
-  let sucessCount = actor.flags.deathSucessCount || 0;
-  let failureCount = actor.flags.deathFailureCount || 0;
+  let sucessCount = actor.flags.world.deathSucessCount || 0;
+  let failureCount = actor.flags.world.deathFailureCount || 0;
 
   let dicePool = 4;
   let bonus = 0;
@@ -19,16 +19,125 @@ export function prepareDeathRollDialog(options) {
       bonus += talent.system.modifier.value;
     }
   }
-
+  options.type = "death";
   options.dicePool = dicePool;
+  options.testName = game.i18n.localize("estate.UI.DEATHROLL");
   options.bonusDefault = bonus;
   options.sucessCount = sucessCount;
   options.failureCount = failureCount;
 
-
   console.log("building dialog", options);
 
-  return;
+  let failureHTML = "";
+  for (let i = 0; i < failureCount; i++) {
+    failureHTML += `<div><i class="fa-solid fa-skull"></i></div>`;
+  }
+
+  let successHTML = "";
+  for (let i = 0; i < sucessCount; i++) {
+    successHTML += `<div><i class="fa-solid fa-heart"></i></div>`;
+  }
+
+  dialogHTML +=
+    `
+  <div class="grid three-col center middle">
+      <div class="failures grid three-col gap-med center middle">` +
+    failureHTML +
+    `
+      </div>
+      <div class="dice">` +
+    game.i18n.localize("estate.UI.DICEPOOLSIZE") +
+    `: ` +
+    (options.dicePool + options.bonusDefault) +
+    `</div>
+      <div class="successes grid three-col gap-med center middle"> ` +
+    successHTML +
+    `
+      
+      </div>
+  </div>
+  `;
+  let dialog = new Dialog(
+    {
+      title: game.i18n.localize("estate.UI.DEATHROLL"),
+      content: buildDivHtmlDialog(
+        ` 
+            <div class="roll-fields pi-8 mb-1">
+            <h2>` +
+          game.i18n.localize("estate.UI.DEATHROLL") +
+          `</h2>
+            ${dialogHTML}
+            </hr>
+            </div>
+            `
+      ),
+      buttons: {
+        roll: {
+          icon: '<i class="fas fa-dice-d6"></i>',
+          label: game.i18n.localize("estate.UI.ROLL"),
+          callback: async () => {
+            console.log("Rolling", options);
+            let baseDice = options.dicePool + options.bonusDefault;
+            options.baseDice = baseDice;
+            // Always roll at least four dice on a death roll
+            if (options.baseDice <= 0) {
+              options.baseDice = 4;
+            }
+            console.log("Bonus", bonus);
+            console.log("Options", options);
+            let result = await roll(options);
+            console.log("Death Roll", result);
+            if (result.successCount > 0) {
+              sucessCount += result.successCount;
+              // send chat message that the actor has gained successes equal to the result.successCount
+              let chatData = {
+                user: game.user._id,
+                speaker: ChatMessage.getSpeaker(),
+                content: `${actor.name} has gained ${result.successCount} successes on their death roll`,
+              };
+              ChatMessage.create(chatData);
+              // if the actor has 3 successes they are no longer in danger of dying and the death roll is over
+            } else {
+              failureCount++;
+              // send chat message that the actor has gained a failure
+              let chatData = {
+                user: game.user._id,
+                speaker: ChatMessage.getSpeaker(),
+                content: `${actor.name} has gained a failure on their death roll`,
+              };
+              ChatMessage.create(chatData);
+
+              // if the actor has 3 failures they are dead and the death roll is over
+            }
+
+            if (
+              sucessCount >= 3 ||
+              failureCount >= 3
+            ) {
+              actor.setFlag("world", "deathSucessCount", 0);
+              actor.setFlag("world", "deathFailureCount", 0);
+              console.log("Death Roll", actor);
+              return;
+            }
+
+            actor.setFlag("world", "deathSucessCount", sucessCount);
+            actor.setFlag("world", "deathFailureCount", failureCount);
+            console.log("Death Roll", actor);
+          },
+        },
+        cancel: {
+          icon: '<i class="fas fa-times"></i>',
+          label: game.i18n.localize("estate.UI.CANCEL"),
+        },
+      },
+      default: "roll",
+      close: () => {},
+    },
+    {
+      width: 400,
+    }
+  );
+  dialog.render(true);
 }
 
 export function prepareRollDialog(options) {
@@ -192,10 +301,7 @@ export function prepareRollDialog(options) {
       break;
     case "vehicle-armor":
       console.log("Vehicle Armor Roll", options);
-      dialogHTML += buildHTMLDialog(
-        options.testName,
-        options.dicePool
-      );
+      dialogHTML += buildHTMLDialog(options.testName, options.dicePool);
       dialogHTML += buildSubtotalDialog(options);
       break;
     case "death":
@@ -237,7 +343,8 @@ export function prepareRollDialog(options) {
         let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.processor.value);
-          options.gearName = neurocaster.name + " " + game.i18n.localize("estate.UI.PROCESSOR"); 
+          options.gearName =
+            neurocaster.name + " " + game.i18n.localize("estate.UI.PROCESSOR");
           options.gearDice += neurocaster.system.processor.value;
         } else {
           ui.notifications.warn("You need to equip a neurocaster to cast");
@@ -257,7 +364,8 @@ export function prepareRollDialog(options) {
         let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.network.value);
-          options.gearName = neurocaster.name + " " + game.i18n.localize("estate.UI.NETWORK");
+          options.gearName =
+            neurocaster.name + " " + game.i18n.localize("estate.UI.NETWORK");
           options.gearDice += neurocaster.system.network.value;
         } else {
           ui.notifications.warn("You need to equip a neurocaster to cast");
@@ -276,7 +384,8 @@ export function prepareRollDialog(options) {
         let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.graphics.value);
-          options.gearName = neurocaster.name + " " + game.i18n.localize("estate.UI.GRAPHICS");
+          options.gearName =
+            neurocaster.name + " " + game.i18n.localize("estate.UI.GRAPHICS");
           options.gearDice += neurocaster.system.graphics.value;
         } else {
           ui.notifications.warn("You need to equip a neurocaster to cast");
@@ -290,13 +399,14 @@ export function prepareRollDialog(options) {
         );
       }
 
-      if(options.cast === "block"){
+      if (options.cast === "block") {
         console.log("Block Cast");
         options.attribute = "wits";
         let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.network.value);
-          options.gearName = neurocaster.name + " " + game.i18n.localize("estate.UI.NETWORK");
+          options.gearName =
+            neurocaster.name + " " + game.i18n.localize("estate.UI.NETWORK");
           options.gearDice += neurocaster.system.network.value;
         } else {
           ui.notifications.warn("You need to equip a neurocaster to cast");
@@ -309,13 +419,14 @@ export function prepareRollDialog(options) {
         );
       }
 
-      if(options.cast === "combat"){
+      if (options.cast === "combat") {
         console.log("Combat Cast");
         options.attribute = "wits";
         let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.graphics.value);
-          options.gearName = neurocaster.name + " " + game.i18n.localize("estate.UI.GRAPHICS");
+          options.gearName =
+            neurocaster.name + " " + game.i18n.localize("estate.UI.GRAPHICS");
           options.gearDice += neurocaster.system.graphics.value;
         } else {
           ui.notifications.warn("You need to equip a neurocaster to cast");
@@ -512,7 +623,7 @@ function buildTalentSelectDialog(options, talents, actor, drones) {
 
   for (let talent of talents) {
     console.log(talent);
-    // check the array talent.system.attribute to see if it contains a match for options.attribute 
+    // check the array talent.system.attribute to see if it contains a match for options.attribute
     if (drone !== undefined) {
       if (options.type === "drone" || drone.flags.isEquipped) {
         if (talent.system.type.includes("drone")) {
@@ -520,7 +631,6 @@ function buildTalentSelectDialog(options, talents, actor, drones) {
           selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
         }
       }
-      
     }
 
     if (neurocaster) {
@@ -539,8 +649,6 @@ function buildTalentSelectDialog(options, talents, actor, drones) {
       count++;
       selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
     }
-
-
   }
 
   if (count === 0) {
@@ -575,16 +683,17 @@ function buildSubtotalDialog(options) {
 
   let html = "";
 
-  if(options.gearDice > 0){
+  if (options.gearDice > 0) {
     subtotal += options.gearDice;
-    html += `<div class="flexcol">
+    html +=
+      `<div class="flexcol">
     <div class="flexrow">
         <h4 class="subheader middle">` +
-    options.gearName +
-    ` : &nbsp;</h4>
+      options.gearName +
+      ` : &nbsp;</h4>
     <p id="gear" style="text-align: right" class="grow pi-2 border-bottom"> &plus;` +
-    options.gearDice +
-    `</p></div>`;
+      options.gearDice +
+      `</p></div>`;
   }
 
   if (options.penalty > 0) {
@@ -722,8 +831,13 @@ export async function roll(options) {
     owner: actor.id,
     actorType: actor.type,
     formula: formula,
-    maxPush: actor.type === "player" ? 1 : 0,
   };
+
+  if (options.type !== "death") {
+    rollOptions.maxPush = actor.type === "player" ? 1 : 0;
+  } else {
+    rollOptions.maxPush = 0;
+  }
 
   let r;
 
@@ -737,4 +851,5 @@ export async function roll(options) {
     speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),
   });
   sheet.roll = r.duplicate();
+  return r;
 }

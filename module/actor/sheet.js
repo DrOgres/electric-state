@@ -324,7 +324,12 @@ export default class esActorSheet extends ActorSheet {
 
   _deathRoll(actor) {
     console.log("E-STATE | Death Roll", actor);
-    //TODO build a dialog to prompt the user to make a death roll track the results and apply them to the actor
+
+    if(actor.object.system.health.value > 0){
+      ui.notifications.info("You are not dying yet! You must be at 0 health before you make a death roll!");
+      return;
+    }
+
     const talents = this.actor.items.filter((item) => item.type === "talent");
 
     let options = {

@@ -88,6 +88,8 @@
 
     "UI.SUBTOTAL": "Subtotal",
     "UI.DICEPOOL": "Dice Pool",
+    "UI.DICE": "Dice",
+    "UI.DICEPOOLSIZE": "Dice Pool Size",
     "UI.ARMOR_PENALTY": "Armor Penalty",
     "UI.MOD": "Mod",
     "UI.DMG": "Damage",
@@ -121,6 +123,7 @@
     "UI.YES": "Yes",
     "UI.NO": "No",
     "UI.ROLL": "Roll",
+    "UI.ROLLING": "Rolling",
     "UI.CANCEL": "Cancel",
 
     

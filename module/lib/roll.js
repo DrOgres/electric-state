@@ -29,27 +29,35 @@ export function prepareDeathRollDialog(options) {
   console.log("building dialog", options);
 
   let failureHTML = "";
-  for (let i = 0; i < failureCount; i++) {
-    failureHTML += `<div><i class="fa-solid fa-skull"></i></div>`;
+  for (let i = 0; i < 3; i++) {
+    if (i < failureCount) {
+      failureHTML += `<div><i class="fa-solid fa-skull padding-medium"></i></div>`;
+    } else {
+      failureHTML += `<div><i class="fa-regular fa-skull padding-medium"></i></div>`;
+    }
   }
 
   let successHTML = "";
-  for (let i = 0; i < sucessCount; i++) {
-    successHTML += `<div><i class="fa-solid fa-heart"></i></div>`;
+  for (let i = 3; i > 0; i--) {
+    if (i <= sucessCount) {
+      successHTML += `<div><i class="fa-solid fa-heart padding-medium"></i></div>`;
+    } else {
+      successHTML += `<div><i class="fa-regular fa-heart padding-medium"></i></div>`;
+    }
   }
 
   dialogHTML +=
     `
-  <div class="grid three-col center middle">
+  <div class="grid three-col center middle margin-small padding-small">
       <div class="failures grid three-col gap-med center middle">` +
     failureHTML +
     `
       </div>
-      <div class="dice">` +
-    game.i18n.localize("estate.UI.DICEPOOLSIZE") +
+      <div class="dice all-caps fw-800 fs-300 margin-small padding-small">` +
+    game.i18n.localize("estate.UI.ROLLING") +
     `: ` +
     (options.dicePool + options.bonusDefault) +
-    `</div>
+    ` `+  game.i18n.localize("estate.UI.DICE") +`</div>
       <div class="successes grid three-col gap-med center middle"> ` +
     successHTML +
     `
@@ -90,30 +98,31 @@ export function prepareDeathRollDialog(options) {
             if (result.successCount > 0) {
               sucessCount += result.successCount;
               // send chat message that the actor has gained successes equal to the result.successCount
+              let stabalized = "";
+              if (sucessCount >= 3) { stabalized = ", and has stabilized"; }
               let chatData = {
                 user: game.user._id,
                 speaker: ChatMessage.getSpeaker(),
-                content: `${actor.name} has gained ${result.successCount} successes on their death roll`,
+                content: `${actor.name} has gained ${result.successCount} successes on their death roll` + stabalized,
               };
               ChatMessage.create(chatData);
               // if the actor has 3 successes they are no longer in danger of dying and the death roll is over
             } else {
               failureCount++;
               // send chat message that the actor has gained a failure
+              let died = "";
+              if (failureCount >= 3) { died = ", and has died"; }
               let chatData = {
                 user: game.user._id,
                 speaker: ChatMessage.getSpeaker(),
-                content: `${actor.name} has gained a failure on their death roll`,
+                content: `${actor.name} has gained a failure on their death roll` + died,
               };
               ChatMessage.create(chatData);
 
               // if the actor has 3 failures they are dead and the death roll is over
             }
 
-            if (
-              sucessCount >= 3 ||
-              failureCount >= 3
-            ) {
+            if (sucessCount >= 3 || failureCount >= 3) {
               actor.setFlag("world", "deathSucessCount", 0);
               actor.setFlag("world", "deathFailureCount", 0);
               console.log("Death Roll", actor);

@@ -262,7 +262,7 @@ export function prepareRollDialog(options) {
       console.log("Weapon Roll", options);
       const weapon = weapons.find((i) => i.id === options.weaponId);
       console.log("Weapon", weapon);
-      options.dicePool = 0;
+     
       options.dicePool = weapon.system.modifier.value;
       options.damage = weapon.system.damage;
       if (weapon.system.type === "melee") {
@@ -321,9 +321,6 @@ export function prepareRollDialog(options) {
       dialogHTML += buildHTMLDialog(options.testName, options.dicePool);
       dialogHTML += buildSubtotalDialog(options);
       break;
-    case "death":
-      console.log("Death Roll", options);
-      break;
     case "drone":
       console.log("Drone Roll", options);
       const neurocaster = neurocasters.find((i) => i.flags.isEquipped);
@@ -346,7 +343,7 @@ export function prepareRollDialog(options) {
       break;
     case "explosive":
       console.log("Explosive Roll", options);
-      //TODO roll the damage for the explosive and put it in options.damage;
+      
      
       // ADD the agility of the actor to the dice pool
       console.log("Explosive Roll", options);
@@ -361,6 +358,18 @@ export function prepareRollDialog(options) {
       } else {
         ui.notifications.warn("You need to equip an explosive to roll");
         return;
+      }
+
+      console.log("Explosive", explosive);
+      const damageDice = explosive.system.blast;
+      options.damage = 0;
+      for (let i = 0; i < damageDice; i++) {
+        let roll = Math.floor(Math.random() * 6) + 1;
+        console.log("Roll", roll);
+        if (roll === 6) {
+          options.damage++;
+        }
+        console.log("Damage", options.damage);
       }
 
       dialogHTML += buildHTMLDialog(

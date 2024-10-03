@@ -243,6 +243,17 @@ export default class esActorSheet extends ActorSheet {
           options.dicePool += this.actor.system.armor;
         }
         break;
+      case "robot-armor":
+        {
+          if (this.actor.type !== "robot") return;
+
+          console.log("E-STATE | Rolling Robot Armor");
+          options.testName = game.i18n.localize(
+            `estate.UI.ROBOTARMOR`
+          );
+          options.dicePool += this.actor.system.armor;
+        }
+        break;
       case "drone-attack":
         {
           console.log("E-STATE | Rolling Drone Attack");

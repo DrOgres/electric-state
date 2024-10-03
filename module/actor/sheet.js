@@ -160,6 +160,7 @@ export default class esActorSheet extends ActorSheet {
 
   async _onToggleEquip(event) {
     const parent = $(event.currentTarget).parents(".item");
+    console.log("E-STATE | Toggling Equip", parent);
     event.preventDefault();
     const itemId = parent[0].dataset.itemId;
     const item = this.actor.items.get(itemId);
@@ -316,6 +317,15 @@ export default class esActorSheet extends ActorSheet {
           options.testName = game.i18n.localize("estate.UI.NEUROCASTER") + " " + game.i18n.localize(eState.castType[options.cast]);
           options.dicePool = item.system.modifier.value;
           options.type = "neurocaster";
+        } break;
+        case "explosive": {
+          console.log("E-STATE | Rolling Explosive");
+          const itemId = event.currentTarget.dataset.itemId;
+          const item = this.actor.items.get(itemId);
+          options.testName = item.name;
+          options.dicePool = item.system.modifier.value;
+          options.explosiveId = itemId;
+          options.type = "explosive";
         } break;
     }
 

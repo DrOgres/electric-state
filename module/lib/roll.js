@@ -181,12 +181,14 @@ export function prepareRollDialog(options) {
 
   options.penalty = 0;
   options.bonusDefault = 0;
+  options.dicePool = 0;
 
   let dialogHTML = "";
 
   switch (options.type) {
     case "attribute":
       console.log("Attribute Roll", options);
+    
       options.dicePool = actor.system[options.attribute];
       for (let drone of drones) {
         /** set dice pool equal to drone str or agi depending on the attribute we passed in */
@@ -260,6 +262,7 @@ export function prepareRollDialog(options) {
       console.log("Weapon Roll", options);
       const weapon = weapons.find((i) => i.id === options.weaponId);
       console.log("Weapon", weapon);
+      options.dicePool = 0;
       options.dicePool = weapon.system.modifier.value;
       options.damage = weapon.system.damage;
       if (weapon.system.type === "melee") {
@@ -338,7 +341,31 @@ export function prepareRollDialog(options) {
       break;
     case "explosive":
       console.log("Explosive Roll", options);
-      //TODO do correct roll for explosive
+      //TODO roll the damage for the explosive and put it in options.damage;
+     
+      // ADD the agility of the actor to the dice pool
+      console.log("Explosive Roll", options);
+      console.log("Actor", actor.system.agility);
+      options.dicePool += actor.system.agility;
+      
+      // add the modifier value of the explosive to the gear dice pool
+      const explosive = explosives.find((i) => i.id === options.explosiveId);
+      if(explosive !== undefined){
+      options.gearDice = explosive.system.modifier.value;
+      options.gearName = explosive.name;
+      } else {
+        ui.notifications.warn("You need to equip an explosive to roll");
+        return;
+      }
+
+      dialogHTML += buildHTMLDialog(
+        game.i18n.localize("estate.ATTRIBUTE.AGI"),
+        options.dicePool,
+        options.attribute
+      );
+      dialogHTML += buildSubtotalDialog(options);
+      dialogHTML += buildTalentSelectDialog(options, talents);
+
       break;
     case "neurocaster":
       options.gearDice = 0;

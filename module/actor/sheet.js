@@ -498,6 +498,9 @@ export default class esActorSheet extends ActorSheet {
       }
       return arr;
     }, []); 
+
+    // only include passengers that are not the driver
+    data.passengerCountExcludingDriver = data.passengers.filter((p) => p.position === "passenger").length;
     return data;
   }
 
@@ -510,11 +513,8 @@ export default class esActorSheet extends ActorSheet {
 
     if (passenger.type !== 'player' && passenger.type !== 'npc') return;
 
-    if (actorData.system.passengers.count >= actorData.system.passengers.max) {
-      return ui.notifications.warn(game.i18n.localize('estate.UI.VEHICLEFULL'));
-    }
     return await actorData.addVehiclePassenger(actorId); 
-	}
+  }
 
   computeItems(data) {
     console.log("E-STATE | Computing Items", data);

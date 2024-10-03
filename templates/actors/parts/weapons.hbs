@@ -13,6 +13,7 @@
         <div class="holder"></div>
     </div>
 </div>
+
 {{#each items as |item|}}
 {{#if item.isWeapon}}
 <div class=" item item-row flexrow middle border-bottom-thin space-between gap-med w-100" data-item-id="{{item._id}}">
@@ -35,11 +36,17 @@
     </div>
 
     <div class="button-group grid three-col mw-75px" data-item-id="{{item._id}}">
+        {{log ../actor.type}}
+        {{#if (eq ../actor.type 'player')}}
         {{#if item.flags.isFav}}
         <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
         {{/if}}
         {{#unless item.flags.isFav}}
         <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+        {{/unless}}
+        {{/if}}
+        {{#unless (eq ../actor.type 'player')}}
+        <div class="hold"></div>
         {{/unless}}
         <div class="item-edit"><i class="fa-solid fa-pen-to-square"></i></div>
         <div class="item-delete"><i class="fa-solid fa-trash"></i></div>

@@ -338,15 +338,13 @@ export function prepareRollDialog(options) {
       break;
     case "explosive":
       console.log("Explosive Roll", options);
+      //TODO do correct roll for explosive
       break;
     case "neurocaster":
       options.gearDice = 0;
       console.log("Neurocaster Roll", options);
       if (options.cast === "info") {
         console.log("Info Cast");
-        //TODO add the wits attribute to the dice pool
-        //TODO add the processor attribute of the neurocaster to the gear dice pool
-        //TODO check for any talents that affect the neurocaster and add them to the dice pool
         options.attribute = "wits";
         options.dicePool = actor.system.wits;
         let neurocaster = neurocasters.find((i) => i.flags.isEquipped);

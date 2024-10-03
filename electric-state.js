@@ -99,7 +99,7 @@ Hooks.once("init", function () {
     "ROLL.infosTemplate": "systems/electric-state/templates/dice/infos.hbs",
   });
 
-
+  setLogo();
 
 
 
@@ -113,3 +113,6 @@ Hooks.on('dropActorSheetData', async (actor, actorSheet, data) => {
   }
 });
 
+function setLogo() {
+	$("#logo")[0].src = "systems/electric-state/assets/logo.webp";
+}

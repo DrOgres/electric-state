@@ -313,6 +313,11 @@ export function prepareRollDialog(options) {
       dialogHTML += buildHTMLDialog(options.testName, options.dicePool);
       dialogHTML += buildSubtotalDialog(options);
       break;
+    case "robot-armor":
+      console.log("Robot Armor Roll", options);
+      dialogHTML += buildHTMLDialog(options.testName, options.dicePool);
+      dialogHTML += buildSubtotalDialog(options);
+      break;
     case "death":
       console.log("Death Roll", options);
       break;

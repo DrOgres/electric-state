@@ -52,6 +52,7 @@
     "UI.TRUNK": "Trunk",
     "UI.VEHICLEARMOR": "Vehicle Armor",
     "UI.VEHICLEFULL": "The vehicle is full.",
+    "UI.ROBOTARMOR": "Robot Armor",
 
     "UI.MELEE": "Close Combat",
     "UI.RANGED": "Ranged Combat",

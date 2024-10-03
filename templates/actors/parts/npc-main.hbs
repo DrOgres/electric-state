@@ -1,6 +1,6 @@
 <div class="grid gap-small">
     <div class="flexcol">
-         {{> "systems/electric-state/templates/actors/parts/stats.hbs"}}
+        {{> "systems/electric-state/templates/actors/parts/stats.hbs"}}
         <div class="flexrow">
             <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
                 {{localize "estate.ATTRIBUTE.HEALTH"}}
@@ -17,5 +17,9 @@
                 {{> "systems/electric-state/templates/actors/parts/talents.hbs"}}
             </div>
         </div>
+        <div class="flexcol padding-small border-thick">
+        <h2 class="all-caps fw-600">Gear</h2>
+        {{> "systems/electric-state/templates/actors/parts/gear.hbs"}}
     </div>
+</div>
 </div>

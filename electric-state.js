@@ -54,6 +54,14 @@ Hooks.once("init", function () {
     return result;
   });
 
+  Handlebars.registerHelper("minus", function (a, b) {
+    return a - b;
+  });
+
+    Handlebars.registerHelper("plus", function (a, b) {
+    return a + b;
+    });
+
   Handlebars.registerHelper("actorName", function (actorId) {
     const actor = game.actors.get(actorId);
     return actor ? actor.name : "";

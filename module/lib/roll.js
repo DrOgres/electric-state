@@ -349,6 +349,7 @@ export function prepareRollDialog(options) {
       console.log("Explosive Roll", options);
       console.log("Actor", actor.system.agility);
       options.dicePool += actor.system.agility;
+      options.type = "explosive";
       
       // add the modifier value of the explosive to the gear dice pool
       const explosive = explosives.find((i) => i.id === options.explosiveId);
@@ -853,6 +854,7 @@ export async function roll(options) {
 
   const sheet = options.sheet;
   sheet.roll = new YearZeroRoll();
+
   sheet.lastTestName = options.testName;
   sheet.lastDamage = options.damage;
 
@@ -879,6 +881,7 @@ export async function roll(options) {
     owner: actor.id,
     actorType: actor.type,
     formula: formula,
+    type: options.type,
   };
 
   if (options.type !== "death") {
@@ -894,6 +897,8 @@ export async function roll(options) {
   } else {
     r = YearZeroRoll.forge(dice, data, rollOptions);
   }
+
+
 
   await r.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),

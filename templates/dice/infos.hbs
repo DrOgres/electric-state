@@ -1,11 +1,40 @@
 <div class="dice-infos">
   {{#if (eq roll.game 'es')}}
-    {{#if (gt roll.options.damage 0)}}
-        <div class="roll-damage center fs-400 fw-700 margin-small">
-          <span class="label">{{localize "estate.UI.DAMAGE"}}: </span>
-          <span class ="result">{{roll.options.damage}}</span>
-        </div>
+  {{#if (gt roll.options.damage 0)}}
+  {{#unless (eq roll.options.type "explosive")}}
+  <div class="roll-damage center fs-400 fw-700 margin-small">
+    <span class="label">{{localize "estate.UI.DAMAGE"}}: </span>
+    {{#if (gt roll.successCount 1)}}
+    <span class="result">
+      {{plus roll.options.damage (minus roll.successCount 1)}} &nbsp;
+      (
+      {{roll.options.damage}} &plus; {{minus roll.successCount 1}}
+      )
+    </span>
     {{/if}}
+
+    {{#unless (gt roll.successCount 1)}}
+    <span class="result"> {{roll.options.damage}} </span>
+    {{/unless}}
+  </div>
+  {{/unless}}
+  {{#if (eq roll.options.type "explosive")}}
+  <div class="roll-damage center fs-400 fw-700 margin-small">
+    <span class="label">{{localize "estate.UI.BLASTDAMAGE"}}: </span>
+    {{#if (gt roll.successCount 1)}}
+    <span class="result"> {{plus roll.options.damage (minus roll.successCount 1)}}
+      (
+      {{roll.options.damage}}
+      &plus; {{minus roll.successCount 1}}
+      )
+    </span>
+    {{/if}}
+    {{#unless (gt roll.successCount 1)}}
+    <span class="result"> {{roll.options.damage}} </span>
+    {{/unless}}
+  </div>
+  {{/if}}
+  {{/if}}
   {{/if}}
 
 </div>

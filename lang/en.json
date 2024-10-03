@@ -94,6 +94,7 @@
     "UI.ARMOR_PENALTY": "Armor Penalty",
     "UI.MOD": "Mod",
     "UI.DMG": "Damage",
+    "UI.BLASTDAMAGE": "Blast Damage",
     "UI.ATTACK": "Attack",
     "UI.RANGE_MIN": "Minimum Range",
     "UI.RANGE_MAX": "Maximum Range",

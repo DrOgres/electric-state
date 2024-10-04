@@ -31,7 +31,11 @@
                     {{localize "estate.UI.SPEED"}}
                     <div class="input-container mi-small center">
                         <input type="text" name="system.speed" value="{{actor.system.speed}}" style="width: 50px"
-                            data-dtype="Number" />
+                            data-dtype="Number" /> 
+                            {{log actor.flags}}
+                            {{#if (gt actor.flags.electric-state.speed 0) }}
+                             &plus;  {{actor.flags.electric-state.speed}}  = {{plus actor.system.speed actor.flags.electric-state.speed}}
+                             {{/if}}
                     </div>
                 </div>
             </div>

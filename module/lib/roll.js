@@ -506,8 +506,6 @@ export function prepareRollDialog(options) {
     "bonus"
   );
 
-  console.log(dialogHTML);
-
   let dialog = new Dialog(
     {
       title: game.i18n.localize("estate.UI.ROLL") + " : " + options.testName,

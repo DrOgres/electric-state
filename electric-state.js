@@ -95,6 +95,10 @@ Hooks.once("init", function () {
         const useType = eState.useTypeOptions[data];
         string = game.i18n.localize(`${useType}`);
         break;
+      case "trait":
+        const trait = eState.traitTarget[data];
+        string = game.i18n.localize(`${trait}`);
+        break;
     }
 
     return string;

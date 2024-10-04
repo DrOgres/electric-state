@@ -33,7 +33,7 @@
                         <input type="text" name="system.speed" value="{{actor.system.speed}}" style="width: 50px"
                             data-dtype="Number" /> 
                             {{log actor.flags}}
-                            {{#if (gt actor.flags.electric-state.speed 0) }}
+                            {{#if (ne actor.flags.electric-state.speed 0) }}
                              &plus;  {{actor.flags.electric-state.speed}}  = {{plus actor.system.speed actor.flags.electric-state.speed}}
                              {{/if}}
                     </div>
@@ -131,20 +131,17 @@
 
             {{#each items as |item|}}
             {{#if item.isTrait}}
-            <div class="item item-row flexrow middle border-bottom-thin space-between gap-med w-100"
-                data-item-id="{{item._id}}">
-                <div class="mw-150px flexrow middle" data-type="trait" data-item-id="{{item._id}}">
-                    <div class="item-icon mw-35px"><img src="{{item.img}}" data-edit="img" title="{{item.name}}"
-                            height="25" width="25" /></div>
-                    <div class="name no-break middle">
-                        {{item.name}}
-                    </div>
-                </div>
-                <div class="button-group" data-item-id="{{item._id}}">
-                    <div class="item-edit"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="item-delete"><i class="fa-solid fa-trash"></i></div>
-                </div>
+            <div class="grid cols-4-25 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin">
+            <div class="item overflow-elipsis" data-item-id="{{item._id}}">{{item.name}}</div>
+            <div class="modify text-left overflow-elipsis">{{dataLocalization item.system.type "trait"}}</div>
+            <div class="mod center">{{item.system.modifier.value}}</div>
+            <div class="button-group align-bottom flexrow text-right justify-content-end"  data-item-id="{{item._id}}">
+                <div class="item-edit mw-fit" ><i
+                        class="fa-solid fa-pen-to-square"></i></div>
+                <div class="item-delete mw-fit" ><i
+                        class="fa-solid fa-trash"></i></div>
             </div>
+        </div>
             {{/if}}
             {{/each}}
 

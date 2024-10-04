@@ -415,6 +415,10 @@
   min-height: 200px;
 }
 
+.min-h-300px {
+  min-height: 300px;
+}
+
 .bg-color-highlight {
   background: #cdeef0;
 }

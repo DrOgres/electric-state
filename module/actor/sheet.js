@@ -93,7 +93,7 @@ export default class esActorSheet extends ActorSheet {
       return;
     }
     const type = item.system.useType;
-    const penalty = item.system.usePenalty;
+    const penalty = item.system.usePenaltyType;
     let uses = item.system.uses;
 
     console.log("E-STATE | Item Type", type); 
@@ -134,6 +134,7 @@ export default class esActorSheet extends ActorSheet {
         uses -= 1;
     }
 
+    console.log("Penalty", penalty);
     // apply any penaties to the actor
     // none: "estate.UI.NONE",
     // healthDown: "estate.UI.HEALTHDOWN",
@@ -146,7 +147,7 @@ export default class esActorSheet extends ActorSheet {
       break;
       case "healthDown":
         let health = this.actor.system.health.value;
-        health -= item.system.penaltyValue;
+        health -= item.system.usePenalty;
         await this.actor.update({"system.health.value": health});
       break;
      

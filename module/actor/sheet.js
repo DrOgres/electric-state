@@ -249,7 +249,7 @@ export default class esActorSheet extends ActorSheet {
           if (this.actor.type !== "vehicle") return;
 
           console.log("E-STATE | Rolling Vehicle Maneuverability");
-          const driverId = this.actor.system.passengers.driverActorId;
+          const driverId = this.actor.system.passengers.driverId;
           const driver  = driverId ? game.actors.get(driverId) : null;
           if (!driver) {
             ui.notifications.warn(
@@ -510,11 +510,11 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _preparePassengers(data, actor) {
-    data.passengers = actor.system.passengers.passenger.reduce((arr, a) => {
+    data.passengers = actor.system.passengers.passengerIds.reduce((arr, a) => {
       console.log("E-STATE | Preparing Passengers", a.id);
       const passenger = game.actors.get(a.id);
       if (passenger) {
-        passenger.position = actor.system.passengers?.driverActorId === a.id ? "driver" : "passenger";
+        passenger.position = actor.system.passengers?.driverId === a.id ? "driver" : "passenger";
         arr.push(passenger);
       } else {
         // passenger doesn't exist anymore, remove from vehicle

@@ -12,17 +12,17 @@ export default class esActor extends Actor {
 
         if (this.type !== 'vehicle') return;
     
-        if (system.passengers.passenger.find((p) => p.id === actorId)) return;
+        if (system.passengers.passengerIds.find((p) => p.id === actorId)) return;
 
         console.log("E-STATE | Adding passenger to vehicle", actorId);
         const passenger = {
             id: actorId,
         };
-        system.passengers.passenger.push(passenger);
+        system.passengers.passengerIds.push(passenger);
         
         await this.update({ 
-            'system.passengers.passenger': system.passengers.passenger,
-            'system.passengers.count': system.passengers.passenger.length,
+            'system.passengers.passengerIds': system.passengers.passengerIds,
+            'system.passengers.count': system.passengers.passengerIds.length,
         });
 
         return passenger;
@@ -31,16 +31,16 @@ export default class esActor extends Actor {
     async removeVehiclePassenger(actorId) {
         console.log("E-STATE | Removing passenger from vehicle", actorId);
 
-        const passengers = this.system.passengers.passenger.filter((p) => p.id !== actorId);
+        const passengers = this.system.passengers.passengerIds.filter((p) => p.id !== actorId);
 
         const update = { 
-            'system.passengers.passenger': passengers,
+            'system.passengers.passengerIds': passengers,
             'system.passengers.count': passengers.length,
         };
 
         if (this._wasDriver(actorId)) {
             console.log("E-STATE | The removed passenger was the driver, unassign driver", actorId);
-            update["system.passengers.driverActorId"] = ""
+            update["system.passengers.driverId"] = ""
         }
         
         await this.update(update);
@@ -51,21 +51,21 @@ export default class esActor extends Actor {
     async assignPassengerPosition(actorId, position) {
         console.log("E-STATE | Assigning passenger position", actorId, position);
 
-        const passenger = this.system.passengers.passenger.find((p) => p.id === actorId);
+        const passenger = this.system.passengers.passengerIds.find((p) => p.id === actorId);
 
         if (!passenger) return;
 
         if (position === 'driver') {
-            this.system.passengers.driverActorId = actorId;
+            this.system.passengers.driverId = actorId;
             await this.update({ 
-                'system.passengers.driverActorId': actorId,
+                'system.passengers.driverId': actorId,
             });
         } else {
             if (this._wasDriver(actorId)) {
                 console.log("E-STATE | The driver is being assigned a passenger position, unassign driver");
-                this.system.passengers.driverActorId = "";
+                this.system.passengers.driverId = "";
                 await this.update({ 
-                    'system.passengers.driverActorId': "",
+                    'system.passengers.driverId': "",
                 });
             } 
         }
@@ -74,7 +74,7 @@ export default class esActor extends Actor {
     }
 
     _wasDriver(actorId) {
-        return this.system.passengers.driverActorId === actorId;
+        return this.system.passengers.driverId === actorId;
     }
 }
 

@@ -319,7 +319,7 @@ export function prepareRollDialog(options) {
       break;
     case "vehicle-maneuverability":
       console.log("Vehicle Maneuverability Roll", options);
-      dialogHTML += buildHTMLDialog(options.testName, options.dicePool);
+      dialogHTML += buildHTMLDialog(game.i18n.localize("estate.ATTRIBUTE.AGI"), options.dicePool);
       dialogHTML += buildSubtotalDialog(options);
       dialogHTML += buildTalentSelectDialog(options, options.talents);
       break;

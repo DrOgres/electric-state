@@ -258,7 +258,7 @@ export default class esActorSheet extends ActorSheet {
             return;
           }
 
-          options.testName = game.i18n.localize(`estate.ATTRIBUTE.AGI`);
+          options.testName = game.i18n.localize(`estate.UI.MANEUVER`);
           options.attribute = "agility";
           options.talents = driver.items.filter((item) => item.type === "talent");
           options.dicePool = driver.system.agility;

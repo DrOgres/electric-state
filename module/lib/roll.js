@@ -165,7 +165,9 @@ export function prepareRollDialog(options) {
 
   const actor = options.sheet.object;
   console.log(actor);
-  let talents = actor.items.filter((i) => i.type === "talent");
+
+  // take the talents from the option or default to the current actor talents
+  let talents = options.talents ?? actor.items.filter((i) => i.type === "talent");
   let gear = actor.items.filter((i) => i.type === "gear");
   let armors = actor.items.filter((i) => i.type === "armor");
   let weapons = actor.items.filter((i) => i.type === "weapon");
@@ -181,7 +183,6 @@ export function prepareRollDialog(options) {
 
   options.penalty = 0;
   options.bonusDefault = 0;
-  options.dicePool = 0;
 
   let dialogHTML = "";
 
@@ -315,6 +316,12 @@ export function prepareRollDialog(options) {
       console.log("Vehicle Armor Roll", options);
       dialogHTML += buildHTMLDialog(options.testName, options.dicePool);
       dialogHTML += buildSubtotalDialog(options);
+      break;
+    case "vehicle-maneuverability":
+      console.log("Vehicle Maneuverability Roll", options);
+      dialogHTML += buildHTMLDialog(options.testName, options.dicePool);
+      dialogHTML += buildSubtotalDialog(options);
+      dialogHTML += buildTalentSelectDialog(options, options.talents);
       break;
     case "robot-armor":
       console.log("Robot Armor Roll", options);
@@ -884,11 +891,8 @@ export async function roll(options) {
     type: options.type,
   };
 
-  if (options.type !== "death") {
-    rollOptions.maxPush = actor.type === "player" ? 1 : 0;
-  } else {
-    rollOptions.maxPush = 0;
-  }
+
+  rollOptions.maxPush = isRollPushable(actor, options) ? 1 : 0;
 
   let r;
 
@@ -905,4 +909,10 @@ export async function roll(options) {
   });
   sheet.roll = r.duplicate();
   return r;
+}
+
+function isRollPushable(actor, optioms){
+  if (actor.type === "player" && optioms.type !== "death") return true;
+  if (optioms.type === "vehicle-maneuverability") return true;
+  return false;
 }

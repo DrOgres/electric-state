@@ -243,6 +243,29 @@ export default class esActorSheet extends ActorSheet {
           options.dicePool += this.actor.system.armor;
         }
         break;
+      case "vehicle-maneuverability":
+        {
+          if (this.actor.type !== "vehicle") return;
+
+          console.log("E-STATE | Rolling Vehicle Maneuverability");
+          const driverId = this.actor.system.passengers.driverActorId;
+          const driver  = driverId ? game.actors.get(driverId) : null;
+          if (!driver) {
+            ui.notifications.warn(
+              "You must assign a driver to the vehicle to make a maneuverability test"
+            );
+            return;
+          }
+
+          options.testName = game.i18n.localize(`estate.ATTRIBUTE.AGI`);
+          options.attribute = "agility";
+          options.talents = driver.items.filter((item) => item.type === "talent");
+          options.dicePool = driver.system.agility;
+          options.gearName = game.i18n.localize(`estate.UI.MANEUVER`);
+          options.gearDice = this.actor.system.maneuverability.value;
+          
+        }
+        break;
       case "robot-armor":
         {
           if (this.actor.type !== "robot") return;

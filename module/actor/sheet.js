@@ -357,7 +357,7 @@ export default class esActorSheet extends ActorSheet {
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
           options.testName = item.name;
-          options.dicePool = item.system.modifier.value;
+          options.dicePool = 0;
           options.explosiveId = itemId;
           options.type = "explosive";
         } break;

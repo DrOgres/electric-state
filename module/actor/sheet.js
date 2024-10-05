@@ -279,7 +279,8 @@ export default class esActorSheet extends ActorSheet {
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
           options.testName = item.name;
-          options.dicePool = item.system.modifier.value;
+          options.gearName = item.name;
+          options.gearDice = item.system.modifier.value;
           options.damage = item.system.damage;
           options.attribute = item.system.attribute;
           options.weaponId = itemId;

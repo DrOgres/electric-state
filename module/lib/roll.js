@@ -264,14 +264,16 @@ export function prepareRollDialog(options) {
       const weapon = weapons.find((i) => i.id === options.weaponId);
       console.log("Weapon", weapon);
      
-      options.dicePool = weapon.system.modifier.value;
       options.damage = weapon.system.damage;
+      let attributeNameKey = "estate.ATTRIBUTE.STR";
       if (weapon.system.type === "melee") {
         options.attribute = "strength";
         options.dicePool += actor.system.strength;
+        attributeNameKey = "estate.ATTRIBUTE.STR";
       } else if (weapon.system.type === "ranged") {
         options.attribute = "agility";
         options.dicePool += actor.system.agility;
+        attributeNameKey = "estate.ATTRIBUTE.AGI";
       } else if (weapon.system.type === "neuroscape") {
         console.log("Neuroscape Weapon", actor);
         let foundCaster = false;
@@ -290,9 +292,10 @@ export function prepareRollDialog(options) {
         }
         options.attribute = "wits";
         options.dicePool += actor.system.wits;
+        attributeNameKey = "estate.ATTRIBUTE.WIT";
       }
       dialogHTML += buildHTMLDialog(
-        options.testName,
+        game.i18n.localize(attributeNameKey),
         options.dicePool,
         options.attribute
       );

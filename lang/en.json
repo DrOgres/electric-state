@@ -23,6 +23,7 @@
     "HEAD.FAVS": "Favorite Items",
     "HEAD.VEHICLE_TYPE": "Vehicle Type",
     "HEAD.MODEL": "Model",
+    "HEAD.PRICE": "Price",
 
     "UI.EQUIP": "Equip",
     "UI.UNEQUIP": "Unequip",

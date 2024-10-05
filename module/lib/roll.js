@@ -222,7 +222,7 @@ export function prepareRollDialog(options) {
       for (let armor of armors) {
         if (armor.flags.isEquipped) {
           if (options.attribute === "agility") {
-            options.armorPenalty = armor.system.agiltyModifier;
+            options.armorPenalty = Math.abs(armor.system.agiltyModifier);
           }
         }
       }

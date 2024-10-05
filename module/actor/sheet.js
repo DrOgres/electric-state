@@ -86,7 +86,17 @@ export default class esActorSheet extends ActorSheet {
   async _applyVehicleTraits(data, actor) {
     console.log("E-STATE | Applying Vehicle Traits", data , actor);
     const traits = actor.items.filter((item) => item.type === "trait");
-    console.log("E-STATE | Traits", traits);
+    console.log("E-STATE | Traits", traits, traits.length);
+
+    if (traits.length === 0) {
+      actor.setFlag("electric-state", "speed", 0);
+      actor.setFlag("electric-state", "maneuver", 0);
+      actor.setFlag("electric-state", "armor", 0);
+      actor.setFlag("electric-state", "hull", 0);
+      actor.setFlag("electric-state", "passengers", 0);
+    }
+
+
     for (let trait of traits) {
       console.log("E-STATE | Trait", trait);
       // none: "estate.UI.NONE",
@@ -99,7 +109,6 @@ export default class esActorSheet extends ActorSheet {
       // repairs: "estate.UI.REPAIRS",
 
       //clear the flags for the vehicle
-      
 
       switch (trait.system.type) {
         case "none":
@@ -110,23 +119,26 @@ export default class esActorSheet extends ActorSheet {
         case "speed":
           const speed = trait.system.modifier.value;
           actor.setFlag("electric-state", "speed", speed);
-          console.log("E-STATE | Speed", speed, actor);
-          
+          console.log("E-STATE | Speed", speed, actor);   
           break;
         case "maneuver":
           const maneuver = trait.system.modifier.value;
+          actor.setFlag("electric-state", "maneuver", maneuver);
           console.log("E-STATE | Maneuver", maneuver);
           break;
         case "armor":
           const armor = trait.system.modifier.value;
+          actor.setFlag("electric-state", "armor", armor);
           console.log("E-STATE | Armor", armor);
           break;
         case "hull":
           const hull = trait.system.modifier.value;
+          actor.setFlag("electric-state", "hull", hull);
           console.log("E-STATE | Hull", hull);
           break;
         case "passengers":
           const passengers = trait.system.modifier.value;
+          actor.setFlag("electric-state", "passengers", passengers);
           console.log("E-STATE | Passengers", passengers);
           break;
 

@@ -12,6 +12,9 @@
                     <div class="input-container mi-small center">
                         <input type="text" name="system.hull.max" value="{{actor.system.hull.max}}" style="width: 50px"
                             data-dtype="Number" />
+                            {{#if (ne actor.flags.electric-state.hull 0) }}
+                             &plus;  {{actor.flags.electric-state.hull}}  = {{plus actor.system.hull.max actor.flags.electric-state.hull}}
+                             {{/if}}
                     </div>
                 </div>
             </div>
@@ -21,6 +24,9 @@
                     <div class="input-container mi-small center">
                         <input type="text" name="system.armor" value="{{actor.system.armor}}" style="width: 50px"
                             data-dtype="Number" />
+                            {{#if (ne actor.flags.electric-state.armor 0) }}
+                             &plus;  {{actor.flags.electric-state.armor}}  = {{plus actor.system.armor actor.flags.electric-state.armor}}
+                             {{/if}}
                     </div>
                 </div>
             </div>
@@ -50,6 +56,9 @@
                     <div class="input-container mi-small center">
                         <input type="text" name="system.maneuverability.max"
                             value="{{actor.system.maneuverability.max}}" style="width: 50px" data-dtype="Number" />
+                            {{#if (ne actor.flags.electric-state.maneuver 0) }}
+                             &plus;  {{actor.flags.electric-state.maneuver}}  = {{plus actor.system.maneuverability.max actor.flags.electric-state.maneuver}}
+                             {{/if}}
                     </div>
                 </div>
             </div>
@@ -65,6 +74,9 @@
                     <div class="input-container mi-small center">
                         <input type="text" name="system.passengers.max" value="{{actor.system.passengers.max}}"
                             style="width: 50px" data-dtype="Number" />
+                            {{#if (ne actor.flags.electric-state.passengers 0) }}
+                             &plus;  {{actor.flags.electric-state.passengers}}  = {{plus actor.system.passengers.max actor.flags.electric-state.passengers}}
+                             {{/if}}
                     </div>
                 </div>
             </div>

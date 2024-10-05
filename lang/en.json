@@ -64,6 +64,7 @@
     "UI.TENSION": "Tension",
     "UI.NEUROCASTER": "Neurocaster",
     "UI.TRAIT": "Trait",
+    "UI.TRAITS": "Traits",
     "UI.DRONE": "Drone",
     "UI.GENERAL": "General",
     "UI.DEATH": "Death",
@@ -121,6 +122,7 @@
     "UI.COMS": "Avatar Communications",
     "UI.BLOCK": "Block Communications",
     "UI.COMBAT": "Avatar Combat",
+    "UI.TRAIT_INCLUDED": "Including Traits",
 
     "UI.YES": "Yes",
     "UI.NO": "No",

@@ -1,163 +1,282 @@
 <div class="grid gap-small">
-    <div class="flexcol">
-        <div class="flexrow">
-            <div class="flexrow">
-                <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
-                    {{localize "estate.UI.HULL"}}
-                    <div class="input-container mi-small center">
-                        <input type="text" name="system.hull.value" value="{{actor.system.hull.value}}"
-                            style="width: 50px" data-dtype="Number" />
-                    </div>
-                    <div>/</div>
-                    <div class="input-container mi-small center">
-                        <input type="text" name="system.hull.max" value="{{actor.system.hull.max}}" style="width: 50px"
-                            data-dtype="Number" />
-                            {{#if (ne actor.flags.electric-state.hull 0) }}
-                             &plus;  {{actor.flags.electric-state.hull}}  = {{plus actor.system.hull.max actor.flags.electric-state.hull}}
-                             {{/if}}
-                    </div>
+    <div class="grid  stat-group cols-4-25">
+        {{!-- maneuverability --}}
+        <div class="grid border-thick margin-small padding-small">
+
+            <div class="rollable center all-caps fw-700 fs-200" data-type="vehicle-maneuverability">{{localize
+                "estate.UI.MANEUVER"}}</div>
+
+            <div class="value-group center fw-700 w-100 middle grid three-col">
+                <div class="input-container mi-small center middle flexrow">
+                    <input type="text" name="system.maneuverability.value"
+                        value="{{actor.system.maneuverability.value}}" style="width: 50px" data-dtype="Number" />
                 </div>
-            </div>
-            <div class="flexrow">
-                <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
-                    <div class="rollable" data-type="vehicle-armor">{{localize "estate.UI.ARMOR"}}</div>
-                    <div class="input-container mi-small center">
-                        <input type="text" name="system.armor" value="{{actor.system.armor}}" style="width: 50px"
-                            data-dtype="Number" />
-                            {{#if (ne actor.flags.electric-state.armor 0) }}
-                             &plus;  {{actor.flags.electric-state.armor}}  = {{plus actor.system.armor actor.flags.electric-state.armor}}
-                             {{/if}}
+                <div>/</div>
+                <div class="input-container mi-small center middle flexrow">
+
+                    {{#unless (ne actor.flags.electric-state.maneuver 0) }}
+                    <input type="text" name="system.maneuverability.max" value="{{actor.system.maneuverability.max}}"
+                        style="width: 50px" data-dtype="Number" />
+                    {{/unless}}
+
+
+                    {{#if (ne actor.flags.electric-state.maneuver 0) }}
+                    <div class="grid two-col">
+
+                        <div class="input-value">
+                            <input type="text" name="system.maneuverability.max"
+                                value="{{actor.system.maneuverability.max}}" style="width: 25px" data-dtype="Number" />
+                        </div>
+                        <div class="tooltip grid three-col middle center">
+                            <div> [</div>
+                            <div>
+                                {{plus actor.system.maneuverability.max actor.flags.electric-state.maneuver}}
+                            </div>
+                            <div>]</div>
+
+                            <div class="tooltiptext"> {{localize "estate.UI.TRAIT_INCLUDED"}}</div>
+                        </div>
                     </div>
+
+                    {{/if}}
                 </div>
-            </div>
-        </div>
-        <div class="flexrow">
-            <div class="flexrow">
-                <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
-                    {{localize "estate.UI.SPEED"}}
-                    <div class="input-container mi-small center">
-                        <input type="text" name="system.speed" value="{{actor.system.speed}}" style="width: 50px"
-                            data-dtype="Number" /> 
-                            {{log actor.flags}}
-                            {{#if (ne actor.flags.electric-state.speed 0) }}
-                             &plus;  {{actor.flags.electric-state.speed}}  = {{plus actor.system.speed actor.flags.electric-state.speed}}
-                             {{/if}}
-                    </div>
-                </div>
-            </div>
-            <div class="flexrow">
-                <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
-                    <div class="rollable" data-type="vehicle-maneuverability">{{localize "estate.UI.MANEUVER"}}</div>
-                    <div class="input-container mi-small center">
-                        <input type="text" name="system.maneuverability.value"
-                            value="{{actor.system.maneuverability.value}}" style="width: 50px" data-dtype="Number" />
-                    </div>
-                    <div>/</div>
-                    <div class="input-container mi-small center">
-                        <input type="text" name="system.maneuverability.max"
-                            value="{{actor.system.maneuverability.max}}" style="width: 50px" data-dtype="Number" />
-                            {{#if (ne actor.flags.electric-state.maneuver 0) }}
-                             &plus;  {{actor.flags.electric-state.maneuver}}  = {{plus actor.system.maneuverability.max actor.flags.electric-state.maneuver}}
-                             {{/if}}
-                    </div>
-                </div>
+
             </div>
         </div>
-        <div class="flexrow">
-            <div class="flexrow">
-                <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
-                    {{localize "estate.UI.PASSENGERS"}}
-                    <div class="input-container mi-small center">
-                        {{passengerCountExcludingDriver}}
-                    </div>
-                    <div>/</div>
-                    <div class="input-container mi-small center">
-                        <input type="text" name="system.passengers.max" value="{{actor.system.passengers.max}}"
-                            style="width: 50px" data-dtype="Number" />
-                            {{#if (ne actor.flags.electric-state.passengers 0) }}
-                             &plus;  {{actor.flags.electric-state.passengers}}  = {{plus actor.system.passengers.max actor.flags.electric-state.passengers}}
-                             {{/if}}
-                    </div>
-                </div>
-            </div>
-            <div class="flexrow">
-                <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
-                    {{localize "estate.UI.FUEL"}}
-                    <div class="input-container mi-small center">
-                        <input type="text" name="system.fuel.value" value="{{actor.system.fuel.value}}"
-                            style="width: 50px" data-dtype="Number" />
-                    </div>
-                    <div>/</div>
-                    <div class="input-container mi-small center">
-                        <input type="text" name="system.fuel.max" value="{{actor.system.fuel.max}}" style="width: 50px"
+
+
+        {{!-- speed --}}
+
+        <div class="grid border-thick margin-small padding-small">
+
+            <div class="center all-caps fw-700 fs-200">{{localize "estate.UI.SPEED"}} </div>
+
+            <div class="input-container center fw-700 w-100 middle flexrow">
+
+                {{#unless (ne actor.flags.electric-state.speed 0) }}
+                <input type="text" name="system.speed" value="{{actor.system.speed}}" style="width: 50px"
+                    data-dtype="Number" />
+                {{/unless}}
+
+
+                {{#if (ne actor.flags.electric-state.speed 0) }}
+                <div class="grid two-col">
+
+                    <div class="input-value">
+                        <input type="text" name="system.speed" value="{{actor.system.speed}}" style="width: 25px"
                             data-dtype="Number" />
                     </div>
+                    <div class="tooltip grid three-col middle center">
+                        <div> [</div>
+                        <div>
+                            {{plus actor.system.speed actor.flags.electric-state.speed}}
+                        </div>
+                        <div>]</div>
+
+                        <div class="tooltiptext"> {{localize "estate.UI.TRAIT_INCLUDED"}}</div>
+                    </div>
                 </div>
+
+                {{/if}}
             </div>
         </div>
+
+
+
+
+
+        {{!-- hull --}}
+        <div class="grid border-thick margin-small padding-small">
+
+            <div class=" center all-caps fw-700 fs-200">{{localize
+                "estate.UI.HULL"}}</div>
+
+            <div class="value-group center fw-700 w-100 middle grid three-col">
+                <div class="input-container mi-small center middle flexrow">
+                    <input type="text" name="system.hull.value" value="{{actor.system.hull.value}}" style="width: 50px"
+                        data-dtype="Number" />
+                </div>
+                <div>/</div>
+                <div class="input-container mi-small center middle flexrow">
+
+                    {{#unless (ne actor.flags.electric-state.hull 0) }}
+                    <input type="text" name="system.hull.max" value="{{actor.system.hull.max}}" style="width: 50px"
+                        data-dtype="Number" />
+                    {{/unless}}
+
+
+                    {{#if (ne actor.flags.electric-state.hull 0) }}
+                    <div class="grid two-col">
+
+                        <div class="input-value">
+                            <input type="text" name="system.hull.max" value="{{actor.system.hull.max}}"
+                                style="width: 25px" data-dtype="Number" />
+                        </div>
+                        <div class="tooltip grid three-col middle center">
+                            <div> [</div>
+                            <div>
+                                {{plus actor.system.hull.max actor.flags.electric-state.hull}}
+                            </div>
+                            <div>]</div>
+
+                            <div class="tooltiptext"> {{localize "estate.UI.TRAIT_INCLUDED"}}</div>
+                        </div>
+                    </div>
+
+                    {{/if}}
+                </div>
+
+            </div>
+        </div>
+        {{!-- armor --}}
+
+
+        <div class="grid border-thick margin-small padding-small">
+
+            <div class="center all-caps fw-700 fs-200 rollable" data-type="vehicle-armor">{{localize "estate.UI.ARMOR"}}
+            </div>
+
+            <div class="input-container center fw-700 w-100 middle flexrow">
+
+                {{#unless (ne actor.flags.electric-state.armor 0) }}
+                <input type="text" name="system.armor" value="{{actor.system.armor}}" style="width: 50px"
+                    data-dtype="Number" />
+                {{/unless}}
+
+
+                {{#if (ne actor.flags.electric-state.armor 0) }}
+                <div class="grid two-col">
+
+                    <div class="input-value">
+                        <input type="text" name="system.armor" value="{{actor.system.armor}}" style="width: 25px"
+                            data-dtype="Number" />
+                    </div>
+                    <div class="tooltip grid three-col middle center">
+                        <div> [</div>
+                        <div>
+                            {{plus actor.system.armor actor.flags.electric-state.armor}}
+                        </div>
+                        <div>]</div>
+
+                        <div class="tooltiptext"> {{localize "estate.UI.TRAIT_INCLUDED"}}</div>
+                    </div>
+                </div>
+
+                {{/if}}
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="grid two-col gap-small margin-top-small min-h-300px">
-        <div class="passengers-group border-thick padding-small">
-            <div class="group-header flexrow middle border-bottom-thin space-between gap-med fw-600 fs-200 all-caps">
-                <div class="mw-150px flexrow middle">{{localize "estate.HEAD.NAME"}}</div>
-                <div class="passenger-position">
-                    <div>{{localize "estate.UI.POSITION"}}</div>
-                </div>
-                <div class="button-group mw-75px">
-                    <div class="holder"></div>
-                    <div class="fs-500">&plus;</div>
-                    <div class="holder"></div>
-                </div>
+
+
+
+</div>
+
+<div class="grid two-col gap-small margin-top-small min-h-300px">
+
+
+    <div class="passengers-group border-thick padding-small">
+
+        {{!-- passengers --}}
+        <div class="flexrow group-header middle border-bottom-thin space-between gap-med fw-600 fs-400 all-caps">
+
+            <div class="mw-150px flexrow middle">
+                {{localize "estate.UI.PASSENGERS"}}
             </div>
-            {{#each passengers as |passenger|}}
-            <div class="passenger passenger-row flexrow middle border-bottom-thin space-between gap-med"
-                data-passenger-id="{{passenger._id}}">
-                <div class="mw-150px flexrow middle" data-type="actor" data-passenger-id="{{passenger._id}}">
-                    <div class="name no-break middle">
-                        {{passenger.name}}
+            <div class="input-container mi-small center">
+                {{passengerCountExcludingDriver}}
+            </div>
+            <div>/</div>
+            <div class="input-container mi-small center">
+                 {{#unless (ne actor.flags.electric-state.passengers 0) }}
+                    <input type="text" name="system.passengers.max" value="{{actor.system.passengers.max}}"
+                        style="width: 50px" data-dtype="Number" />
+                    {{/unless}}
+
+
+                    {{#if (ne actor.flags.electric-state.passengers 0) }}
+                    <div class="grid two-col">
+
+                        <div class="input-value">
+                            <input type="text" name="system.passengers.max"
+                                value="{{actor.system.passengers.max}}" style="width: 25px" data-dtype="Number" />
+                        </div>
+                        <div class="tooltip grid three-col middle center">
+                            <div> [</div>
+                            <div>
+                                {{plus actor.system.passengers.max actor.flags.electric-state.passengers}}
+                            </div>
+                            <div>]</div>
+
+                            <div class="tooltiptext"> {{localize "estate.UI.TRAIT_INCLUDED"}}</div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <select class="passenger-position" style="width: 175px">
-                        {{selectOptions @root.config.passengerOptions selected=passenger.position localize=true}}
-                    </select>
-                </div>
-                <div class="button-group mw-75px" data-passenger-id="{{passenger._id}}">
-                    <div class="remove-passenger"><i class="fa-solid fa-trash"></i></div>
-                </div>
+
+                    {{/if}}
             </div>
-            {{/each}}
+
+
+
         </div>
-        <div class="traits border-thick padding-small">
-            <div class="group-header flexrow middle border-bottom-thin space-between gap-med fw-600 fs-400 all-caps">
-                <div class="mw-150px flexrow middle">
+        <div class="group-header grid three-col middle border-bottom-thin space-between gap-med fw-700 fs-200 all-caps">
+            <div class="mw-150px flexrow middle">{{localize "estate.HEAD.NAME"}}</div>
+            <div class="passenger-position">
+                <div>{{localize "estate.UI.POSITION"}}</div>
+            </div>
+            <div class="button-group mw-75px ">
 
-                    {{localize "estate.UI.TRAIT"}}
-
-                </div>
-                <div class="text-right item-create" data-type="trait">
-                    &plus;
-                </div>
+                <div class="fs-500 text-right">&plus;</div>
 
             </div>
+        </div>
+        {{#each passengers as |passenger|}}
+        <div class="passenger passenger-row grid three-col middle border-bottom-thin space-between gap-med"
+            data-passenger-id="{{passenger._id}}">
+            <div class="mw-150px mn-w-75px flexrow middle" data-type="actor" data-passenger-id="{{passenger._id}}">
+                <div class="name no-break middle">
+                    {{passenger.name}}
+                </div>
+            </div>
+            <div class="mw-175px center middle">
+                <select class="passenger-position" style="width: 175px">
+                    {{selectOptions @root.config.passengerOptions selected=passenger.position localize=true}}
+                </select>
+            </div>
+            <div class="button-group mw-75px" data-passenger-id="{{passenger._id}}">
+                <div class="remove-passenger"><i class="fa-solid fa-trash"></i></div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="traits border-thick padding-small">
+        <div class="group-header flexrow middle border-bottom-thin space-between gap-med fw-600 fs-400 all-caps">
+            <div class="mw-150px flexrow middle">
 
-            {{#each items as |item|}}
-            {{#if item.isTrait}}
-            <div class="grid cols-4-25 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin">
+                {{localize "estate.UI.TRAITS"}}
+
+            </div>
+            <div class="text-right item-create" data-type="trait">
+                &plus;
+            </div>
+
+        </div>
+
+        {{#each items as |item|}}
+        {{#if item.isTrait}}
+        <div class="grid cols-4-25 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin">
             <div class="item overflow-elipsis" data-item-id="{{item._id}}">{{item.name}}</div>
             <div class="modify text-left overflow-elipsis">{{dataLocalization item.system.type "trait"}}</div>
             <div class="mod center">{{item.system.modifier.value}}</div>
-            <div class="button-group align-bottom flexrow text-right justify-content-end"  data-item-id="{{item._id}}">
-                <div class="item-edit mw-fit" ><i
-                        class="fa-solid fa-pen-to-square"></i></div>
-                <div class="item-delete mw-fit" ><i
-                        class="fa-solid fa-trash"></i></div>
+            <div class="button-group align-bottom flexrow text-right justify-content-end" data-item-id="{{item._id}}">
+                <div class="item-edit mw-fit"><i class="fa-solid fa-pen-to-square"></i></div>
+                <div class="item-delete mw-fit"><i class="fa-solid fa-trash"></i></div>
             </div>
         </div>
-            {{/if}}
-            {{/each}}
+        {{/if}}
+        {{/each}}
 
 
-        </div>
     </div>
 </div>

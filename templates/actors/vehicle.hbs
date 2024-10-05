@@ -23,6 +23,25 @@
                 </div>
             </div>
             <div class="flexrow align-content-start gap-small">
+                <div class="charname grid col-20-80 align-bottom border-bottom">
+                    <div>
+                        {{localize "estate.UI.FUEL"}}
+                    </div>
+                    <div class="flexrow center middle">
+                        <div class="input-container mi-small center">
+                            <input type="text" name="system.fuel.value" value="{{actor.system.fuel.value}}"
+                                style="width: 50px" data-dtype="Number" />
+                        </div>
+                        <div>/</div>
+                        <div class="input-container mi-small center">
+                            <input type="text" name="system.fuel.max" value="{{actor.system.fuel.max}}"
+                                style="width: 50px" data-dtype="Number" />
+                        </div>
+                        <div class="mn-w-200px bg-hatch">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flexrow align-content-start gap-small">
                 <div class="description grid col-20-80 align-bottom border-bottom">
                     <label class="shrink">{{localize "estate.HEAD.DESC"}}</label>
                     <textarea name="system.description" rows="4">{{actor.system.description}}</textarea>

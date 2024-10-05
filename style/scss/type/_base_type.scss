@@ -108,6 +108,16 @@
         color: rgb(37, 0, 37);
     }
 
+    .bg-hatch{
+      background: repeating-linear-gradient(
+  -45deg,
+  $background-color-highlight,
+  $background-color-highlight 5px,
+  $field-color 5px,
+  $field-color 10px
+);
+    }
+
 
     
  /* Tooltip container */

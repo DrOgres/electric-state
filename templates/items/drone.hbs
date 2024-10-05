@@ -1,63 +1,74 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-  <div class="flexrow">
-    <div class="portrait"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" />
+  <div class="grid col-20-80 border-thick">
+    <div class="portrait align-start flexcol bg-dark space-between h-100">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" width="160" />
+      <div class="hold ">&nbsp;</div>
     </div>
-    <div class="content flexcol">
-      {{#if item.system.isBroken}}
-      <div class="broken">
-        <h3>Broken</h3>
+
+
+    <div class="content flexcol padding-small">
+
+      <div class="name-price grid two-col border-bottom-thin">
+        <div class="name fw-600 fs-500 middle">
+          <input name="name" type="text" value="{{item.name}}" />
+        </div>
+        <div class="price flexrow all-caps fw-600 middle">
+          <label class="text-right">{{localize "estate.HEAD.PRICE"}} $:</label> <input type="text" name="system.cost"
+            value="{{item.system.cost}}">
+        </div>
       </div>
-      {{/if}}
-      <h1 class="charname">
-        <input name="name" type="text" value="{{item.name}}" />
-      </h1>
-      <div class="attribute cost">
-      <label for="cost">Cost</label>
-      <input id="cost" type="number" name="system.cost" value="{{item.system.cost}}">
-    </div>
+
       <div class="grid">
-        <div class="attribute strength">
-          <label for="strength">Strength</label>
+        <div class="attribute strength flexrow all-caps middle fw-600">
+          <label for="strength">{{localize "estate.ATTRIBUTE.STR"}}</label>
           <input id="strength" type="number" name="system.attributes.strength"
             value="{{item.system.attributes.strength}}">
         </div>
 
-        <div class="attribute agility">
-          <label for="agility">Agility</label>
+        <div class="attribute agility flexrow all-caps middle fw-600">
+          <label for="agility">{{localize "estate.ATTRIBUTE.AGI"}}</label>
           <input id="agility" type="number" name="system.attributes.agility" value="{{item.system.attributes.agility}}">
         </div>
 
-        <div class="attribute hull">
-          <label for="hull">Hull</label>
+        <div class="attribute hull flexrow all-caps middle fw-600">
+          <label for="hull">{{localize "estate.UI.HULL"}}</label>
           <input id="hull" type="number" name="system.hull.value" value="{{item.system.hull.value}}"> / <input id="hull"
             type="number" name="system.hull.max" value="{{item.system.hull.max}}">
         </div>
 
-        <div class="attribute armor">
-          <label for="armor">Armor</label>
+        <div class="attribute armor flexrow all-caps middle fw-600">
+          <label for="armor">{{localize "estate.UI.ARMOR"}}</label>
           <input id="armor" type="number" name="system.armor" value="{{item.system.armor}}">
         </div>
 
-        <div class="attribute damage">
-          <label for="damage">Damage</label>
+        <div class="attribute damage flexrow all-caps middle fw-600">
+          <label for="damage">{{localize "estate.UI.DAMAGE"}}</label>
           <input id="damage" type="number" name="system.damage" value="{{item.system.damage}}">
         </div>
       </div>
-      <label>Minimum Range</label>
-      <select name="system.range.min">
-        {{selectOptions config.ranges selected=item.system.range.min localize=true}}
-      </select>
-      <label>Maximum Range</label>
-      <select name="system.range.max">
-        {{selectOptions config.ranges selected=item.system.range.max localize=true}}
-      </select>
-      <label>Description</label> <textarea name="system.description"
-        value="{{item.system.description}}">{{item.system.description}}</textarea>
+      <div class="ranges flexcol all-caps middle fw-600 w-100">
+        <div class="flexrow space-between w-100">
+          <label class="no-break text-left">{{localize "estate.UI.RANGE_MIN"}}</label>
+          <select name="system.range.min">
+            {{selectOptions config.ranges selected=item.system.range.min localize=true}}
+          </select>
+        </div>
+        <div class="flexrow space-between w-100">
+          <label>{{localize "estate.UI.RANGE_MAX"}}</label>
+          <select name="system.range.max">
+            {{selectOptions config.ranges selected=item.system.range.max localize=true}}
+          </select>
+        </div>
+      </div>
+      <div class="desc-group flexcol">
+        <label class="all-caps fw-600">{{localize "estate.HEAD.DESC"}}</label> <textarea name="system.description"
+          value="{{item.system.description}}">{{item.system.description}}</textarea>
+      </div>
 
-      
 
-  </div>
+
+    </div>
   </div>
 
 </form>

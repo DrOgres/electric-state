@@ -17,9 +17,11 @@
           <input name="name" type="text" value="{{item.name}}" />
         </div>
         <div class="price flexrow all-caps fw-600 middle">
-        <label class="text-right">{{localize "estate.HEAD.PRICE"}}</label> <input type="text" name="system.cost" value="{{item.system.cost}}">
+        <label class="text-right">{{localize "estate.HEAD.PRICE"}} $:</label> <input type="text" name="system.cost" value="{{item.system.cost}}">
         </div>
       </div>
+
+      
       <div class="armor-value flexrow all-caps middle fw-600">
       <label class="text-right margin-small">{{localize "estate.UI.ARMOR"}}</label> <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}">
       </div>

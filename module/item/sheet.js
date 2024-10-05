@@ -6,9 +6,13 @@ export default class esItemSheet extends ItemSheet {
   }
 
   static get defaultOptions() {
+    console.log("E-STATE | Item Default Options", super.defaultOptions);
+
+    console.log("E-STATE | Item Default Options", this.type);
+
     return foundry.utils.mergeObject(super.defaultOptions, {
       width: 450,
-      height: 230,
+      height: 'fit-content',
       classes: ["es", "sheet", "item"],
       resizable: true,
     });

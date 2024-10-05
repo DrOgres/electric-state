@@ -610,7 +610,7 @@ export default class esActorSheet extends ActorSheet {
 
   async _preparePassengers(data, actor) {
   
-    if(actor.system.passengers.passenbgerIds === undefined) return;
+    if(actor.system.passengers.passengerIds === undefined) return;
     data.passengers = actor.system.passengers.passengerIds.reduce((arr, a) => {
       console.log("E-STATE | Preparing Passengers", a.id);
       const passenger = game.actors.get(a.id);

@@ -40,11 +40,9 @@ export default class esActorSheet extends ActorSheet {
     const data = super.getData();
     data.config = eState;
     const actor = this.actor;
-    // console.log("E-STATE | Actor", actor);
-    // console.log("E-STATE |  Data", data);
+
     this.computeItems(data);
-    
-   
+
     if (this._isPlayer()) {
       this.checkBliss(actor);
       this.checkHope(actor);
@@ -55,10 +53,12 @@ export default class esActorSheet extends ActorSheet {
       this.checkHealth(actor);
     }
 
-    if (this._isVehicle()){
+    if (this._isVehicle()) {
       this._preparePassengers(data, actor);
+      //TODO apply any traits that affect the vehicle
+      this._applyVehicleTraits(data, actor);
     }
-    
+
     data.notesHTML = await TextEditor.enrichHTML(actor.system.notes, {
       async: true,
     });
@@ -78,16 +78,80 @@ export default class esActorSheet extends ActorSheet {
     html.find(".toggle-fav").click(this._onToggleFav.bind(this));
     html.find(".toggle-equip").click(this._onToggleEquip.bind(this));
     html.find(".remove-passenger").click(this._onRemovePassenger.bind(this));
-    html.find(".passenger-position").change(this._onAssignPassengerPosition.bind(this));
+    html
+      .find(".passenger-position")
+      .change(this._onAssignPassengerPosition.bind(this));
   }
 
+  async _applyVehicleTraits(data, actor) {
+    console.log("E-STATE | Applying Vehicle Traits", data , actor);
+    const traits = actor.items.filter((item) => item.type === "trait");
+    console.log("E-STATE | Traits", traits, traits.length);
 
+    if (traits.length === 0) {
+      actor.setFlag("electric-state", "speed", 0);
+      actor.setFlag("electric-state", "maneuver", 0);
+      actor.setFlag("electric-state", "armor", 0);
+      actor.setFlag("electric-state", "hull", 0);
+      actor.setFlag("electric-state", "passengers", 0);
+    }
+
+
+    for (let trait of traits) {
+      console.log("E-STATE | Trait", trait);
+      // none: "estate.UI.NONE",
+      // general: "estate.UI.GENERAL",
+      // speed: "estate.UI.SPEED",
+      // maneuver: "estate.UI.MANEUVER",
+      // armor: "estate.UI.ARMOR",
+      // hull: "estate.UI.HULL",
+      // passengers: "estate.UI.PASSENGERS",
+      // repairs: "estate.UI.REPAIRS",
+
+      //clear the flags for the vehicle
+
+      switch (trait.system.type) {
+        case "none":
+        case "general":
+        case "repairs":
+          // do nothing
+          break;
+        case "speed":
+          const speed = trait.system.modifier.value;
+          actor.setFlag("electric-state", "speed", speed);
+          console.log("E-STATE | Speed", speed, actor);   
+          break;
+        case "maneuver":
+          const maneuver = trait.system.modifier.value;
+          actor.setFlag("electric-state", "maneuver", maneuver);
+          console.log("E-STATE | Maneuver", maneuver);
+          break;
+        case "armor":
+          const armor = trait.system.modifier.value;
+          actor.setFlag("electric-state", "armor", armor);
+          console.log("E-STATE | Armor", armor);
+          break;
+        case "hull":
+          const hull = trait.system.modifier.value;
+          actor.setFlag("electric-state", "hull", hull);
+          console.log("E-STATE | Hull", hull);
+          break;
+        case "passengers":
+          const passengers = trait.system.modifier.value;
+          actor.setFlag("electric-state", "passengers", passengers);
+          console.log("E-STATE | Passengers", passengers);
+          break;
+
+    }
+
+  }
+  }
   async _onItemUse(event) {
     console.log("E-STATE | Using Item");
     const itemId = event.currentTarget.dataset.itemId;
     const item = this.actor.items.get(itemId);
     console.log("E-STATE | Item", item);
-    if(!item.system.isConsumable || item.system.uses <= 0){
+    if (!item.system.isConsumable || item.system.uses <= 0) {
       //TODO localize this message
       ui.notifications.warn("This item is not consumable or out of uses");
       return;
@@ -96,41 +160,41 @@ export default class esActorSheet extends ActorSheet {
     const penalty = item.system.usePenaltyType;
     let uses = item.system.uses;
 
-    console.log("E-STATE | Item Type", type); 
-  //   none: "estate.UI.NONE",
-  // food: "estate.UI.FOOD",
-  // stabalize: "estate.UI.STABALIZE",
-  // healthUp: "estate.UI.HEALTHUP",
-  // hopeUp: "estate.UI.HOPEUP",
-  // empathy: "estate.ATTRIBUTE.EMP",
-    switch(type){
+    console.log("E-STATE | Item Type", type);
+    //   none: "estate.UI.NONE",
+    // food: "estate.UI.FOOD",
+    // stabalize: "estate.UI.STABALIZE",
+    // healthUp: "estate.UI.HEALTHUP",
+    // hopeUp: "estate.UI.HOPEUP",
+    // empathy: "estate.ATTRIBUTE.EMP",
+    switch (type) {
       case "none":
       case "food":
       case "stabalize":
         uses -= 1;
-      break;
+        break;
       case "healthUp":
         let health = this.actor.system.health.value;
         let maxHealth = this.actor.system.health.max;
-        if(health < maxHealth){
+        if (health < maxHealth) {
           health += item.system.useValue;
         } else {
           ui.notifications.info("Health is already at max");
           return;
         }
-        await this.actor.update({"system.health.value": health});
+        await this.actor.update({ "system.health.value": health });
         uses -= 1;
-      break;
+        break;
       case "hopeUp":
         let hope = this.actor.system.hope.value;
         let maxHope = this.actor.system.hope.max;
-        if(hope < maxHope){
+        if (hope < maxHope) {
           hope += item.system.useValue;
         } else {
           ui.notifications.info("Hope is already at max");
           return;
         }
-        await this.actor.update({"system.hope.value": hope});
+        await this.actor.update({ "system.hope.value": hope });
         uses -= 1;
     }
 
@@ -139,22 +203,20 @@ export default class esActorSheet extends ActorSheet {
     // none: "estate.UI.NONE",
     // healthDown: "estate.UI.HEALTHDOWN",
     // addictive: "estate.UI.ADDICTIVE"
-    switch(penalty){
+    switch (penalty) {
       case "none":
-        // do nothing
+      // do nothing
       case "addictive":
         //TODO prompt the user to make a wits test to avoid addiction
-      break;
+        break;
       case "healthDown":
         let health = this.actor.system.health.value;
         health -= item.system.usePenalty;
-        await this.actor.update({"system.health.value": health});
-      break;
-     
+        await this.actor.update({ "system.health.value": health });
+        break;
     }
 
-
-    await item.update({"system.uses": uses});
+    await item.update({ "system.uses": uses });
     ui.notifications.info("Used: " + item.name);
     //TODO make a chat card to indicate item use and effect
   }
@@ -238,9 +300,7 @@ export default class esActorSheet extends ActorSheet {
           if (this.actor.type !== "vehicle") return;
 
           console.log("E-STATE | Rolling Vehicle Armor");
-          options.testName = game.i18n.localize(
-            `estate.UI.VEHICLEARMOR`
-          );
+          options.testName = game.i18n.localize(`estate.UI.VEHICLEARMOR`);
           options.dicePool += this.actor.system.armor;
         }
         break;
@@ -250,7 +310,7 @@ export default class esActorSheet extends ActorSheet {
 
           console.log("E-STATE | Rolling Vehicle Maneuverability");
           const driverId = this.actor.system.passengers.driverId;
-          const driver  = driverId ? game.actors.get(driverId) : null;
+          const driver = driverId ? game.actors.get(driverId) : null;
           if (!driver) {
             ui.notifications.warn(
               "You must assign a driver to the vehicle to make a maneuverability test"
@@ -260,11 +320,12 @@ export default class esActorSheet extends ActorSheet {
 
           options.testName = game.i18n.localize(`estate.UI.MANEUVER`);
           options.attribute = "agility";
-          options.talents = driver.items.filter((item) => item.type === "talent");
+          options.talents = driver.items.filter(
+            (item) => item.type === "talent"
+          );
           options.dicePool = driver.system.agility;
           options.gearName = game.i18n.localize(`estate.UI.MANEUVER`);
           options.gearDice = this.actor.system.maneuverability.value;
-          
         }
         break;
       case "robot-armor":
@@ -272,9 +333,7 @@ export default class esActorSheet extends ActorSheet {
           if (this.actor.type !== "robot") return;
 
           console.log("E-STATE | Rolling Robot Armor");
-          options.testName = game.i18n.localize(
-            `estate.UI.ROBOTARMOR`
-          );
+          options.testName = game.i18n.localize(`estate.UI.ROBOTARMOR`);
           options.dicePool += this.actor.system.armor;
         }
         break;
@@ -315,7 +374,8 @@ export default class esActorSheet extends ActorSheet {
             }
           }
 
-          options.testName = item.name + " " + game.i18n.localize("estate.UI.WEAPON");
+          options.testName =
+            item.name + " " + game.i18n.localize("estate.UI.WEAPON");
           options.damage = item.system.damage;
           options.type = "drone";
           const maxRange = item.system.range.max;
@@ -334,26 +394,34 @@ export default class esActorSheet extends ActorSheet {
           //TODO set the dice pool based on the max and min ranges of the drone
         }
         break;
-        case "drone-armor": {
+      case "drone-armor":
+        {
           console.log("E-STATE | Rolling Drone Armor");
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
-          options.testName = item.name + " " + game.i18n.localize("estate.UI.ARMOR");
+          options.testName =
+            item.name + " " + game.i18n.localize("estate.UI.ARMOR");
           options.dicePool = item.system.armor;
           options.type = "drone";
-
-        } break;
-        case "neurocaster": {
+        }
+        break;
+      case "neurocaster":
+        {
           console.log("E-STATE | Rolling Neurocaster");
           const itemId = event.currentTarget.parentElement.dataset.itemId;
           const item = this.actor.items.get(itemId);
           options.cast = event.currentTarget.dataset.cast;
 
-          options.testName = game.i18n.localize("estate.UI.NEUROCASTER") + " " + game.i18n.localize(eState.castType[options.cast]);
+          options.testName =
+            game.i18n.localize("estate.UI.NEUROCASTER") +
+            " " +
+            game.i18n.localize(eState.castType[options.cast]);
           options.dicePool = item.system.modifier.value;
           options.type = "neurocaster";
-        } break;
-        case "explosive": {
+        }
+        break;
+      case "explosive":
+        {
           console.log("E-STATE | Rolling Explosive");
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
@@ -361,7 +429,8 @@ export default class esActorSheet extends ActorSheet {
           options.dicePool = 0;
           options.explosiveId = itemId;
           options.type = "explosive";
-        } break;
+        }
+        break;
     }
 
     prepareRollDialog(options);
@@ -370,8 +439,10 @@ export default class esActorSheet extends ActorSheet {
   _deathRoll(actor) {
     console.log("E-STATE | Death Roll", actor);
 
-    if(actor.object.system.health.value > 0){
-      ui.notifications.info("You are not dying yet! You must be at 0 health before you make a death roll!");
+    if (actor.object.system.health.value > 0) {
+      ui.notifications.info(
+        "You are not dying yet! You must be at 0 health before you make a death roll!"
+      );
       return;
     }
 
@@ -381,10 +452,9 @@ export default class esActorSheet extends ActorSheet {
       actor: this.actor,
       talents: talents,
       sheet: this,
-    }
+    };
 
     prepareDeathRollDialog(options);
-
   }
 
   _onItemEdit(event) {
@@ -400,7 +470,36 @@ export default class esActorSheet extends ActorSheet {
     const parent = $(event.currentTarget).parents(".button-group");
     event.preventDefault();
     const itemId = parent[0].dataset.itemId;
+    const item = this.actor.items.get(itemId);
+    if (item.type === "trait" && this._isVehicle()) {
+      this.resetVehicleFlags(item);
+    }
     this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+  }
+
+  resetVehicleFlags(item){
+      console.log("E-STATE | Resetting Vehicle Flags", item);
+      const traitType = item.system.type;
+      const actor = this.actor;
+      switch(traitType){
+        case "speed":
+          actor.setFlag("electric-state", "speed", 0);
+          break;
+        case "maneuver":
+          actor.setFlag("electric-state", "maneuver", 0);
+          break;
+        case "armor":
+          actor.setFlag("electric-state", "armor", 0);
+          break;
+        case "hull":
+          actor.setFlag("electric-state", "hull", 0);
+          break;
+        case "passengers":
+          actor.setFlag("electric-state", "passengers", 0);
+          break;
+      }
+
+
   }
 
   _onItemCreate(event) {
@@ -483,19 +582,19 @@ export default class esActorSheet extends ActorSheet {
     const talents = actor.items.filter((item) => item.type === "talent");
 
     // If there are no talents we can skip the loop
-    if(talents.length > 0){
-    // look for taents that modify health or hope
-    for (let talent of talents) {
-      if (talent.system.type.includes("health")) {
-        health += talent.system.modifier.value;
-      } else if (talent.system.type.includes("hope")) {
-        hope += talent.system.modifier.value;
+    if (talents.length > 0) {
+      // look for taents that modify health or hope
+      for (let talent of talents) {
+        if (talent.system.type.includes("health")) {
+          health += talent.system.modifier.value;
+        } else if (talent.system.type.includes("hope")) {
+          hope += talent.system.modifier.value;
+        }
       }
     }
-  }
 
     //update actor with new values
-    if (this._isPlayer()){
+    if (this._isPlayer()) {
       await actor.update({
         "system.health.max": health,
         "system.hope.max": hope,
@@ -504,27 +603,32 @@ export default class esActorSheet extends ActorSheet {
     //NPCs do not have hope
     if (this._isNpc()) {
       await actor.update({
-        "system.health.max": health
+        "system.health.max": health,
       });
     }
   }
 
   async _preparePassengers(data, actor) {
+  
+    if(actor.system.passengers.passenbgerIds === undefined) return;
     data.passengers = actor.system.passengers.passengerIds.reduce((arr, a) => {
       console.log("E-STATE | Preparing Passengers", a.id);
       const passenger = game.actors.get(a.id);
       if (passenger) {
-        passenger.position = actor.system.passengers?.driverId === a.id ? "driver" : "passenger";
+        passenger.position =
+          actor.system.passengers?.driverId === a.id ? "driver" : "passenger";
         arr.push(passenger);
       } else {
         // passenger doesn't exist anymore, remove from vehicle
         this.actor.removeVehiclePassenger(a.id);
       }
       return arr;
-    }, []); 
+    }, []);
 
     // only include passengers that are not the driver
-    data.passengerCountExcludingDriver = data.passengers.filter((p) => p.position === "passenger").length;
+    data.passengerCountExcludingDriver = data.passengers.filter(
+      (p) => p.position === "passenger"
+    ).length;
     return data;
   }
 
@@ -535,9 +639,9 @@ export default class esActorSheet extends ActorSheet {
 
     if (!passenger) return;
 
-    if (passenger.type !== 'player' && passenger.type !== 'npc') return;
+    if (passenger.type !== "player" && passenger.type !== "npc") return;
 
-    return await actorData.addVehiclePassenger(actorId); 
+    return await actorData.addVehiclePassenger(actorId);
   }
 
   computeItems(data) {

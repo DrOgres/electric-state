@@ -1,17 +1,30 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+  <div class="grid col-20-80 border-thick">
 
-  <h1 class="charname">
-   
-    <input name="name" type="text" value="{{item.name}}" />
-  </h1>
-  <label for="target">Target of Tension</label>
-  <select name="system.actorId">
-      {{selectOptions config.actorSelectOptions selected=item.system.actorId valueAttr="id" labelAttr="actor"}}
-      </select>
+    <div class="portrait align-start flexcol bg-dark space-between h-100">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" width="160" />
+      <div class="hold ">&nbsp;</div>
+    </div>
 
-  <label for="score">Score</label>
-  <input id="score" name="system.score" type="number" value="{{item.system.score}}" />
-    <label for="description">description</label>
-  <textarea id="description" name="system.description">{{item.system.description}}</textarea>
 
+    <div class="content flexcol padding-small gap-med">
+      <div class="name grid border-bottom-thin fw-600 fs-500 middle w-100">
+        <input name="name" type="text" value="{{item.name}}" />
+      </div>
+      <div class="penalty-group flexrow fw-600 all-caps">
+        <label for="target">{{localize "estate.UI.TARGET_TENSION"}}</label>
+        <select name="system.actorId">
+          {{selectOptions config.actorSelectOptions selected=item.system.actorId valueAttr="id" labelAttr="actor"}}
+        </select>
+      </div>
+      <div class="penalty-group flexrow fw-600 all-caps">
+        <label for="score">{{localize "estate.UI.AMOUNT"}}</label>
+        <input id="score" name="system.score" type="number" value="{{item.system.score}}" />
+      </div>
+      <div class="desc-group flexcol ">
+        <label class="all-caps fw-600">{{localize "estate.HEAD.DESC"}}</label> <textarea name="system.description"
+          value="{{item.system.description}}">{{item.system.description}}</textarea>
+      </div>
+    </div>
+  </div>
 </form>

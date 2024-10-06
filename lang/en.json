@@ -132,6 +132,8 @@
     "UI.TIMETO": "Time To Heal",
     "UI.DAYS": "Days",
     "UI.RW_PENALTY": "Real World Penalty",  
+    "UI.TARGET_TENSION": "Target of Tension",
+    "UI.AMOUNT": "Amount",
 
     "UI.YES": "Yes",
     "UI.NO": "No",

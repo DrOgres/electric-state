@@ -7,7 +7,7 @@
       <div class="hold ">&nbsp;</div>
     </div>
 
-    <div class="content flexcol padding-small">
+    <div class="content flexcol padding-small gap-small">
       <div class="name-price grid two-col border-bottom-thin">
         <div class="name fw-600 fs-500 middle">
           <input name="name" type="text" value="{{item.name}}" />
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div class="grid">
+      <div class="grid gap-small">
         <div class="flexrow middle fw-600 all-caps">
           {{localize "estate.ROLL.MODIFIER"}} ? <input type="checkbox" name="system.isModifier"
             id="roll-modifier-boolean" {{checked item.system.isModifier}} />

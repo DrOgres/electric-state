@@ -659,4 +659,9 @@ select:-internal-list-box option:checked {
 
 #chat-form textarea {
   background: #ffffff;
+}
+
+.tox.tox-tinymce {
+  min-height: 200px !important;
+  border: none;
 }/*# sourceMappingURL=electric-state.css.map */

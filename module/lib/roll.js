@@ -317,11 +317,23 @@ export function prepareRollDialog(options) {
       break;
     case "vehicle-armor":
       console.log("Vehicle Armor Roll", options);
-      dialogHTML += buildHTMLDialog(options.testName, options.dicePool);
+      //get the flag from actor.flags.electric-state.armor and use it to modify the dice pool
+      let vehicleArmor = actor.getFlag("electric-state", "armor");
+      console.log("Vehicle Armor", vehicleArmor);
+      if (vehicleArmor !== undefined) {
+        options.traitMod = vehicleArmor;
+      }
+
+      options.type = "vehicle-armor";
+      
+      dialogHTML += buildHTMLDialog(options.testName, options.dicePool, options.type);
       dialogHTML += buildSubtotalDialog(options);
       break;
     case "vehicle-maneuverability":
       console.log("Vehicle Maneuverability Roll", options);
+      //get the flag from actor.flags.electric-state.maneuver and use it to modify the dice pool
+      options.traitMod = actor.getFlag("electric-state", "maneuver");
+
       dialogHTML += buildHTMLDialog(game.i18n.localize("estate.ATTRIBUTE.AGI"), options.dicePool);
       dialogHTML += buildSubtotalDialog(options);
       dialogHTML += buildTalentSelectDialog(options, options.talents);
@@ -532,6 +544,20 @@ export function prepareRollDialog(options) {
           callback: (html) => {
             console.log("Rolling", options);
             let baseDice = options.dicePool - options.penalty;
+            if (options.traitMod !== 0) { 
+              baseDice += options.traitMod;
+            }
+
+            //TODO ensure that the traitMod has not reduced the dice pool to less than 0 for armor or less than 1 for other rolls
+           if (options.type === "vehicle-armor" && baseDice < 0) {
+              baseDice = 0;
+              ui.notifications.warn("Vehicle Armor is Busted and has no effect");
+              return;
+            } else if (baseDice < 1) {
+              baseDice = 1;
+            }
+
+
             if (options.armorPenalty > 0) {
               baseDice -= options.armorPenalty;
             }
@@ -738,7 +764,23 @@ function buildSubtotalDialog(options) {
     subtotal -= options.armorPenalty;
   }
 
+  if (options.actorType === "vehicle") {
+    subtotal += options.traitMod;
+  }
+
   let html = "";
+
+  if (options.traitMod !== 0 && options.traitMod !== undefined) {
+    html +=
+      `<div class="flexcol">
+    <div class="flexrow">
+        <h4 class="subheader middle">` +
+      game.i18n.localize("estate.UI.FROM_TRAITS") +
+      ` : &nbsp;</h4>
+    <p id="trait" style="text-align: right" class="grow pi-2 border-bottom"> ` +
+      options.traitMod +
+      `</p></div>`;
+  }
 
   if (options.gearDice > 0) {
     subtotal += options.gearDice;

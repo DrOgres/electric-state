@@ -197,3 +197,8 @@ text {
     border: 2px solid #6f6c66;
     border-radius: 5px;
   }
+
+  #chat-form textarea {
+   
+    background: $field-color;
+  }

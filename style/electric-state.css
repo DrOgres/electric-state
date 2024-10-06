@@ -655,4 +655,8 @@ select:-internal-list-box option:checked {
   background: #f0f7f5;
   border: 2px solid #6f6c66;
   border-radius: 5px;
+}
+
+#chat-form textarea {
+  background: #ffffff;
 }/*# sourceMappingURL=electric-state.css.map */

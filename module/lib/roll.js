@@ -544,9 +544,11 @@ export function prepareRollDialog(options) {
           callback: (html) => {
             console.log("Rolling", options);
             let baseDice = options.dicePool - options.penalty;
-            if (options.traitMod !== 0) { 
+            if (options.traitMod !== 0 && options.traitMod !== undefined) { 
               baseDice += options.traitMod;
             }
+
+            console.log("Base Dice", baseDice);
 
             //TODO ensure that the traitMod has not reduced the dice pool to less than 0 for armor or less than 1 for other rolls
            if (options.type === "vehicle-armor" && baseDice < 0) {

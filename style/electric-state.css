@@ -645,4 +645,14 @@ select:-internal-list-box option:checked {
   height: 50px;
   margin: 5px 35px 10px 35px;
   display: block;
+}
+
+.chat-message {
+  margin: 3px;
+  padding: 5px;
+  font-size: var(--font-size-14);
+  color: #2c2e35;
+  background: #f0f7f5;
+  border: 2px solid #6f6c66;
+  border-radius: 5px;
 }/*# sourceMappingURL=electric-state.css.map */

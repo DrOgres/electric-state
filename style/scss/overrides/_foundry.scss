@@ -186,3 +186,14 @@ text {
     margin: 5px 35px 10px 35px;
     display: block;
   }
+
+
+  .chat-message {
+    margin: 3px;
+    padding: 5px;
+    font-size: var(--font-size-14);
+    color: $text-color;
+    background: $background-color;
+    border: 2px solid #6f6c66;
+    border-radius: 5px;
+  }

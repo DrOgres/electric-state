@@ -1,36 +1,57 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-<h1 class="itemname">
-    <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" />
-    <label for="item-name">{{localize "estate.HEAD.NAME"}}</label>
-    <input id="item-name" name="name" type="text" value="{{item.name}}" />
-    <label for="cost">
-      {{localize "estate.HEAD.COST"}}
-    </label>
-    <input id="cost" name="system.cost" type="text" value="{{item.system.cost}}" />
+  <div class="grid col-20-80 border-thick">
 
-  </h1>
+    <div class="portrait align-start flexcol bg-dark space-between h-100">
 
-  {{#if item.system.isBroken}}
-   <div class="broken">
-    <h3>Broken</h3>
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" width="160" />
+      <div class="hold ">&nbsp;</div>
+
+
+    </div>
+
+
+    <div class="content flexcol padding-small gap-med">
+
+
+      <div class="name-price grid two-col border-bottom-thin">
+        <div class="name fw-600 fs-500 middle">
+          <input name="name" type="text" value="{{item.name}}" />
+        </div>
+        <div class="price flexrow all-caps fw-600 middle">
+          <label class="text-right">{{localize "estate.HEAD.PRICE"}} $:</label> <input type="text" name="system.cost"
+            value="{{item.system.cost}}">
+        </div>
+      </div>
+
+      <div class="flexrow all-caps fw-600 middle w-100">
+        <label for="proc">{{localize "estate.UI.PROCESSOR"}}</label>
+        <input id="proc" name="system.processor.value" type="number" value="{{item.system.processor.value}}" /> /
+        <input id="max-proc" name="system.processor.max" type="number" value="{{item.system.processor.max}}" />
+      </div>
+
+      <div class="flexrow all-caps fw-600 middle w-100">
+        <label for="net">{{localize "estate.UI.NETWORK"}}</label>
+        <input id="net" name="system.network.value" type="number" value="{{item.system.network.value}}" /> /
+        <input id="max-net" name="system.network.max" type="number" value="{{item.system.network.max}}" />
+      </div>
+
+      <div class="flexrow all-caps fw-600 middle w-100">
+        <label for="graphhics">{{localize "estate.UI.GRAPHICS"}}</label>
+        <input id="graphics" name="system.graphics.value" type="number" value="{{item.system.graphics.value}}" /> /
+        <input id="max-graphics" name="system.graphics.max" type="number" value="{{item.system.graphics.max}}" />
+      </div>
+
+      <div class="flexrow all-caps fw-600 middle w-100">
+        <label for="rw-penalty" class="no-break">{{localize "estate.UI.RW_PENALTY"}}</label>
+        <input id="rw-penalty" name="system.modifier.value" type="number" value="{{item.system.modifier.value}}" />
+      </div>
+
+      <div class="desc-group flexcol"></div>
+      <label class="all-caps fw-600">{{localize "estate.HEAD.DESC"}}</label> <textarea name="system.description"
+        value="{{item.system.description}}">{{item.system.description}}</textarea>
+    </div>
+
   </div>
-  {{/if}}
-  <label for="description">description</label>
-  <textarea id="description" name="system.description">{{item.system.description}}</textarea>
-  <label for="proc">Processor</label>
-  <input id="proc" name="system.processor.value" type="number" value="{{item.system.processor.value}}" /> / 
-  <input id="max-proc" name="system.processor.max" type="number" value="{{item.system.processor.max}}" />
-  
-  <label for="net">Network</label>
-  <input id="net" name="system.network.value" type="number" value="{{item.system.network.value}}" /> /
-  <input id="max-net" name="system.network.max" type="number" value="{{item.system.network.max}}" />
-
-  <label for="graphhics">graphics</label>
-  <input id="graphics" name="system.graphics.value" type="number" value="{{item.system.graphics.value}}" /> /  
-  <input id="max-graphics" name="system.graphics.max" type="number" value="{{item.system.graphics.max}}" />
-
-  <label for="rw-penalty">Real World Penalty</label>
-  <input id="rw-penalty" name="system.modifier.value" type="number" value="{{item.system.modifier.value}}" />
-
+  </div>
 </form>

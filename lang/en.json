@@ -130,7 +130,8 @@
     "UI.CONSUMABLE": "Consumable",
     "UI.DRAWBACK": "Drawback",
     "UI.TIMETO": "Time To Heal",
-    "UI.DAYS": "Days",  
+    "UI.DAYS": "Days",
+    "UI.RW_PENALTY": "Real World Penalty",  
 
     "UI.YES": "Yes",
     "UI.NO": "No",

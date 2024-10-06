@@ -75,6 +75,7 @@
     "UI.BUSTED": "Busted",
 
     "UI.USES": "Uses",
+    "UI.USEDFOR": "Used For",
     "UI.FOOD": "Food",
     "UI.STABALIZE": "Stabalize",
     "UI.HEALTHUP": "Health Up",
@@ -124,6 +125,10 @@
     "UI.BLOCK": "Block Communications",
     "UI.COMBAT": "Avatar Combat",
     "UI.TRAIT_INCLUDED": "Including Traits",
+    "UI.GEAR_DICE": "Gear Dice",
+    "UI.MOD_ATTR": "Attribute Modified",
+    "UI.CONSUMABLE": "Consumable",
+    "UI.DRAWBACK": "Drawback",
 
     "UI.YES": "Yes",
     "UI.NO": "No",

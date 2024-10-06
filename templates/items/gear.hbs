@@ -1,61 +1,96 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-  <h1 class="itemname">
-    <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" />
-    <label for="item-name">{{localize "estate.HEAD.NAME"}}</label>
-    <input id="item-name" name="name" type="text" value="{{item.name}}" />
-    <label for="cost">
-      {{localize "estate.HEAD.COST"}}
-    </label>
-    <input id="cost" name="system.cost" type="text" value="{{item.system.cost}}" />
+  <div class="grid col-20-80 border-thick">
 
-  </h1>
-  <label for="description">description</label>
-  <textarea id="description" name="system.description">{{item.system.description}}</textarea>
-  Roll Modifier? <input type="checkbox" name="system.isModifier" id="roll-modifier-boolean" {{checked
-    item.system.isModifier}} />
-  {{#if item.system.isModifier}}
-  <div id="roll-modifier" class="flexrow">
-    <label for="roll-modifier">Gear Dice</label>
-    <input id="roll-modifier" name="system.modifier.value" type="number" value="{{item.system.modifier.value}}" /> /
-    <input id="max-roll-modifier" name="system.modifier.max" type="number" value="{{item.system.modifier.max}}" />
-
-  </div>
-  Modified Attribute
-
-  {{log config.attributeSelectOptions}}
-  <select name="system.attribute">
-    {{selectOptions config.attributeSelectOptions selected=item.system.attribute localize=true}}
-  </select>
-  {{#if item.system.isBroken}}
-  <div class="broken">
-    <h3>{{localize "estate.UI.BUSTED"}}</h3>
-  </div>
-  {{/if}}
-
-  {{/if}}
-
-  Limited Uses? <input type="checkbox" name="system.isConsumable" id="roll-modifier-boolean" {{checked
-    item.system.isConsumable}} />
-  {{#if item.system.isConsumable}}
-  <div id="consumable" class="flexcol">
-    <div class="flexrow">
-    <label for="consumable">{{localize "estate.UI.USES"}}</label>
-    <input id="consumable" name="system.uses" type="number" value="{{item.system.uses}}" />
+    <div class="portrait align-start flexcol bg-dark space-between h-100">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" width="160" />
+      <div class="hold ">&nbsp;</div>
     </div>
-    <label for="useType">Use For</label>
-    <select name="system.useType">
-      {{selectOptions config.useTypeOptions selected=item.system.useType localize=true}}
-    </select>
-    <div class="use-value">&plus;<input id="use-value" name="system.useValue" type="number" value="{{item.system.useValue}}" />
-     </div>
-    <label for="useType">Drawback</label>
-    <select name="system.usePenaltyType">
-      {{selectOptions config.usePenaltyOptions selected=item.system.usePenaltyType localize=true}}
-    </select>
-<div class="use-penalty">&minus;<input id="use-value" name="system.usePenalty" type="number" value="{{item.system.usePenalty}}" />
-     </div>
-  </div>
-    {{/if}}
 
+    <div class="content flexcol padding-small">
+      <div class="name-price grid two-col border-bottom-thin">
+        <div class="name fw-600 fs-500 middle">
+          <input name="name" type="text" value="{{item.name}}" />
+        </div>
+        <div class="price flexrow all-caps fw-600 middle">
+          <label class="text-right">{{localize "estate.HEAD.PRICE"}} $:</label> <input type="text" name="system.cost"
+            value="{{item.system.cost}}">
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="flexrow middle fw-600 all-caps">
+          {{localize "estate.ROLL.MODIFIER"}} ? <input type="checkbox" name="system.isModifier"
+            id="roll-modifier-boolean" {{checked item.system.isModifier}} />
+        </div>
+
+        {{#if item.system.isModifier}}
+        <div id="roll-modifier" class="flexrow all-caps fw-600 middle">
+          <label for="roll-modifier">{{localize "estate.UI.GEAR_DICE"}}</label>
+          <input id="roll-modifier" name="system.modifier.value" type="number" value="{{item.system.modifier.value}}" />
+          /
+          <input id="max-roll-modifier" name="system.modifier.max" type="number" value="{{item.system.modifier.max}}" />
+
+        </div>
+        <div class="modifier-select flexcol">
+          <div class="modifier-lable all-caps fw-600 middle text-left w-100">
+            {{localize "estate.UI.MOD_ATTR"}}
+          </div>
+          <select name="system.attribute">
+            {{selectOptions config.attributeSelectOptions selected=item.system.attribute localize=true}}
+          </select>
+        </div>
+        {{/if}}
+
+        <div class="flexrow middle fw-600 all-caps">
+          {{localize "estate.UI.CONSUMABLE"}}? <input type="checkbox" name="system.isConsumable"
+            id="roll-modifier-boolean" {{checked item.system.isConsumable}} />
+        </div>
+        {{#if item.system.isConsumable}}
+        <div id="consumable" class="flexcol">
+          <div class="flexrow fw-600 middle all-caps w-100">
+            <label for="consumable">{{localize "estate.UI.USES"}}</label>
+            <input id="consumable" name="system.uses" type="number" value="{{item.system.uses}}" />
+          </div>
+          <div class="flexrow fw-600 middle all-caps gap-med">
+            <label for="useType" class="no-break">{{localize "estate.UI.USEDFOR"}}</label>
+            <select name="system.useType" class="mn-w-150px">
+              {{selectOptions config.useTypeOptions selected=item.system.useType localize=true}}
+            </select>
+            <div class="text-right">
+              &plus;
+            </div>
+            <div class="use-value">
+              <input id="use-value" name="system.useValue" type="number" value="{{item.system.useValue}}" />
+            </div>
+          </div>
+
+          <div class="flexrow fw-600 middle all-caps gap-med">
+            <label for="useType" class="no-break">{{localize "estate.UI.DRAWBACK"}}</label>
+            <select name="system.usePenaltyType" class="mn-w-150px">
+              {{selectOptions config.usePenaltyOptions selected=item.system.usePenaltyType localize=true}}
+            </select>
+            <div class="text-right">
+              &minus;
+            </div>
+            <div class="use-penalty"><input id="use-value" name="system.usePenalty" type="number"
+                value="{{item.system.usePenalty}}" />
+            </div>
+          </div>
+        </div>
+        {{/if}}
+
+        <div class="desc-group flexcol">
+          <label class="all-caps fw-600">{{localize "estate.HEAD.DESC"}}</label> <textarea name="system.description"
+            value="{{item.system.description}}">{{item.system.description}}</textarea>
+        </div>
+
+
+      </div>
+
+
+
+
+    </div>
+  </div>
 </form>

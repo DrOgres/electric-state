@@ -3,7 +3,7 @@
 
 This system is now in BETA!  
 
-![Character 1](https://github.com/DrOgres/velectric-state/blob/master/assets/es-char.webp?raw=true)  
+![Character 1](https://raw.githubusercontent.com/DrOgres/electric-state/refs/heads/main/assets/es-char.webp)  
 
 
 please put any and all bug reports and feature requests in the issues of this repo.  Bere is a list of things I hope to add in the comming days

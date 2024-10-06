@@ -24,6 +24,9 @@ TODO LIST:
 
 Version History:
 
+v0.2.0
+- Fix: dice not rolling correct pool
+
 v0.1.0: 
 - Beta 1!
 

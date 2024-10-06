@@ -129,6 +129,8 @@
     "UI.MOD_ATTR": "Attribute Modified",
     "UI.CONSUMABLE": "Consumable",
     "UI.DRAWBACK": "Drawback",
+    "UI.TIMETO": "Time To Heal",
+    "UI.DAYS": "Days",  
 
     "UI.YES": "Yes",
     "UI.NO": "No",

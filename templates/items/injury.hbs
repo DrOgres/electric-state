@@ -1,25 +1,54 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-<div class="flexrow">
-  <div class="portrait"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" /></div>
-  <div class="content flexcol">
-  <h1 class="charname">
-    <input name="name" type="text" value="{{item.name}}" />
-  </h1>
-  <label> Type </label> 
-            <select multiple name="system.type" style="height:150px;width: 100%;">
-                {{#each config.injuryTarget as |attr key|}}
-                <option value="{{key}}" {{#ifIn key ../item.system.type}}selected{{/ifIn}}>{{localize attr}}
-                </option>
-                {{/each}}               
-            </select>
-            <label>Penalty</label> <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}">
-            <label>Description</label> <textarea name="system.description"
-                value="{{item.system.description}}">{{item.system.description}}</textarea>
 
-                Permenant? <input type="checkbox" name="system.isPermanent" id="roll-modifier-boolean" {{checked
-    item.system.isPermanent}} />
-     <label>Time to Heal</label> <input type="text" name="system.healingTime" value="{{item.system.healingTime}}"> <label>Days</label>
- </div>
-</div>
+  <div class="grid col-20-80 border-thick">
+
+    <div class="portrait align-start flexcol bg-dark space-between h-100">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" width="160" />
+      <div class="hold ">&nbsp;</div>
+    </div>
+
+    <div class="content flexcol padding-small gap-small">
+      <div class="name grid border-bottom-thin  fw-600 fs-500 middle w-100">
+
+        <input name="name" type="text" value="{{item.name}}" />
+
+      </div>
+
+      <div class="type-group fw-600 all-caps">
+        <label for="type"> {{localize "estate.UI.TYPE"}} </label>
+        <select multiple id="type" name="system.type" style="height:100px;width: 100%;">
+          {{#each config.injuryTarget as |attr key|}}
+          <option value="{{key}}" {{#ifIn key ../item.system.type}}selected{{/ifIn}}>{{localize attr}}
+          </option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="flexrow fw-600 all-caps middle w-100">
+        <label>{{localize "estate.UI.PENALTY"}}</label> <input type="number" name="system.modifier.value"
+          value="{{item.system.modifier.value}}">
+      </div>
+
+      <div class="perm fw-600 all-caps middle w-100 flexrow">
+        <div>
+          {{localize "estate.ATTRIBUTE.PERM"}}?
+        </div>
+        <input type="checkbox" name="system.isPermanent" id="roll-modifier-boolean" {{checked
+          item.system.isPermanent}} />
+      </div>
+
+      <div class="perm fw-600 all-caps middle w-100 flexrow">
+        <label>{{localize "estate.UI.TIMETO"}}</label> <input type="text" name="system.healingTime"
+          value="{{item.system.healingTime}}">
+        <div>{{localize "estate.UI.DAYS"}}</div>
+      </div>
+
+
+      <div class="desc-group flexcol">
+        <label class="all-caps fw-600">{{localize "estate.HEAD.DESC"}}</label> <textarea name="system.description"
+          value="{{item.system.description}}">{{item.system.description}}</textarea>
+      </div>
+
+    </div>
+  </div>
 
 </form>

@@ -167,8 +167,8 @@ text {
       outline-color: $text-color;
       
       &:checked {
-      background-color: $background-color;
-      color: $text-color;
+      background-color: $text-color;
+      color: $background-color;
     }
     }
 

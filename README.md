@@ -16,8 +16,7 @@ TODO LIST:
     - limited actor sheet 
 - Vehicle Sheets
     - add traits to vehicle rolls
-- Item Sheets
-    - Style and UI design for each item type.
+
 - General styling and UI improvement for clarity and use
 - Complete Localization
 - Organize localization fields to make sense

@@ -19,6 +19,7 @@ TODO LIST:
 - General styling and UI improvement for clarity and use
 - Complete Localization
 - Organize localization fields to make sense
+- Drag and drop items between actors
 
 
 Version History:

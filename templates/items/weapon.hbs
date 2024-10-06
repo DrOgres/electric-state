@@ -1,33 +1,54 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-  <div class="flexrow">
-    <div class="portrait"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" />
+  <div class="grid col-20-80 border-thick">
+    <div class="portrait align-start flexcol bg-dark space-between h-100">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" width="160" />
+      <div class="hold ">&nbsp;</div>
     </div>
-    <div class="content flexcol">
-      <h1 class="charname">
-        <input name="name" type="text" value="{{item.name}}" />
-      </h1>
-      <label for="cost">
-      {{localize "estate.HEAD.COST"}}
-    </label>
-    <input id="cost" name="system.cost" type="text" value="{{item.system.cost}}" />
-  <label> Type </label>
-      <select name="system.type">
-        {{selectOptions config.weaponType selected=item.system.type localize=true}}
-      </select>
-      <label>Bonus</label> <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}">
-      <label>Description</label> <textarea name="system.description"
-        value="{{item.system.description}}">{{item.system.description}}</textarea>
-  <label >Damage</label> <input type="number" name="system.damage" value="{{item.system.damage}}">
-   <label>Minimum Range</label>
-      <select name="system.range.min">
-        {{selectOptions config.ranges selected=item.system.range.min localize=true}}
-      </select>
-      <label>Maximum Range</label>
-      <select name="system.range.max">
-        {{selectOptions config.ranges selected=item.system.range.max localize=true}}
-      </select>
-    
+
+    <div class="content flexcol padding-small gap-med">
+      <div class="name-price grid two-col border-bottom-thin">
+        <div class="name fw-600 fs-500 middle">
+          <input name="name" type="text" value="{{item.name}}" />
+        </div>
+        <div class="price flexrow all-caps fw-600 middle">
+          <label class="text-right">{{localize "estate.HEAD.PRICE"}} $:</label> <input type="text" name="system.cost"
+            value="{{item.system.cost}}">
+        </div>
+      </div>
+
+
+      <div class="type-group fw-600 all-caps w-100 flexrow space-between">
+        <label for="type"> {{localize "estate.UI.TYPE"}} </label>
+        <select name="system.type">
+          {{selectOptions config.weaponType selected=item.system.type localize=true}}
+        </select>
+      </div>
+      <div class="flexrow fw-600 all-caps middle w-100">
+        <label>{{localize "estate.UI.BONUS"}}</label> <input type="number" name="system.modifier.value"
+          value="{{item.system.modifier.value}}">
+      </div>
+      <div class="flexrow fw-600 all-caps middle w-100">
+        <label for="damage">{{localize "estate.UI.DAMAGE"}}</label> <input type="number" name="system.damage"
+          value="{{item.system.damage}}">
+      </div>
+      <div class="flexrow fw-600 all-caps middle w-100">
+        <label class="no-break text-left">{{localize "estate.UI.RANGE_MIN"}}</label>
+        <select name="system.range.min">
+          {{selectOptions config.ranges selected=item.system.range.min localize=true}}
+        </select>
+      </div>
+      <div class="flexrow fw-600 all-caps middle w-100">
+        <label>{{localize "estate.UI.RANGE_MAX"}}</label>
+        <select name="system.range.max">
+          {{selectOptions config.ranges selected=item.system.range.max localize=true}}
+        </select>
+      </div>
+      <div class="desc-group flexcol">
+        <label class="all-caps fw-600">{{localize "estate.HEAD.DESC"}}</label> <textarea name="system.description"
+          value="{{item.system.description}}">{{item.system.description}}</textarea>
+      </div>
+
     </div>
   </div>
 

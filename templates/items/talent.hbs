@@ -1,21 +1,38 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-<div class="flexrow">
-  <div class="portrait"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="160" width="160" /></div>
-  <div class="content flexcol">
-  <h1 class="charname">
-    <input name="name" type="text" value="{{item.name}}" />
-  </h1>
-  <label> Type </label> 
-            <select multiple name="system.type" style="height:150px;width: 100%;">
-                {{#each config.modifierTarget as |attr key|}}
-                <option value="{{key}}" {{#ifIn key ../item.system.type}}selected{{/ifIn}}>{{localize attr}}
-                </option>
-                {{/each}}               
-            </select>
-            <label>Bonus</label> <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}">
-            <label>Description</label> <textarea name="system.description"
-                value="{{item.system.description}}">{{item.system.description}}</textarea>
+  <div class="grid col-20-80 border-thick">
 
- </div>
-</div>
+    <div class="portrait align-start flexcol bg-dark space-between h-100">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" width="160" />
+      <div class="hold ">&nbsp;</div>
+    </div>
+
+    <div class="content flexcol padding-small gap-med">
+
+      <div class="name grid border-bottom-thin fw-600 fs-500 middle w-100">
+        <input name="name" type="text" value="{{item.name}}" />
+      </div>
+
+      <div class="type-group fw-600 all-caps">
+        <label for="type"> {{localize "estate.UI.TYPE"}} </label>
+        <select multiple name="system.type" style="height:100px;width: 100%;">
+          {{#each config.modifierTarget as |attr key|}}
+          <option value="{{key}}" {{#ifIn key ../item.system.type}}selected{{/ifIn}}>{{localize attr}}
+          </option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="penalty-group flexrow fw-600 all-caps">
+        <label>{{localize "estate.UI.BONUS"}}</label> <input type="number" name="system.modifier.value"
+          value="{{item.system.modifier.value}}">
+      </div>
+
+      <div class="desc-group flexcol ">
+        <label class="all-caps fw-600">{{localize "estate.HEAD.DESC"}}</label> <textarea name="system.description"
+          value="{{item.system.description}}">{{item.system.description}}</textarea>
+      </div>
+
+    </div>
+
+  </div>
 </form>

@@ -23,6 +23,8 @@ TODO LIST:
 
 
 Version History:
+v0.3.0 
+- Fix Notes editor height set too small by foundry to allow editing
 
 v0.2.0
 - Fix: dice not rolling correct pool

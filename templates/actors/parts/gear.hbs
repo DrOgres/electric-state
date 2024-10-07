@@ -21,7 +21,7 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isExplosive}}
-        <div class=" item item-row flexrow  middle border-bottom-thin space-between gap-med"
+        <div class=" item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true" 
             data-item-id="{{item._id}}">
             <div class="rollable mw-150px flexrow middle" data-type="explosive" data-item-id="{{item._id}}">
                 <div class="item-icon mw-35px"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25"
@@ -73,7 +73,7 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isArmor}}
-        <div class=" item item-row flexrow  middle border-bottom-thin space-between gap-med"
+        <div class=" item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true" 
             data-item-id="{{item._id}}">
 
             <div class="rollable mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
@@ -142,7 +142,7 @@
 
         {{#each items as |item|}}
         {{#if item.isGear}}
-        <div class="item item-row flexrow  middle border-bottom-thin space-between gap-med" data-item-id="{{item._id}}">
+        <div class="item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true"  data-item-id="{{item._id}}"  >
 
 
             <div class="mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
@@ -226,7 +226,7 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isDrone}}
-        <div class="item item-row flexrow  middle border-bottom-thin space-between gap-med" data-item-id="{{item._id}}">
+        <div class="item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true"  data-item-id="{{item._id}}">
 
             <div class="mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
                 <div class="item-icon">
@@ -304,7 +304,7 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isNeurocaster}}
-        <div class=" item item-row flexrow " data-item-id="{{item._id}}">
+        <div class=" item item-row flexrow draggable" draggable="true"  data-item-id="{{item._id}}">
             <div class="mw-150px flexrow middle no-break" data-type="armor" data-item-id="{{item._id}}">
                 <div class="item-icon">
                     <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25" width="25" />

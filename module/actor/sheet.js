@@ -81,10 +81,84 @@ export default class esActorSheet extends ActorSheet {
     html
       .find(".passenger-position")
       .change(this._onAssignPassengerPosition.bind(this));
+    html.find(".sheet-container").on("drop", this._onItemDrop.bind(this));
+    html.find(".draggable").on("drag", this._onItemDrag.bind(this));
+  }
+
+  async _onItemDrop(event) {
+    console.log("E-STATE | Dropping Item on Actor", event);
+
+    event.preventDefault();
+    let actor = this.actor;
+    let item = game.data.item;
+    console.log("E-STATE | Item", item);
+    if (!item) return;
+    actor.createEmbeddedDocuments("Item", [item]);
+
+    let storedItem = game.data.item;
+    if (storedItem === null) {
+      return;
+    }
+
+    let originalActor = storedItem.actor;
+    if (originalActor.id === actor.id) {
+      //  console.log("id match on drop action - returning ");
+      storedItem = null;
+      item = null;
+      return;
+    }
+
+    originalActor.deleteEmbeddedDocuments("Item", [storedItem.id]);
+
+    game.data.item = null;
+    storedItem = null;
+    item = null;
+
+    return;
+  }
+
+  _onDragStart(event) {
+    console.log(
+      "start drag",
+      event.srcElement.firstElementChild.dataset.rolled
+    );
+    console.log(
+      "start drag skill?",
+      event.currentTarget.classList.contains("skill")
+    );
+    console.log(
+      "start drag attribute?",
+      event.currentTarget.classList.contains("attribute")
+    );
+
+    if (
+      event.currentTarget.classList.contains("attribute")
+    ) {
+      console.log("a skill or attribute");
+      const rollItemDragged = event.srcElement.firstElementChild.dataset.rolled;
+      console.log("rollItemDragged", rollItemDragged);
+
+      return;
+    } else {
+      console.log("not a skill or attribute");
+      super._onDragStart(event);
+      return;
+    }
+  }
+
+
+  async _onItemDrag(event) {
+    console.log("E-STATE | Dragging Item", event);
+    event.preventDefault();
+    game.data.item = this.actor.getEmbeddedDocument(
+      "Item",
+      event.currentTarget.closest(".item").dataset.itemId
+    );
+    console.log("E-STATE | Game Data Item", game.data.item);
   }
 
   async _applyVehicleTraits(data, actor) {
-    console.log("E-STATE | Applying Vehicle Traits", data , actor);
+    console.log("E-STATE | Applying Vehicle Traits", data, actor);
     const traits = actor.items.filter((item) => item.type === "trait");
     console.log("E-STATE | Traits", traits, traits.length);
 
@@ -95,7 +169,6 @@ export default class esActorSheet extends ActorSheet {
       actor.setFlag("electric-state", "hull", 0);
       actor.setFlag("electric-state", "passengers", 0);
     }
-
 
     for (let trait of traits) {
       console.log("E-STATE | Trait", trait);
@@ -119,7 +192,7 @@ export default class esActorSheet extends ActorSheet {
         case "speed":
           const speed = trait.system.modifier.value;
           actor.setFlag("electric-state", "speed", speed);
-          console.log("E-STATE | Speed", speed, actor);   
+          console.log("E-STATE | Speed", speed, actor);
           break;
         case "maneuver":
           const maneuver = trait.system.modifier.value;
@@ -141,10 +214,8 @@ export default class esActorSheet extends ActorSheet {
           actor.setFlag("electric-state", "passengers", passengers);
           console.log("E-STATE | Passengers", passengers);
           break;
-
+      }
     }
-
-  }
   }
   async _onItemUse(event) {
     console.log("E-STATE | Using Item");
@@ -478,29 +549,27 @@ export default class esActorSheet extends ActorSheet {
     this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }
 
-  resetVehicleFlags(item){
-      console.log("E-STATE | Resetting Vehicle Flags", item);
-      const traitType = item.system.type;
-      const actor = this.actor;
-      switch(traitType){
-        case "speed":
-          actor.setFlag("electric-state", "speed", 0);
-          break;
-        case "maneuver":
-          actor.setFlag("electric-state", "maneuver", 0);
-          break;
-        case "armor":
-          actor.setFlag("electric-state", "armor", 0);
-          break;
-        case "hull":
-          actor.setFlag("electric-state", "hull", 0);
-          break;
-        case "passengers":
-          actor.setFlag("electric-state", "passengers", 0);
-          break;
-      }
-
-
+  resetVehicleFlags(item) {
+    console.log("E-STATE | Resetting Vehicle Flags", item);
+    const traitType = item.system.type;
+    const actor = this.actor;
+    switch (traitType) {
+      case "speed":
+        actor.setFlag("electric-state", "speed", 0);
+        break;
+      case "maneuver":
+        actor.setFlag("electric-state", "maneuver", 0);
+        break;
+      case "armor":
+        actor.setFlag("electric-state", "armor", 0);
+        break;
+      case "hull":
+        actor.setFlag("electric-state", "hull", 0);
+        break;
+      case "passengers":
+        actor.setFlag("electric-state", "passengers", 0);
+        break;
+    }
   }
 
   _onItemCreate(event) {
@@ -610,8 +679,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _preparePassengers(data, actor) {
-  
-    if(actor.system.passengers.passengerIds === undefined) return;
+    if (actor.system.passengers.passengerIds === undefined) return;
     data.passengers = actor.system.passengers.passengerIds.reduce((arr, a) => {
       console.log("E-STATE | Preparing Passengers", a.id);
       const passenger = game.actors.get(a.id);
@@ -676,5 +744,64 @@ export default class esActorSheet extends ActorSheet {
 
   _isVehicle() {
     return this.actor.type === "vehicle";
+  }
+
+  /** @override */
+  async _onDropItemCreate(itemData) {
+    const type = itemData.type;
+    console.log("E-State | drag and drop items", this);
+    const alwaysAllowedItems = [];
+
+    const allowedItems = {
+      vehicle: [
+        "weapon",
+        "armor",
+        "gear",
+        "trait",
+        "explosive",
+        "drone",
+        "neurocaster",
+      ],
+      player: [
+        "weapon",
+        "armor",
+        "explosive",
+        "talent",
+        "gear",
+        "tension",
+        "injury",
+        "trauma",
+        "drone",
+        "neurocaster",
+      ],
+      npc: [
+        "weapon",
+        "armor",
+        "explosive",
+        "talent",
+        "gear",
+        "tension",
+        "drone",
+        "neurocaster",
+      ],
+      robot: ["weapon"],
+    };
+    let allowed = true;
+    if (!alwaysAllowedItems.includes(type)) {
+      if (!allowedItems[this.actor.type].includes(type)) {
+        allowed = false;
+      }
+    }
+
+    if (!allowed) {
+      const msg = game.i18n.format("estate.UI.WRONGITEMTYPE", {
+        type: type,
+        actor: this.actor.type,
+      });
+      console.warn(`E-State| ${msg}`);
+      ui.notifications.warn(msg);
+      return false;
+    }
+    return super._onDropItemCreate(itemData);
   }
 }

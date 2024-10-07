@@ -947,8 +947,6 @@ export async function roll(options) {
     r = YearZeroRoll.forge(dice, data, rollOptions);
   }
 
-
-
   await r.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),
   });

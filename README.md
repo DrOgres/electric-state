@@ -19,10 +19,15 @@ TODO LIST:
 - General styling and UI improvement for clarity and use
 - Complete Localization
 - Organize localization fields to make sense
-- Drag and drop items between actors
+- set up macro drag to hot bar for rollable elements
+
 
 
 Version History:
+
+next release:
+- added dice for Dice so Nice
+- added drag and drop items between character sheets
 
 v0.3.0 
 - Fix Notes editor height set too small by foundry to allow editing

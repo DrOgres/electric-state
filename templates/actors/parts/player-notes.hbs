@@ -6,13 +6,17 @@
             <div class="border-3-4-thick fexcol padding-small margin-small margin-top-close">
                 <div class="goal-group flexrow fs-300 margin-small border-bottom-thin">
                     <label for="goal" class="all-caps fw-700 middle">{{localize "estate.UI.GOAL"}}</label>
-                    <input id="goal" name="system.goal" type="text" value="{{actor.system.journey.goal}}"
-                        placeholder="goal" />
+                     <textarea class="input-text" name="system.goal" cols="21" rows="3" placeholder="{{localize "estate.UI.GOAL"}}">
+                        {{actor.system.goal}}
+                        </textarea>
+                   
                 </div>
                 <div class="threat-group flexrow fs-300 margin-small border-bottom-thin">
                     <label for="threat" class="all-caps fw-700 middle">{{localize "estate.UI.THREAT"}}</label>
-                    <input id="threat" name="system.threat" type="text" value="{{actor.system.journey.threat}}"
-                        placeholder="threat" />
+                     <textarea class="input-text" name="system.threat" cols="21" rows="3" placeholder="{{localize "estate.UI.THREAT"}}"></textarea>
+                        {{actor.system.threat}}
+                        </textarea>
+                   
                 </div>
             </div>
         </div>

@@ -145,6 +145,14 @@
   opacity: 1;
 }
 
+.input-text {
+  background-color: #ffffff;
+  color: #2c2e35;
+  border-bottom: 1px solid #2c2e35;
+  border-radius: 0;
+  resize: none;
+}
+
 .block {
   display: block;
 }

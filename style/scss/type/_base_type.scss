@@ -162,3 +162,11 @@
     opacity: 1;
   } 
     
+
+  .input-text{
+    background-color: $field-color;
+    color: $text-color;
+    border-bottom: 1px solid $text-color;
+    border-radius: 0;
+    resize: none;
+  }

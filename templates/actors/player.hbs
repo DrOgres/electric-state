@@ -27,18 +27,19 @@
                 <div class="flexrow align-content-start gap-small">
                     <div class="description grid col-20-80 align-bottom border-bottom">
                         <label class="shrink">{{localize "estate.HEAD.DESC"}}</label>
-                        <textarea name="system.description">{{actor.system.description}}</textarea>
+                        <textarea class="input-text"  name="system.description">{{actor.system.description}}</textarea>
                     </div>
                 </div>
                 <div class="flexrow align-content-start gap-small">
-                    <div class="dream grid col-20-80 align-bottom border-bottom">
+                    <div class="dream grid col-20-80 align-bottom border-bottom margin-small">
 
                         <label class="shrink">{{localize "estate.HEAD.DREAM"}}</label>
-                        <input name="system.dream" type="text" value="{{actor.system.dream}}" placeholder="dream" />
-                    </div>
-                    <div class="flaw  grid col-20-80 align-bottom border-bottom">
+                        <textarea class="input-text" name="system.dream" cols="21" rows="2" placeholder="{{localize "estate.HEAD.DREAM"}}">{{actor.system.dream}}</textarea>
+                                           </div>
+                    <div class="flaw  grid col-20-80 align-bottom border-bottom margin-small">
                         <label class="shrink">{{localize "estate.HEAD.FLAW"}}</label>
-                        <input name="system.flaw" type="text" value="{{actor.system.flaw}}" placeholder="flaw" />
+                         <textarea class="input-text" name="system.flaw" cols="21" rows="2" placeholder="{{localize "estate.HEAD.FLAW"}}">{{actor.system.flaw}}</textarea>
+                      
                     </div>
                 </div>
             </div>

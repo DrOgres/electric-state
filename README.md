@@ -19,10 +19,14 @@ TODO LIST:
 - General styling and UI improvement for clarity and use
 - Complete Localization
 - Organize localization fields to make sense
-- Drag and drop items between actors
+
 
 
 Version History:
+
+v0.4.0
+- Added Dice So Nice Support
+- Added Drag and Drop support to move items between Actors 
 
 v0.3.0 
 - Fix Notes editor height set too small by foundry to allow editing

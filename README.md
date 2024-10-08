@@ -24,6 +24,12 @@ TODO LIST:
 
 Version History:
 
+v0.5.0
+- Fix: Text area on Goal and threat had extra white space [#22](https://github.com/DrOgres/electric-state/issues/22)
+- Fix: Threat text area closed incorrectly putting text into incorrect area and breaking data save [#22](https://github.com/DrOgres/electric-state/issues/22)
+- Fix: Changed inputs on vehicle to number type to allow arrow keys to increment/decrement them [#23](https://github.com/DrOgres/electric-state/issues/23)
+
+
 v0.4.0
 - Added Dice So Nice Support
 - Added Drag and Drop support to move items between Actors 

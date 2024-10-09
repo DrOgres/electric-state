@@ -893,7 +893,7 @@ async function _onPush(event) {
   await message.delete();
 
   // Push the roll and send it.
-  await roll.push({ async: true });
+  await roll.push();
   //TODO if we used gear and the gear dice roll a 1 we should reduce the gear modifier by 1 for each 1 rolled
   //TODO check rules for neurocasters to see where a push damages them
   //TODO if the push results in any 1s we should reuduce hope on the actor by 1 for each 1 rolled

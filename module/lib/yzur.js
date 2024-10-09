@@ -1666,7 +1666,7 @@ class YearZeroDie extends foundry.dice.terms.Die {
       //   The evaluate() method iterates each terms and runs only
       //   the term's own evaluate() method on new (pushed) dice.
       this._evaluated = false;
-      await this.evaluate({ async });
+      await this.evaluate();
   
       return this;
     }

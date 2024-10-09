@@ -19,15 +19,22 @@ TODO LIST:
 - General styling and UI improvement for clarity and use
 - Complete Localization
 - Organize localization fields to make sense
+
 - set up macro drag to hot bar for rollable elements
 
 
 
 Version History:
 
-next release:
-- added dice for Dice so Nice
-- added drag and drop items between character sheets
+v0.5.0
+- Fix: Text area on Goal and threat had extra white space [#22](https://github.com/DrOgres/electric-state/issues/22)
+- Fix: Threat text area closed incorrectly putting text into incorrect area and breaking data save [#22](https://github.com/DrOgres/electric-state/issues/22)
+- Fix: Changed inputs on vehicle to number type to allow arrow keys to increment/decrement them [#23](https://github.com/DrOgres/electric-state/issues/23)
+
+
+v0.4.0
+- Added Dice So Nice Support
+- Added Drag and Drop support to move items between Actors 
 
 v0.3.0 
 - Fix Notes editor height set too small by foundry to allow editing

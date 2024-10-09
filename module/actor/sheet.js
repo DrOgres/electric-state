@@ -6,7 +6,7 @@ export default class esActorSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["es", "sheet", "actor"],
       width: 650,
-      height: 700,
+      height: 'fit-content',
       tabs: [
         {
           navSelector: ".sheet-tabs",
@@ -170,6 +170,12 @@ export default class esActorSheet extends ActorSheet {
       actor.setFlag("electric-state", "passengers", 0);
     }
 
+    let totalSpeedModifier = 0;
+    let totalManeuverModifier = 0;
+    let totalArmorModifier = 0;
+    let totalHullModifier = 0;
+    let totalPassengerModifier = 0;
+
     for (let trait of traits) {
       console.log("E-STATE | Trait", trait);
       // none: "estate.UI.NONE",
@@ -191,31 +197,39 @@ export default class esActorSheet extends ActorSheet {
           break;
         case "speed":
           const speed = trait.system.modifier.value;
-          actor.setFlag("electric-state", "speed", speed);
+          totalSpeedModifier += speed;
           console.log("E-STATE | Speed", speed, actor);
           break;
         case "maneuver":
           const maneuver = trait.system.modifier.value;
-          actor.setFlag("electric-state", "maneuver", maneuver);
+          totalManeuverModifier += maneuver;
           console.log("E-STATE | Maneuver", maneuver);
           break;
         case "armor":
           const armor = trait.system.modifier.value;
-          actor.setFlag("electric-state", "armor", armor);
+          totalArmorModifier += armor;
           console.log("E-STATE | Armor", armor);
           break;
         case "hull":
           const hull = trait.system.modifier.value;
-          actor.setFlag("electric-state", "hull", hull);
+          totalArmorModifier += hull;
           console.log("E-STATE | Hull", hull);
           break;
         case "passengers":
           const passengers = trait.system.modifier.value;
-          actor.setFlag("electric-state", "passengers", passengers);
+          totalPassengerModifier += passengers;
           console.log("E-STATE | Passengers", passengers);
           break;
       }
     }
+
+    console.log("E-STATE | Total Modifiers", totalSpeedModifier, totalManeuverModifier, totalArmorModifier, totalHullModifier, totalPassengerModifier);
+
+    actor.setFlag("electric-state", "speed", totalSpeedModifier);
+    actor.setFlag("electric-state", "maneuver", totalManeuverModifier);
+    actor.setFlag("electric-state", "armor", totalArmorModifier);
+    actor.setFlag("electric-state", "hull", totalHullModifier);
+    actor.setFlag("electric-state", "passengers", totalPassengerModifier);
   }
   async _onItemUse(event) {
     console.log("E-STATE | Using Item");

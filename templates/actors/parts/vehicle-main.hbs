@@ -8,14 +8,14 @@
 
             <div class="value-group center fw-700 w-100 middle grid three-col">
                 <div class="input-container mi-small center middle flexrow">
-                    <input type="text" name="system.maneuverability.value"
+                    <input type="number" name="system.maneuverability.value"
                         value="{{actor.system.maneuverability.value}}" style="width: 50px" data-dtype="Number" />
                 </div>
                 <div>/</div>
                 <div class="input-container mi-small center middle flexrow">
 
                     {{#unless (ne actor.flags.electric-state.maneuver 0) }}
-                    <input type="text" name="system.maneuverability.max" value="{{actor.system.maneuverability.max}}"
+                    <input type="number" name="system.maneuverability.max" value="{{actor.system.maneuverability.max}}"
                         style="width: 50px" data-dtype="Number" />
                     {{/unless}}
 
@@ -24,7 +24,7 @@
                     <div class="grid two-col">
 
                         <div class="input-value">
-                            <input type="text" name="system.maneuverability.max"
+                            <input type="number" name="system.maneuverability.max"
                                 value="{{actor.system.maneuverability.max}}" style="width: 25px" data-dtype="Number" />
                         </div>
                         <div class="tooltip grid three-col middle center">
@@ -54,7 +54,7 @@
             <div class="input-container center fw-700 w-100 middle flexrow">
 
                 {{#unless (ne actor.flags.electric-state.speed 0) }}
-                <input type="text" name="system.speed" value="{{actor.system.speed}}" style="width: 50px"
+                <input type="number" name="system.speed" value="{{actor.system.speed}}" style="width: 50px"
                     data-dtype="Number" />
                 {{/unless}}
 
@@ -63,7 +63,7 @@
                 <div class="grid two-col">
 
                     <div class="input-value">
-                        <input type="text" name="system.speed" value="{{actor.system.speed}}" style="width: 25px"
+                        <input type="number" name="system.speed" value="{{actor.system.speed}}" style="width: 25px"
                             data-dtype="Number" />
                     </div>
                     <div class="tooltip grid three-col middle center">
@@ -93,14 +93,14 @@
 
             <div class="value-group center fw-700 w-100 middle grid three-col">
                 <div class="input-container mi-small center middle flexrow">
-                    <input type="text" name="system.hull.value" value="{{actor.system.hull.value}}" style="width: 50px"
+                    <input type="number" name="system.hull.value" value="{{actor.system.hull.value}}" style="width: 50px"
                         data-dtype="Number" />
                 </div>
                 <div>/</div>
                 <div class="input-container mi-small center middle flexrow">
 
                     {{#unless (ne actor.flags.electric-state.hull 0) }}
-                    <input type="text" name="system.hull.max" value="{{actor.system.hull.max}}" style="width: 50px"
+                    <input type="number" name="system.hull.max" value="{{actor.system.hull.max}}" style="width: 50px"
                         data-dtype="Number" />
                     {{/unless}}
 
@@ -109,7 +109,7 @@
                     <div class="grid two-col">
 
                         <div class="input-value">
-                            <input type="text" name="system.hull.max" value="{{actor.system.hull.max}}"
+                            <input type="number" name="system.hull.max" value="{{actor.system.hull.max}}"
                                 style="width: 25px" data-dtype="Number" />
                         </div>
                         <div class="tooltip grid three-col middle center">
@@ -139,7 +139,7 @@
             <div class="input-container center fw-700 w-100 middle flexrow">
 
                 {{#unless (ne actor.flags.electric-state.armor 0) }}
-                <input type="text" name="system.armor" value="{{actor.system.armor}}" style="width: 50px"
+                <input type="number" name="system.armor" value="{{actor.system.armor}}" style="width: 50px"
                     data-dtype="Number" />
                 {{/unless}}
 
@@ -148,7 +148,7 @@
                 <div class="grid two-col">
 
                     <div class="input-value">
-                        <input type="text" name="system.armor" value="{{actor.system.armor}}" style="width: 25px"
+                        <input type="number" name="system.armor" value="{{actor.system.armor}}" style="width: 25px"
                             data-dtype="Number" />
                     </div>
                     <div class="tooltip grid three-col middle center">
@@ -191,7 +191,7 @@
             <div>/</div>
             <div class="input-container mi-small center">
                  {{#unless (ne actor.flags.electric-state.passengers 0) }}
-                    <input type="text" name="system.passengers.max" value="{{actor.system.passengers.max}}"
+                    <input type="number" name="system.passengers.max" value="{{actor.system.passengers.max}}"
                         style="width: 50px" data-dtype="Number" />
                     {{/unless}}
 
@@ -200,7 +200,7 @@
                     <div class="grid two-col">
 
                         <div class="input-value">
-                            <input type="text" name="system.passengers.max"
+                            <input type="number" name="system.passengers.max"
                                 value="{{actor.system.passengers.max}}" style="width: 25px" data-dtype="Number" />
                         </div>
                         <div class="tooltip grid three-col middle center">

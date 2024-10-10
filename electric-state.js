@@ -142,28 +142,28 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
     dice3d.addDicePreset({
         type: 'db',
         labels: [
-            'systems/electric-state/assets/dice/base-1.png',
-            'systems/electric-state/assets/dice/base-2.png',
-            'systems/electric-state/assets/dice/base-3.png',
-            'systems/electric-state/assets/dice/base-4.png',
-            'systems/electric-state/assets/dice/base-5.png',
-            'systems/electric-state/assets/dice/base-6.png',
+            'systems/electric-state/assets/dice/db-1.png',
+            'systems/electric-state/assets/dice/db-2.png',
+            'systems/electric-state/assets/dice/db-3.png',
+            'systems/electric-state/assets/dice/db-4.png',
+            'systems/electric-state/assets/dice/db-5.png',
+            'systems/electric-state/assets/dice/db-6.png',
         ],
-        colorset: 'ElectricStateBlack',
+        colorset: 'ElectricStateRed',
         system: 'electric-state',
     });
 
     dice3d.addDicePreset({
         type: 'dg',
         labels: [
-            'systems/electric-state/assets/dice/gear-1.png',
-            'systems/electric-state/assets/dice/gear-2.png',
-            'systems/electric-state/assets/dice/gear-3.png',
-            'systems/electric-state/assets/dice/gear-4.png',
-            'systems/electric-state/assets/dice/gear-5.png',
-            'systems/electric-state/assets/dice/gear-6.png',
+            'systems/electric-state/assets/dice/dg-1.png',
+            'systems/electric-state/assets/dice/dg-2.png',
+            'systems/electric-state/assets/dice/dg-3.png',
+            'systems/electric-state/assets/dice/dg-4.png',
+            'systems/electric-state/assets/dice/dg-5.png',
+            'systems/electric-state/assets/dice/dg-6.png',
         ],
-        colorset: 'ElectricStateRed',
+        colorset: 'ElectricStateBlack',
         system: 'electric-state',
     });
 });

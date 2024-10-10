@@ -1,7 +1,7 @@
 # electric-state
 ## An Electric State RPG system for Foundry VTT
 
-This game is not affiliated with, sponsored, or endorsed by Fria Ligan AB. The Year Zero Engine System Reference Document is used under Fria Ligan AB’s Free Tabletop License.
+### This game is not affiliated with, sponsored, or endorsed by Fria Ligan AB. The Year Zero Engine System Reference Document is used under Fria Ligan AB’s Free Tabletop License.
 
 This system is now in BETA!  
 

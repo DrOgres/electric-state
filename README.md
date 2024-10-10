@@ -28,6 +28,10 @@ TODO LIST:
 
 Version History:
 
+v0.6.0
+- Fix: Dice colors were inverted
+- Add: Liscence information and a copy of the YZE FTL added to the repo to allow for Foundry to List it 
+
 v0.5.0
 - Fix: Text area on Goal and threat had extra white space [#22](https://github.com/DrOgres/electric-state/issues/22)
 - Fix: Threat text area closed incorrectly putting text into incorrect area and breaking data save [#22](https://github.com/DrOgres/electric-state/issues/22)

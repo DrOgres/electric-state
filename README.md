@@ -22,6 +22,8 @@ TODO LIST:
 - Complete Localization
 - Organize localization fields to make sense
 
+- set up macro drag to hot bar for rollable elements
+
 
 
 Version History:

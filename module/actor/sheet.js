@@ -6,7 +6,7 @@ export default class esActorSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["es", "sheet", "actor"],
       width: 650,
-      height: 'fit-content',
+      height: 750,
       tabs: [
         {
           navSelector: ".sheet-tabs",

@@ -14,9 +14,8 @@ TODO LIST:
 
 - Player Character Sheets
     - Target token to use Tension on opposed rolls
+        - Add tension drop down to roll dialog if no target is selected
     - Target to allow damage to be applied for attacks
-    - Automatically apply damage to gear for 1's on pushed rolls
-    - Automattically apply -1 hope for 1's on pushed rolls
     - limited actor sheet 
 - General styling and UI improvement for clarity and use
 - Complete Localization
@@ -25,6 +24,11 @@ TODO LIST:
 - make items non-rollable from vehicle trunk
 
 Version History:
+
+v0.7.0
+- Hope decreases for each 1 rolled on a pushed roll
+- Gear used in a roll looses 1 gear die when 1's a rolled on a push
+
 
 v0.6.0
 - Fix: Dice colors were inverted

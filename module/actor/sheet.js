@@ -17,6 +17,8 @@ export default class esActorSheet extends ActorSheet {
     });
   }
 
+  //TODO link actor data for player actors and vehicle actors
+
   get template() {
     return `systems/electric-state/templates/actors/${this.actor.type}.hbs`;
   }

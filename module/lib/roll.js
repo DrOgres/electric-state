@@ -885,6 +885,7 @@ async function _onPush(event) {
   let messageId = chatCard.dataset.messageId;
   let message = game.messages.get(messageId);
   let actor = game.actors.get(message.speaker.actor);
+  let sheet = actor.sheet;
 
   // Copy the roll.
   let roll = message.rolls[0].duplicate();
@@ -897,6 +898,39 @@ async function _onPush(event) {
   //TODO if we used gear and the gear dice roll a 1 we should reduce the gear modifier by 1 for each 1 rolled
   //TODO check rules for neurocasters to see where a push damages them
   //TODO if the push results in any 1s we should reuduce hope on the actor by 1 for each 1 rolled
+
+  console.log("Pushing", roll);
+  const gearDamage = roll.gearDamage;
+  console.log("Gear Damage", gearDamage);
+  const hopeDamage = roll.attributeTrauma;
+  console.log("Hope Damage", hopeDamage);
+
+  console.log("ROll", roll);
+  console.log("actor", actor);
+  let gear = actor.items.find((i) => i.id === roll.options.gearId);
+  console.log("Gear", gear);
+
+  if (gearDamage > 0) {
+    if (gear !== undefined) {
+      gear.system.modifier.value -= gearDamage;
+      const update = [{ _id: gear.id, "system.modifier.value": gear.system.modifier.value }];
+      await Item.updateDocuments(update, { parent: actor });
+      console.log("Gear", gear);
+      console.log("actor", actor);
+     
+    }
+  }
+
+  if (hopeDamage > 0) {
+    console.log("damage to hope", hopeDamage);
+    let hope = actor.system.hope.value;
+    hope -= hopeDamage;
+    console.log("Hope", hope);
+    await actor.update({ "system.hope.value": hope });
+  }
+  
+
+
 
   await roll.toMessage();
 }
@@ -934,7 +968,10 @@ export async function roll(options) {
     actorType: actor.type,
     formula: formula,
     type: options.type,
+    gearId: options.gearUsed,
   };
+
+  console.log("Roll Options", rollOptions);
 
 
   rollOptions.maxPush = isRollPushable(actor, options) ? 1 : 0;

@@ -23,7 +23,7 @@
     }
 ],
   "url": "https://github.com/DrOgres/electric-state",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "compatibility": {
     "minimum": "12",
     "maximum": "12",
@@ -45,7 +45,7 @@
   ],
   "initiative": "1d10",
   "manifest": "https://github.com/DrOgres/electric-state/releases/latest/download/system.json",
-  "download": "https://github.com/DrOgres/electric-state/releases/download/0.7.0/system.zip",
+  "download": "https://github.com/DrOgres/electric-state/releases/download/0.8.0/system.zip",
   "grid": {
     "units": "meter"
   }

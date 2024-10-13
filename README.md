@@ -25,6 +25,9 @@ TODO LIST:
 
 Version History:
 
+v0.8.0
+- Weapons degrade when 1's are rolled while pushing.
+
 v0.7.0
 - Hope decreases for each 1 rolled on a pushed roll
 - Gear used in a roll looses 1 gear die when 1's a rolled on a push

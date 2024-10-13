@@ -564,6 +564,11 @@ export function prepareRollDialog(options) {
               baseDice -= options.armorPenalty;
             }
 
+            //if this is a weapon roll set options.gearUsed to the weaponId
+            if (options.type === "weapon") {
+              options.gearUsed = options.weaponId;
+            }
+
             //TODO if there is no gear that matches the attribute this will be an error so we need to check for that
 
             let selectedGearItemId;

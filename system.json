@@ -14,6 +14,14 @@
       "flags": {}
     }
   ],
+  "media": [
+    {
+        "type": "cover",
+        "url": "https://github.com/DrOgres/electric-state/blob/main/assets/cover.webp?raw=true",
+        "loop": false,
+        "flags": {}
+    }
+],
   "url": "https://github.com/DrOgres/electric-state",
   "version": "0.7.0",
   "compatibility": {

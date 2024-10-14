@@ -15,12 +15,13 @@
     }
   ],
   "media": [
+  
     {
-        "type": "cover",
-        "url": "https://github.com/DrOgres/electric-state/blob/main/assets/cover.webp?raw=true",
-        "loop": false,
-        "flags": {}
-    }
+      "type": "cover",
+      "url": "systems/electric-state/assets/cover.webp",
+      "loop": false,
+      "flags": {}
+  }
 ],
   "url": "https://github.com/DrOgres/electric-state",
   "version": "0.8.0",

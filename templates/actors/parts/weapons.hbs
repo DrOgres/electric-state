@@ -18,7 +18,7 @@
 {{#if item.isWeapon}}
 <div class=" item item-row flexrow middle border-bottom-thin space-between gap-med w-100 draggable" draggable="true"  data-item-id="{{item._id}}">
 
-    <div class="rollable mw-150px flexrow middle" data-type="weapon" data-item-id="{{item._id}}">
+    <div class={{#if (eq ../actor.type 'player')}}"rollable mw-150px flexrow middle"{{/if}} {{#unless (eq ../actor.type 'player')}}"mw-150px flexrow middle"{{/unless}} data-type="weapon" data-item-id="{{item._id}}">
 
         <div class="item-icon mw-35px"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25"
                 width="25" /></div>

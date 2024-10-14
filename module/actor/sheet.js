@@ -239,8 +239,7 @@ export default class esActorSheet extends ActorSheet {
     const item = this.actor.items.get(itemId);
     console.log("E-STATE | Item", item);
     if (!item.system.isConsumable || item.system.uses <= 0) {
-      //TODO localize this message
-      ui.notifications.warn("This item is not consumable or out of uses");
+      ui.notifications.warn(game.i18n.localize("estate.MSG.NO_USES"));
       return;
     }
     const type = item.system.useType;
@@ -266,7 +265,7 @@ export default class esActorSheet extends ActorSheet {
         if (health < maxHealth) {
           health += item.system.useValue;
         } else {
-          ui.notifications.info("Health is already at max");
+          ui.notifications.info(game.i18n.localize("estate.MSG.HEALTH_MAX"));
           return;
         }
         await this.actor.update({ "system.health.value": health });
@@ -278,7 +277,7 @@ export default class esActorSheet extends ActorSheet {
         if (hope < maxHope) {
           hope += item.system.useValue;
         } else {
-          ui.notifications.info("Hope is already at max");
+          ui.notifications.info(game.i18n.localize("estate.MSG.HOPE_MAX"));
           return;
         }
         await this.actor.update({ "system.hope.value": hope });
@@ -304,7 +303,7 @@ export default class esActorSheet extends ActorSheet {
     }
 
     await item.update({ "system.uses": uses });
-    ui.notifications.info("Used: " + item.name);
+    ui.notifications.info(game.i18n.localize("estate.MSG.USED") + " :" + item.name);
     //TODO make a chat card to indicate item use and effect
   }
 
@@ -401,7 +400,7 @@ export default class esActorSheet extends ActorSheet {
           const driver = driverId ? game.actors.get(driverId) : null;
           if (!driver) {
             ui.notifications.warn(
-              "You must assign a driver to the vehicle to make a maneuverability test"
+              game.i18n.localize("estate.MSG.DRIVERREQUIRED")
             );
             return;
           }
@@ -438,13 +437,13 @@ export default class esActorSheet extends ActorSheet {
 
           if (!item.flags.isEquipped) {
             ui.notifications.warn(
-              "Drone and Neurocaster must be equipped to use this action"
+              game.i18n.localize("estate.MSG.DRONENOTEQUIPPED")
             );
             return;
           }
           if (neurocasters.length === 0) {
             ui.notifications.warn(
-              "Drone and Neurocaster must be equipped to use this action"
+              game.i18n.localize("estate.MSG.DRONENOTEQUIPPED")
             );
             return;
           } else {
@@ -456,7 +455,7 @@ export default class esActorSheet extends ActorSheet {
             }
             if (!status) {
               ui.notifications.warn(
-                "Drone and Neurocaster must be equipped to use this action"
+                game.i18n.localize("estate.MSG.DRONENOTEQUIPPED")
               );
               return;
             }
@@ -529,7 +528,7 @@ export default class esActorSheet extends ActorSheet {
 
     if (actor.object.system.health.value > 0) {
       ui.notifications.info(
-        "You are not dying yet! You must be at 0 health before you make a death roll!"
+        game.i18n.localize("estate.MSG.NOTDYING")
       );
       return;
     }
@@ -810,7 +809,7 @@ export default class esActorSheet extends ActorSheet {
     }
 
     if (!allowed) {
-      const msg = game.i18n.format("estate.UI.WRONGITEMTYPE", {
+      const msg = game.i18n.format("estate.MSG.WRONGITEMTYPE", {
         type: type,
         actor: this.actor.type,
       });

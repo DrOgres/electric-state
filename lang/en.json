@@ -144,6 +144,15 @@
     "UI.ROLLING": "Rolling",
     "UI.CANCEL": "Cancel",
 
+    "MSG.NO_USES": "This item is not consumable or out of uses",
+    "MSG.HEALTH_MAX": "Health is already at maximum",
+    "MSG.HOPE_MAX": "Hope is already at maximum",
+    "MSG.USED": "Used",
+    "MSG.DRIVERREQUIRED": "You must assign a driver to the vehicle to make a maneuverability test",
+    "MSG.DRONENOTEQUIPPED": "Drone and Neurocaster must be equipped to use this action",
+    "MSG.NOTDYING": "You are not dying, yet, You must be at 0 health before you make a death roll!",
+    "MSG.WRONGITEMTYPE": "This actor cannot hold this item type",
+
     
     "ROLL.BASE.POOL": "Base Dice Pool",
     "ROLL.TEST": "Test",

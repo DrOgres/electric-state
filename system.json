@@ -15,10 +15,15 @@
     }
   ],
   "media": [
-  
+    {
+        "type": "screenshot",
+        "url": "https://github.com/DrOgres/electric-state/blob/main/assets/cover.webp?raw=true",
+        "loop": false,
+        "flags": {}
+    },
     {
       "type": "cover",
-      "url": "systems/electric-state/assets/cover.webp",
+      "url": "https://github.com/DrOgres/electric-state/blob/main/assets/cover.webp?raw=true",
       "loop": false,
       "flags": {}
   }

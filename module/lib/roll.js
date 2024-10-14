@@ -211,7 +211,7 @@ export function prepareRollDialog(options) {
           }
           if (!foundCaster) {
             ui.notifications.warn(
-              "You need to equip a neurocaster to use a drone"
+              game.i18n.localize("estate.MSG.NUEROCASTER")
             );
             return;
           }
@@ -286,7 +286,7 @@ export function prepareRollDialog(options) {
         if (!foundCaster && actor.type === "player") {
           //allow non-player actors to roll neuroscape weapons without a neurocaster for robots and the like
           ui.notifications.warn(
-            "You need to equip a neurocaster to use a neuroscape weapon"
+            game.i18n.localize("estate.MSG.NUEROCASTWEAPON")
           );
           return;
         }
@@ -350,7 +350,7 @@ export function prepareRollDialog(options) {
       if (neurocaster !== undefined) {
         options.dicePool += neurocaster.system.network.value;
       } else {
-        ui.notifications.warn("You need to equip a neurocaster to use a drone");
+        ui.notifications.warn(game.i18n.localize("estate.MSG.NUEROCASTER"));
         return;
       }
 
@@ -379,7 +379,7 @@ export function prepareRollDialog(options) {
       options.gearDice = explosive.system.modifier.value;
       options.gearName = explosive.name;
       } else {
-        ui.notifications.warn("You need to equip an explosive to roll");
+        ui.notifications.warn(game.i18n.localize("estate.MSG.EXPLOSIVEWARN"));
         return;
       }
 
@@ -418,7 +418,7 @@ export function prepareRollDialog(options) {
             neurocaster.name + " " + game.i18n.localize("estate.UI.PROCESSOR");
           options.gearDice += neurocaster.system.processor.value;
         } else {
-          ui.notifications.warn("You need to equip a neurocaster to cast");
+          ui.notifications.warn(game.i18n.localize("estate.MSG.NUEROCASTER"));
           return;
         }
 
@@ -439,7 +439,7 @@ export function prepareRollDialog(options) {
             neurocaster.name + " " + game.i18n.localize("estate.UI.NETWORK");
           options.gearDice += neurocaster.system.network.value;
         } else {
-          ui.notifications.warn("You need to equip a neurocaster to cast");
+          ui.notifications.warn(game.i18n.localize("estate.MSG.NUEROCASTER"));
           return;
         }
         dialogHTML += buildHTMLDialog(
@@ -459,7 +459,7 @@ export function prepareRollDialog(options) {
             neurocaster.name + " " + game.i18n.localize("estate.UI.GRAPHICS");
           options.gearDice += neurocaster.system.graphics.value;
         } else {
-          ui.notifications.warn("You need to equip a neurocaster to cast");
+          ui.notifications.warn(game.i18n.localize("estate.MSG.NUEROCASTER"));
           return;
         }
 
@@ -480,7 +480,7 @@ export function prepareRollDialog(options) {
             neurocaster.name + " " + game.i18n.localize("estate.UI.NETWORK");
           options.gearDice += neurocaster.system.network.value;
         } else {
-          ui.notifications.warn("You need to equip a neurocaster to cast");
+          ui.notifications.warn(game.i18n.localize("estate.MSG.NUEROCASTER"));
           return;
         }
         dialogHTML += buildHTMLDialog(
@@ -500,7 +500,7 @@ export function prepareRollDialog(options) {
             neurocaster.name + " " + game.i18n.localize("estate.UI.GRAPHICS");
           options.gearDice += neurocaster.system.graphics.value;
         } else {
-          ui.notifications.warn("You need to equip a neurocaster to cast");
+          ui.notifications.warn(game.i18n.localize("estate.MSG.NUEROCASTER"));
           return;
         }
         dialogHTML += buildHTMLDialog(
@@ -553,7 +553,7 @@ export function prepareRollDialog(options) {
             //TODO ensure that the traitMod has not reduced the dice pool to less than 0 for armor or less than 1 for other rolls
            if (options.type === "vehicle-armor" && baseDice < 0) {
               baseDice = 0;
-              ui.notifications.warn("Vehicle Armor is Busted and has no effect");
+              ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDARMOR"));
               return;
             } else if (baseDice < 1) {
               baseDice = 1;

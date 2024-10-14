@@ -152,6 +152,10 @@
     "MSG.DRONENOTEQUIPPED": "Drone and Neurocaster must be equipped to use this action",
     "MSG.NOTDYING": "You are not dying, yet, You must be at 0 health before you make a death roll!",
     "MSG.WRONGITEMTYPE": "This actor cannot hold this item type",
+    "MSG.NUEROCASTWEAPON": "You need to equip a neurocaster to use a neuroscape weapon",
+    "MSG.NUEROCASTER": "You need to equip a neurocaster to use this action",
+    "MSG.EXPLOSIVEWARN": "You must equip an explosive to roll.",
+    "MSG.BUSTEDARMOR": "Armor is busted, you must repair it before you can use it",
 
     
     "ROLL.BASE.POOL": "Base Dice Pool",

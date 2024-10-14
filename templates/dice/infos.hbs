@@ -1,9 +1,33 @@
 <div class="dice-infos">
+  {{#if (gt roll.pushCount 0)}}
+    {{#if (gt roll.baneCount 0)}}
+    <div class="bane-container center margin-small padding-small border-thin flexcol ">
+     {{#if (gt roll.gearDamage 0)}}
+        <div class="gear-damage center flexrow middle fw-600 space-between w-100">
+          <span class="label">{{localize "estate.UI.GEAR_DAMAGE"}}: </span>
+          <span class="result">{{roll.gearDamage}}</span>
+        </div>
+      {{/if}}
+      {{#if (gt roll.attributeTrauma 0)}}
+        <div class="hope-loss center flexrow middle fw-600 space-between w-100">
+          <span class="label">{{localize "estate.UI.HOPE_LOSS"}}: </span>
+          <span class="result">{{roll.attributeTrauma}}</span>
+        </div>
+      
+      {{/if}}
+      
+      </div>
+    {{/if}}
+    {{/if}}
+
   {{log roll}}
   {{#if (eq roll.game 'es')}}
   {{#if (gt roll.options.damage 0)}}
   {{#unless (eq roll.options.type "explosive")}}
   <div class="roll-damage center fs-400 fw-700 margin-small">
+
+
+
     <span class="label">{{localize "estate.UI.DAMAGE"}}: </span>
     {{#if (gt roll.successCount 1)}}
     <span class="result">
@@ -13,6 +37,8 @@
       )
     </span>
     {{/if}}
+
+    
 
     {{#unless (gt roll.successCount 1)}}
     <span class="result"> {{roll.options.damage}} </span>

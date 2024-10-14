@@ -135,6 +135,8 @@
     "UI.RW_PENALTY": "Real World Penalty",  
     "UI.TARGET_TENSION": "Target of Tension",
     "UI.AMOUNT": "Amount",
+    "UI.HOPE_LOSS": "Hope Loss",
+    "UI.GEAR_DAMAGE": "Gear Damage",
 
     "UI.YES": "Yes",
     "UI.NO": "No",

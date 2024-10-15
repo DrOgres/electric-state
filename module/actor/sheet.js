@@ -85,6 +85,21 @@ export default class esActorSheet extends ActorSheet {
       .change(this._onAssignPassengerPosition.bind(this));
     html.find(".sheet-container").on("drop", this._onItemDrop.bind(this));
     html.find(".draggable").on("drag", this._onItemDrag.bind(this));
+    html.find(".edit-toggle").click(this._onEditToggle.bind(this));
+  }
+
+  _onEditToggle(event) {
+    console.log("E-STATE | Toggling Edit Mode", event);
+    event.preventDefault();
+    const type = event.currentTarget.dataset.edit;
+    const actor = this.actor;
+    if(type === "goal"){
+      console.log("E-STATE | Toggling Goal Edit Mode");
+      let goal = actor.getFlag("electric-state", "isEditGoal") || false;
+      actor.setFlag("electric-state", "isEditGoal", !goal);
+      console.log("E-STATE | Goal Edit Mode", goal, actor);
+    }
+   
   }
 
   async _onItemDrop(event) {

@@ -3,11 +3,28 @@
         <div class="flexcol">
             <div class="fs-400 fw-800 all-caps border-thick margin-small padding-small">{{localize "estate.UI.JOURNEY"}}
             </div>
-            <div class="border-3-4-thick fexcol padding-small margin-small margin-top-close">
+            <div class="border-3-4-thick flexcol padding-small margin-small margin-top-close">
+                {{#if actor.flags.electric-state.isEditGoal}}
                 <div class="goal-group flexrow fs-300 margin-small border-bottom-thin">
                     <label for="goal" class="all-caps fw-700 middle">{{localize "estate.UI.GOAL"}}</label>
-                    <textarea id="goal" class="input-text align-start" name="system.goal" placeholder="{{localize "estate.UI.GOAL"}}">{{actor.system.goal}}</textarea>
+                    <textarea id="goal" class="input-text align-start" name="system.goal" placeholder="{{localize "
+                        estate.UI.GOAL"}}">{{actor.system.goal}}</textarea>
+                    <div class="edit-toggle align-bottom mi-small" data-edit="goal"><i
+                            class="fa-solid fa-floppy-disk"></i></div>
                 </div>
+                {{/if}}
+                {{#unless actor.flags.electric-state.isEditGoal}}
+                <div class="goal-group grid two-col fs-300 margin-small border-bottom-thin">
+
+                    <label for="goal" class="all-caps fw-700 middle">{{localize "estate.UI.GOAL"}}</label>
+                    <div class="display flexrow w-100">
+                    <div class="input-text align-start">{{actor.system.goal}}</div>
+                    <div class="edit-toggle align-bottom " style="margin-left: -20px;" data-edit="goal"><i
+                            class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                    </div>
+                </div>
+                {{/unless}}
                 <div class="threat-group flexrow fs-300 margin-small border-bottom-thin">
                     <label for="threat" class="all-caps fw-700 middle">{{localize "estate.UI.THREAT"}}</label>
                     <textarea id="threat" class="input-text align-start" name="system.threat" placeholder="{{localize "estate.UI.THREAT"}}">{{actor.system.threat}}</textarea>

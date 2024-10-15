@@ -17,11 +17,13 @@ TODO LIST:
         - Add tension drop down to roll dialog if no target is selected
     - Target to allow damage to be applied for attacks
     - limited actor sheet 
+    - Adjust Roll Dialog for Drones to show Neurocaster 
+    - Flag which aspect of a Neurocaster is being used to allow for adjustment for 1's on pushed rolls
 - General styling and UI improvement for clarity and use
 - Complete Localization
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
-- make items non-rollable from vehicle trunk
+- Gear Damage for Vehicles on Manuver push
 
 Version History:
 

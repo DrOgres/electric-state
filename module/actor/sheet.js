@@ -93,18 +93,13 @@ export default class esActorSheet extends ActorSheet {
 
 
 async  _updateData(event) {
-    console.log("E-STATE | Updating Data", event);
     event.preventDefault();
     const field = event.currentTarget.dataset.field;
     console.log("E-STATE | Field", field);
-    const value = event.currentTarget.innerHTML;
     console.log("E-STATE | Value", value);
-    // strip empty tags from value and trailing whitespace
-    const cleanValue = value.replace(/<[^>]*>?/gm, "").trim();
-    console.log("E-STATE | Clean Value", cleanValue);
+    // strip empty tags from value 
+    const cleanValue = value.replace(/<[^>]*>?/gm, '').trim();
     await this.actor.update({ [field]: cleanValue });
-    console.log("E-STATE | Actor", this.actor);
-  
   }
 
   _onEditToggle(event) {

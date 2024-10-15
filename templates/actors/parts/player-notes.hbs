@@ -4,30 +4,18 @@
             <div class="fs-400 fw-800 all-caps border-thick margin-small padding-small">{{localize "estate.UI.JOURNEY"}}
             </div>
             <div class="border-3-4-thick flexcol padding-small margin-small margin-top-close">
-                {{#if actor.flags.electric-state.isEditGoal}}
-                <div class="goal-group flexrow fs-300 margin-small border-bottom-thin">
+                <div class="goal-group grid col-30-70 fs-300 margin-small border-bottom-thin">
                     <label for="goal" class="all-caps fw-700 middle">{{localize "estate.UI.GOAL"}}</label>
-                    <textarea id="goal" class="input-text align-start" name="system.journey.goal" placeholder="{{localize "estate.UI.GOAL"}}">{{actor.system.journey.goal}}</textarea>
-                    <div class="edit-toggle align-bottom mi-small" data-edit="goal"><i
-                            class="fa-solid fa-floppy-disk"></i></div>
-                </div>
-                {{/if}}
-                {{#unless actor.flags.electric-state.isEditGoal}}
-                <div class="goal-group grid two-col fs-300 margin-small border-bottom-thin">
-
-                    <label for="goal" class="all-caps fw-700 middle">{{localize "estate.UI.GOAL"}}</label>
-                    <div class="display flexrow w-100">
-                    <div class="input-text align-start">{{actor.system.journey.goal}}</div>
-                    <div class="edit-toggle align-bottom " style="margin-left: -20px;" data-edit="goal"><i
-                            class="fa-solid fa-pen-to-square"></i>
-                    </div>
+                    <div contenteditable="true" id="editor" class="input-text align-start" name="system.journey.goal"
+                        data-field="system.journey.goal">{{{actor.system.journey.goal}}}
                     </div>
                 </div>
-                {{/unless}}
-                {{log actor.system.journey}}
-                <div class="threat-group flexrow fs-300 margin-small border-bottom-thin">
+                <div class="threat-group grid col-30-70 fs-300 margin-small border-bottom-thin">
                     <label for="threat" class="all-caps fw-700 middle">{{localize "estate.UI.THREAT"}}</label>
-                    <div contenteditable="true" id="editor" class="input-text align-start" name="system.journey.threat" data-field="system.journey.threat">{{{actor.system.journey.threat}}}</p>
+                    <div contenteditable="true" id="editor" class="input-text align-start" name="system.journey.threat"
+                        data-field="system.journey.threat">
+                        {{{actor.system.journey.threat}}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,8 +27,8 @@
                 {{editor notesHTML target="system.notes" button=true owner=owner editable=editable}}
             </div>
         </div>
-
     </div>
+
     <div class="right-col">
         <div class="tension-group flexcol margin-top-med">
             <div class="grid cols-4-25 all-caps fw-600 fs-300 border-bottom-thin">
@@ -57,7 +45,8 @@
                 <div class="type ">&nbsp;</div>
                 <div class="stat center">{{item.system.score}}</div>
                 <div class="button-group grid two-col mw-50px middle" data-item-id="{{item._id}}">
-                    <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+                    <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i>
+                    </div>
                     <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
                 </div>
             </div>

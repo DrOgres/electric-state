@@ -12,13 +12,16 @@
                 </div>
             </div>
         </div>
-        <div class="flexrow gap-small">
-            <div class="flexcol padding-small">
-                {{> "systems/electric-state/templates/actors/parts/talents.hbs"}}
+        <div class="flexcol gap-small margin-small padding-small">
+            <div class="flexrow gap-small margin-small">
+                <div class="flexcol padding-small">
+                    {{> "systems/electric-state/templates/actors/parts/talents.hbs"}}
+                </div>
+            </div>
+            <div class="flexcol padding-small border-thick">
+                <h2 class="all-caps fw-700">{{localize "estate.UI.GEAR"}}</h2>
+                {{> "systems/electric-state/templates/actors/parts/gear.hbs"}}
             </div>
         </div>
-        <div class="flexcol padding-small border-thick">
-        {{> "systems/electric-state/templates/actors/parts/gear.hbs"}}
     </div>
-</div>
 </div>

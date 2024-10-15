@@ -221,7 +221,7 @@
 
         </div>
         <div class="group-header grid three-col middle border-bottom-thin space-between gap-med fw-700 fs-200 all-caps">
-            <div class="mw-150px flexrow middle">{{localize "estate.HEAD.NAME"}}</div>
+            <div class="mw-175px mn-w-100px  flexrow middle">{{localize "estate.HEAD.NAME"}}</div>
             <div class="passenger-position">
                 <div>{{localize "estate.UI.POSITION"}}</div>
             </div>
@@ -234,18 +234,18 @@
         {{#each passengers as |passenger|}}
         <div class="passenger passenger-row grid three-col middle border-bottom-thin space-between gap-med"
             data-passenger-id="{{passenger._id}}">
-            <div class="mw-150px mn-w-75px flexrow middle" data-type="actor" data-passenger-id="{{passenger._id}}">
-                <div class="name no-break middle">
+            <div class="mw-150px mn-w-100px flexrow middle" data-type="actor" data-passenger-id="{{passenger._id}}">
+                <div class="name no-break middle overflow-elipsis">
                     {{passenger.name}}
                 </div>
             </div>
-            <div class="mw-175px center middle">
-                <select class="passenger-position" style="width: 175px">
+            <div class="mw-100px center middle">
+                <select class="passenger-position" style="width: 100px">
                     {{selectOptions @root.config.passengerOptions selected=passenger.position localize=true}}
                 </select>
             </div>
             <div class="button-group mw-75px" data-passenger-id="{{passenger._id}}">
-                <div class="remove-passenger"><i class="fa-solid fa-trash"></i></div>
+                <div class="remove-passenger text-right margin-small"><i class="fa-solid fa-trash"></i></div>
             </div>
         </div>
         {{/each}}

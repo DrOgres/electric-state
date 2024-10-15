@@ -7,14 +7,14 @@
             <div class="flexcol padding-small">
                 <div class="flexrow align-content-start gap-small">
                     <div class="charname grid col-20-80 align-bottom border-bottom">
-                        <label class="shrink">{{localize "estate.HEAD.NAME"}}</label>
+                        <label class="shrink fw-600 fs-300">{{localize "estate.HEAD.NAME"}}</label>
                         <input name="name" type="text" value="{{actor.name}}" placeholder="name" />
                     </div>
                 </div>
                 <div class="flexrow align-content-start gap-small">
                     <div class="description grid col-20-80 align-bottom border-bottom">
-                        <label class="shrink">{{localize "estate.HEAD.DESC"}}</label>
-                        <textarea name="system.description" rows="8">{{actor.system.description}}</textarea>
+                        <label class="shrink fw-600 fs-300">{{localize "estate.HEAD.DESC"}}</label>
+                        <textarea name="system.description" rows="5" class="input-text">{{actor.system.description}}</textarea>
                     </div>
                 </div>
             </div>

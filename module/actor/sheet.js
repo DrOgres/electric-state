@@ -86,6 +86,25 @@ export default class esActorSheet extends ActorSheet {
     html.find(".sheet-container").on("drop", this._onItemDrop.bind(this));
     html.find(".draggable").on("drag", this._onItemDrag.bind(this));
     html.find(".edit-toggle").click(this._onEditToggle.bind(this));
+    // html.find(".input-text").change(this._updateData.bind(this));
+    html.find(".input-text").focusout(this._updateData.bind(this));
+  
+  }
+
+
+async  _updateData(event) {
+    console.log("E-STATE | Updating Data", event);
+    event.preventDefault();
+    const field = event.currentTarget.dataset.field;
+    console.log("E-STATE | Field", field);
+    const value = event.currentTarget.innerHTML;
+    console.log("E-STATE | Value", value);
+    // strip empty tags from value and trailing whitespace
+    const cleanValue = value.replace(/<[^>]*>?/gm, "").trim();
+    console.log("E-STATE | Clean Value", cleanValue);
+    await this.actor.update({ [field]: cleanValue });
+    console.log("E-STATE | Actor", this.actor);
+  
   }
 
   _onEditToggle(event) {

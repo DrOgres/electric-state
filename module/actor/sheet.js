@@ -2,6 +2,8 @@ import { eState } from "../config.js";
 import { prepareRollDialog, prepareDeathRollDialog } from "../lib/roll.js";
 
 export default class esActorSheet extends ActorSheet {
+
+
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["es", "sheet", "actor"],
@@ -25,6 +27,7 @@ export default class esActorSheet extends ActorSheet {
 
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
+    console.log("E-STATE | Header Buttons", buttons);
     if (this.actor.isOwner && this._isPlayer()) {
       buttons = [
         {
@@ -88,19 +91,50 @@ export default class esActorSheet extends ActorSheet {
     html.find(".edit-toggle").click(this._onEditToggle.bind(this));
     // html.find(".input-text").change(this._updateData.bind(this));
     html.find(".input-text").focusout(this._updateData.bind(this));
-  
   }
 
+  async close() {
+    console.log("E-STATE | Closing Actor Sheet");
 
-async  _updateData(event) {
+    // if this is a player actor get the data from the description, goal, threat, dream and flaw divs and update the actor with the current values
+    if(this._isPlayer()){
+      const actor = this.actor;
+      const description = document.getElementById("desc-edit");
+      const goal = document.getElementById("goal-edit");
+      const threat = document.getElementById("threat-edit");
+      const dream = document.getElementById("dream-edit");
+      const flaw = document.getElementById("flaw-edit");
+
+      if (description) {
+        await actor.update({ "system.description": description.innerText });
+      }
+      if (goal) {
+        await actor.update({ "system.journey.goal": goal.innerText });
+      }
+      if (threat) {
+        await actor.update({ "system.journey.threat": threat.innerText });
+      }
+      if (dream) {
+        await actor.update({ "system.dream": dream.innerText });
+      }
+      if (flaw) {
+        await actor.update({ "system.flaw": flaw.innerText });
+      }
+
+    }
+
+    super.close();
+  }
+
+  async _updateData(event) {
     event.preventDefault();
     const field = event.currentTarget.dataset.field;
     console.log("E-STATE | event", event);
     console.log("E-STATE | Field", field);
     const value = event.currentTarget.innerText;
     console.log("E-STATE | Value", value);
-    // strip empty tags from value 
-    const cleanValue = value.replace(/<[^>]*>?/gm, '').trim();
+    // strip empty tags from value
+    const cleanValue = value.replace(/<[^>]*>?/gm, "").trim();
     console.log("E-STATE | Value", cleanValue);
     await this.actor.update({ [field]: cleanValue });
   }
@@ -110,13 +144,12 @@ async  _updateData(event) {
     event.preventDefault();
     const type = event.currentTarget.dataset.edit;
     const actor = this.actor;
-    if(type === "goal"){
+    if (type === "goal") {
       console.log("E-STATE | Toggling Goal Edit Mode");
       let goal = actor.getFlag("electric-state", "isEditGoal") || false;
       actor.setFlag("electric-state", "isEditGoal", !goal);
       console.log("E-STATE | Goal Edit Mode", goal, actor);
     }
-   
   }
 
   async _onItemDrop(event) {
@@ -165,9 +198,7 @@ async  _updateData(event) {
       event.currentTarget.classList.contains("attribute")
     );
 
-    if (
-      event.currentTarget.classList.contains("attribute")
-    ) {
+    if (event.currentTarget.classList.contains("attribute")) {
       console.log("a skill or attribute");
       const rollItemDragged = event.srcElement.firstElementChild.dataset.rolled;
       console.log("rollItemDragged", rollItemDragged);
@@ -179,7 +210,6 @@ async  _updateData(event) {
       return;
     }
   }
-
 
   async _onItemDrag(event) {
     console.log("E-STATE | Dragging Item", event);
@@ -257,7 +287,14 @@ async  _updateData(event) {
       }
     }
 
-    console.log("E-STATE | Total Modifiers", totalSpeedModifier, totalManeuverModifier, totalArmorModifier, totalHullModifier, totalPassengerModifier);
+    console.log(
+      "E-STATE | Total Modifiers",
+      totalSpeedModifier,
+      totalManeuverModifier,
+      totalArmorModifier,
+      totalHullModifier,
+      totalPassengerModifier
+    );
 
     actor.setFlag("electric-state", "speed", totalSpeedModifier);
     actor.setFlag("electric-state", "maneuver", totalManeuverModifier);
@@ -335,7 +372,9 @@ async  _updateData(event) {
     }
 
     await item.update({ "system.uses": uses });
-    ui.notifications.info(game.i18n.localize("estate.MSG.USED") + " :" + item.name);
+    ui.notifications.info(
+      game.i18n.localize("estate.MSG.USED") + " :" + item.name
+    );
     //TODO make a chat card to indicate item use and effect
   }
 
@@ -559,9 +598,7 @@ async  _updateData(event) {
     console.log("E-STATE | Death Roll", actor);
 
     if (actor.object.system.health.value > 0) {
-      ui.notifications.info(
-        game.i18n.localize("estate.MSG.NOTDYING")
-      );
+      ui.notifications.info(game.i18n.localize("estate.MSG.NOTDYING"));
       return;
     }
 

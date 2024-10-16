@@ -24,6 +24,8 @@ TODO LIST:
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
 - Gear Damage for Vehicles on Manuver push
+- Item detail roll down on gear tab
+- Item detail to chat on gear tab
 
 Version History:
 

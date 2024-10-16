@@ -151,6 +151,7 @@
   border-bottom: 1px solid #2c2e35;
   border-radius: 0;
   resize: none;
+  outline-color: #cdeef0;
 }
 
 .block {
@@ -409,6 +410,10 @@
 
 .w-50px {
   width: 50px;
+}
+
+.mw-30px {
+  max-width: 30px;
 }
 
 .mw-35px {

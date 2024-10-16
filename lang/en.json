@@ -59,7 +59,8 @@
     "UI.NEUROSCAPE": "Neuroscape Combat",
 
     "UI.DAMAGE": "Damage",
-    "UI.BP": "Blast Power",
+    "UI.BLASTPOWER": "Blast Power",
+    "UI.BP": "BP",
     "UI.WEAPON": "Weapon",
     "UI.EXPLOSIVE": "Explosive",
     "UI.TENSION": "Tension",
@@ -97,7 +98,7 @@
     "UI.DICEPOOLSIZE": "Dice Pool Size",
     "UI.ARMOR_PENALTY": "Armor Penalty",
     "UI.MOD": "Mod",
-    "UI.DMG": "Damage",
+    "UI.DMG": "DMG",
     "UI.BLASTDAMAGE": "Blast Damage",
     "UI.ATTACK": "Attack",
     "UI.RANGE_MIN": "Minimum Range",

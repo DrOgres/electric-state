@@ -24,21 +24,21 @@
                             placeholder="favorite song" />
                     </div>
                 </div>
-                <div class="flexrow align-content-start gap-small">
+                <div class="flexrow align-content-start gap-small padding-small">
                     <div class="description grid col-20-80 align-bottom border-bottom">
                         <label class="shrink">{{localize "estate.HEAD.DESC"}}</label>
-                        <textarea class="input-text"  name="system.description">{{actor.system.description}}</textarea>
+                        <div contenteditable="true" class="input-text border-thin padding-small"  name="system.description" data-field="system.description">{{actor.system.description}}</div>
                     </div>
                 </div>
                 <div class="flexrow align-content-start gap-small">
-                    <div class="dream grid col-20-80 align-bottom border-bottom margin-small">
+                    <div class="dream grid col-20-80 align-bottom border-bottom margin-small gap-small">
 
                         <label class="shrink">{{localize "estate.HEAD.DREAM"}}</label>
-                        <textarea class="input-text" name="system.dream" cols="21" placeholder="{{localize "estate.HEAD.DREAM"}}">{{actor.system.dream}}</textarea>
+                        <div contenteditable="true" class="input-text border-thin padding-small" name="system.dream" cols="21" placeholder="{{localize "estate.HEAD.DREAM"}}" data-field="system.dream">{{actor.system.dream}}</div>
                                            </div>
-                    <div class="flaw  grid col-20-80 align-bottom border-bottom margin-small">
+                    <div class="flaw  grid col-20-80 align-bottom border-bottom margin-small gap-small">
                         <label class="shrink">{{localize "estate.HEAD.FLAW"}}</label>
-                         <textarea class="input-text" name="system.flaw" cols="21"  placeholder="{{localize "estate.HEAD.FLAW"}}">{{actor.system.flaw}}</textarea>
+                         <div contenteditable="true" class="input-text border-thin padding-small" name="system.flaw" cols="21"  placeholder="{{localize "estate.HEAD.FLAW"}}" data-field="system.flaw">{{actor.system.flaw}}</div>
                       
                     </div>
                 </div>

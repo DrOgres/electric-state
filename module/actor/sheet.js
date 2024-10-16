@@ -96,9 +96,11 @@ async  _updateData(event) {
     event.preventDefault();
     const field = event.currentTarget.dataset.field;
     console.log("E-STATE | Field", field);
+    const value = event.currentTarget.innerHTML;
     console.log("E-STATE | Value", value);
     // strip empty tags from value 
     const cleanValue = value.replace(/<[^>]*>?/gm, '').trim();
+    console.log("E-STATE | Value", cleanValue);
     await this.actor.update({ [field]: cleanValue });
   }
 

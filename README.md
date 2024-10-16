@@ -27,6 +27,11 @@ TODO LIST:
 
 Version History:
 
+v0.9.0 *Breaking Change GOAL and THREAT must be reentered on PC sheets*
+- changed fields for goal and threat to editable divs to make them cleaner for editing.
+- moved fields in journey for data clarity
+- adjusted the vehicle sheet to have a better layout on the passenger area
+
 v0.8.0
 - Weapons degrade when 1's are rolled while pushing.
 

@@ -158,6 +158,32 @@
   outline-color: #cdeef0;
 }
 
+ul.leaders {
+  text-transform: uppercase;
+  padding: 0;
+  overflow-x: hidden;
+  list-style: none;
+  padding: 3px;
+}
+
+ul.leaders li:before {
+  float: left;
+  width: 0;
+  white-space: nowrap;
+  content: ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . ";
+}
+
+ul.leaders span:first-child {
+  padding-right: 0.33em;
+  background: #f0f7f5;
+}
+
+ul.leaders span + span {
+  float: right;
+  padding-left: 0.33em;
+  background: #f0f7f5;
+}
+
 .block {
   display: block;
 }

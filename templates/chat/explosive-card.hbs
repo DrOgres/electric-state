@@ -1,0 +1,20 @@
+<div class="card-holder grid col-20-80 border-thick w-100" style="position: relative;">
+
+    <div class="portrait align-start flexcol bg-dark space-between h-100">
+        <img src={{token}} width="45" class="roll-token" />
+    </div>
+    <div class="flexcol w-100 padding-med">
+
+        <div class="name-price grid col-60-40 border-bottom-thin">
+            <div class="name fw-600 fs-400 middle no-break overflow-elipsis">
+                {{name}}
+            </div>
+            <div class="price flexrow all-caps fw-600 middle">
+                <div class="text-right no-break">{{localize "estate.HEAD.PRICE"}} $:</div>
+                <div>{{system.cost}}</div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

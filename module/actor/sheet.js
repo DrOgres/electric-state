@@ -92,6 +92,7 @@ export default class esActorSheet extends ActorSheet {
     html.find(".edit-toggle").click(this._onEditToggle.bind(this));
     // html.find(".input-text").change(this._updateData.bind(this));
     html.find(".input-text").focusout(this._updateData.bind(this));
+    html.find(".to-chat").click(this._onItemToChat.bind(this));
   }
 
   async close() {
@@ -125,6 +126,14 @@ export default class esActorSheet extends ActorSheet {
     }
 
     super.close();
+  }
+
+  _onItemToChat(event) {
+    event.preventDefault();
+    const div = $(event.currentTarget).parents(".item");
+    const item = this.actor.items.get(div.data("itemId"));
+    let type = item.type;
+    buildChatCard(type, item);
   }
 
 

@@ -7,6 +7,18 @@ export default class esActor extends Actor {
 
     }
 
+    async _preCreate(data, options, user) {
+        console.log("E-STATE | Pre-Create Actor", data, options, user);
+        await super._preCreate(data, options, user);
+
+        let link = data.type === 'player' || data.type === 'npc' || data.type === 'vehicle' || !data.type === 'robot';
+        console.log("E-STATE | Link", data.type, link);
+        let actorDefaults = {
+            "prototypeToken.actorLink": link
+        }
+        this.updateSource(actorDefaults);
+    }
+
     async addVehiclePassenger(actorId) {
         const system = this.system;
 

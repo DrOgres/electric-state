@@ -1,5 +1,6 @@
 import { eState } from "../config.js";
 import { prepareRollDialog, prepareDeathRollDialog } from "../lib/roll.js";
+import { buildChatCard } from "../lib/chat.js";
 
 export default class esActorSheet extends ActorSheet {
 
@@ -124,6 +125,11 @@ export default class esActorSheet extends ActorSheet {
     }
 
     super.close();
+  }
+
+
+  async _onShowDetails(event) {
+    console.log("E-STATE | Showing Details", event);
   }
 
   async _updateData(event) {
@@ -654,6 +660,15 @@ export default class esActorSheet extends ActorSheet {
         actor.setFlag("electric-state", "passengers", 0);
         break;
     }
+  }
+
+  sendToChat(event) {
+    const div = $(event.currentTarget).parents(".item");
+    const item = this.actor.items.get(div.data("itemId"));
+    const data = item.system;
+    let type = item.type;
+    let chatData = buildChatCard(type, item);
+    ChatMessage.create(chatData, {});
   }
 
   _onItemCreate(event) {

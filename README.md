@@ -8,7 +8,7 @@ This system is now in BETA!
 ![Character 1](https://raw.githubusercontent.com/DrOgres/electric-state/refs/heads/main/assets/es-char.webp)  
 
 
-please put any and all bug reports and feature requests in the issues of this repo.  Bere is a list of things I hope to add in the comming days
+please put any and all bug reports and feature requests in the issues of this repo.  Here is a list of things I hope to add in the comming days
 
 TODO LIST:
 
@@ -20,7 +20,6 @@ TODO LIST:
     - Adjust Roll Dialog for Drones to show Neurocaster 
     - Flag which aspect of a Neurocaster is being used to allow for adjustment for 1's on pushed rolls
 - General styling and UI improvement for clarity and use
-- Complete Localization
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
 - Gear Damage for Vehicles on Manuver push
@@ -28,6 +27,11 @@ TODO LIST:
 - Item detail to chat on gear tab
 
 Version History:
+
+v0.10.0
+- added save on close function for custom input fields
+- set default prototype token properties to link actors and the like
+- localization should be complete
 
 v0.9.0 *Breaking Change GOAL and THREAT must be reentered on PC sheets*
 - changed fields for goal and threat to editable divs to make them cleaner for editing.

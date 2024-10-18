@@ -2,6 +2,7 @@ const estateChat = {
     template: {
       explosive: "systems/electric-state/templates/chat/explosive-card.hbs",
       armor: "systems/electric-state/templates/chat/armor-card.hbs",
+      drone: "systems/electric-state/templates/chat/drone-card.hbs",
     },
   };
 
@@ -52,6 +53,18 @@ export const buildChatCard = function (type, item, chatOptions = {}) {
                   user: game.user.id,
                   flavor: data.name,
                   template: estateChat.template.armor,
+                  blind: false,
+                },
+                chatOptions
+              );
+        
+              break;
+        case "drone":
+            chatOptions = foundry.utils.mergeObject(
+                {
+                  user: game.user.id,
+                  flavor: data.name,
+                  template: estateChat.template.drone,
                   blind: false,
                 },
                 chatOptions

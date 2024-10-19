@@ -24,7 +24,7 @@ TODO LIST:
 - set up macro drag to hot bar for rollable elements
 - Gear Damage for Vehicles on Manuver push
 - Item detail roll down on gear tab
-- Item detail to chat on gear tab
+- Item detail to chat for Injury, Trauma, Trait, and Talent from character sheet
 
 Version History:
 
@@ -32,6 +32,7 @@ v0.10.0
 - added save on close function for custom input fields
 - set default prototype token properties to link actors and the like
 - localization should be complete
+- Chat cards for items on gear tab, click the chat icon to put them into the chat.
 
 v0.9.0 *Breaking Change GOAL and THREAT must be reentered on PC sheets*
 - changed fields for goal and threat to editable divs to make them cleaner for editing.

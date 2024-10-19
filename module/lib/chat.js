@@ -26,7 +26,7 @@ export const buildChatCard = function (type, item, chatOptions = {}) {
     if (actor) {
       token = actor.img;
     } else {
-      token = "systems/electric-state/assets/images/logo.webp";
+      token = "systems/electric-state/assets/logo.webp";
     }
 
     const data = {

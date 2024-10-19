@@ -7,7 +7,7 @@
         <div>{{localize "estate.UI.RANGE_MIN"}}</div>
         <div>{{localize "estate.UI.RANGE_MAX"}}</div>
     </div>
-    <div class="button-group grid three-col mw-75px">
+    <div class="button-group grid three-col mw-100px">
         <div class="holder"></div>
         <div class="item-create fs-500"  data-type="weapon">&plus;</div>
         <div class="holder"></div>
@@ -35,7 +35,7 @@
         <div>{{#dataLocalization item.system.range.max 'range'}}{{/dataLocalization}}</div>
     </div>
 
-    <div class="button-group grid three-col mw-75px" data-item-id="{{item._id}}">
+    <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
         
         {{#if (eq ../actor.type 'player')}}
         {{#if item.flags.isFav}}
@@ -48,6 +48,7 @@
         {{#unless (eq ../actor.type 'player')}}
         <div class="hold"></div>
         {{/unless}}
+        <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
         <div class="item-edit"><i class="fa-solid fa-pen-to-square"></i></div>
         <div class="item-delete"><i class="fa-solid fa-trash"></i></div>
     </div>

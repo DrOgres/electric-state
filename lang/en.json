@@ -129,6 +129,7 @@
     "UI.TRAIT_INCLUDED": "Including Traits",
     "UI.GEAR_DICE": "Gear Dice",
     "UI.MOD_ATTR": "Attribute Modified",
+    "UI.MOD_ATTR_ABV": "Attr Mod",
     "UI.CONSUMABLE": "Consumable",
     "UI.DRAWBACK": "Drawback",
     "UI.TIMETO": "Time To Heal",

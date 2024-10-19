@@ -3,6 +3,9 @@ const estateChat = {
       explosive: "systems/electric-state/templates/chat/explosive-card.hbs",
       armor: "systems/electric-state/templates/chat/armor-card.hbs",
       drone: "systems/electric-state/templates/chat/drone-card.hbs",
+      gear: "systems/electric-state/templates/chat/gear-card.hbs",
+      neurocaster: "systems/electric-state/templates/chat/neurocaster-card.hbs",
+      weapon: "systems/electric-state/templates/chat/weapon-card.hbs",
     },
   };
 
@@ -65,6 +68,42 @@ export const buildChatCard = function (type, item, chatOptions = {}) {
                   user: game.user.id,
                   flavor: data.name,
                   template: estateChat.template.drone,
+                  blind: false,
+                },
+                chatOptions
+              );
+        
+              break;
+        case "gear":
+            chatOptions = foundry.utils.mergeObject(
+                {
+                  user: game.user.id,
+                  flavor: data.name,
+                  template: estateChat.template.gear,
+                  blind: false,
+                },
+                chatOptions
+              );
+        
+              break;
+        case "neurocaster":
+            chatOptions = foundry.utils.mergeObject(
+                {
+                  user: game.user.id,
+                  flavor: data.name,
+                  template: estateChat.template.neurocaster,
+                  blind: false,
+                },
+                chatOptions
+              );
+        
+              break;
+        case "weapon":
+            chatOptions = foundry.utils.mergeObject(
+                {
+                  user: game.user.id,
+                  flavor: data.name,
+                  template: estateChat.template.weapon,
                   blind: false,
                 },
                 chatOptions

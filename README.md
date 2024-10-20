@@ -36,6 +36,8 @@ v0.10.0
 - localization should be complete
 - Chat cards for items on gear tab, click the chat icon to put them into the chat.
 - Neurocaster applies gear damage on 1's for pushed rolls
+- Vehicles apply gear damage to maneuverability for 1's rolled on pushed rolls
+- Drivers of vehicles take hope damage for 1's rolled on pushed rolls
 
 v0.9.0 *Breaking Change GOAL and THREAT must be reentered on PC sheets*
 - changed fields for goal and threat to editable divs to make them cleaner for editing.

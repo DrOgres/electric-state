@@ -924,6 +924,8 @@ async function _onPush(event) {
   
 
   if (gearDamage > 0) {
+
+
     if (gear !== undefined) {
       if (gear.type !== "neurocaster") {
       gear.system.modifier.value -= gearDamage;
@@ -942,14 +944,35 @@ async function _onPush(event) {
       }
      
     }
+
+    if (actor.type === "vehicle") {
+      console.log("Vehicle Damage", gearDamage);
+      // the vehicle takes damage to the maneuverability trait
+      let maneuverability = actor.system.maneuverability.value;
+      maneuverability -= gearDamage;
+      await actor.update({ "system.maneuverability.value": maneuverability });
+      console.log("Vehicle", actor);
+    }
   }
 
-  if (hopeDamage > 0) {
+  if (hopeDamage > 0 && actor.type === "player") {
     console.log("damage to hope", hopeDamage);
     let hope = actor.system.hope.value;
     hope -= hopeDamage;
     console.log("Hope", hope);
     await actor.update({ "system.hope.value": hope });
+  } else if (hopeDamage > 0 && actor.type === "vehicle") {
+    // get the actor that is the driver of the vehicle and apply the hope damage to them
+    console.log("Vehicle Hope Damage", actor);
+    let driverId = actor.system.passengers.driverId;
+    console.log("DriverId", driverId);
+    let driver = game.actors.get(driverId);
+    console.log("Driver", driver);
+    let hope = driver.system.hope.value;
+    hope -= hopeDamage;
+    console.log("Hope", hope);
+    await driver.update({ "system.hope.value": hope });
+  
   }
   
 

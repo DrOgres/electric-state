@@ -405,12 +405,14 @@ export function prepareRollDialog(options) {
 
       break;
     case "neurocaster":
+      console.log("Neurocaster Roll", options);
       options.gearDice = 0;
       console.log("Neurocaster Roll", options);
       if (options.cast === "info") {
         console.log("Info Cast");
         options.attribute = "wits";
         options.dicePool = actor.system.wits;
+        options.castAttribute = "processor";
         let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.processor.value);
@@ -432,6 +434,7 @@ export function prepareRollDialog(options) {
       if (options.cast === "hack") {
         console.log("Hack Cast");
         options.attribute = "wits";
+        options.castAttribute = "network";
         let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.network.value);
@@ -452,6 +455,7 @@ export function prepareRollDialog(options) {
       if (options.cast === "coms") {
         console.log("Comms Cast");
         options.attribute = "empathy";
+        options.castAttribute = "graphics";
         let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.graphics.value);
@@ -473,6 +477,7 @@ export function prepareRollDialog(options) {
       if (options.cast === "block") {
         console.log("Block Cast");
         options.attribute = "wits";
+        options.castAttribute = "network";
         let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.network.value);
@@ -493,6 +498,7 @@ export function prepareRollDialog(options) {
       if (options.cast === "combat") {
         console.log("Combat Cast");
         options.attribute = "wits";
+        options.castAttribute = "graphics";
         let neurocaster = neurocasters.find((i) => i.flags.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.graphics.value);
@@ -915,13 +921,25 @@ async function _onPush(event) {
   let gear = actor.items.find((i) => i.id === roll.options.gearId);
   console.log("Gear", gear);
 
+  
+
   if (gearDamage > 0) {
     if (gear !== undefined) {
+      if (gear.type !== "neurocaster") {
       gear.system.modifier.value -= gearDamage;
       const update = [{ _id: gear.id, "system.modifier.value": gear.system.modifier.value }];
       await Item.updateDocuments(update, { parent: actor });
       console.log("Gear", gear);
       console.log("actor", actor);
+      } else {
+        console.log("Neurocaster Damage", roll);
+        const str = "system."+roll.options.castAttribute+".value";
+        // console.log("STR", str);
+      
+        const update = [{ _id: gear.id, [str]: gear.system[roll.options.castAttribute].value - gearDamage }];
+        console.log("Update", update);
+        await Item.updateDocuments(update, { parent: actor });
+      }
      
     }
   }
@@ -976,6 +994,10 @@ export async function roll(options) {
     gearId: options.gearUsed,
   };
 
+  if (options.type === "neurocaster") {
+    rollOptions.cast = options.cast;
+    rollOptions.castAttribute = options.castAttribute;
+  }
   console.log("Roll Options", rollOptions);
 
 

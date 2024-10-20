@@ -18,7 +18,9 @@ TODO LIST:
     - Target to allow damage to be applied for attacks
     - limited actor sheet 
     - Adjust Roll Dialog for Drones to show Neurocaster 
-    - Flag which aspect of a Neurocaster is being used to allow for adjustment for 1's on pushed rolls
+    - add bliss for failed rolls when using a Neurocaster
+    - if a push makes a neurocaster busted set current hope to 0 and indicate need for mental trauma (potentially add item to sheet)
+    - apply gear damage when using drones
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
@@ -33,6 +35,7 @@ v0.10.0
 - set default prototype token properties to link actors and the like
 - localization should be complete
 - Chat cards for items on gear tab, click the chat icon to put them into the chat.
+- Neurocaster applies gear damage on 1's for pushed rolls
 
 v0.9.0 *Breaking Change GOAL and THREAT must be reentered on PC sheets*
 - changed fields for goal and threat to editable divs to make them cleaner for editing.

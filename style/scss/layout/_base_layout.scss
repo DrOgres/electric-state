@@ -151,6 +151,8 @@
 
 .rollable {
     cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: $highlight-interactive-element;
     backdrop-filter: blur(2px);
     &:hover {
       text-shadow: $field-color 0 0 5px;
@@ -159,6 +161,8 @@
 
   .item-use {
     cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: $highlight-interactive-element;
     &:hover {
       text-shadow: $field-color 0 0 5px;
     }
@@ -280,10 +284,6 @@
 
   .mn-w-50px {
     min-width: 50px;
-  }
-
-  .mw-65px{
-    max-width: 65px;
   }
 
   .mw-75px {

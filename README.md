@@ -28,6 +28,9 @@ TODO LIST:
 - Item detail to chat for Injury, Trauma, Trait, and Talent from character sheet
 
 Version History:
+v0.12.0
+- Fix: broke overflow on weapons in fav
+
 v0.11.0
 - Fix: missing rollable from NPC sheets
 - Made a little more room for names in Fav list on PC sheet

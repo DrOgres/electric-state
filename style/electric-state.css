@@ -461,6 +461,10 @@ ul.leaders span + span {
   min-width: 50px;
 }
 
+.mw-65px {
+  max-width: 65px;
+}
+
 .mw-75px {
   max-width: 75px;
 }

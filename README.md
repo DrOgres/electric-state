@@ -24,11 +24,13 @@ TODO LIST:
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
-- Gear Damage for Vehicles on Manuver push
 - Item detail roll down on gear tab
 - Item detail to chat for Injury, Trauma, Trait, and Talent from character sheet
 
 Version History:
+v0.11.0
+- Fix: missing rollable from NPC sheets
+- Made a little more room for names in Fav list on PC sheet
 
 v0.10.0
 - added save on close function for custom input fields

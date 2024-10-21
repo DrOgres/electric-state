@@ -2,38 +2,32 @@
 
 .to-chat{
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: $highlight-interactive-element;
+
 }
 
 .item-edit{
     cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: $highlight-interactive-element;
+
   }
 
   .item-delete{
     cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: $highlight-interactive-element;
+
   }
 
   .item-create{
     cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: $highlight-interactive-element;
+
   }
 
   .toggle-fav{
     cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: $highlight-interactive-element;
+
   }
 
   .toggle-equip{
     cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: $highlight-interactive-element;
+
   }
 
   .border-bottom{
@@ -214,6 +208,11 @@ ul.leaders span + span {
 
   .clickable{
     cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: $highlight-interactive-element;
+
+    &:hover{
+      text-shadow: $highlight-interactive-element 0 0 5px;
+      text-decoration: underline;
+      text-decoration-color: $highlight-interactive-element;
+    }
+   
   }

@@ -23,7 +23,7 @@
         {{#if item.isExplosive}}
         <div class=" item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true" 
             data-item-id="{{item._id}}">
-            <div class="rollable mw-150px flexrow middle" data-type="explosive" data-item-id="{{item._id}}">
+            <div class="rollable mw-150px flexrow middle clickable" data-type="explosive" data-item-id="{{item._id}}">
                 <div class="item-icon mw-35px"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25"
                         width="25" />
                 </div>
@@ -77,7 +77,7 @@
         <div class=" item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true" 
             data-item-id="{{item._id}}">
 
-            <div class="rollable mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
+            <div class="rollable mw-150px flexrow middle clickable" data-type="armor" data-item-id="{{item._id}}">
                 <div class="item-icon mw-35px"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25"
                         width="25" />
                 </div>
@@ -248,9 +248,9 @@
                     {{#unless item.flags.isEquipped}}
                     <div class="toggle-equip mw-50px"><i class="fa-regular fa-robot"></i></div>
                     {{/unless}}
-                    <div class="drone-attack rollable mw-50px" data-type="drone-attack" data-item-id="{{item._id}}"><i
+                    <div class="drone-attack rollable mw-50px clickable" data-type="drone-attack" data-item-id="{{item._id}}"><i
                             class="fa-solid fa-gun"></i></div>
-                    <div class="drone-armor rollable mw-50px" data-type="drone-armor" data-item-id="{{item._id}}"><i
+                    <div class="drone-armor rollable mw-50px clickable" data-type="drone-armor" data-item-id="{{item._id}}"><i
                             class="fa-solid fa-shield"></i></div>
 
                 </div>
@@ -328,23 +328,23 @@
                 </div>
                 {{/unless}}
                 <div class="action-group flexrow gap-x-small" data-item-id="{{item._id}}">
-                    <div class="rollable tooltip" data-type="neurocaster" data-cast="info">
+                    <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="info">
                         <i class="fa-solid fa-print-magnifying-glass"></i>
                         <span class="tooltiptext">{{localize "estate.UI.INFO"}}</span>
                     </div>
-                    <div class="rollable tooltip" data-type="neurocaster" data-cast="hack">
+                    <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="hack">
                         <i class="fa-solid fa-gear-code"></i>
                         <span class="tooltiptext">{{localize "estate.UI.HACK"}}</span>
                     </div>
-                    <div class="rollable tooltip" data-type="neurocaster" data-cast="coms">
+                    <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="coms">
                         <i class="fa-solid fa-signal-stream"></i>
                         <span class="tooltiptext">{{localize "estate.UI.COMS"}}</span>
                     </div>
-                    <div class="rollable tooltip" data-type="neurocaster" data-cast="block">
+                    <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="block">
                         <i class="fa-solid fa-signal-stream-slash"></i>
                         <span class="tooltiptext">{{localize "estate.UI.BLOCK"}}</span>
                     </div>
-                    <div class="rollable tooltip" data-type="neurocaster" data-cast="combat">
+                    <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="combat">
                         <i class="fa-solid fa-hand-fist"></i>
                         <span class="tooltiptext">{{localize "estate.UI.COMBAT"}}</span>
                     </div>

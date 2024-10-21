@@ -1,37 +1,25 @@
 .to-chat {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: #ff2121;
 }
 
 .item-edit {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: #ff2121;
 }
 
 .item-delete {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: #ff2121;
 }
 
 .item-create {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: #ff2121;
 }
 
 .toggle-fav {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: #ff2121;
 }
 
 .toggle-equip {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: #ff2121;
 }
 
 .border-bottom {
@@ -197,6 +185,9 @@ ul.leaders span + span {
 
 .clickable {
   cursor: pointer;
+}
+.clickable:hover {
+  text-shadow: #ff2121 0 0 5px;
   text-decoration: underline;
   text-decoration-color: #ff2121;
 }
@@ -349,22 +340,18 @@ ul.leaders span + span {
 
 .rollable {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: #ff2121;
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
 }
 .rollable:hover {
-  text-shadow: #ffffff 0 0 5px;
+  text-shadow: #ff2121 0 0 5px;
 }
 
 .item-use {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: #ff2121;
 }
 .item-use:hover {
-  text-shadow: #ffffff 0 0 5px;
+  text-shadow: #ff2121 0 0 5px;
 }
 
 .portrait {

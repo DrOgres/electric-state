@@ -20,7 +20,7 @@
 
     <div class={{#unless (eq ../actor.type 'vehicle')}}"rollable mw-150px flexrow middle clickable"{{/unless}} {{#if (eq ../actor.type 'vehicle')}}"mw-150px flexrow middle"{{/if}} data-type="weapon" data-item-id="{{item._id}}">
 
-        <div class="item-icon mw-35px"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25"
+        <div class="item-icon mw-35px"><img src="{{item.img}}" title="{{item.name}}" height="25"
                 width="25" /></div>
         <div class="name no-break middle">
             {{item.name}}

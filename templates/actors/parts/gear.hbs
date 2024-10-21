@@ -23,11 +23,11 @@
         {{#if item.isExplosive}}
         <div class=" item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true" 
             data-item-id="{{item._id}}">
-            <div class="rollable mw-150px flexrow middle clickable" data-type="explosive" data-item-id="{{item._id}}">
-                <div class="item-icon mw-35px"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25"
+            <div class="mw-150px flexrow middle" data-type="explosive" data-item-id="{{item._id}}">
+                <div class="item-icon mw-35px"><img src="{{item.img}}" title="{{item.name}}" height="25"
                         width="25" />
                 </div>
-                <div class="name no-break middle">
+                <div class="name no-break middle rollable mw-150px flexrow clickable" data-type="explosive" data-item-id="{{item._id}}">
                     {{item.name}}
                 </div>
             </div>
@@ -78,7 +78,7 @@
             data-item-id="{{item._id}}">
 
             <div class="rollable mw-150px flexrow middle clickable" data-type="armor" data-item-id="{{item._id}}">
-                <div class="item-icon mw-35px"><img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25"
+                <div class="item-icon mw-35px"><img src="{{item.img}}" title="{{item.name}}" height="25"
                         width="25" />
                 </div>
                 <div class="name no-break middle">
@@ -149,7 +149,7 @@
 
             <div class="mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
                 <div class="item-icon">
-                    <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25" width="25" />
+                    <img src="{{item.img}}" title="{{item.name}}" height="25" width="25" />
                 </div>
                 <div>{{item.name}}</div>
             </div>
@@ -233,7 +233,7 @@
 
             <div class="mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
                 <div class="item-icon">
-                    <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25" width="25" />
+                    <img src="{{item.img}}" title="{{item.name}}" height="25" width="25" />
                 </div>
                 <div>{{item.name}}</div>
             </div>
@@ -311,7 +311,7 @@
         <div class=" item item-row flexrow draggable" draggable="true"  data-item-id="{{item._id}}">
             <div class="mw-150px flexrow middle no-break" data-type="armor" data-item-id="{{item._id}}">
                 <div class="item-icon">
-                    <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="25" width="25" />
+                    <img src="{{item.img}}" title="{{item.name}}" height="25" width="25" />
                 </div>
                 <div>{{item.name}}</div>
             </div>

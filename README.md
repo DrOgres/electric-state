@@ -28,6 +28,11 @@ TODO LIST:
 - Item detail to chat for Injury, Trauma, Trait, and Talent from character sheet
 
 Version History:
+v0.13.0
+- Fix: usable gear not clickable on gear page
+- Feature: Improved visibility of clickable elements
+- Fix: Weapons not showing applicable Talents when building roll dialog
+
 v0.12.0
 - Fix: broke overflow on weapons in fav
 

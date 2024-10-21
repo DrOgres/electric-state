@@ -199,3 +199,9 @@ ul.leaders span + span {
     float: right;
     background: $background-color;
   }
+
+  .clickable{
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: $highlight-interactive-element;
+  }

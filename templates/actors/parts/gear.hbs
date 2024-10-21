@@ -170,7 +170,7 @@
                 {{/unless}}
 
                 {{#if item.system.isConsumable}}
-                <div class="consumable">
+                <div class="item-use consumable clickable" data-item-id="{{item._id}}">
                     Uses: {{item.system.uses}}
                 </div>
                 <div class="use-type">

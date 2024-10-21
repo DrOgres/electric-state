@@ -738,6 +738,8 @@ function buildTalentSelectDialog(options, talents, actor, drones) {
       }
     }
 
+
+
     if (
       talent.system.type.includes(options.attribute) ||
       talent.system.type.includes("all")
@@ -745,7 +747,16 @@ function buildTalentSelectDialog(options, talents, actor, drones) {
       count++;
       selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
     }
+
+    if (options.type === "weapon"){
+      if (talent.system.type.includes("weapon")) {
+        count++;
+        selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
+      }
+    }
   }
+
+
 
   if (count === 0) {
     return "";

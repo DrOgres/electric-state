@@ -183,6 +183,12 @@ ul.leaders span + span {
   background: #f0f7f5;
 }
 
+.clickable {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: #ff2121;
+}
+
 .block {
   display: block;
 }

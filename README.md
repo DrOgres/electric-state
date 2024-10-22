@@ -28,6 +28,10 @@ TODO LIST:
 - Item detail to chat for Injury, Trauma, Trait, and Talent from character sheet
 
 Version History:
+v0.14.0
+- Fix item dup on drag and drop to original actor [#26](https://github.com/DrOgres/electric-state/issues/26)
+
+
 v0.13.0
 - Fix: usable gear not clickable on gear page
 - Feature: Improved visibility of clickable elements

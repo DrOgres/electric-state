@@ -171,10 +171,18 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 
 Hooks.on('dropActorSheetData', async (actor, actorSheet, data) => {
   console.log("E-STATE | On Drop Actor Sheet Data", actor, actorSheet, data);
+  console.log("E-STATE | Actor Type", actor.type);
+  console.log("E-STATE | Data Type", data.type);
+  if(actor.type !== 'vehicle' || data.type !== 'Actor'){ 
+    console.log("E-STATE | Not a Vehicle nor dropping an Actor");
+    return;
+  } 
+
   if (actor.type === 'vehicle') {
     const passenger = await fromUuid(data.uuid);
     if (data.type === 'Actor') await actorSheet.dropPassenger(passenger.id);  
   }
+
 });
 
 function setLogo() {

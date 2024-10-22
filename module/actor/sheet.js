@@ -173,23 +173,23 @@ export default class esActorSheet extends ActorSheet {
     event.preventDefault();
     let actor = this.actor;
     let item = game.data.item;
-    console.log("E-STATE | Item", item);
+    // console.log("E-STATE | Item", item);
     if (!item) return;
-    actor.createEmbeddedDocuments("Item", [item]);
-
     let storedItem = game.data.item;
     if (storedItem === null) {
       return;
     }
-
     let originalActor = storedItem.actor;
-    if (originalActor.id === actor.id) {
-      //  console.log("id match on drop action - returning ");
+    if (originalActor._id === actor._id) {
+      // console.log("id match on drop action - returning ");
+      game.data.item = null;
       storedItem = null;
       item = null;
       return;
     }
 
+    // console.log("E-STATE | Dropping Item", storedItem, actor, originalActor);
+    actor.createEmbeddedDocuments("Item", [item]);
     originalActor.deleteEmbeddedDocuments("Item", [storedItem.id]);
 
     game.data.item = null;
@@ -227,13 +227,13 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _onItemDrag(event) {
-    console.log("E-STATE | Dragging Item", event);
+    // console.log("E-STATE | Dragging Item", event);
     event.preventDefault();
     game.data.item = this.actor.getEmbeddedDocument(
       "Item",
       event.currentTarget.closest(".item").dataset.itemId
     );
-    console.log("E-STATE | Game Data Item", game.data.item);
+    // console.log("E-STATE | Game Data Item", game.data.item);
   }
 
   async _applyVehicleTraits(data, actor) {

@@ -132,6 +132,7 @@ export default class esActorSheet extends ActorSheet {
     event.preventDefault();
     const div = $(event.currentTarget).parents(".item");
     const item = this.actor.items.get(div.data("itemId"));
+    console.log("E-STATE | Item to Chat", item);
     let type = item.type;
     buildChatCard(type, item);
   }

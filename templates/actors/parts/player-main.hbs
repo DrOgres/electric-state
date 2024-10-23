@@ -52,7 +52,7 @@
                     </div>
                     {{#each items as |injury|}}
                     {{#if injury.isInjury}}
-                    <div class="grid cols-5-20 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin">
+                    <div class="item grid cols-5-20 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin" data-item-id="{{injury._id}}">
                         <div class="item overflow-elipsis" data-item-id="{{injury._id}}">{{injury.name}}</div>
                         <div class="modify text-left overflow-elipsis">{{injury.system.type}}</div>
                         <div class="mod center">&minus;{{injury.system.modifier.value}}</div>
@@ -60,6 +60,7 @@
                             "estate.UI.YES"}}{{else}}{{localize "estate.UI.NO"}}{{/if}}</div>
                         <div class="button-group align-bottom flexrow text-right justify-content-end"
                             data-item-id="{{injury._id}}">
+                            <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
                             <div class="item-edit mw-fit"><i class="fa-solid fa-pen-to-square"></i></div>
                             <div class="item-delete mw-fit"><i class="fa-solid fa-trash"></i></div>
                         </div>

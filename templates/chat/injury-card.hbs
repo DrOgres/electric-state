@@ -1,0 +1,47 @@
+<div class="card-holder grid  w-100" style="position: relative;">
+  <img src={{token}} width="45" height="45" class="roll-token">
+
+  <div class="grid col-20-80 border-thick ">
+    <div class="image align-start flexcol bg-dark space-between h-100">
+      <img src={{img}} width="45" class="roll-token" />
+    </div>
+    <div class="grid w-100 padding-med">
+
+      <div class="name-price grid col-60-40 border-bottom-thin">
+        <div class="name fw-600 fs-400 middle no-break overflow-elipsis">
+          {{name}}
+        </div>
+        <div class="price flexrow all-caps fw-600 middle">
+          &nbsp;
+        </div>
+
+      </div>
+
+      <ul class="leaders fw-500">
+        <li>
+          <span>{{localize "estate.UI.TYPE"}}</span>
+          <span>{{system.type}}</span>
+        </li>
+        <li>
+          <span>{{localize "estate.UI.PENALTY"}}</span>
+          <span>{{system.modifier.value}}</span>
+        </li>
+        <li>
+          <span>{{localize "estate.UI.PERMANENT"}}</span>
+          <span>{{#if system.isPermanent}}{{localize "estate.UI.YES"}}{{else}}{{localize "estate.UI.NO"}}{{/if}}</span>
+        </li>
+        <li>
+          <span>{{localize "estate.UI.TIMETO"}}</span>
+          <span>{{system.healingTime}} {{localize "estate.UI.DAYS"}}</span>
+        </li>
+
+      </ul>
+
+      <div class="border-thin padding-small grid">
+        <div class="all-caps fw-600">{{localize "estate.HEAD.DESC"}}</div>
+        <div>{{item.system.description}}</div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -25,9 +25,15 @@ TODO LIST:
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
 - Item detail roll down on gear tab
-- Item detail to chat for Injury, Trauma, Trait, and Talent from character sheet
+- Item detail to chat for Trauma, Trait, and Talent from character sheet
 
 Version History:
+
+v0.15.0
+- Added chat card for injury items
+
+
+
 v0.14.0
 - Fix item dup on drag and drop to original actor [#26](https://github.com/DrOgres/electric-state/issues/26)
 

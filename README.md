@@ -32,7 +32,7 @@ Version History:
 v0.15.0
 - Added chat card for injury items
 - Added chat card for Trauma items
-
+- Fix: [#27](https://github.com/DrOgres/electric-state/issues/27) fields overwriting wrong actor when multiple are open
 
 
 v0.14.0

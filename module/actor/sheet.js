@@ -98,19 +98,15 @@ export default class esActorSheet extends ActorSheet {
   async close() {
     console.log("E-STATE | Closing Actor Sheet", this);
 
+    const actor = this.actor;
+    const description = document.getElementById(this.actor._id+"-desc-edit");
+    const goal = document.getElementById(this.actor._id+"-goal-edit");
+    const threat = document.getElementById(this.actor._id+"-threat-edit");
+    const dream = document.getElementById(this.actor._id+"-dream-edit");
+    const flaw = document.getElementById(this.actor._id+"-flaw-edit");
+
     // if this is a player actor get the data from the description, goal, threat, dream and flaw divs and update the actor with the current values
     if(this._isPlayer()){
-      const actor = this.actor;
-      console.log("E-STATE | document", document);
-      const desc_field = this.actor._id+"-desc-edit";
-      console.log("E-STATE | Description Field", desc_field);
-      const description = document.getElementById(this.actor._id+"-desc-edit");
-      console.log("E-STATE | Description", description);
-      const goal = document.getElementById(this.actor._id+"-goal-edit");
-      const threat = document.getElementById(this.actor._id+"-threat-edit");
-      const dream = document.getElementById(this.actor._id+"-dream-edit");
-      const flaw = document.getElementById(this.actor._id+"-flaw-edit");
-
       if (description) {
         await actor.update({ "system.description": description.innerText });
       }
@@ -127,6 +123,10 @@ export default class esActorSheet extends ActorSheet {
         await actor.update({ "system.flaw": flaw.innerText });
       }
 
+    } else {
+      if (description) {
+        await actor.update({ "system.description": description.innerText });
+      }
     }
 
     super.close();

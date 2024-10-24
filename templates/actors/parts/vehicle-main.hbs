@@ -265,11 +265,12 @@
 
         {{#each items as |item|}}
         {{#if item.isTrait}}
-        <div class="grid cols-4-25 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin">
+        <div class="item grid cols-4-25 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin" data-item-id="{{item._id}}">
             <div class="item overflow-elipsis" data-item-id="{{item._id}}">{{item.name}}</div>
             <div class="modify text-left overflow-elipsis">{{dataLocalization item.system.type "trait"}}</div>
             <div class="mod center">{{item.system.modifier.value}}</div>
-            <div class="button-group align-bottom flexrow text-right justify-content-end" data-item-id="{{item._id}}">
+            <div class="button-group align-bottom flexrow text-right justify-content-end gap-small" data-item-id="{{item._id}}">
+                 <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
                 <div class="item-edit mw-fit"><i class="fa-solid fa-pen-to-square"></i></div>
                 <div class="item-delete mw-fit"><i class="fa-solid fa-trash"></i></div>
             </div>

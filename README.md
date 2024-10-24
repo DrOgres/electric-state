@@ -25,11 +25,11 @@ TODO LIST:
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
 - Item detail roll down on gear tab
-- Item detail to chat for Trait, from character sheet
 
 Version History:
 v0.16.0
 - Added chat card for Talent Items
+- Added chat card for Trait Items
 -Fixed: localization for item target on Injury and Trauma cards
 
 v0.15.0

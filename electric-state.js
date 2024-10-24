@@ -58,9 +58,9 @@ Hooks.once("init", function () {
     return a - b;
   });
 
-    Handlebars.registerHelper("plus", function (a, b) {
+  Handlebars.registerHelper("plus", function (a, b) {
     return a + b;
-    });
+  });
 
   Handlebars.registerHelper("actorName", function (actorId) {
     const actor = game.actors.get(actorId);
@@ -77,7 +77,7 @@ Hooks.once("init", function () {
   Handlebars.registerHelper("dataLocalization", function (data, group) {
     console.log("E-STATE | Localize Data", data, group);
     let string = "";
-    switch(group){
+    switch (group) {
       case "attribute":
         const atrributeString = eState.attributesAbv[data];
         string = game.i18n.localize(`estate.ATTRIBUTE.${atrributeString}`);
@@ -99,7 +99,20 @@ Hooks.once("init", function () {
         const trait = eState.traitTarget[data];
         string = game.i18n.localize(`${trait}`);
         break;
+      case "talent":
+        const talent = eState.modifierTarget[data];
+        string = game.i18n.localize(`${talent}`);
+        break;
+      case "injury":
+        const injury = eState.injuryTarget[data];
+        string = game.i18n.localize(`${injury}`);
+        break;
+      case "trauma":
+        const trauma = eState.traumaTarget[data];
+        string = game.i18n.localize(`${trauma}`);
+        break;
     }
+
 
     return string;
   });
@@ -112,79 +125,78 @@ Hooks.once("init", function () {
   });
 
   setLogo();
-
-
-
 });
 
-Hooks.once('diceSoNiceReady', (dice3d) => {
-    dice3d.addSystem({ id: 'electric-state', name: 'Electric State RPG - Base' }, 'preferred');
-    dice3d.addColorset({
-        name: 'ElectricStateBlack',
-        description: 'ElectricStateBlack',
-        category: 'Colors',
-        foreground: ['#ffffff'],
-        background: ['#000000'],
-        outline: 'black',
-        texture: 'none',
-    },'preferred');
-    dice3d.addColorset(
-        {
-            name: 'ElectricStateRed',
-            description: 'ElectricStateRed',
-            category: 'Colors',
-            foreground: ['#bc475c'],
-            background: ['#bc475c'],
-            outline: 'black',
-            texture: 'none',
-        }
-    );
-    dice3d.addDicePreset({
-        type: 'db',
-        labels: [
-            'systems/electric-state/assets/dice/db-1.png',
-            'systems/electric-state/assets/dice/db-2.png',
-            'systems/electric-state/assets/dice/db-3.png',
-            'systems/electric-state/assets/dice/db-4.png',
-            'systems/electric-state/assets/dice/db-5.png',
-            'systems/electric-state/assets/dice/db-6.png',
-        ],
-        colorset: 'ElectricStateRed',
-        system: 'electric-state',
-    });
+Hooks.once("diceSoNiceReady", (dice3d) => {
+  dice3d.addSystem(
+    { id: "electric-state", name: "Electric State RPG - Base" },
+    "preferred"
+  );
+  dice3d.addColorset(
+    {
+      name: "ElectricStateBlack",
+      description: "ElectricStateBlack",
+      category: "Colors",
+      foreground: ["#ffffff"],
+      background: ["#000000"],
+      outline: "black",
+      texture: "none",
+    },
+    "preferred"
+  );
+  dice3d.addColorset({
+    name: "ElectricStateRed",
+    description: "ElectricStateRed",
+    category: "Colors",
+    foreground: ["#bc475c"],
+    background: ["#bc475c"],
+    outline: "black",
+    texture: "none",
+  });
+  dice3d.addDicePreset({
+    type: "db",
+    labels: [
+      "systems/electric-state/assets/dice/db-1.png",
+      "systems/electric-state/assets/dice/db-2.png",
+      "systems/electric-state/assets/dice/db-3.png",
+      "systems/electric-state/assets/dice/db-4.png",
+      "systems/electric-state/assets/dice/db-5.png",
+      "systems/electric-state/assets/dice/db-6.png",
+    ],
+    colorset: "ElectricStateRed",
+    system: "electric-state",
+  });
 
-    dice3d.addDicePreset({
-        type: 'dg',
-        labels: [
-            'systems/electric-state/assets/dice/dg-1.png',
-            'systems/electric-state/assets/dice/dg-2.png',
-            'systems/electric-state/assets/dice/dg-3.png',
-            'systems/electric-state/assets/dice/dg-4.png',
-            'systems/electric-state/assets/dice/dg-5.png',
-            'systems/electric-state/assets/dice/dg-6.png',
-        ],
-        colorset: 'ElectricStateBlack',
-        system: 'electric-state',
-    });
+  dice3d.addDicePreset({
+    type: "dg",
+    labels: [
+      "systems/electric-state/assets/dice/dg-1.png",
+      "systems/electric-state/assets/dice/dg-2.png",
+      "systems/electric-state/assets/dice/dg-3.png",
+      "systems/electric-state/assets/dice/dg-4.png",
+      "systems/electric-state/assets/dice/dg-5.png",
+      "systems/electric-state/assets/dice/dg-6.png",
+    ],
+    colorset: "ElectricStateBlack",
+    system: "electric-state",
+  });
 });
 
-
-Hooks.on('dropActorSheetData', async (actor, actorSheet, data) => {
+Hooks.on("dropActorSheetData", async (actor, actorSheet, data) => {
   console.log("E-STATE | On Drop Actor Sheet Data", actor, actorSheet, data);
   console.log("E-STATE | Actor Type", actor.type);
   console.log("E-STATE | Data Type", data.type);
-  if(actor.type !== 'vehicle' || data.type !== 'Actor'){ 
+  if (actor.type !== "vehicle" || data.type !== "Actor") {
     console.log("E-STATE | Not a Vehicle nor dropping an Actor");
     return;
-  } 
-
-  if (actor.type === 'vehicle') {
-    const passenger = await fromUuid(data.uuid);
-    if (data.type === 'Actor') await actorSheet.dropPassenger(passenger.id);  
   }
 
+  if (actor.type === "vehicle") {
+    const passenger = await fromUuid(data.uuid);
+    if (data.type === "Actor") await actorSheet.dropPassenger(passenger.id);
+  }
 });
 
 function setLogo() {
-	$("#logo")[0].src = "systems/electric-state/assets/logo.webp";
+  $("#logo")[0].src = "systems/electric-state/assets/logo.webp";
 }

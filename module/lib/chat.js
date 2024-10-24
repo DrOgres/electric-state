@@ -8,6 +8,7 @@ const estateChat = {
     weapon: "systems/electric-state/templates/chat/weapon-card.hbs",
     injury: "systems/electric-state/templates/chat/injury-card.hbs",
     trauma: "systems/electric-state/templates/chat/trauma-card.hbs",
+    talent: "systems/electric-state/templates/chat/talent-card.hbs",
   },
 };
 
@@ -130,7 +131,17 @@ export const buildChatCard = function (type, item, chatOptions = {}) {
         },
         chatOptions
       );
-
+      break;
+      case "talent":
+        chatOptions = foundry.utils.mergeObject(
+            {
+            user: game.user.id,
+            flavor: data.name,
+            template: estateChat.template.talent,
+            blind: false,
+            },
+            chatOptions
+        );
       break;
   }
   const isPrivate = chatOptions.isPrivate;

@@ -28,12 +28,13 @@ TODO LIST:
 - Item detail to chat for Trait, and Talent from character sheet
 
 Version History:
+v0.16.0
+
 
 v0.15.0
 - Added chat card for injury items
 - Added chat card for Trauma items
 - Fix: [#27](https://github.com/DrOgres/electric-state/issues/27) fields overwriting wrong actor when multiple are open
-
 
 v0.14.0
 - Fix item dup on drag and drop to original actor [#26](https://github.com/DrOgres/electric-state/issues/26)

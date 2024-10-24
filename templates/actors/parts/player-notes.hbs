@@ -6,13 +6,13 @@
             <div class="border-3-4-thick flexcol padding-small margin-small margin-top-close">
                 <div class="goal-group grid col-30-70 fs-300 margin-small border-bottom-thin">
                     <label for="goal" class="all-caps fw-700 middle">{{localize "estate.UI.GOAL"}}</label>
-                    <div contenteditable="true" id="goal-edit" class="input-text align-start" name="system.journey.goal"
+                    <div contenteditable="true" id="{{actor._id}}-goal-edit" class="input-text align-start" name="system.journey.goal"
                         data-field="system.journey.goal">{{{actor.system.journey.goal}}}
                     </div>
                 </div>
                 <div class="threat-group grid col-30-70 fs-300 margin-small border-bottom-thin">
                     <label for="threat" class="all-caps fw-700 middle">{{localize "estate.UI.THREAT"}}</label>
-                    <div contenteditable="true" id="threat-edit" class="input-text align-start" name="system.journey.threat"
+                    <div contenteditable="true" id="{{actor._id}}-threat-edit" class="input-text align-start" name="system.journey.threat"
                         data-field="system.journey.threat">
                         {{{actor.system.journey.threat}}}
                     </div>

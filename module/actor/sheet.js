@@ -106,10 +106,10 @@ export default class esActorSheet extends ActorSheet {
       console.log("E-STATE | Description Field", desc_field);
       const description = document.getElementById(this.actor._id+"-desc-edit");
       console.log("E-STATE | Description", description);
-      const goal = document.getElementById("goal-edit");
-      const threat = document.getElementById("threat-edit");
-      const dream = document.getElementById("dream-edit");
-      const flaw = document.getElementById("flaw-edit");
+      const goal = document.getElementById(this.actor._id+"-goal-edit");
+      const threat = document.getElementById(this.actor._id+"-threat-edit");
+      const dream = document.getElementById(this.actor._id+"-dream-edit");
+      const flaw = document.getElementById(this.actor._id+"-flaw-edit");
 
       if (description) {
         await actor.update({ "system.description": description.innerText });

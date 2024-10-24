@@ -1,150 +1,138 @@
 @use "../abstracts" as *;
 
-.to-chat{
+.to-chat {
   cursor: pointer;
-
 }
 
-.item-edit{
-    cursor: pointer;
+.item-edit {
+  cursor: pointer;
+}
 
-  }
+.item-delete {
+  cursor: pointer;
+}
 
-  .item-delete{
-    cursor: pointer;
+.item-create {
+  cursor: pointer;
+}
 
-  }
+.toggle-fav {
+  cursor: pointer;
+}
 
-  .item-create{
-    cursor: pointer;
+.toggle-equip {
+  cursor: pointer;
+}
 
-  }
+.border-bottom {
+  border-bottom: 1px solid $text-color;
+}
 
-  .toggle-fav{
-    cursor: pointer;
+.all-caps {
+  text-transform: uppercase;
+}
 
-  }
+.fw-800 {
+  font-weight: 800;
+}
 
-  .toggle-equip{
-    cursor: pointer;
+.fw-700 {
+  font-weight: 700;
+}
 
-  }
+.fw-600 {
+  font-weight: 600;
+}
 
-  .border-bottom{
-    border-bottom: 1px solid $text-color;
-  }
+.fw-500 {
+  font-weight: 500;
+}
 
-  .all-caps{
-    text-transform: uppercase;
-  }
+.fw-400 {
+  font-weight: 400;
+}
 
-  .fw-800{
-    font-weight: 800;
-  }
+.fw-300 {
+  font-weight: 300;
+}
 
-  .fw-700{
-    font-weight: 700;
-  }
+.fw-200 {
+  font-weight: 200;
+}
 
-  .fw-600{
-    font-weight: 600;
-  }
+.fw-100 {
+  font-weight: 100;
+}
 
-  .fw-500{
-    font-weight: 500;
-  }
+.fs-800 {
+  font-size: 3rem;
+}
 
-  .fw-400{
-    font-weight: 400;
-  }
+.fs-700 {
+  font-size: 2.5rem;
+}
 
-  .fw-300{
-    font-weight: 300;
-  }
+.fs-600 {
+  font-size: 2rem;
+}
 
-  .fw-200{
-    font-weight: 200;
-  }
+.fs-500 {
+  font-size: 1.5rem;
+}
 
-  .fw-100{
-    font-weight: 100;
-  }
+.fs-400 {
+  font-size: 1.25rem;
+}
 
+.fs-300 {
+  font-size: 1rem;
+}
 
+.fs-200 {
+  font-size: 0.75rem;
+}
 
-  .fs-800{
-    font-size: 3rem;
-  }
+.fs-100 {
+  font-size: 0.5rem;
+}
 
-    .fs-700{
-        font-size: 2.5rem;
-    }
+.overflow-elipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-    .fs-600{
-        font-size: 2rem;
-    }
+.successes {
+  color: red;
+}
 
-    .fs-500{
-        font-size: 1.5rem;
-    }
+.failures {
+  color: rgb(37, 0, 37);
+}
 
-    .fs-400{
-        font-size: 1.25rem;
-    }
+.bg-hatch {
+  background: repeating-linear-gradient(
+    -45deg,
+    $background-color-highlight,
+    $background-color-highlight 5px,
+    $field-color 5px,
+    $field-color 10px
+  );
+}
 
-    .fs-300{
-        font-size: 1rem;
-    }
+.bg-dark {
+  background-color: $text-color;
+}
 
-    .fs-200{
-        font-size: 0.75rem;
-    }   
-
-    .fs-100{
-        font-size: 0.5rem;
-    }
-
-    .overflow-elipsis{
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .successes{
-        color: red;
-    }
-
-    .failures{
-        color: rgb(37, 0, 37);
-    }
-
-    .bg-hatch{
-      background: repeating-linear-gradient(
-  -45deg,
-  $background-color-highlight,
-  $background-color-highlight 5px,
-  $field-color 5px,
-  $field-color 10px
-);
-    }
-
-    .bg-dark{
-      background-color: $text-color;
-    }
-
-
-    
- /* Tooltip container */
- .tooltip {
+/* Tooltip container */
+.tooltip {
   position: relative;
   display: inline-block;
 }
 
-
-
 /* Tooltip text */
 .tooltip .tooltiptext {
-  visibility: hidden; 
+  visibility: hidden;
   background-color: $text-color;
   color: $field-color;
   text-align: center;
@@ -153,7 +141,7 @@
   border-radius: 0;
   /* Position the tooltip text */
   position: absolute;
- 
+
   z-index: 1001;
   bottom: 100%;
   left: 50%;
@@ -163,56 +151,52 @@
   transition: opacity 0.3s;
 }
 
-  /* Tooltip arrow */
+/* Tooltip arrow */
 
-  
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-  } 
-    
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
 
-  .input-text{
-    background-color: $field-color;
-    color: $text-color;
-    border-bottom: 1px solid $text-color;
-    border-radius: 0;
-    resize: none;
-    outline-color: $background-color-highlight;
-  }
+.input-text {
+  background-color: $field-color;
+  color: $text-color;
+  border-bottom: 1px solid $text-color;
+  border-radius: 0;
+  resize: none;
+  outline-color: $background-color-highlight;
+}
 
-  ul.leaders {
-    text-transform: uppercase;
-    padding: 0;
-    overflow-x: hidden;
-    list-style: none;
-    padding: 3px;
-  }
+ul.leaders {
+  text-transform: uppercase;
+  padding: 0;
+  overflow-x: hidden;
+  list-style: none;
+  padding: 3px;
+}
 ul.leaders li:before {
-    float: left;
-    width: 0;
-    white-space: nowrap;
-    content:
- ". . . . . . . . . . . . . . . . . . . . "
- ". . . . . . . . . . . . . . . . . . . . ";
+  float: left;
+  width: 0;
+  white-space: nowrap;
+  content: ". . . . . . . . . . . . . . . . . . . . "
+    ". . . . . . . . . . . . . . . . . . . . ";
 }
 ul.leaders span:first-child {
-    padding-right: 0.33em;
-    background: $background-color;
-  }
+  padding-right: 0.33em;
+  background: $background-color;
+}
 ul.leaders span + span {
-    float: right;
-    background: $background-color;
-  }
+  float: right;
+  background: $background-color;
+}
 
-  .clickable{
-    cursor: pointer;
+.clickable {
+  cursor: pointer;
 
-    &:hover{
-      text-shadow: $highlight-interactive-element 0 0 5px;
-      text-decoration: underline;
-      text-decoration-color: $highlight-interactive-element;
-    }
-   
+  &:hover {
+    text-shadow: $highlight-interactive-element 0 0 5px;
+    text-decoration: underline;
+    text-decoration-color: $highlight-interactive-element;
   }
+}

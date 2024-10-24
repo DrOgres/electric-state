@@ -58,7 +58,7 @@
                         <div class="mod center">&minus;{{injury.system.modifier.value}}</div>
                         <div class="mod center">{{#if injury.system.isPermanent}}{{localize
                             "estate.UI.YES"}}{{else}}{{localize "estate.UI.NO"}}{{/if}}</div>
-                        <div class="button-group align-bottom flexrow text-right justify-content-end"
+                        <div class="button-group align-bottom flexrow text-right justify-content-end gap-small"
                             data-item-id="{{injury._id}}">
                             <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
                             <div class="item-edit mw-fit"><i class="fa-solid fa-pen-to-square"></i></div>
@@ -78,12 +78,13 @@
                     </div>
                     {{#each items as |trauma|}}
                     {{#if trauma.isTrauma}}
-                    <div class="grid cols-4-25 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin">
+                    <div class="item grid cols-4-25 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin" data-item-id="{{trauma._id}}">
                         <div class="item overflow-elipsis" data-item-id="{{trauma._id}}">{{trauma.name}}</div>
                         <div class="modify text-left overflow-elipsis">{{trauma.system.type}}</div>
                         <div class="mod center">&minus;{{trauma.system.modifier.value}}</div>
-                        <div class="button-group align-bottom flexrow text-right justify-content-end"
+                        <div class="button-group align-bottom flexrow text-right justify-content-end gap-small"
                             data-item-id="{{trauma._id}}">
+                             <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
                             <div class="item-edit mw-fit"><i class="fa-solid fa-pen-to-square"></i></div>
                             <div class="item-delete mw-fit"><i class="fa-solid fa-trash"></i></div>
                         </div>

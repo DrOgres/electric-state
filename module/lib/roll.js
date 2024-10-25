@@ -6,8 +6,15 @@ export function prepareDeathRollDialog(options) {
   const actor = options.actor;
 
   let dialogHTML = "";
-  let sucessCount = actor.flags.world.deathSucessCount || 0;
-  let failureCount = actor.flags.world.deathFailureCount || 0;
+  // console.log("Death Roll", actor.getFlag("world", "deathSucessCount"));
+  // if (actor.getFlag("world", "deathSucessCount") === undefined) {
+  //   actor.setFlag("world", "deathSucessCount", 0);
+  // }
+  // if (actor.flags.world.deathFailureCount === undefined) {
+  //   actor.setFlag("world", "deathFailureCount", 0);
+  // }
+  let sucessCount = actor.getFlag("world", "deathSucessCount") || 0;
+  let failureCount = actor.getFlag("world", "deathFailureCount") || 0;
 
   let dicePool = 4;
   let bonus = 0;

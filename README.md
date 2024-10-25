@@ -30,7 +30,9 @@ Version History:
 v0.16.0
 - Added chat card for Talent Items
 - Added chat card for Trait Items
--Fixed: localization for item target on Injury and Trauma cards
+- Fixed: localization for item target on Injury and Trauma cards
+- Fixed Death Save not working [#28](https://github.com/DrOgres/electric-state/issues/28)
+
 
 v0.15.0
 - Added chat card for injury items

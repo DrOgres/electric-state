@@ -27,6 +27,11 @@ TODO LIST:
 - Item detail roll down on gear tab
 
 Version History:
+v0.17.0
+- Added checkbox on roll dialog to allow application of Real World penalty to rolls when the character has a neurocaster equipped.
+
+
+
 v0.16.0
 - Added chat card for Talent Items
 - Added chat card for Trait Items

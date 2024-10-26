@@ -225,7 +225,7 @@ export function prepareRollDialog(options) {
         }
       }
 
-      //TODO for agility rolls check to see if the actor has armor equipped and if so apply the armor penalty and show this in the dialog
+      
       for (let armor of armors) {
         if (armor.flags.isEquipped) {
           if (options.attribute === "agility") {
@@ -260,7 +260,12 @@ export function prepareRollDialog(options) {
       dialogHTML += buildTalentSelectDialog(options, talents, drones);
       dialogHTML += buildGearSelectDialog(options, gear);
 
-      //TODO if the actor has an equipped neurocaster add a check box to apply the real world penalty to the roll
+      for (let neurocaster of neurocasters) {
+        if (neurocaster.flags.isEquipped) {
+          dialogHTML += buildDialogCheckBox("estate.UI.RW_PENALTY", neurocaster.system.realWorldPenalty, "penalty");
+        }
+      }
+
 
       //TODO if there is a target for the user and the target actorId matches the actorID of any of the tensions use add a check box to allow the user to add the tension to the roll
 
@@ -577,6 +582,24 @@ export function prepareRollDialog(options) {
               baseDice -= options.armorPenalty;
             }
 
+            let neurocasterPenalty = 0;
+            let checkbox = html.find("#conditional-modifier-penalty")[0];
+            console.log("Checkbox", checkbox);  
+            if (checkbox !== undefined && checkbox.checked) {
+              console.log("Checkbox", checkbox.checked);
+              neurocasterPenalty = parseInt(
+               checkbox.value
+              );
+            }
+
+            console.log("Neurocaster Penalty", neurocasterPenalty);
+
+            if (neurocasterPenalty > 0) {
+              baseDice -= neurocasterPenalty;
+            }
+
+            
+
             //if this is a weapon roll set options.gearUsed to the weaponId
             if (options.type === "weapon") {
               options.gearUsed = options.weaponId;
@@ -639,6 +662,28 @@ export function prepareRollDialog(options) {
     }
   );
   dialog.render(true);
+}
+
+function buildDialogCheckBox(label, value, type) {
+
+  let sign = "";
+  if (type === "penalty") {
+    sign = "&minus;";
+  } else {
+    sign = "&plus;";
+  }
+  return (
+    `
+    <div class="flexrow">
+    <h4 class="subheader middle">` +
+    game.i18n.localize("estate.UI.APPLY") + " "+ 
+    game.i18n.localize(label) +
+    ` : &nbsp;  </h4> <div class="text-right middle"> `+sign+ `&nbsp;` + value+`
+    <input type="checkbox" id="conditional-modifier-`+type+`" value="` +
+    value +
+    `"/></div>
+    </div>`
+  );
 }
 
 function buildGearSelectDialog(options, gear) {

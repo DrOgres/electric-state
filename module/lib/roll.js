@@ -207,7 +207,8 @@ export function prepareRollDialog(options) {
           ) {
             options.dicePool = drone.system.attributes[options.attribute];
           }
-
+          //TODO show the neurocaster in the dialog to show the user that the network value is being added to the dice pool
+          //TODO neurocaster should use gear dice not base dice
           let foundCaster = false;
           for (let neurocaster of neurocasters) {
             if (neurocaster.flags.isEquipped) {

@@ -17,20 +17,22 @@ TODO LIST:
         - Add tension drop down to roll dialog if no target is selected
     - Target to allow damage to be applied for attacks
     - limited actor sheet 
-    - Adjust Roll Dialog for Drones to show Neurocaster 
     - add bliss for failed rolls when using a Neurocaster
     - if a push makes a neurocaster busted set current hope to 0 and indicate need for mental trauma (potentially add item to sheet)
-    - apply gear damage when using drones
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
 - Item detail roll down on gear tab
+- distinguish between gear and base dice in roll dialog subtotal section for clarity
+- remove busted gear from roll dialog
 
 Version History:
 v0.17.0
 - Added checkbox on roll dialog to allow application of Real World penalty to rolls when the character has a neurocaster equipped.
-
-
+- Added Network line on roll dialog to show network attribute of Neurocaster when using a drone, this should make the pool building clearer
+- Changed dice type on Neurocaster Bonus to Gear dice for drone use, this is correct as RAW
+- Added checkbox to apply penalty for real world actions when a neurocaster is equipped, it is checked by default, this includes drone use.
+- gear is an array so when pushing a drone roll gear damage is applied to both neurocaster and any geear the drone is using 
 
 v0.16.0
 - Added chat card for Talent Items

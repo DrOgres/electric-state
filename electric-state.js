@@ -7,6 +7,8 @@ import electricStateActor from "./module/actor/entity.js";
 import electricStateItemSheet from "./module/item/sheet.js";
 import electricStateItem from "./module/item/entity.js";
 
+
+
 Hooks.once("init", function () {
   console.log("E-STATE | Initializing Electric State");
 
@@ -41,6 +43,8 @@ Hooks.once("init", function () {
   Items.registerSheet("electric-state", electricStateItemSheet, {
     smakeDefault: true,
   });
+
+  
 
   preloadHandlebarsTemplates();
 
@@ -199,4 +203,8 @@ Hooks.on("dropActorSheetData", async (actor, actorSheet, data) => {
 
 function setLogo() {
   $("#logo")[0].src = "systems/electric-state/assets/logo.webp";
+}
+
+function recalcDialog() {
+  console.log("E-STATE | Recalc Dialog");
 }

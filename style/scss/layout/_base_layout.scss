@@ -5,6 +5,10 @@
   display: block;
 }
 
+.flex{
+  display: flex;
+}
+
 .no-break{
   white-space: nowrap;
 }
@@ -232,6 +236,10 @@
 
   .margin-top-close{
     margin-top: -10px;
+  }
+
+  .padding-x-small {
+    padding: 2px;
   }
 
   .padding-small {

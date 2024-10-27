@@ -1032,7 +1032,7 @@ function buildHTMLDialog(diceName, diceValue, type) {
     ` : &nbsp;</span>
         <span id="` +
     type +
-    `"> <i class="fa-solid fa-dice-d6 red"></i> &plus;` +
+    `"> <i class="fa-solid fa-dice-d6 red"></i> &plus; ` +
     diceValue +
     `</span>
     </li>

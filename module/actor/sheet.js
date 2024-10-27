@@ -135,7 +135,7 @@ export default class esActorSheet extends ActorSheet {
     super.close();
   }
 
-  _onShowDetails(event) {
+  async _onShowDetails(event) {
     console.log("E-STATE | Showing Details", event);
     const div = $(event.currentTarget).parents(".item");
     console.log("E-STATE | Div", div);
@@ -144,6 +144,9 @@ export default class esActorSheet extends ActorSheet {
 
     const type = item.type;
     let chatData = null;
+    let showDetail = !item.getFlag("electric-state", "showDetail");
+    
+    item.setFlag("electric-state", "showDetail", showDetail);
 
     switch (type) {
       case "weapon":
@@ -162,16 +165,23 @@ export default class esActorSheet extends ActorSheet {
     }
 
     if (chatData === null) {
+      console.log("E-STATE | No Chat Data", chatData);
       return;
     } else if (div.hasClass("expanded")) {
+      console.log("E-STATE | Expanded", chatData);
       let sum = div.children(".item-summary");
       sum.slideUp(200, () => sum.remove());
     } else {
+      console.log("E-STATE | Not Expanded", chatData);
       let sum = $(`<div class="item-summary">${chatData}</div>`);
       div.append(sum.hide());
+      console.log("E-STATE | Sum", sum);
+      console.log("E-STATE | Div", div);
       sum.slideDown(200);
     }
     div.toggleClass("expanded");
+
+
 
     
   }

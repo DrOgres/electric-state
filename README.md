@@ -23,8 +23,7 @@ TODO LIST:
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
 - Item detail roll down on gear tab
-- distinguish between gear and base dice in roll dialog subtotal section for clarity
-- remove busted gear from roll dialog
+
 
 Version History:
 v0.17.0

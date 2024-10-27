@@ -1,50 +1,7 @@
 <div class="flexcol gap-small">
 
-    <div class="weapon-group border-bottom-thick">
+    <div class="weapon-parts-group">
         {{> "systems/electric-state/templates/actors/parts/weapons.hbs"}}
-    </div>
-
-    <div class="explosives-group  border-bottom-thick">
-        <div class="group-header flexrow middle border-bottom-thin space-between gap-med fw-600 fs-200 all-caps">
-            <div class="mw-150px flexrow middle">{{localize "estate.UI.EXPLOSIVE"}}</div>
-            <div class="stat-group grid four-col gap-med middle">
-                <div>{{localize "estate.UI.BONUS"}}</div>
-                <div>{{localize "estate.UI.BLASTPOWER"}}</div>
-                <div>{{localize "estate.UI.RANGE_MIN"}}</div>
-                <div>{{localize "estate.UI.RANGE_MAX"}}</div>
-            </div>
-            <div class="button-group grid three-col mw-75px">
-                <div class="holder"></div>
-                <div class="item-create fs-500" data-type="explosive">&plus;</div>
-                <div class="holder"></div>
-            </div>
-        </div>
-        {{#each items as |item|}}
-        {{#if item.isExplosive}}
-        <div class=" item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true" 
-            data-item-id="{{item._id}}">
-            <div class=" mw-150px flexrow middle" data-type="explosive" data-item-id="{{item._id}}">
-                <div class="item-icon mw-35px"><img src="{{item.img}}" title="{{item.name}}" height="25"
-                        width="25" />
-                </div>
-                <div class="name no-break middle">
-                    {{item.name}}
-                </div>
-            </div>
-            <div class="stat-group grid four-col gap-med">
-                <div>&plus; {{item.system.modifier.value}}</div>
-                <div>{{item.system.blast}}</div>
-                <div>{{#dataLocalization item.system.range.min 'range'}}{{/dataLocalization}}</div>
-                <div>{{#dataLocalization item.system.range.max 'range'}}{{/dataLocalization}}</div>
-            </div>
-            <div class="button-group grid two-col mw-75px" data-item-id="{{item._id}}">
-                
-                <div class="item-edit"><i class="fa-solid fa-pen-to-square"></i></div>
-                <div class="item-delete"><i class="fa-solid fa-trash"></i></div>
-            </div>
-        </div>
-        {{/if}}
-        {{/each}}
     </div>
 
     <div class="armor-group border-bottom-thick">

@@ -93,7 +93,10 @@ export default class esActorSheet extends ActorSheet {
     // html.find(".input-text").change(this._updateData.bind(this));
     html.find(".input-text").focusout(this._updateData.bind(this));
     html.find(".to-chat").click(this._onItemToChat.bind(this));
+    html.find(".show-details").click(this._onShowDetails.bind(this));
   }
+
+ 
 
   async close() {
     console.log("E-STATE | Closing Actor Sheet", this);
@@ -132,6 +135,47 @@ export default class esActorSheet extends ActorSheet {
     super.close();
   }
 
+  _onShowDetails(event) {
+    console.log("E-STATE | Showing Details", event);
+    const div = $(event.currentTarget).parents(".item");
+    console.log("E-STATE | Div", div);
+    const item = this.actor.items.get(div.data("itemId"));
+    console.log("E-STATE | Item", item);
+
+    const type = item.type;
+    let chatData = null;
+
+    switch (type) {
+      case "weapon":
+      case "explosive":
+        chatData =
+          "<p class='item-desc subheader'><b>" +
+          game.i18n.localize("estate.HEAD.PRICE") +
+          ": $</b> " +
+          item.system.cost +
+          " | <b>" +
+          game.i18n.localize("estate.HEAD.DESC") +
+          ":</b> " +
+          item.system.description +
+          "</br></p>";
+        break;
+    }
+
+    if (chatData === null) {
+      return;
+    } else if (div.hasClass("expanded")) {
+      let sum = div.children(".item-summary");
+      sum.slideUp(200, () => sum.remove());
+    } else {
+      let sum = $(`<div class="item-summary">${chatData}</div>`);
+      div.append(sum.hide());
+      sum.slideDown(200);
+    }
+    div.toggleClass("expanded");
+
+    
+  }
+
   _onItemToChat(event) {
     event.preventDefault();
     const div = $(event.currentTarget).parents(".item");
@@ -141,10 +185,6 @@ export default class esActorSheet extends ActorSheet {
     buildChatCard(type, item);
   }
 
-
-  async _onShowDetails(event) {
-    console.log("E-STATE | Showing Details", event);
-  }
 
   async _updateData(event) {
     event.preventDefault();

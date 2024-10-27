@@ -144,13 +144,11 @@ export default class esActorSheet extends ActorSheet {
 
     const type = item.type;
     let chatData = null;
-    let showDetail = !item.getFlag("electric-state", "showDetail");
-    
-    item.setFlag("electric-state", "showDetail", showDetail);
 
     switch (type) {
       case "weapon":
       case "explosive":
+      case "armor":
         chatData =
           "<p class='item-desc subheader'><b>" +
           game.i18n.localize("estate.HEAD.PRICE") +

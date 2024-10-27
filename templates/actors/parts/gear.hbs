@@ -4,7 +4,7 @@
         {{> "systems/electric-state/templates/actors/parts/weapons.hbs"}}
     </div>
 
-    
+
 
     <div class="armor-group border-bottom-thick">
         <div class="group-header flexrow border-bottom-thin space-between gap-med fw-600 fs-200 all-caps">
@@ -22,52 +22,57 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isArmor}}
-        <div class=" item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true" 
-            data-item-id="{{item._id}}">
+        <div class="grid item item-row w-100 draggable" draggable="true" data-item-id="{{item._id}}">
+            <div class="flexrow  middle border-bottom-thin space-between gap-med">
 
-            <div class="rollable mw-150px flexrow middle clickable" data-type="armor" data-item-id="{{item._id}}">
-                <div class="item-icon mw-35px"><img src="{{item.img}}" title="{{item.name}}" height="25"
-                        width="25" />
-                </div>
-                <div class="name no-break middle">
-                    {{item.name}}
-                </div>
-            </div>
-
-            <div class="stat-group grid three-col">
-                {{#if item.flags.isEquipped}}
-                <div class="toggle-equip"><i class="fa-solid fa-shield"></i></div>
-                {{/if}}
-                {{#unless item.flags.isEquipped}}
-                <div class="toggle-equip"><i class="fa-regular fa-shield"></i></div>
-                {{/unless}}
-
-                <div class="rate">
-                    {{item.system.modifier.value}}
+                <div class="show-details mw-25px clickable" data-item-id="{{item._id}}">
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
 
-                <div class="agility-penalty">
-                    {{item.system.agiltyModifier}}
+                <div class="rollable mw-150px flexrow middle clickable" data-type="armor" data-item-id="{{item._id}}">
+                    <div class="item-icon mw-35px"><img src="{{item.img}}" title="{{item.name}}" height="25"
+                            width="25" />
+                    </div>
+                    <div class="name no-break middle">
+                        {{item.name}}
+                    </div>
                 </div>
 
-            </div>
+                <div class="stat-group grid three-col">
+                    {{#if item.flags.isEquipped}}
+                    <div class="toggle-equip"><i class="fa-solid fa-shield"></i></div>
+                    {{/if}}
+                    {{#unless item.flags.isEquipped}}
+                    <div class="toggle-equip"><i class="fa-regular fa-shield"></i></div>
+                    {{/unless}}
+
+                    <div class="rate">
+                        {{item.system.modifier.value}}
+                    </div>
+
+                    <div class="agility-penalty">
+                        {{item.system.agiltyModifier}}
+                    </div>
+
+                </div>
 
 
-            <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
-                {{#if (eq ../actor.type 'player')}}
-                {{#if item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
-                {{/if}}
-                {{#unless item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
-                {{/unless}}
-                {{/if}}
-                {{#unless (eq ../actor.type 'player')}}
-                <div class="hold"></div>
-                {{/unless}}
-                <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
-                <div class="item-edit"><i class="fa-solid fa-pen-to-square"></i></div>
-                <div class="item-delete"><i class="fa-solid fa-trash"></i></div>
+                <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
+                    {{#if (eq ../actor.type 'player')}}
+                    {{#if item.flags.isFav}}
+                    <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                    {{/if}}
+                    {{#unless item.flags.isFav}}
+                    <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                    {{/unless}}
+                    {{/if}}
+                    {{#unless (eq ../actor.type 'player')}}
+                    <div class="hold"></div>
+                    {{/unless}}
+                    <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
+                    <div class="item-edit"><i class="fa-solid fa-pen-to-square"></i></div>
+                    <div class="item-delete"><i class="fa-solid fa-trash"></i></div>
+                </div>
             </div>
         </div>
         {{/if}}
@@ -92,7 +97,8 @@
 
         {{#each items as |item|}}
         {{#if item.isGear}}
-        <div class="item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true"  data-item-id="{{item._id}}"  >
+        <div class="item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true"
+            data-item-id="{{item._id}}">
 
 
             <div class="mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
@@ -177,7 +183,8 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isDrone}}
-        <div class="item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true"  data-item-id="{{item._id}}">
+        <div class="item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true"
+            data-item-id="{{item._id}}">
 
             <div class="mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
                 <div class="item-icon">
@@ -196,10 +203,10 @@
                     {{#unless item.flags.isEquipped}}
                     <div class="toggle-equip mw-50px"><i class="fa-regular fa-robot"></i></div>
                     {{/unless}}
-                    <div class="drone-attack rollable mw-50px clickable" data-type="drone-attack" data-item-id="{{item._id}}"><i
-                            class="fa-solid fa-gun"></i></div>
-                    <div class="drone-armor rollable mw-50px clickable" data-type="drone-armor" data-item-id="{{item._id}}"><i
-                            class="fa-solid fa-shield"></i></div>
+                    <div class="drone-attack rollable mw-50px clickable" data-type="drone-attack"
+                        data-item-id="{{item._id}}"><i class="fa-solid fa-gun"></i></div>
+                    <div class="drone-armor rollable mw-50px clickable" data-type="drone-armor"
+                        data-item-id="{{item._id}}"><i class="fa-solid fa-shield"></i></div>
 
                 </div>
 
@@ -256,7 +263,7 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isNeurocaster}}
-        <div class=" item item-row flexrow draggable" draggable="true"  data-item-id="{{item._id}}">
+        <div class=" item item-row flexrow draggable" draggable="true" data-item-id="{{item._id}}">
             <div class="mw-150px flexrow middle no-break" data-type="neurocaster" data-item-id="{{item._id}}">
                 <div class="item-icon">
                     <img src="{{item.img}}" title="{{item.name}}" height="25" width="25" />
@@ -267,12 +274,12 @@
             <div class="stat-group grid three-col center middle">
                 {{#if item.flags.isEquipped}}
                 <div class="toggle-equip mw-45px "><i class="fa-solid fa-head-side-gear"></i>
-                    
+
                 </div>
                 {{/if}}
                 {{#unless item.flags.isEquipped}}
                 <div class="toggle-equip mw-45px"><i class="fa-light fa-head-side-gear"></i>
-                    
+
                 </div>
                 {{/unless}}
                 <div class="action-group flexrow gap-x-small" data-item-id="{{item._id}}">

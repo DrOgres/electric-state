@@ -33,6 +33,10 @@ v0.17.0
 - Changed dice type on Neurocaster Bonus to Gear dice for drone use, this is correct as RAW
 - Added checkbox to apply penalty for real world actions when a neurocaster is equipped, it is checked by default, this includes drone use.
 - gear is an array so when pushing a drone roll gear damage is applied to both neurocaster and any geear the drone is using 
+- Fixed: Neurocaster was not using correct attribute for rolls
+- Updated Roll dialog UI, to clarify die pool 
+- Fix: manuverabililty was not set as gear dice when driving
+
 
 v0.16.0
 - Added chat card for Talent Items

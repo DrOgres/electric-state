@@ -26,6 +26,9 @@ TODO LIST:
 
 
 Version History:
+v0.18.0
+- fix: users cannot close open sheets they do not own [#31](https://github.com/DrOgres/electric-state/issues/31)
+
 v0.17.0
 - Added checkbox on roll dialog to allow application of Real World penalty to rolls when the character has a neurocaster equipped.
 - Added Network line on roll dialog to show network attribute of Neurocaster when using a drone, this should make the pool building clearer

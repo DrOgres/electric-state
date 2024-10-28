@@ -97,6 +97,11 @@ export default class esActorSheet extends ActorSheet {
 
   async close() {
     console.log("E-STATE | Closing Actor Sheet", this);
+    //if the user is not the owner of the actor do not save the data
+    if (this.actor.getUserLevel(game.user) !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+      super.close();
+      return;
+    }
 
     const actor = this.actor;
     const description = document.getElementById(this.actor._id+"-desc-edit");

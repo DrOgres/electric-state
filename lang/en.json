@@ -96,7 +96,7 @@
     "UI.DICEPOOL": "Dice Pool",
     "UI.DICE": "Dice",
     "UI.DICEPOOLSIZE": "Dice Pool Size",
-    "UI.ARMOR_PENALTY": "Agility Penalty",
+    "UI.ARMOR_PENALTY": "Armor Agility Penalty",
     "UI.MOD": "Mod",
     "UI.DMG": "DMG",
     "UI.BLASTDAMAGE": "Blast Damage",
@@ -139,6 +139,7 @@
     "UI.AMOUNT": "Amount",
     "UI.HOPE_LOSS": "Hope Loss",
     "UI.GEAR_DAMAGE": "Gear Damage",
+    "UI.APPLY": "Apply",
 
     "UI.YES": "Yes",
     "UI.NO": "No",

@@ -34,7 +34,7 @@ export function prepareDeathRollDialog(options) {
   options.bonusDefault = bonus;
   options.sucessCount = sucessCount;
   options.failureCount = failureCount;
-  options.gearUsed = [];
+  options.gearUsed = [null];
 
   console.log("building dialog", options);
 
@@ -1137,6 +1137,24 @@ async function _onPush(event) {
           ];
           console.log("Update", update);
           await Item.updateDocuments(update, { parent: actor });
+
+          // TODO if the new modifier to the gear is 0 it is broken, set the item system.isBroken to true, and set the actor's hope to 0
+          // TODO indicate the gear is broken, and that the actor needs to take a trauma (perhaps we add a new trauma item to the actor)
+
+          if (gear.system[roll.options.castAttribute].value <= 0) {
+            console.log("neurocaster broken", gear);
+            await actor.update({ "system.hope.value": 0 });
+
+            const update = [
+              {
+                _id: gear.id,
+                "system.isBroken": true,
+              },
+            ];
+            await Item.updateDocuments(update, { parent: actor });
+            console.log("actor", actor);
+          }
+          
         }
       }
     }

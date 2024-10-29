@@ -494,6 +494,7 @@ export default class esActorSheet extends ActorSheet {
       testName: "",
       testModifier: 0,
       dicePool: 0,
+      gearUsed: [],
     };
 
     switch (rollSource) {
@@ -515,6 +516,7 @@ export default class esActorSheet extends ActorSheet {
           options.testName = item.name;
           options.gearName = item.name;
           options.gearDice = item.system.modifier.value;
+          options.gearUsed.push(itemId);
           options.damage = item.system.damage;
           options.attribute = item.system.attribute;
           options.weaponId = itemId;
@@ -646,7 +648,7 @@ export default class esActorSheet extends ActorSheet {
           const itemId = event.currentTarget.parentElement.dataset.itemId;
           const item = this.actor.items.get(itemId);
           options.cast = event.currentTarget.dataset.cast;
-          options.gearUsed= itemId;
+          options.gearUsed.push(itemId);
           options.item = item;
           options.testName =
             game.i18n.localize("estate.UI.NEUROCASTER") +
@@ -665,6 +667,7 @@ export default class esActorSheet extends ActorSheet {
           options.dicePool = 0;
           options.explosiveId = itemId;
           options.type = "explosive";
+          
         }
         break;
     }

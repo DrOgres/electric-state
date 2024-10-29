@@ -16,6 +16,9 @@ TODO LIST:
     - Target token to use Tension on opposed rolls
         - Add tension drop down to roll dialog if no target is selected
     - Target to allow damage to be applied for attacks
+    - Add a roll on bliss to reduce or make permanant a point of bliss
+    - Prevent Use of broken neurocaster or vehicle
+    - Prevent roll when Hope is 0 
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements

@@ -1207,6 +1207,7 @@ export async function roll(options) {
     formula: formula,
     type: options.type,
     gearId: options.gearUsed,
+    
   };
 
   if (options.type === "neurocaster" || options.type === "attribute") {
@@ -1228,6 +1229,22 @@ export async function roll(options) {
   } else {
     r = YearZeroRoll.forge(dice, data, rollOptions);
   }
+
+  await r.evaluate();
+  console.log("Roll", r);
+
+  if (r.options.type === "neurocaster" && actor.type === "player") {
+     if (r.successCount === 0 ) {
+      // add a point of bliss to te actor who made the roll
+      console.log("No Success", actor);
+      let bliss = actor.system.bliss;
+      console.log("Bliss", bliss);
+      bliss += 1;
+      await actor.update({ "system.bliss": bliss });
+     }
+  }
+
+   console.log("Roll", r);
 
   await r.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),

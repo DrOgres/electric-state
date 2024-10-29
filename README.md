@@ -17,7 +17,6 @@ TODO LIST:
         - Add tension drop down to roll dialog if no target is selected
     - Target to allow damage to be applied for attacks
     - limited actor sheet 
-    - add bliss for failed rolls when using a Neurocaster
     - if a push makes a neurocaster busted set current hope to 0 and indicate need for mental trauma (potentially add item to sheet)
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
@@ -26,6 +25,10 @@ TODO LIST:
 
 
 Version History:
+
+v0.19.0
+- Feature: When a neurocaster roll fails, the bliss of the character who made the roll increases by one, a notice was added to the chat card.
+
 
 v0.18.0
 - fix: users cannot close open sheets they do not own [#31](https://github.com/DrOgres/electric-state/issues/31)

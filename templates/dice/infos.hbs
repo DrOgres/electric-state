@@ -1,24 +1,37 @@
 <div class="dice-infos">
+ 
+  {{# if (eq roll.options.type "neurocaster")}}
+  {{#if (eq roll.options.actorType "player")}}
+  {{#unless (gt roll.successCount 0)}}
+  <div class="nc-fail-container center margin-small padding-small border-thin flexcol ">
+      <div class="bliss-cost center grid col-80-20 middle fw-600 fs-200 space-between w-100 red">
+       <span class="label subheader">{{localize "estate.UI.BLISS_COST"}}: </span>
+       <span class="result"> 1 </span>
+     </div>
+     </div>
+  {{/unless}}
+  {{/if}}
+  {{/if}}
   {{#if (gt roll.pushCount 0)}}
-    {{#if (gt roll.baneCount 0)}}
-    <div class="bane-container center margin-small padding-small border-thin flexcol ">
-     {{#if (gt roll.gearDamage 0)}}
-        <div class="gear-damage center flexrow middle fw-600 space-between w-100">
-          <span class="label">{{localize "estate.UI.GEAR_DAMAGE"}}: </span>
-          <span class="result">{{roll.gearDamage}}</span>
-        </div>
-      {{/if}}
-      {{#if (gt roll.attributeTrauma 0)}}
-        <div class="hope-loss center flexrow middle fw-600 space-between w-100">
-          <span class="label">{{localize "estate.UI.HOPE_LOSS"}}: </span>
-          <span class="result">{{roll.attributeTrauma}}</span>
-        </div>
-      
-      {{/if}}
-      
-      </div>
+  {{#if (gt roll.baneCount 0)}}
+  <div class="bane-container center margin-small padding-small border-thin flexcol ">
+    {{#if (gt roll.gearDamage 0)}}
+    <div class="gear-damage center flexrow middle fw-600 space-between w-100">
+      <span class="label">{{localize "estate.UI.GEAR_DAMAGE"}}: </span>
+      <span class="result">{{roll.gearDamage}}</span>
+    </div>
     {{/if}}
+    {{#if (gt roll.attributeTrauma 0)}}
+    <div class="hope-loss center flexrow middle fw-600 space-between w-100">
+      <span class="label">{{localize "estate.UI.HOPE_LOSS"}}: </span>
+      <span class="result">{{roll.attributeTrauma}}</span>
+    </div>
+
     {{/if}}
+
+  </div>
+  {{/if}}
+  {{/if}}
 
 
   {{#if (eq roll.game 'es')}}
@@ -38,7 +51,7 @@
     </span>
     {{/if}}
 
-    
+
 
     {{#unless (gt roll.successCount 1)}}
     <span class="result"> {{roll.options.damage}} </span>

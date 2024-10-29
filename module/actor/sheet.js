@@ -23,7 +23,7 @@ export default class esActorSheet extends ActorSheet {
   //TODO link actor data for player actors and vehicle actors
 
   get template() {
-    if (this.actor.getUserLevel(game.user) !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER){
+    if (this.actor.getUserLevel(game.user) !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER  && this._isPlayer()) {
       console.log("E-STATE | User is not the owner of the actor");
       return `systems/electric-state/templates/actors/${this.actor.type}-limited.hbs`;
     }

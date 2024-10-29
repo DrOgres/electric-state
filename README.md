@@ -16,7 +16,6 @@ TODO LIST:
     - Target token to use Tension on opposed rolls
         - Add tension drop down to roll dialog if no target is selected
     - Target to allow damage to be applied for attacks
-    - if a push makes a neurocaster busted set current hope to 0 and indicate need for mental trauma (potentially add item to sheet)
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
@@ -28,6 +27,7 @@ Version History:
 v0.19.0
 - Feature: When a neurocaster roll fails, the bliss of the character who made the roll increases by one, a notice was added to the chat card.
 - Feature: added Limited PC actor sheet
+- Reducing a Neurocaster attribute to a 0 on a pushed roll makes that item broken, reduces the PC's hope to 0 and shows a message to that effect
 
 
 

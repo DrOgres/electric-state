@@ -1138,9 +1138,6 @@ async function _onPush(event) {
           console.log("Update", update);
           await Item.updateDocuments(update, { parent: actor });
 
-          // TODO if the new modifier to the gear is 0 it is broken, set the item system.isBroken to true, and set the actor's hope to 0
-          // TODO indicate the gear is broken, and that the actor needs to take a trauma (perhaps we add a new trauma item to the actor)
-
           if (gear.system[roll.options.castAttribute].value <= 0) {
             console.log("neurocaster broken", gear);
             await actor.update({ "system.hope.value": 0 });
@@ -1153,6 +1150,7 @@ async function _onPush(event) {
             ];
             await Item.updateDocuments(update, { parent: actor });
             console.log("actor", actor);
+            ui.notifications.info(game.i18n.localize("estate.MSG.NEUROCASTERBROKEN"));
           }
           
         }

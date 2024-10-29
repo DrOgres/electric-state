@@ -158,8 +158,10 @@
     "MSG.WRONGITEMTYPE": "This actor cannot hold this item type",
     "MSG.NUEROCASTWEAPON": "You need to equip a neurocaster to use a neuroscape weapon",
     "MSG.NUEROCASTER": "You need to equip a neurocaster to use this action",
+    "MSG.BUSTEDCASTER": "You have a Broken neurocaster, you must repair it before you can use it",
     "MSG.EXPLOSIVEWARN": "You must equip an explosive to roll.",
     "MSG.BUSTEDARMOR": "Armor is busted, you must repair it before you can use it",
+    "MSG.NEUROCASTERBROKEN": "You have Broken your Neurocaster, Lost all Hope and Gain a Trauma.",
 
     
     "ROLL.BASE.POOL": "Base Dice Pool",

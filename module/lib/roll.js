@@ -1173,6 +1173,7 @@ async function _onPush(event) {
     console.log("damage to hope", hopeDamage);
     let hope = actor.system.hope.value;
     hope -= hopeDamage;
+    if(hope < 0) { hope = 0; }
     console.log("Hope", hope);
     await actor.update({ "system.hope.value": hope });
   } else if (hopeDamage > 0 && actor.type === "vehicle") {

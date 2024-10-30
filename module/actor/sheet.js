@@ -895,6 +895,10 @@ export default class esActorSheet extends ActorSheet {
     if (hope > maxHope) {
       hope = maxHope;
     }
+
+    if (hope < 0) {
+      hope = 0;
+    }
     await actor.update({ "system.hope.value": hope });
   }
 
@@ -908,6 +912,10 @@ export default class esActorSheet extends ActorSheet {
 
     if (health > maxHealth) {
       health = maxHealth;
+    }
+
+    if (health < 0) {
+      health = 0;
     }
     await actor.update({ "system.health.value": health });
   }

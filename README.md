@@ -33,6 +33,7 @@ v0.19.0
 - Added check to see if a vehicle is wrecked before a Maneuverability roll
 - Added a check to see if a Neurocaster is busted before we roll any of it's funcitons 
 - Added checks for drones, to see if drone or neurocaster is busted
+- Fix: hope and health cannot be reduced below 0 now
 
 v0.18.0
 - fix: users cannot close open sheets they do not own [#31](https://github.com/DrOgres/electric-state/issues/31)

@@ -74,6 +74,8 @@ export default class esItemSheet extends ItemSheet {
         data.item.system.isBroken = true;
       } else if (data.item.system.graphics.value === 0){
         data.item.system.isBroken = true;
+      } else {
+        data.item.system.isBroken = false;
       }
       return;
     }

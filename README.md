@@ -17,8 +17,6 @@ TODO LIST:
         - Add tension drop down to roll dialog if no target is selected
     - Target to allow damage to be applied for attacks
     - Add a roll on bliss to reduce or make permanant a point of bliss
-    - Prevent Use of broken neurocaster or vehicle
-    - Prevent roll when Hope is 0 
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
@@ -31,8 +29,10 @@ v0.19.0
 - Feature: When a neurocaster roll fails, the bliss of the character who made the roll increases by one, a notice was added to the chat card.
 - Feature: added Limited PC actor sheet
 - Reducing a Neurocaster attribute to a 0 on a pushed roll makes that item broken, reduces the PC's hope to 0 and shows a message to that effect
-
-
+- Add check to see if character is at 0 health or 0 hope and stop rolls if they are
+- Added check to see if a vehicle is wrecked before a Maneuverability roll
+- Added a check to see if a Neurocaster is busted before we roll any of it's funcitons 
+- Added checks for drones, to see if drone or neurocaster is busted
 
 v0.18.0
 - fix: users cannot close open sheets they do not own [#31](https://github.com/DrOgres/electric-state/issues/31)

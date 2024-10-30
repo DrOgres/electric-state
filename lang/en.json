@@ -162,6 +162,10 @@
     "MSG.EXPLOSIVEWARN": "You must equip an explosive to roll.",
     "MSG.BUSTEDARMOR": "Armor is busted, you must repair it before you can use it",
     "MSG.NEUROCASTERBROKEN": "You have Broken your Neurocaster, Lost all Hope and Gain a Trauma.",
+    "MSG.DEAD": "You hvae 0 Health, you cannot take any actions",
+    "MSG.HOPELESS": "You have 0 Hope, you cannot take any actions",
+    "MSG.VEHICLE_WRECKED": "The Vehicle is Wrecked, it won't drive",
+    "MSG.BUSTEDDRONE": "Drone is busted, you must repair it before you can use it",
 
     
     "ROLL.BASE.POOL": "Base Dice Pool",

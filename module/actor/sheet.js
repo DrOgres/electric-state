@@ -483,9 +483,20 @@ export default class esActorSheet extends ActorSheet {
     await item.update({ "flags.isFav": favStatus });
   }
 
-  _onRoll(event) {
+  async _onRoll(event) {
     console.log("E-STATE | Rolling", event);
     const rollSource = event.currentTarget.dataset.type;
+
+    if (this._isPlayer()){
+       if(this.actor.system.health.value <= 0){
+         ui.notifications.warn(game.i18n.localize("estate.MSG.DEAD"));
+         return;
+       }
+       if(this.actor.system.hope.value <= 0){
+         ui.notifications.warn(game.i18n.localize("estate.MSG.HOPELESS"));
+         return;
+       }
+    }
 
     let options = {
       type: rollSource,
@@ -545,6 +556,13 @@ export default class esActorSheet extends ActorSheet {
         {
           if (this.actor.type !== "vehicle") return;
 
+          if (this.actor.system.maneuverability.value <= 0 || this.actor.system.hull.value <= 0) {
+            ui.notifications.warn(
+              game.i18n.localize("estate.MSG.VEHICLE_WRECKED")
+            );
+            return;
+          }
+
           console.log("E-STATE | Rolling Vehicle Maneuverability");
           const driverId = this.actor.system.passengers.driverId;
           const driver = driverId ? game.actors.get(driverId) : null;
@@ -576,10 +594,18 @@ export default class esActorSheet extends ActorSheet {
         break;
       case "drone-attack":
         {
+
+          
           console.log("E-STATE | Rolling Drone Attack");
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
           console.log("E-STATE | Item", item);
+          if(item.system.hull.value === 0){
+            ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDDRONE"));
+            return;
+          }
+
+
           const neurocasters = this.actor.items.filter(
             (item) => item.type === "neurocaster"
           );
@@ -601,6 +627,17 @@ export default class esActorSheet extends ActorSheet {
             for (let neurocaster of neurocasters) {
               if (neurocaster.flags.isEquipped) {
                 status = true;
+                if(neurocaster.system.processor.value === 0 || neurocaster.system.network.value === 0 || neurocaster.system.graphics.value === 0){
+                  ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDCASTER"));
+                  const update = [
+                    {
+                      _id: neurocaster.id,
+                      "system.isBroken": true,
+                    },
+                  ];
+                  await Item.updateDocuments(update, { parent: this.actor });
+                  return;
+                }
               }
             }
             if (!status) {
@@ -636,6 +673,54 @@ export default class esActorSheet extends ActorSheet {
           console.log("E-STATE | Rolling Drone Armor");
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
+
+          if(item.system.hull.value === 0){
+            ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDDRONE"));
+            return;
+          }
+
+          const neurocasters = this.actor.items.filter(
+            (item) => item.type === "neurocaster"
+          );
+          console.log("E-STATE | Neurocasters", neurocasters);
+
+          if (!item.flags.isEquipped) {
+            ui.notifications.warn(
+              game.i18n.localize("estate.MSG.DRONENOTEQUIPPED")
+            );
+            return;
+          }
+          if (neurocasters.length === 0) {
+            ui.notifications.warn(
+              game.i18n.localize("estate.MSG.DRONENOTEQUIPPED")
+            );
+            return;
+          } else {
+            let status = false;
+            for (let neurocaster of neurocasters) {
+              if (neurocaster.flags.isEquipped) {
+                status = true;
+                if(neurocaster.system.processor.value === 0 || neurocaster.system.network.value === 0 || neurocaster.system.graphics.value === 0){
+                  ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDCASTER"));
+                  const update = [
+                    {
+                      _id: neurocaster.id,
+                      "system.isBroken": true,
+                    },
+                  ];
+                  await Item.updateDocuments(update, { parent: this.actor });
+                  return;
+                }
+              }
+            }
+            if (!status) {
+              ui.notifications.warn(
+                game.i18n.localize("estate.MSG.DRONENOTEQUIPPED")
+              );
+              return;
+            }
+          }
+
           options.testName =
             item.name + " " + game.i18n.localize("estate.UI.ARMOR");
           options.dicePool = item.system.armor;
@@ -645,8 +730,33 @@ export default class esActorSheet extends ActorSheet {
       case "neurocaster":
         {
           console.log("E-STATE | Rolling Neurocaster");
+          //TODO check if the neurocaster is broken
+          
           const itemId = event.currentTarget.parentElement.dataset.itemId;
           const item = this.actor.items.get(itemId);
+
+ 
+          if(item.system.processor.value === 0 || item.system.network.value === 0 || item.system.graphics.value === 0){
+            ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDCASTER"));
+            const update = [
+              {
+                _id: item.id,
+                "system.isBroken": true,
+              },
+            ];
+            await Item.updateDocuments(update, { parent: this.actor });
+            return;
+          }
+
+          const update = [
+            {
+              _id: item.id,
+              "system.isBroken": false,
+            },
+          ];
+          await Item.updateDocuments(update, { parent: this.actor });
+
+
           options.cast = event.currentTarget.dataset.cast;
           options.gearUsed.push(itemId);
           options.item = item;

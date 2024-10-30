@@ -24,21 +24,6 @@ export default class esItemSheet extends ItemSheet {
     data.config = eState;
     const attributesAbv = data.config.attributesAbv;
     console.log("E-STATE | Item", attributesAbv);
-    // let  localizedAttributes = [];
-    
-    // Object.keys(attributesAbv).forEach(function (key){ 
-    //   console.log("E-STATE | Key", attributesAbv[key]);
-    //   localizedAttributes.push(game.i18n.localize(`estate.ATTRIBUTE.${attributesAbv[key]}`));
-    // }
-    // );
-
-    // console.log("E-STATE | Localized Attributes", localizedAttributes);
-    // data.config.attributeSelectOptions = {
-    //   strength: localizedAttributes[0],
-    //   agility: localizedAttributes[1],
-    //   wits: localizedAttributes[2],
-    //   empathy: localizedAttributes[3],
-    // };
 
     if(this.item.type === "tension"){
       console.log("E-STATE | Tension", data);

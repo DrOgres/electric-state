@@ -88,7 +88,7 @@
 
     <div class="gear-group border-bottom-thick">
         <div class="group-header flexrow border-bottom-thin space-between gap-med fw-600 fs-200 all-caps">
-             <div class="mw-25px">&nbsp;</div>
+            <div class="mw-25px">&nbsp;</div>
             <div class="mw-150px flexrow middle">{{localize "estate.UI.GEAR"}}</div>
             <div class="stat-group grid four-col middle">
                 <div>{{localize "estate.UI.BONUS"}}</div>
@@ -174,6 +174,7 @@
 
     <div class="drone-group border-bottom-thick">
         <div class="group-header flexrow border-bottom-thin space-between gap-med fw-600 fs-200 all-caps">
+            <div class="mw-25px">&nbsp;</div>
             <div class="mw-150px flexrow middle">{{localize "estate.UI.DRONE"}}</div>
             <div class="stat-group grid two-col center middle">
                 <div class="attack-group grid three-col">
@@ -196,56 +197,62 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isDrone}}
-        <div class="item item-row flexrow  middle border-bottom-thin space-between gap-med draggable" draggable="true"
-            data-item-id="{{item._id}}">
+        <div class="grid item item-row w-100 draggable" draggable="true" data-item-id="{{item._id}}">
 
-            <div class="mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
-                <div class="item-icon">
-                    <img src="{{item.img}}" title="{{item.name}}" height="25" width="25" />
+            <div class="flexrow  middle border-bottom-thin space-between gap-med">
+
+                <div class="show-details mw-25px clickable" data-item-id="{{item._id}}">
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
-                <div>{{item.name}}</div>
-            </div>
+
+                <div class="mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
+                    <div class="item-icon">
+                        <img src="{{item.img}}" title="{{item.name}}" height="25" width="25" />
+                    </div>
+                    <div>{{item.name}}</div>
+                </div>
 
 
-            <div class="stat-group grid two-col center middle">
+                <div class="stat-group grid two-col center middle">
 
-                <div class="attack-group grid three-col">
-                    {{#if item.flags.isEquipped}}
-                    <div class="toggle-equip mw-50px"><i class="fa-solid fa-robot"></i></div>
+                    <div class="attack-group grid three-col">
+                        {{#if item.flags.isEquipped}}
+                        <div class="toggle-equip mw-50px"><i class="fa-solid fa-robot"></i></div>
+                        {{/if}}
+                        {{#unless item.flags.isEquipped}}
+                        <div class="toggle-equip mw-50px"><i class="fa-regular fa-robot"></i></div>
+                        {{/unless}}
+                        <div class="drone-attack rollable mw-50px clickable" data-type="drone-attack"
+                            data-item-id="{{item._id}}"><i class="fa-solid fa-gun"></i></div>
+                        <div class="drone-armor rollable mw-50px clickable" data-type="drone-armor"
+                            data-item-id="{{item._id}}"><i class="fa-solid fa-shield"></i></div>
+
+                    </div>
+
+
+                    <div class="attributes grid three-col">
+                        <div class="strength">{{item.system.attributes.strength}}</div>
+                        <div class="agility">{{item.system.attributes.agility}}</div>
+                        <div class="hull">{{item.system.hull.value}} / {{item.system.hull.max}}</div>
+                    </div>
+                </div>
+
+                <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
+                    {{#if (eq ../actor.type 'player')}}
+                    {{#if item.flags.isFav}}
+                    <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
                     {{/if}}
-                    {{#unless item.flags.isEquipped}}
-                    <div class="toggle-equip mw-50px"><i class="fa-regular fa-robot"></i></div>
+                    {{#unless item.flags.isFav}}
+                    <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
                     {{/unless}}
-                    <div class="drone-attack rollable mw-50px clickable" data-type="drone-attack"
-                        data-item-id="{{item._id}}"><i class="fa-solid fa-gun"></i></div>
-                    <div class="drone-armor rollable mw-50px clickable" data-type="drone-armor"
-                        data-item-id="{{item._id}}"><i class="fa-solid fa-shield"></i></div>
-
+                    {{/if}}
+                    {{#unless (eq ../actor.type 'player')}}
+                    <div class="hold"></div>
+                    {{/unless}}
+                    <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
+                    <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+                    <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
                 </div>
-
-
-                <div class="attributes grid three-col">
-                    <div class="strength">{{item.system.attributes.strength}}</div>
-                    <div class="agility">{{item.system.attributes.agility}}</div>
-                    <div class="hull">{{item.system.hull.value}} / {{item.system.hull.max}}</div>
-                </div>
-            </div>
-
-            <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
-                {{#if (eq ../actor.type 'player')}}
-                {{#if item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
-                {{/if}}
-                {{#unless item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
-                {{/unless}}
-                {{/if}}
-                {{#unless (eq ../actor.type 'player')}}
-                <div class="hold"></div>
-                {{/unless}}
-                <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
-                <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
-                <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
             </div>
         </div>
         {{/if}}

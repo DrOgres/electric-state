@@ -21,8 +21,6 @@ TODO LIST:
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
-- push on weapons should cause gear damage to the weapon for all 1's rolled
-- prevent rolls on broken weapons
 
 Version History:
 
@@ -37,6 +35,8 @@ v0.19.0
 - Fix: hope and health cannot be reduced below 0 now
 - Added cash field to the Gear tab of PC sheet
 - Added item info roll-down for Gear items
+- Added check to see if a weapon is busted before we roll any attack
+- Fix: weapons were getting damaged twice on pushed rolls making them break premeturely
 
 v0.18.0
 - fix: users cannot close open sheets they do not own [#31](https://github.com/DrOgres/electric-state/issues/31)

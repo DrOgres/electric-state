@@ -645,11 +645,6 @@ export async function prepareRollDialog(options) {
               baseDice -= neurocasterPenalty;
             }
 
-            //if this is a weapon roll set options.gearUsed to the weaponId
-            if (options.type === "weapon") {
-              options.gearUsed.push(options.weaponId);
-            }
-
             //TODO if there is no gear that matches the attribute this will be an error so we need to check for that
 
             let selectedGearItemId;
@@ -1084,9 +1079,6 @@ async function _onPush(event) {
 
   // Push the roll and send it.
   await roll.push();
-  //TODO if we used gear and the gear dice roll a 1 we should reduce the gear modifier by 1 for each 1 rolled
-  //TODO check rules for neurocasters to see where a push damages them
-  //TODO if the push results in any 1s we should reuduce hope on the actor by 1 for each 1 rolled
 
   console.log("Pushing", roll);
   const gearDamage = roll.gearDamage;

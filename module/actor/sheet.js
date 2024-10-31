@@ -221,6 +221,29 @@ export default class esActorSheet extends ActorSheet {
           "</br></p>";
         }
         break;
+      case "drone":
+        chatData =
+          "<p class='item-desc subheader'><b>" +
+          game.i18n.localize("estate.UI.ARMOR") +
+          ": </b> " +
+          item.system.armor +
+          " | <b>" +
+          game.i18n.localize("estate.UI.DAMAGE") +
+          ":</b> " +
+          item.system.damage +
+          "</br></p><p class='item-desc subheader'><b>"+
+          game.i18n.localize("estate.UI.RANGE") +
+          ":</b>" + game.i18n.localize(eState.ranges[item.system.range.min]) + " - " + game.i18n.localize(eState.ranges[item.system.range.max]) + "</p>" +
+          "<p class='item-desc subheader'><b>" +
+          game.i18n.localize("estate.HEAD.PRICE") +
+          ": $</b> " +
+          item.system.cost +
+          " | <b>" +
+          game.i18n.localize("estate.HEAD.DESC") +
+          ":</b> " +
+          item.system.description +
+          "</br></p>";
+        break;
     }
 
     if (chatData === null) {
@@ -571,6 +594,12 @@ export default class esActorSheet extends ActorSheet {
           console.log("E-STATE | Rolling Weapon");
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
+
+          if (item.system.modifier.value <= 0) {
+            ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDWEAPON"));
+            return;
+          }
+
           options.testName = item.name;
           options.gearName = item.name;
           options.gearDice = item.system.modifier.value;

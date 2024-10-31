@@ -102,6 +102,7 @@
     "UI.DMG": "DMG",
     "UI.BLASTDAMAGE": "Blast Damage",
     "UI.ATTACK": "Attack",
+    "UI.RANGE": "Range",
     "UI.RANGE_MIN": "Minimum Range",
     "UI.RANGE_MAX": "Maximum Range",
     "UI.MODIFIER": "Modifier",
@@ -167,6 +168,7 @@
     "MSG.HOPELESS": "You have 0 Hope, you cannot take any actions",
     "MSG.VEHICLE_WRECKED": "The Vehicle is Wrecked, it won't drive",
     "MSG.BUSTEDDRONE": "Drone is busted, you must repair it before you can use it",
+    "MSG.BUSTEDWEAPON": "Weapon is busted, you must repair it before you can use it",
 
     
     "ROLL.BASE.POOL": "Base Dice Pool",

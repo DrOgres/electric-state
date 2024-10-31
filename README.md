@@ -30,7 +30,7 @@ v0.19.0
 - Reducing a Neurocaster attribute to a 0 on a pushed roll makes that item broken, reduces the PC's hope to 0 and shows a message to that effect
 - Add check to see if character is at 0 health or 0 hope and stop rolls if they are
 - Added check to see if a vehicle is wrecked before a Maneuverability roll
-- Added a check to see if a Neurocaster is busted before we roll any of it's funcitons 
+- Added a check to see if a Neurocaster is busted before we roll any of it's functions 
 - Added checks for drones, to see if drone or neurocaster is busted
 - Fix: hope and health cannot be reduced below 0 now
 - Added cash field to the Gear tab of PC sheet
@@ -38,9 +38,10 @@ v0.19.0
 - Added item info roll-down for drone items
 - Added item info roll-down for neurocaster items
 - Added check to see if a weapon is busted before we roll any attack
-- Fix: weapons were getting damaged twice on pushed rolls making them break premeturely
+- Fix: weapons were getting damaged twice on pushed rolls making them break prematurely
 - Added roll for bliss reduction making it permanent on a 1
-- Locked Permanant bliss field by default, it is handled dynamically now but can be unlocked if it must be edited for some reason
+- Locked Permanent bliss field by default, it is handled dynamically now but can be unlocked if it must be edited for some reason
+
 
 
 v0.18.0

@@ -120,6 +120,10 @@
   background: repeating-linear-gradient(-45deg, #cdeef0, #cdeef0 5px, #ffffff 5px, #ffffff 10px);
 }
 
+.bg-hatch2 {
+  background: repeating-linear-gradient(-45deg, rgba(205, 238, 240, 0.2), rgba(205, 238, 240, 0.2) 5px, rgba(255, 255, 255, 0.2) 5px, rgba(255, 255, 255, 0.2) 10px);
+}
+
 .bg-dark {
   background-color: #2c2e35;
 }

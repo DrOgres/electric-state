@@ -124,6 +124,16 @@
   );
 }
 
+.bg-hatch2 {
+  background: repeating-linear-gradient(
+    -45deg,
+    $background-color-highlight-50,
+    $background-color-highlight-50 5px,
+    $field-color-50 5px,
+    $field-color-50 10px
+  );
+}
+
 .bg-dark {
   background-color: $text-color;
 }

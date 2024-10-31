@@ -17,11 +17,12 @@ TODO LIST:
         - Add tension drop down to roll dialog if no target is selected
     - Target to allow damage to be applied for attacks
     - Add a roll on bliss to reduce or make permanant a point of bliss
+    - Item detail roll down on gear tab
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
-- Item detail roll down on gear tab
-
+- push on weapons should cause gear damage to the weapon for all 1's rolled
+- prevent rolls on broken weapons
 
 Version History:
 
@@ -35,6 +36,7 @@ v0.19.0
 - Added checks for drones, to see if drone or neurocaster is busted
 - Fix: hope and health cannot be reduced below 0 now
 - Added cash field to the Gear tab of PC sheet
+- Added item info roll-down for Gear items
 
 v0.18.0
 - fix: users cannot close open sheets they do not own [#31](https://github.com/DrOgres/electric-state/issues/31)

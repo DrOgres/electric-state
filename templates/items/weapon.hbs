@@ -25,8 +25,10 @@
         </select>
       </div>
       <div class="flexrow fw-600 all-caps middle w-100">
-        <label>{{localize "estate.UI.BONUS"}}</label> <input type="number" name="system.modifier.value"
-          value="{{item.system.modifier.value}}">
+        <label>{{localize "estate.UI.BONUS"}}</label> 
+        <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}" />
+         /
+        <input id="max-roll-modifier" name="system.modifier.max" type="number" value="{{item.system.modifier.max}}" />
       </div>
       <div class="flexrow fw-600 all-caps middle w-100">
         <label for="damage">{{localize "estate.UI.DAMAGE"}}</label> <input type="number" name="system.damage"

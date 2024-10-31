@@ -3,8 +3,6 @@ import { prepareRollDialog, prepareDeathRollDialog } from "../lib/roll.js";
 import { buildChatCard } from "../lib/chat.js";
 
 export default class esActorSheet extends ActorSheet {
-
-
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["es", "sheet", "actor"],
@@ -23,7 +21,11 @@ export default class esActorSheet extends ActorSheet {
   //TODO link actor data for player actors and vehicle actors
 
   get template() {
-    if (this.actor.getUserLevel(game.user) !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER  && this._isPlayer()) {
+    if (
+      this.actor.getUserLevel(game.user) !==
+        CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER &&
+      this._isPlayer()
+    ) {
       console.log("E-STATE | User is not the owner of the actor");
       return `systems/electric-state/templates/actors/${this.actor.type}-limited.hbs`;
     }
@@ -100,25 +102,26 @@ export default class esActorSheet extends ActorSheet {
     html.find(".show-details").click(this._onShowDetails.bind(this));
   }
 
- 
-
   async close() {
     console.log("E-STATE | Closing Actor Sheet", this);
     //if the user is not the owner of the actor do not save the data
-    if (this.actor.getUserLevel(game.user) !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (
+      this.actor.getUserLevel(game.user) !==
+      CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
+    ) {
       super.close();
       return;
     }
 
     const actor = this.actor;
-    const description = document.getElementById(this.actor._id+"-desc-edit");
-    const goal = document.getElementById(this.actor._id+"-goal-edit");
-    const threat = document.getElementById(this.actor._id+"-threat-edit");
-    const dream = document.getElementById(this.actor._id+"-dream-edit");
-    const flaw = document.getElementById(this.actor._id+"-flaw-edit");
+    const description = document.getElementById(this.actor._id + "-desc-edit");
+    const goal = document.getElementById(this.actor._id + "-goal-edit");
+    const threat = document.getElementById(this.actor._id + "-threat-edit");
+    const dream = document.getElementById(this.actor._id + "-dream-edit");
+    const flaw = document.getElementById(this.actor._id + "-flaw-edit");
 
     // if this is a player actor get the data from the description, goal, threat, dream and flaw divs and update the actor with the current values
-    if(this._isPlayer()){
+    if (this._isPlayer()) {
       if (description) {
         await actor.update({ "system.description": description.innerText });
       }
@@ -134,7 +137,6 @@ export default class esActorSheet extends ActorSheet {
       if (flaw) {
         await actor.update({ "system.flaw": flaw.innerText });
       }
-
     } else {
       if (description) {
         await actor.update({ "system.description": description.innerText });
@@ -169,6 +171,56 @@ export default class esActorSheet extends ActorSheet {
           item.system.description +
           "</br></p>";
         break;
+      case "gear":
+        console.log("E-STATE | Gear display", item);
+        //TODO if the gear is not consumable just show the description, otherwise show the uses, the drawback etc. as well as the description
+        if (item.system.modifier.value <= 0) {
+          chatData =
+            "<p class='item-desc subheader w-100 center red'><b>" +
+            game.i18n.localize("estate.UI.BUSTED") +
+            "</b></p>";
+        } else { 
+          chatData =
+            "<p class='item-desc subheader'></p>"
+        }
+
+        if(item.system.isConsumable){
+          chatData +=
+          "<p class='item-desc subheader'><b>" +
+          game.i18n.localize("estate.UI.USEDFOR") +
+          ": </b> " +
+          game.i18n.localize(eState.useTypeOptions[item.system.useType]) + " &plus; " + item.system.useValue +
+          " | <b>" +
+          game.i18n.localize("estate.UI.DRAWBACK") +
+          ":</b> " +
+          game.i18n.localize(eState.usePenaltyOptions[item.system.usePenaltyType]);
+            if (item.system.usePenalty > 0){
+              chatData += " &minus; " + item.system.usePenalty + "</br>";
+            }
+          chatData +=
+          "</p>"+
+          "<p class='item-desc subheader'><b>" +
+          game.i18n.localize("estate.HEAD.PRICE") +
+          ": $</b> " +
+          item.system.cost +
+          " | <b>" +
+          game.i18n.localize("estate.HEAD.DESC") +
+          ":</b> " +
+          item.system.description +
+          "</br></p>";
+        } else {
+          chatData =
+          "<p class='item-desc subheader'><b>" +
+          game.i18n.localize("estate.HEAD.PRICE") +
+          ": $</b> " +
+          item.system.cost +
+          " | <b>" +
+          game.i18n.localize("estate.HEAD.DESC") +
+          ":</b> " +
+          item.system.description +
+          "</br></p>";
+        }
+        break;
     }
 
     if (chatData === null) {
@@ -180,17 +232,13 @@ export default class esActorSheet extends ActorSheet {
       sum.slideUp(200, () => sum.remove());
     } else {
       console.log("E-STATE | Not Expanded", chatData);
-      let sum = $(`<div class="item-summary">${chatData}</div>`);
+      let sum = $(`<div class="item-summary bg-hatch2">${chatData}</div>`);
       div.append(sum.hide());
       console.log("E-STATE | Sum", sum);
       console.log("E-STATE | Div", div);
       sum.slideDown(200);
     }
     div.toggleClass("expanded");
-
-
-
-    
   }
 
   _onItemToChat(event) {
@@ -201,7 +249,6 @@ export default class esActorSheet extends ActorSheet {
     let type = item.type;
     buildChatCard(type, item);
   }
-
 
   async _updateData(event) {
     event.preventDefault();
@@ -487,15 +534,15 @@ export default class esActorSheet extends ActorSheet {
     console.log("E-STATE | Rolling", event);
     const rollSource = event.currentTarget.dataset.type;
 
-    if (this._isPlayer()){
-       if(this.actor.system.health.value <= 0){
-         ui.notifications.warn(game.i18n.localize("estate.MSG.DEAD"));
-         return;
-       }
-       if(this.actor.system.hope.value <= 0){
-         ui.notifications.warn(game.i18n.localize("estate.MSG.HOPELESS"));
-         return;
-       }
+    if (this._isPlayer()) {
+      if (this.actor.system.health.value <= 0) {
+        ui.notifications.warn(game.i18n.localize("estate.MSG.DEAD"));
+        return;
+      }
+      if (this.actor.system.hope.value <= 0) {
+        ui.notifications.warn(game.i18n.localize("estate.MSG.HOPELESS"));
+        return;
+      }
     }
 
     let options = {
@@ -556,7 +603,10 @@ export default class esActorSheet extends ActorSheet {
         {
           if (this.actor.type !== "vehicle") return;
 
-          if (this.actor.system.maneuverability.value <= 0 || this.actor.system.hull.value <= 0) {
+          if (
+            this.actor.system.maneuverability.value <= 0 ||
+            this.actor.system.hull.value <= 0
+          ) {
             ui.notifications.warn(
               game.i18n.localize("estate.MSG.VEHICLE_WRECKED")
             );
@@ -594,17 +644,14 @@ export default class esActorSheet extends ActorSheet {
         break;
       case "drone-attack":
         {
-
-          
           console.log("E-STATE | Rolling Drone Attack");
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
           console.log("E-STATE | Item", item);
-          if(item.system.hull.value === 0){
+          if (item.system.hull.value === 0) {
             ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDDRONE"));
             return;
           }
-
 
           const neurocasters = this.actor.items.filter(
             (item) => item.type === "neurocaster"
@@ -627,8 +674,14 @@ export default class esActorSheet extends ActorSheet {
             for (let neurocaster of neurocasters) {
               if (neurocaster.flags.isEquipped) {
                 status = true;
-                if(neurocaster.system.processor.value === 0 || neurocaster.system.network.value === 0 || neurocaster.system.graphics.value === 0){
-                  ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDCASTER"));
+                if (
+                  neurocaster.system.processor.value === 0 ||
+                  neurocaster.system.network.value === 0 ||
+                  neurocaster.system.graphics.value === 0
+                ) {
+                  ui.notifications.warn(
+                    game.i18n.localize("estate.MSG.BUSTEDCASTER")
+                  );
                   const update = [
                     {
                       _id: neurocaster.id,
@@ -674,7 +727,7 @@ export default class esActorSheet extends ActorSheet {
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
 
-          if(item.system.hull.value === 0){
+          if (item.system.hull.value === 0) {
             ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDDRONE"));
             return;
           }
@@ -700,8 +753,14 @@ export default class esActorSheet extends ActorSheet {
             for (let neurocaster of neurocasters) {
               if (neurocaster.flags.isEquipped) {
                 status = true;
-                if(neurocaster.system.processor.value === 0 || neurocaster.system.network.value === 0 || neurocaster.system.graphics.value === 0){
-                  ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDCASTER"));
+                if (
+                  neurocaster.system.processor.value === 0 ||
+                  neurocaster.system.network.value === 0 ||
+                  neurocaster.system.graphics.value === 0
+                ) {
+                  ui.notifications.warn(
+                    game.i18n.localize("estate.MSG.BUSTEDCASTER")
+                  );
                   const update = [
                     {
                       _id: neurocaster.id,
@@ -731,13 +790,18 @@ export default class esActorSheet extends ActorSheet {
         {
           console.log("E-STATE | Rolling Neurocaster");
           //TODO check if the neurocaster is broken
-          
+
           const itemId = event.currentTarget.parentElement.dataset.itemId;
           const item = this.actor.items.get(itemId);
 
- 
-          if(item.system.processor.value === 0 || item.system.network.value === 0 || item.system.graphics.value === 0){
-            ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDCASTER"));
+          if (
+            item.system.processor.value === 0 ||
+            item.system.network.value === 0 ||
+            item.system.graphics.value === 0
+          ) {
+            ui.notifications.warn(
+              game.i18n.localize("estate.MSG.BUSTEDCASTER")
+            );
             const update = [
               {
                 _id: item.id,
@@ -755,7 +819,6 @@ export default class esActorSheet extends ActorSheet {
             },
           ];
           await Item.updateDocuments(update, { parent: this.actor });
-
 
           options.cast = event.currentTarget.dataset.cast;
           options.gearUsed.push(itemId);
@@ -777,7 +840,6 @@ export default class esActorSheet extends ActorSheet {
           options.dicePool = 0;
           options.explosiveId = itemId;
           options.type = "explosive";
-          
         }
         break;
     }

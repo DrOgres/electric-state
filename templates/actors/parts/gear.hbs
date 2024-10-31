@@ -1,10 +1,16 @@
 <div class="flexcol gap-small">
-
+    {{#if (eq actor.type 'player')}}
+    <div class="cash border-bottom-thick grid two-col">
+        <div class="holder">&nbsp;</div>
+        <div class="cash-display flexrow all-caps fw-600 middle text-right">
+            <lable for="cash-input">{{localize "estate.UI.CASH"}} :$ </lable> <input id="cash-input" name="system.cash"
+                type="number" value="{{actor.system.cash}}" />
+        </div>
+    </div>
+    {{/if}}
     <div class="weapon-parts-group">
         {{> "systems/electric-state/templates/actors/parts/weapons.hbs"}}
     </div>
-
-
 
     <div class="armor-group border-bottom-thick">
         <div class="group-header flexrow border-bottom-thin space-between gap-med fw-600 fs-200 all-caps">

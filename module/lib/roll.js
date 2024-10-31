@@ -223,10 +223,13 @@ export async function prepareRollDialog(options) {
       let permanent = actor.system.permanent;
       bliss--;
       permanent++;
+      if (bliss < permanent) { bliss = permanent; }
       await actor.update({ "system.bliss": bliss, "system.permanent": permanent } );
     } else {
       let bliss = actor.system.bliss;
+      let permanent = actor.system.permanent;
       bliss--;
+      if (bliss < permanent) { bliss = permanent; }
       await actor.update({ "system.bliss": bliss } );
     }
     await r.toMessage({

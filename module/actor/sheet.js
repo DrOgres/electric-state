@@ -611,6 +611,10 @@ export default class esActorSheet extends ActorSheet {
             console.log("E-STATE | No Bliss");
             ui.notifications.info(game.i18n.localize("estate.MSG.NOBLISS"));
             return;
+          } else if (this.actor.system.bliss === this.actor.system.permanent){
+            console.log("E-STATE | Permanent Bliss");
+            ui.notifications.info(game.i18n.localize("estate.MSG.PERMANENTBLISS"));
+            return;
           }
           options.testName = game.i18n.localize("estate.ATTRIBUTE.BLISS");
           options.dicePool = 1;

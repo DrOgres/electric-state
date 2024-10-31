@@ -143,6 +143,8 @@
     "UI.GEAR_DAMAGE": "Gear Damage",
     "UI.BLISS_COST": "Neurocaster Failure! Bliss Increased",
     "UI.APPLY": "Apply",
+    "UI.BLISSREDUCED": "Bliss Reduced by 1",
+    "UI.PERM_INCREASE": "Permanent Bliss Increase by 1",
 
     "UI.YES": "Yes",
     "UI.NO": "No",
@@ -154,6 +156,7 @@
     "MSG.HEALTH_MAX": "Health is already at maximum",
     "MSG.HOPE_MAX": "Hope is already at maximum",
     "MSG.NOBLISS": "You have no Bliss to reduce at this time.",
+    "MSG.PERMANENTBLISS": "You cannot lower your bliss any further",
     "MSG.USED": "Used",
     "MSG.DRIVERREQUIRED": "You must assign a driver to the vehicle to make a maneuverability test",
     "MSG.DRONENOTEQUIPPED": "Drone and Neurocaster must be equipped to use this action",

@@ -61,10 +61,21 @@
     </div>
     <div class="result">
       {{#if (eq this.total 1)}}
-      <div class="perm">You rolled a 1 and have accrued 1 permanent bliss</div>
+      <div class="perm flexcol border-thin padding-small">
+        <div class="reduce subheader">
+        {{localize "estate.UI.BLISSREDUCED"}}
+        </div>
+        <div class="perm subheader red">
+        {{localize "estate.UI.PERM_INCREASE"}}
+        </div>
+        </div>
       {{/if}}
       {{#if (gt this.total 1)}}
-      <div class="perm">You rolled a {{this.total}} and have reduced your bliss without making it permanent</div>
+      <div class="perm flexcol border-thin padding-small">
+        <div class="reduce subheader">
+        {{localize "estate.UI.BLISSREDUCED"}}
+        </div>
+      </div>
       {{/if}}
     </div>
     {{/if}}

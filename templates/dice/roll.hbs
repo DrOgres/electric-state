@@ -1,17 +1,17 @@
 <div class="card-holder" style="position: relative;">
-
   {{#if roll.options.token}}
   <img src="{{roll.options.token}}" width="45" height="45" class="roll-token" />
   {{/if}}
   {{#unless roll.options.token}}
   <img src="systems/electric-state/assets/es-logo-blk.svg" width="45" height="45" class="roll-token" />
   {{/unless}}
+
   <div class="electric-state chat-card" data-owner-id="{{roll.owner}}">
-    
+
+
+    {{#unless (eq roll.options.type "bliss")}}
     <div class="card-content borderimg">
       <div class="dice-roll">
-       
-
         {{#if flavor}}
         <div class="dice-flavor">{{flavor}}</div>
         {{/if}}
@@ -44,5 +44,30 @@
       </div>
       {{/if}}
     </div>
+    {{/unless}}
+    {{#if (eq roll.options.type "bliss")}}
+    
+    <div class="dice-tooltip expanded" style="display: block">
+      <section class="tooltip-part {{this.type}}">
+        <div class="dice">
+          <header class="part-header flexrow">
+            <span class="part-formula">{{this.formula}}</span>
+            {{#if this.flavor}}<span class="part-flavor">{{this.flavor}}</span>{{/if}}
+            <span class="part-total">{{this.total}}</span>
+          </header>
+        </div>
+      </section>
+
+    </div>
+    <div class="result">
+      {{#if (eq this.total 1)}}
+      <div class="perm">You rolled a 1 and have accrued 1 permanent bliss</div>
+      {{/if}}
+      {{#if (gt this.total 1)}}
+      <div class="perm">You rolled a {{this.total}} and have reduced your bliss without making it permanent</div>
+      {{/if}}
+    </div>
+    {{/if}}
+
   </div>
 </div>

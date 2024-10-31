@@ -261,8 +261,9 @@
 
     <div class="neurocaster-group">
         <div class="group-header flexrow border-bottom-thin space-between gap-med fw-600 fs-200 all-caps">
+            <div class="mw-25px">&nbsp;</div>
             <div class="mw-150px flexrow middle">{{localize "estate.UI.NEUROCASTER"}}</div>
-            <div class="stat-group grid three-col middle center">
+            <div class="stat-group grid cols-50px-1fr-1fr middle center">
                 <div>{{localize "estate.UI.EQUIP"}}</div>
                 <div class="action-group flexrow center">
                     <div>{{localize "estate.UI.ACTIONS"}}</div>
@@ -283,74 +284,84 @@
         </div>
         {{#each items as |item|}}
         {{#if item.isNeurocaster}}
-        <div class=" item item-row flexrow draggable" draggable="true" data-item-id="{{item._id}}">
-            <div class="mw-150px flexrow middle no-break" data-type="neurocaster" data-item-id="{{item._id}}">
-                <div class="item-icon">
-                    <img src="{{item.img}}" title="{{item.name}}" height="25" width="25" />
-                </div>
-                <div>{{item.name}}</div>
-            </div>
+        <div class="grid item item-row w-100 draggable" draggable="true" data-item-id="{{item._id}}">
 
-            <div class="stat-group grid three-col center middle">
-                {{#if item.flags.isEquipped}}
-                <div class="toggle-equip mw-45px "><i class="fa-solid fa-head-side-gear"></i>
+            <div class="flexrow  middle border-bottom-thin space-between gap-med">
 
+                <div class="show-details mw-25px clickable" data-item-id="{{item._id}}">
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
-                {{/if}}
-                {{#unless item.flags.isEquipped}}
-                <div class="toggle-equip mw-45px"><i class="fa-light fa-head-side-gear"></i>
 
+
+
+                <div class="mw-150px flexrow middle no-break" data-type="neurocaster" data-item-id="{{item._id}}">
+                    <div class="item-icon">
+                        <img src="{{item.img}}" title="{{item.name}}" height="25" width="25" />
+                    </div>
+                    <div>{{item.name}}</div>
                 </div>
-                {{/unless}}
-                <div class="action-group flexrow gap-x-small" data-item-id="{{item._id}}">
-                    <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="info">
-                        <i class="fa-solid fa-print-magnifying-glass"></i>
-                        <span class="tooltiptext">{{localize "estate.UI.INFO"}}</span>
+
+                <div class="stat-group grid cols-50px-1fr-1fr center middle">
+                    {{#if item.flags.isEquipped}}
+                    <div class="toggle-equip mw-45px "><i class="fa-solid fa-head-side-gear"></i>
+
                     </div>
-                    <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="hack">
-                        <i class="fa-solid fa-gear-code"></i>
-                        <span class="tooltiptext">{{localize "estate.UI.HACK"}}</span>
+                    {{/if}}
+                    {{#unless item.flags.isEquipped}}
+                    <div class="toggle-equip mw-45px"><i class="fa-light fa-head-side-gear"></i>
+
                     </div>
-                    <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="coms">
-                        <i class="fa-solid fa-signal-stream"></i>
-                        <span class="tooltiptext">{{localize "estate.UI.COMS"}}</span>
+                    {{/unless}}
+                    <div class="action-group flexrow gap-x-small" data-item-id="{{item._id}}">
+                        <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="info">
+                            <i class="fa-solid fa-print-magnifying-glass"></i>
+                            <span class="tooltiptext">{{localize "estate.UI.INFO"}}</span>
+                        </div>
+                        <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="hack">
+                            <i class="fa-solid fa-gear-code"></i>
+                            <span class="tooltiptext">{{localize "estate.UI.HACK"}}</span>
+                        </div>
+                        <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="coms">
+                            <i class="fa-solid fa-signal-stream"></i>
+                            <span class="tooltiptext">{{localize "estate.UI.COMS"}}</span>
+                        </div>
+                        <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="block">
+                            <i class="fa-solid fa-signal-stream-slash"></i>
+                            <span class="tooltiptext">{{localize "estate.UI.BLOCK"}}</span>
+                        </div>
+                        <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="combat">
+                            <i class="fa-solid fa-hand-fist"></i>
+                            <span class="tooltiptext">{{localize "estate.UI.COMBAT"}}</span>
+                        </div>
                     </div>
-                    <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="block">
-                        <i class="fa-solid fa-signal-stream-slash"></i>
-                        <span class="tooltiptext">{{localize "estate.UI.BLOCK"}}</span>
-                    </div>
-                    <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="combat">
-                        <i class="fa-solid fa-hand-fist"></i>
-                        <span class="tooltiptext">{{localize "estate.UI.COMBAT"}}</span>
+                    <div class="stat-group flexrow gap-med middle">
+                        <div class="processor">
+                            {{item.system.processor.value}} / {{item.system.processor.max}}
+                        </div>
+                        <div class="network">
+                            {{item.system.network.value}} / {{item.system.network.max}}
+                        </div>
+                        <div class="graphics">
+                            {{item.system.graphics.value}} / {{item.system.graphics.max}}
+                        </div>
                     </div>
                 </div>
-                <div class="stat-group flexrow gap-med middle">
-                    <div class="processor">
-                        {{item.system.processor.value}} / {{item.system.processor.max}}
-                    </div>
-                    <div class="network">
-                        {{item.system.network.value}} / {{item.system.network.max}}
-                    </div>
-                    <div class="graphics">
-                        {{item.system.graphics.value}} / {{item.system.graphics.max}}
-                    </div>
+                <div class="button-group grid four-col mw-100px middle" data-item-id="{{item._id}}">
+                    {{#if (eq ../actor.type 'player')}}
+                    {{#if item.flags.isFav}}
+                    <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                    {{/if}}
+                    {{#unless item.flags.isFav}}
+                    <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                    {{/unless}}
+                    {{/if}}
+                    {{#unless (eq ../actor.type 'player')}}
+                    <div class="hold"></div>
+                    {{/unless}}
+                    <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
+                    <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
+                    <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
                 </div>
-            </div>
-            <div class="button-group grid four-col mw-100px middle" data-item-id="{{item._id}}">
-                {{#if (eq ../actor.type 'player')}}
-                {{#if item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
-                {{/if}}
-                {{#unless item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
-                {{/unless}}
-                {{/if}}
-                {{#unless (eq ../actor.type 'player')}}
-                <div class="hold"></div>
-                {{/unless}}
-                <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
-                <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
-                <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
             </div>
         </div>
         {{/if}}

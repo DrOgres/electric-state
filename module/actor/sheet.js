@@ -100,6 +100,15 @@ export default class esActorSheet extends ActorSheet {
     html.find(".input-text").focusout(this._updateData.bind(this));
     html.find(".to-chat").click(this._onItemToChat.bind(this));
     html.find(".show-details").click(this._onShowDetails.bind(this));
+    html.find(".toggle-permedit").click(this._onTogglePermEdit.bind(this));
+  }
+
+  _onTogglePermEdit(event) {
+    console.log("E-STATE | Toggling Permission Edit", event);
+    event.preventDefault();
+    const actor = this.actor;
+    const editStatus = actor.getFlag("world", "isPermEdit") || false;
+    actor.setFlag("world", "isPermEdit", !editStatus);
   }
 
   async close() {
@@ -234,6 +243,23 @@ export default class esActorSheet extends ActorSheet {
           "</br></p><p class='item-desc subheader'><b>"+
           game.i18n.localize("estate.UI.RANGE") +
           ":</b>" + game.i18n.localize(eState.ranges[item.system.range.min]) + " - " + game.i18n.localize(eState.ranges[item.system.range.max]) + "</p>" +
+          "<p class='item-desc subheader'><b>" +
+          game.i18n.localize("estate.HEAD.PRICE") +
+          ": $</b> " +
+          item.system.cost +
+          " | <b>" +
+          game.i18n.localize("estate.HEAD.DESC") +
+          ":</b> " +
+          item.system.description +
+          "</br></p>";
+        break;
+      case "neurocaster":
+        chatData =
+          "<p class='item-desc subheader'><b>" +
+          game.i18n.localize("estate.UI.RW_PENALTY") +
+          ": </b> " +
+          item.system.realWorldPenalty +
+          "</p>" +
           "<p class='item-desc subheader'><b>" +
           game.i18n.localize("estate.HEAD.PRICE") +
           ": $</b> " +
@@ -579,6 +605,17 @@ export default class esActorSheet extends ActorSheet {
     };
 
     switch (rollSource) {
+      case "bliss":
+        {
+          if (this.actor.system.bliss <= 0) {
+            console.log("E-STATE | No Bliss");
+            ui.notifications.info(game.i18n.localize("estate.MSG.NOBLISS"));
+            return;
+          }
+          options.testName = game.i18n.localize("estate.ATTRIBUTE.BLISS");
+          options.dicePool = 1;
+        }
+        break;
       case "attribute":
         {
           const attribute = event.currentTarget.dataset.attribute;

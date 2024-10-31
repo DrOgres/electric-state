@@ -30,13 +30,20 @@
                     <input type="number" name="system.bliss" value="{{actor.system.bliss}}" data-dtype="Number" />
                 </div>
             </div>
-
+            <div class="recovery mw-50px clickable rollable middle center"  data-type="bliss">
+                <i class="fas fa-dice-d6"></i>
+            </div>
             <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
                 {{localize "estate.ATTRIBUTE.PERM"}}
                 <div class="input-container mi-small center">
                     <input type="number" name="system.permanent" value="{{actor.system.permanent}}"
-                        data-dtype="Number" />
+                        data-dtype="Number" {{#unless actor.flags.world.isPermEdit}}disabled="true"{{/unless}}  />
                 </div>
+                <div class="lock-edit text-right mw-25px clickable toggle-permedit">
+                {{#if actor.flags.world.isPermEdit}}<i class="fa-solid fa-lock-open"></i>{{else}}<i
+                    class="fa-solid fa-lock"></i>{{/if}}
+                    
+            </div>
             </div>
         </div>
         <div class="flexrow gap-small">

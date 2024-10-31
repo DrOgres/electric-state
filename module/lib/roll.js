@@ -1,7 +1,5 @@
 import { YearZeroRoll } from "./yzur.js";
 
-
-
 export function prepareDeathRollDialog(options) {
   console.log("Death Roll Dialog", options);
 
@@ -161,7 +159,6 @@ export function prepareDeathRollDialog(options) {
       },
       default: "roll",
       close: () => {},
-      
     },
     {
       width: 400,
@@ -182,7 +179,65 @@ export async function prepareRollDialog(options) {
     console.log(target.document.actorId);
   }
 
-  //[0].value.document.actorId
+  //TODO if we are rolling bliss we don't need a dialog just roll 1 die and show the result in chat if the result is 1 increase the premanent bliss of the actor by 1 in any case reduce the current bliss by 1
+  if (options.type === "bliss") {
+    console.log("Bliss Roll", options);
+    const formula = "1db";
+    const sheet = options.sheet;
+    sheet.roll = new YearZeroRoll();
+
+    sheet.lastTestName = options.testName;
+    sheet.lastDamage = options.damage;
+
+    let actor = game.actors.get(sheet.object._id);
+    let token = actor.prototypeToken.texture.src;
+
+    let data = {
+      owner: actor.id,
+      name: sheet.lastTestName,
+      damage: sheet.lastDamage,
+    };
+
+    let rollOptions = {
+      name: sheet.lastTestName,
+      token: token,
+      owner: actor.id,
+      actorType: actor.type,
+      formula: formula,
+      type: options.type,
+      maxPush: 0
+    };
+
+    let r;
+
+    r = new YearZeroRoll(formula, data, rollOptions);
+
+    await r.evaluate();
+    console.log("Roll", r);
+
+
+    console.log("Bliss Roll Result", r.result);
+
+    if (Number(r.result) === 1) {
+      let bliss = actor.system.bliss;
+      let permanent = actor.system.permanent;
+      bliss--;
+      permanent++;
+      await actor.update({ "system.bliss": bliss, "system.permanent": permanent } );
+    } else {
+      let bliss = actor.system.bliss;
+      bliss--;
+      await actor.update({ "system.bliss": bliss } );
+    }
+    await r.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),
+    });
+    sheet.roll = r.duplicate();
+
+    return;
+  }
+
+
 
   const actor = options.sheet.object;
   console.log(actor);
@@ -214,11 +269,8 @@ export async function prepareRollDialog(options) {
 
       options.dicePool = actor.system[options.attribute];
       for (let drone of drones) {
-        
-
         /** set dice pool equal to drone str or agi depending on the attribute we passed in */
         if (drone.flags.isEquipped) {
-
           if (
             options.attribute === "strength" ||
             options.attribute === "agility"
@@ -227,7 +279,7 @@ export async function prepareRollDialog(options) {
           }
 
           //TODO prepend [drone] to the test name
-          options.testName = "["+drone.name + "] " + options.testName;
+          options.testName = "[" + drone.name + "] " + options.testName;
 
           let foundCaster = false;
           for (let neurocaster of neurocasters) {
@@ -282,7 +334,7 @@ export async function prepareRollDialog(options) {
       console.log("penalty after injury and trauma check", options.penalty);
 
       console.log(options.penalty);
-      
+
       dialogHTML += await buildSubtotalDialog(options);
       for (let neurocaster of neurocasters) {
         if (neurocaster.flags.isEquipped) {
@@ -587,7 +639,6 @@ export async function prepareRollDialog(options) {
   );
 
   let dialog = new Dialog(
-   
     {
       title: game.i18n.localize("estate.UI.ROLL") + " : " + options.testName,
       content: buildDivHtmlDialog(
@@ -695,20 +746,16 @@ export async function prepareRollDialog(options) {
           label: game.i18n.localize("estate.UI.CANCEL"),
         },
       },
-      default: "roll", 
+      default: "roll",
       close: () => {},
-
     },
-    {   
+    {
       width: 400,
     }
   );
 
-
   dialog.render(true);
 }
-
-
 
 function buildDialogCheckBox(label, value, type) {
   let sign = "";
@@ -732,7 +779,9 @@ function buildDialogCheckBox(label, value, type) {
     `" value="` +
     value +
     `" checked=true  />
-    <label for="conditional-modifier-`+type+`"> ` +
+    <label for="conditional-modifier-` +
+    type +
+    `"> ` +
     sign +
     `&nbsp;` +
     value +
@@ -743,8 +792,6 @@ function buildDialogCheckBox(label, value, type) {
     </ul>`
   );
 }
-
-
 
 function buildGearSelectDialog(options, gear) {
   console.log("Building Gear Select Dialog", gear);
@@ -897,9 +944,7 @@ function buildTalentSelectDialog(options, talents, actor, drones) {
   return html;
 }
 
-
 async function buildSubtotalDialog(options) {
-
   console.log("Building subtotal Dialog", options);
   let subtotal = options.dicePool - options.penalty;
   if (options.armorPenalty > 0) {
@@ -914,14 +959,17 @@ async function buildSubtotalDialog(options) {
 
   if (options.traitMod !== 0 && options.traitMod !== undefined) {
     html +=
-    `<ul class="leaders">
+      `<ul class="leaders">
       <li>
         <span class="subheader">` +
-            game.i18n.localize("estate.UI.FROM_TRAITS") +
-            ` : &nbsp;
+      game.i18n.localize("estate.UI.FROM_TRAITS") +
+      ` : &nbsp;
         </span>
-        <span id="trait"> <i class="fa-solid fa-dice-d6"></i> ` + options.traitModSign + ` ` +
-            options.traitMod +`
+        <span id="trait"> <i class="fa-solid fa-dice-d6"></i> ` +
+      options.traitModSign +
+      ` ` +
+      options.traitMod +
+      `
         </span>
       </li>
     </ul>`;
@@ -933,11 +981,12 @@ async function buildSubtotalDialog(options) {
       `<ul class="leaders">
         <li>
           <span class="subheader">` +
-            options.gearName +
-            ` : &nbsp;
+      options.gearName +
+      ` : &nbsp;
           </span>
           <span id="standard-gear"><i class="fa-solid fa-dice-d6"></i> &plus; ` +
-            options.gearDice +`
+      options.gearDice +
+      `
           </span>
         </li>
       </ul>`;
@@ -948,12 +997,12 @@ async function buildSubtotalDialog(options) {
       `<ul class="leaders">
           <li>
               <span class="subheader">` +
-                  game.i18n.localize("estate.UI.PENALTY") +
-                  ` : &nbsp;
+      game.i18n.localize("estate.UI.PENALTY") +
+      ` : &nbsp;
               </span>
               <span id="penalty"><i class="fa-solid fa-dice-d6 red"></i> &minus;` +
-                  options.penalty +
-                  `
+      options.penalty +
+      `
               </span>
           </li>
         </ul>`;
@@ -963,27 +1012,31 @@ async function buildSubtotalDialog(options) {
       `<ul class="leaders">
           <li>
             <span class="subheader">` +
-                game.i18n.localize("estate.UI.ARMOR_PENALTY") +
-                ` : &nbsp;
+      game.i18n.localize("estate.UI.ARMOR_PENALTY") +
+      ` : &nbsp;
             </span>
             <span id="armorPenalty"> <i class="fa-solid fa-dice-d6 red"></i> &minus;` +
-                  options.armorPenalty +`
+      options.armorPenalty +
+      `
             </span>
           </li>
         </ul>`;
   }
 
- 
-
   const subtotals = await calcSubtotal(options);
-//TODO localize the strings
+  //TODO localize the strings
   html +=
     ` <ul class="leaders border-bottom-thick">
         <li>
-          <span class="subheader middle">` + game.i18n.localize("estate.UI.SUBTOTAL") + ` : &nbsp;
+          <span class="subheader middle">` +
+    game.i18n.localize("estate.UI.SUBTOTAL") +
+    ` : &nbsp;
           </span>
-          <span id="subtotal"> Base Dice: <i class="fa-solid fa-dice-d6 red"></i> ` + subtotals.baseDice +
-                      `&nbsp; &nbsp; Gear Dice: <i class="fa-solid fa-dice-d6"></i> `+ subtotals.gearDice +` 
+          <span id="subtotal"> Base Dice: <i class="fa-solid fa-dice-d6 red"></i> ` +
+    subtotals.baseDice +
+    `&nbsp; &nbsp; Gear Dice: <i class="fa-solid fa-dice-d6"></i> ` +
+    subtotals.gearDice +
+    ` 
           </span>
         </li>
       </ul>`;
@@ -994,9 +1047,9 @@ async function buildSubtotalDialog(options) {
 async function calcSubtotal(options) {
   console.log("Calculating Subtotal", options);
 
-  let subtotal= {baseDice: 0, gearDice: 0};
+  let subtotal = { baseDice: 0, gearDice: 0 };
 
-  subtotal.baseDice = options.dicePool - options.penalty; 
+  subtotal.baseDice = options.dicePool - options.penalty;
   if (options.armorPenalty > 0) {
     subtotal.baseDice -= options.armorPenalty;
   }
@@ -1041,10 +1094,16 @@ function buildInputDialog(name, value, type) {
           <ul class="leaders">
           <li>
           <span style="subheader">
-              `+name+` : 
+              ` +
+    name +
+    ` : 
           </span>
           <span>
-              <input id="`+type +`" style="text-align: center" type="number" value="`+value +`"/>
+              <input id="` +
+    type +
+    `" style="text-align: center" type="number" value="` +
+    value +
+    `"/>
           </span>
           </li>
     </ul>`
@@ -1142,9 +1201,10 @@ async function _onPush(event) {
             ];
             await Item.updateDocuments(update, { parent: actor });
             console.log("actor", actor);
-            ui.notifications.info(game.i18n.localize("estate.MSG.NEUROCASTERBROKEN"));
+            ui.notifications.info(
+              game.i18n.localize("estate.MSG.NEUROCASTERBROKEN")
+            );
           }
-          
         }
       }
     }
@@ -1163,7 +1223,9 @@ async function _onPush(event) {
     console.log("damage to hope", hopeDamage);
     let hope = actor.system.hope.value;
     hope -= hopeDamage;
-    if(hope < 0) { hope = 0; }
+    if (hope < 0) {
+      hope = 0;
+    }
     console.log("Hope", hope);
     await actor.update({ "system.hope.value": hope });
   } else if (hopeDamage > 0 && actor.type === "vehicle") {
@@ -1216,7 +1278,6 @@ export async function roll(options) {
     formula: formula,
     type: options.type,
     gearId: options.gearUsed,
-    
   };
 
   if (options.type === "neurocaster" || options.type === "attribute") {
@@ -1243,17 +1304,17 @@ export async function roll(options) {
   console.log("Roll", r);
 
   if (r.options.type === "neurocaster" && actor.type === "player") {
-     if (r.successCount === 0 ) {
+    if (r.successCount === 0) {
       // add a point of bliss to te actor who made the roll
       console.log("No Success", actor);
       let bliss = actor.system.bliss;
       console.log("Bliss", bliss);
       bliss += 1;
       await actor.update({ "system.bliss": bliss });
-     }
+    }
   }
 
-   console.log("Roll", r);
+  console.log("Roll", r);
 
   await r.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),

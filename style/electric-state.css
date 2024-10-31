@@ -366,6 +366,10 @@ ul.leaders span + span {
   grid-template-columns: 50px 1fr;
 }
 
+.cols-50px-1fr-1fr {
+  grid-template-columns: 50px 1fr 1fr;
+}
+
 .center {
   justify-content: center;
   align-items: center;

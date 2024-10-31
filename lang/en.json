@@ -153,6 +153,7 @@
     "MSG.NO_USES": "This item is not consumable or out of uses",
     "MSG.HEALTH_MAX": "Health is already at maximum",
     "MSG.HOPE_MAX": "Hope is already at maximum",
+    "MSG.NOBLISS": "You have no Bliss to reduce at this time.",
     "MSG.USED": "Used",
     "MSG.DRIVERREQUIRED": "You must assign a driver to the vehicle to make a maneuverability test",
     "MSG.DRONENOTEQUIPPED": "Drone and Neurocaster must be equipped to use this action",
@@ -169,6 +170,7 @@
     "MSG.VEHICLE_WRECKED": "The Vehicle is Wrecked, it won't drive",
     "MSG.BUSTEDDRONE": "Drone is busted, you must repair it before you can use it",
     "MSG.BUSTEDWEAPON": "Weapon is busted, you must repair it before you can use it",
+    
 
     
     "ROLL.BASE.POOL": "Base Dice Pool",

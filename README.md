@@ -16,11 +16,11 @@ TODO LIST:
     - Target token to use Tension on opposed rolls
         - Add tension drop down to roll dialog if no target is selected
     - Target to allow damage to be applied for attacks
-    - Add a roll on bliss to reduce or make permanant a point of bliss
     - Item Detail roll Down for: Talents, Injuries, Traumas, Traits and Tension
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
+- Add flag for weapons that require a neurocaster to use and change the roll type if using them
 
 Version History:
 
@@ -39,6 +39,8 @@ v0.19.0
 - Added item info roll-down for neurocaster items
 - Added check to see if a weapon is busted before we roll any attack
 - Fix: weapons were getting damaged twice on pushed rolls making them break premeturely
+- Added roll for bliss reduction making it permanent on a 1
+- Locked Permanant bliss field by default, it is handled dynamically now but can be unlocked if it must be edited for some reason
 
 
 v0.18.0

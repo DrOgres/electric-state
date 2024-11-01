@@ -13,8 +13,7 @@ please put any and all bug reports and feature requests in the issues of this re
 TODO LIST:
 
 - Player Character Sheets
-    - Target token to use Tension on opposed rolls
-        - Add tension drop down to roll dialog if no target is selected
+    - Target token to use Tension on opposed rolls - pre-select target as tension source if possible
     - Target to allow damage to be applied for attacks
     - Item Detail roll Down for: Talents, Injuries, Traumas, Traits and Tension
 - General styling and UI improvement for clarity and use
@@ -23,6 +22,9 @@ TODO LIST:
 - Add flag for weapons that require a neurocaster to use and change the roll type if using them
 
 Version History:
+
+v0.20.0
+- Feature: added tension drop down to the roll dialog - todo in future refine this to allow for target to set the default selection
 
 v0.19.0
 - Feature: When a neurocaster roll fails, the bliss of the character who made the roll increases by one, a notice was added to the chat card.

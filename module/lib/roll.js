@@ -349,6 +349,7 @@ export async function prepareRollDialog(options) {
           options.rwPenalty = neurocaster.system.realWorldPenalty;
         }
       }
+      dialogHTML += buildTensionSelectDialog(options, tensions);
       dialogHTML += buildTalentSelectDialog(options, talents, drones);
       dialogHTML += buildGearSelectDialog(options, gear);
 
@@ -398,6 +399,7 @@ export async function prepareRollDialog(options) {
       );
 
       dialogHTML += await buildSubtotalDialog(options);
+      dialogHTML += buildTensionSelectDialog(options, tensions);
       dialogHTML += buildTalentSelectDialog(options, talents);
 
       break;
@@ -470,6 +472,7 @@ export async function prepareRollDialog(options) {
         options.dicePool,
         options.attribute
       );
+      dialogHTML += buildTensionSelectDialog(options, tensions);
       dialogHTML += await buildSubtotalDialog(options);
       dialogHTML += buildTalentSelectDialog(options, talents, drones);
 
@@ -511,6 +514,7 @@ export async function prepareRollDialog(options) {
         options.attribute
       );
       dialogHTML += await buildSubtotalDialog(options);
+      dialogHTML += buildTensionSelectDialog(options, tensions);
       dialogHTML += buildTalentSelectDialog(options, talents);
 
       break;
@@ -631,9 +635,12 @@ export async function prepareRollDialog(options) {
       }
 
       dialogHTML += await buildSubtotalDialog(options);
+      dialogHTML += buildTensionSelectDialog(options, tensions);
       dialogHTML += buildTalentSelectDialog(options, talents);
       break;
   }
+
+
 
   let bonusHtml = buildInputDialog(
     game.i18n.localize("estate.ROLL.MODIFIER"),
@@ -706,7 +713,9 @@ export async function prepareRollDialog(options) {
               selectedGearItemId = html.find("#gear")[0].value;
             }
 
+           
             const item = gear.find((i) => i.id === selectedGearItemId);
+            
 
             console.log("Item", item);
             //TODO if the gear selected is consumable we need to reduce the uses value by 1
@@ -731,9 +740,22 @@ export async function prepareRollDialog(options) {
             }
             console.log("Talent Dice", talentDice);
 
+            let tensionDice = 0;
+            let selectedTensionItemId;
+            if (html.find("#tension")[0] !== undefined) {
+              selectedTensionItemId = html.find("#tension")[0].value;
+            }
+
+            const tension = tensions.find((i) => i.id === selectedTensionItemId);
+            if (tension !== undefined) {
+              options.tensionUsed = selectedTensionItemId;
+              tensionDice = tension.system.score;
+            }
+
+
             let bonus = parseInt(html.find("#bonus")[0].value);
 
-            options.baseDice = baseDice + talentDice + bonus;
+            options.baseDice = baseDice + talentDice + tensionDice + bonus;
             options.gearDice = gearDice;
             // Always roll at least one die
             if (options.baseDice <= 0) {
@@ -759,6 +781,8 @@ export async function prepareRollDialog(options) {
 
   dialog.render(true);
 }
+
+
 
 function buildDialogCheckBox(label, value, type) {
   let sign = "";
@@ -795,6 +819,51 @@ function buildDialogCheckBox(label, value, type) {
     </ul>`
   );
 }
+
+function buildTensionSelectDialog(options, tensions) {
+  console.log("Building Tension Select Dialog", tensions, options);
+  let html = "";
+  let selectOptions = "";
+  let count = 0;
+
+  if (tensions.length === 0) {
+    return "";
+  }
+
+  for (let tension of tensions) {
+    console.log(tension);
+    console.log("Tension", tension.system.actorId);
+    count++;
+    const actor = game.actors.get(tension.system.actorId);
+    selectOptions += `<option value="${tension.id}">${actor.name} &plus; ${tension.system.score}</option>`;
+  }
+
+  if (count === 0) {
+    return "";
+  }
+
+  html +=
+    `<ul class="leaders">
+    <li>
+    <span>` +
+    game.i18n.localize("estate.UI.TENSION") +
+    ` : &nbsp;</span>
+    <span id="tension-select">
+    <select id="tension" style="flex-grow: 1; margin-right: 10px;">
+    <option value="0">` +
+    game.i18n.localize("estate.UI.NONE") +
+    `</option>
+    ` +
+    selectOptions +
+    `</select>
+    </span>
+    </li>
+    </ul>`;
+  return html;
+}
+
+    
+
 
 function buildGearSelectDialog(options, gear) {
   console.log("Building Gear Select Dialog", gear);

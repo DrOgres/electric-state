@@ -25,6 +25,7 @@ Version History:
 
 v0.20.0
 - Feature: added tension drop down to the roll dialog - todo in future refine this to allow for target to set the default selection
+- Fix: Vehicle Hull trait items were applying to Armor instead of Hull [#32](https://github.com/DrOgres/electric-state/issues/32)
 
 v0.19.0
 - Feature: When a neurocaster roll fails, the bliss of the character who made the roll increases by one, a notice was added to the chat card.

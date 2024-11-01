@@ -449,7 +449,7 @@ export default class esActorSheet extends ActorSheet {
           break;
         case "hull":
           const hull = trait.system.modifier.value;
-          totalArmorModifier += hull;
+          totalHullModifier += hull;
           console.log("E-STATE | Hull", hull);
           break;
         case "passengers":

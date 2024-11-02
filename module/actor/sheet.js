@@ -237,7 +237,7 @@ export default class esActorSheet extends ActorSheet {
           ": </b> " +
           item.system.armor +
           " | <b>" +
-          game.i18n.localize("estate.UI.DAMAGE") +
+          game.i18n.localize("estate.ROLL.DAMAGE") +
           ":</b> " +
           item.system.damage +
           "</br></p><p class='item-desc subheader'><b>"+

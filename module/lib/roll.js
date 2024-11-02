@@ -62,7 +62,7 @@ export function prepareDeathRollDialog(options) {
     `
       </div>
       <div class="dice all-caps fw-800 fs-300 margin-small padding-small">` +
-    game.i18n.localize("estate.UI.ROLLING") +
+    game.i18n.localize("estate.ROLL.ROLLING") +
     `: ` +
     (options.dicePool + options.bonusDefault) +
     ` ` +
@@ -92,7 +92,7 @@ export function prepareDeathRollDialog(options) {
       buttons: {
         roll: {
           icon: '<i class="fas fa-dice-d6"></i>',
-          label: game.i18n.localize("estate.UI.ROLL"),
+          label: game.i18n.localize("estate.ROLL.ROLL"),
           callback: async () => {
             console.log("Rolling", options);
             let baseDice = options.dicePool + options.bonusDefault;
@@ -650,7 +650,7 @@ export async function prepareRollDialog(options) {
 
   let dialog = new Dialog(
     {
-      title: game.i18n.localize("estate.UI.ROLL") + " : " + options.testName,
+      title: game.i18n.localize("estate.ROLL.ROLL") + " : " + options.testName,
       content: buildDivHtmlDialog(
         `
             <div class="roll-fields pi-8 mb-1">
@@ -667,7 +667,7 @@ export async function prepareRollDialog(options) {
       buttons: {
         roll: {
           icon: '<i class="fas fa-dice-d6"></i>',
-          label: game.i18n.localize("estate.UI.ROLL"),
+          label: game.i18n.localize("estate.ROLL.ROLL"),
           callback: (html) => {
             console.log("Rolling", options);
             let baseDice = options.dicePool - options.penalty;

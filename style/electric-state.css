@@ -2,6 +2,15 @@
   color: #ff2121;
 }
 
+.bar-red {
+  background-color: #ff2121;
+  color: #f0f7f5;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
 .to-chat {
   cursor: pointer;
 }
@@ -385,6 +394,10 @@ ul.leaders span + span {
   text-align: right;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .align-bottom {
   align-items: end;
   align-self: end;
@@ -504,6 +517,10 @@ ul.leaders span + span {
   margin-top: -10px;
 }
 
+.margin-inline-small {
+  margin-inline: 5px;
+}
+
 .padding-x-small {
   padding: 2px;
 }
@@ -518,6 +535,18 @@ ul.leaders span + span {
 
 .padding-large {
   padding: 20px;
+}
+
+.padding-inline-small {
+  padding-inline: 5px;
+}
+
+.padding-left-small {
+  padding-left: 5px;
+}
+
+.padding-right-small {
+  padding-right: 5px;
 }
 
 .w-100 {

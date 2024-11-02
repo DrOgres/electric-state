@@ -58,12 +58,20 @@ Hooks.once("init", function () {
     return result;
   });
 
-  Handlebars.registerHelper("minus", function (a, b) {
-    return a - b;
-  });
-
-  Handlebars.registerHelper("plus", function (a, b) {
-    return a + b;
+  Handlebars.registerHelper("calculate", function (a, b, operator) {
+    console.log("E-STATE | Calc", a, b, operator);
+    switch (operator) {
+      case "+":
+        return a + b;
+      case "-":
+        return a - b;
+      case "*":
+        return a * b;
+      case "/":
+        return a / b;
+      case "%":
+        return (a / b)*100 + "%";
+    }
   });
 
   Handlebars.registerHelper("actorName", function (actorId) {

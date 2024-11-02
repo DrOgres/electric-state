@@ -9,3 +9,12 @@ $field-color-50: #ffffff33;
 .red {
   color: $highlight-interactive-element;
 }
+
+.bar-red{
+  background-color: $highlight-interactive-element;
+  color: $background-color;
+}
+
+.bg-white {
+  background-color: $field-color;
+}

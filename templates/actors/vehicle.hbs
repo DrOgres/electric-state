@@ -38,7 +38,16 @@
                                 <input type="number" name="system.fuel.max" value="{{actor.system.fuel.max}}"
                                     style="width: 50px" data-dtype="Number" />
                             </div>
-                            <div class="mn-w-200px bg-hatch">&nbsp;</div>
+                            <div class="mn-w-200px bg-hatch">
+                                <div class="marks grid five-col bg-white ">
+                                    <div class="empty text-left border-right-thin border-left-thin padding-left-small">E</div>
+                                    <div class="quarter border-right-thin">1/4</div>
+                                    <div class="half border-right-thin">1/2</div>
+                                    <div class="three-quarter border-right-thin">3/4</div>
+                                    <div class="full text-right border-right-thin padding-right-small">F</div>
+                                </div>
+                                <div class="container bar-red center" style="width:{{calculate actor.system.fuel.value actor.system.fuel.max "%"}}">{{calculate actor.system.fuel.value actor.system.fuel.max "%"}}</div>
+                            </div>
                         </div>
                     </div>
                 </div>

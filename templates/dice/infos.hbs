@@ -45,9 +45,9 @@
     <span class="label">{{localize "estate.UI.DAMAGE"}}: </span>
     {{#if (gt roll.successCount 1)}}
     <span class="result">
-      {{plus roll.options.damage (minus roll.successCount 1)}} &nbsp;
+      {{calculate roll.options.damage (calculate roll.successCount 1 "-") "+"}} &nbsp;
       (
-      {{roll.options.damage}} &plus; {{minus roll.successCount 1}}
+      {{roll.options.damage}} &plus; {{calculate roll.successCount 1 "-"}}
       )
     </span>
     {{/if}}
@@ -63,10 +63,10 @@
   <div class="roll-damage center fs-400 fw-700 margin-small">
     <span class="label">{{localize "estate.UI.BLASTDAMAGE"}}: </span>
     {{#if (gt roll.successCount 1)}}
-    <span class="result"> {{plus roll.options.damage (minus roll.successCount 1)}}
+    <span class="result"> {{calculate roll.options.damage (calculate roll.successCount 1 "-") "+"}} &nbsp;
       (
       {{roll.options.damage}}
-      &plus; {{minus roll.successCount 1}}
+      &plus; {{calculate roll.successCount 1 "-"}}
       )
     </span>
     {{/if}}

@@ -121,6 +121,10 @@
   text-align: right;
 }
 
+.text-left{
+  text-align: left;
+}
+
 .align-bottom{
   align-items: end;
   align-self: end;
@@ -242,6 +246,10 @@
     margin-top: -10px;
   }
 
+  .margin-inline-small{
+    margin-inline: 5px;
+  }
+
   .padding-x-small {
     padding: 2px;
   }
@@ -256,6 +264,18 @@
 
   .padding-large {
     padding: 20px;
+  }
+
+  .padding-inline-small{
+    padding-inline: 5px;
+  }
+
+  .padding-left-small{
+    padding-left: 5px;
+  }
+
+  .padding-right-small{
+    padding-right: 5px;
   }
 
   .w-100 {

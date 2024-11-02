@@ -23,6 +23,9 @@ TODO LIST:
 
 Version History:
 
+v0.21.0
+- Cosmetic: added fuel guage to vehicle sheet
+
 v0.20.0
 - Feature: added tension drop down to the roll dialog - todo in future refine this to allow for target to set the default selection
 - Fix: Vehicle Hull trait items were applying to Armor instead of Hull [#32](https://github.com/DrOgres/electric-state/issues/32)

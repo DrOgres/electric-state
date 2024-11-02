@@ -59,7 +59,6 @@ Hooks.once("init", function () {
   });
 
   Handlebars.registerHelper("calculate", function (a, b, operator) {
-    console.log("E-STATE | Calc", a, b, operator);
     switch (operator) {
       case "+":
         return a + b;
@@ -87,7 +86,6 @@ Hooks.once("init", function () {
   });
 
   Handlebars.registerHelper("dataLocalization", function (data, group) {
-    console.log("E-STATE | Localize Data", data, group);
     let string = "";
     switch (group) {
       case "attribute":
@@ -195,9 +193,6 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
 });
 
 Hooks.on("dropActorSheetData", async (actor, actorSheet, data) => {
-  console.log("E-STATE | On Drop Actor Sheet Data", actor, actorSheet, data);
-  console.log("E-STATE | Actor Type", actor.type);
-  console.log("E-STATE | Data Type", data.type);
   if (actor.type !== "vehicle" || data.type !== "Actor") {
     console.log("E-STATE | Not a Vehicle nor dropping an Actor");
     return;
@@ -213,6 +208,3 @@ function setLogo() {
   $("#logo")[0].src = "systems/electric-state/assets/logo.webp";
 }
 
-function recalcDialog() {
-  console.log("E-STATE | Recalc Dialog");
-}

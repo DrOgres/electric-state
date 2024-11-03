@@ -64,6 +64,7 @@
     "UI.BP": "BP",
 
     "UI.WEAPON": "Weapon",
+    "UI.REQ_NEUROCASTER": "Requires Neurocaster",
     
     "UI.TENSION": "Tension",
 
@@ -174,6 +175,7 @@
     "MSG.WRONGITEMTYPE": "This actor cannot hold this item type",
     "MSG.NUEROCASTWEAPON": "You need to equip a neurocaster to use a neuroscape weapon",
     "MSG.NUEROCASTER": "You need to equip a neurocaster to use this action",
+    "MSG.NEEDNEUROCASTER": "This Weapon Requires a Neurocaster to use",
     "MSG.BUSTEDCASTER": "You have a Broken neurocaster, you must repair it before you can use it",
     "MSG.EXPLOSIVEWARN": "You must equip an explosive to roll.",
     "MSG.BUSTEDARMOR": "Armor is busted, you must repair it before you can use it",

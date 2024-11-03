@@ -19,12 +19,15 @@ TODO LIST:
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
-- Add flag for weapons that require a neurocaster to use and change the roll type if using them
+- Look at Robot sheet, stats and abilities may need to be handled differently
 
 Version History:
 
 v0.21.0
 - Cosmetic: added fuel guage to vehicle sheet
+- Added requires Neurocaster to weapon items, allowing to create Neodymium cannons and the like
+- Added check on weapons that require Neurocasters, to change the gear dice to the Network of the Neurocaster.
+
 
 v0.20.0
 - Feature: added tension drop down to the roll dialog - todo in future refine this to allow for target to set the default selection

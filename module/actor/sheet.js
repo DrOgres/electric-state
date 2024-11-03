@@ -635,16 +635,79 @@ export default class esActorSheet extends ActorSheet {
           console.log("E-STATE | Rolling Weapon");
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
+          let ncWeapon = false;
+          let ncBonus = 0;
+          let ncId = "";
+          if(this._isPlayer()){
+          if (item.system.requiresNeurocaster) {
+            ncWeapon = true;
+            const neurocasters = this.actor.items.filter(
+              (item) => item.type === "neurocaster"
+            );
+            console.log("E-STATE | Neurocasters", neurocasters);
+            if (neurocasters.length === 0) {
+              ui.notifications.warn(
+                game.i18n.localize("estate.MSG.NEEDNEUROCASTER")
+              );
+              return;
+            } else {
+              let status = false;
+              for (let neurocaster of neurocasters) {
+                if (neurocaster.flags.isEquipped) {
+                  status = true;
+                  ncId = neurocaster.id;
+                  if (
+                    neurocaster.system.processor.value === 0 ||
+                    neurocaster.system.network.value === 0 ||
+                    neurocaster.system.graphics.value === 0
+                  ) {
+                    ui.notifications.warn(
+                      game.i18n.localize("estate.MSG.BUSTEDCASTER")
+                    );
+                    const update = [
+                      {
+                        _id: neurocaster.id,
+                        "system.isBroken": true,
+                      },
+                    ];
+                    await Item.updateDocuments(update, { parent: this.actor });
+                    return;
+                  }
+                ncBonus += neurocaster.system.network.value;
+                }
+              }
+              if (!status) {
+                ui.notifications.warn(
+                  game.i18n.localize("estate.MSG.NUEROCASTER")
+                );
+                return;
+              }
+            }
+          }
+        }
 
-          if (item.system.modifier.value <= 0) {
+          
+
+          if (!ncWeapon && item.system.modifier.value <= 0) {
             ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDWEAPON"));
             return;
           }
 
-          options.testName = item.name;
-          options.gearName = item.name;
-          options.gearDice = item.system.modifier.value;
-          options.gearUsed.push(itemId);
+          
+          
+          
+
+          if(ncWeapon){
+            options.testName = item.name + " & " + game.i18n.localize("estate.UI.NEUROCASTER");
+            options.gearDice = ncBonus;
+            options.gearUsed.push(ncId);
+            options.gearName =  game.i18n.localize("estate.UI.NEUROCASTER") + " " + game.i18n.localize("estate.UI.NETWORK"); 
+          } else {
+            options.gearDice = item.system.modifier.value;
+            options.gearUsed.push(itemId);
+            options.testName = item.name;
+            options.gearName = item.name;
+          }
           options.damage = item.system.damage;
           options.attribute = item.system.attribute;
           options.weaponId = itemId;

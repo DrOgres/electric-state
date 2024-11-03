@@ -19,7 +19,9 @@ TODO LIST:
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
-- Look at Robot sheet, stats and abilities may need to be handled differently
+- Look at Robot sheet, stats and equipment may need to be handled differently
+    - does it make sense to use this as the Drone Growth as well?
+    - How do we handle neuroscape things? 
 
 Version History:
 

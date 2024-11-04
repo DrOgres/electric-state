@@ -28,6 +28,7 @@
           </span>
         </li>
 
+      {{#unless system.requiresNeurocaster}}
       <li>
         <span>
           {{localize "estate.UI.BONUS"}}
@@ -36,6 +37,7 @@
           {{system.modifier.value}}
         </span>
       </li>
+      {{/unless}}
 
       <li>
         <span>

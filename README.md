@@ -29,6 +29,7 @@ v0.21.0
 - Cosmetic: added fuel guage to vehicle sheet
 - Added requires Neurocaster to weapon items, allowing to create Neodymium cannons and the like
 - Added check on weapons that require Neurocasters, to change the gear dice to the Network of the Neurocaster.
+- Adjusted Image on item sheet to prevent stretching [#33](https://github.com/DrOgres/electric-state/issues/33)
 
 
 v0.20.0

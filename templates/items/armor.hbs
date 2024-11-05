@@ -2,12 +2,10 @@
 
   <div class="grid col-20-80 border-thick">
 
-    <div class="portrait align-start flexcol bg-dark space-between h-100">
-
+<div class=" align-start flexcol bg-dark space-between h-100 padding-small ">
+      <div class="img">
       <img src="{{item.img}}" data-edit="img" title="{{item.name}}" width="160" />
-      <div class="hold ">&nbsp;</div>
-      
-       
+      </div>
     </div>
 
 
@@ -17,22 +15,24 @@
           <input name="name" type="text" value="{{item.name}}" />
         </div>
         <div class="price flexrow all-caps fw-600 middle">
-        <label class="text-right">{{localize "estate.HEAD.PRICE"}} $</label> <input type="number" name="system.cost" value="{{item.system.cost}}">
+          <label class="text-right">{{localize "estate.HEAD.PRICE"}} $</label> <input type="number" name="system.cost"
+            value="{{item.system.cost}}">
         </div>
       </div>
 
 
       <div class="armor-value flexrow all-caps middle fw-600">
-      <label class="text-right margin-small">{{localize "estate.UI.ARMOR"}}</label> <input type="number" name="system.modifier.value" value="{{item.system.modifier.value}}">
+        <label class="text-right margin-small">{{localize "estate.UI.ARMOR"}}</label> <input type="number"
+          name="system.modifier.value" value="{{item.system.modifier.value}}">
       </div>
       <div class="agi-mod flexrow all-caps middle fw-600">
-      <label class="text-right margin-small">{{localize "estate.UI.ARMOR_PENALTY"}}</label> <input type="number" name="system.agiltyModifier"
-        value="{{item.system.agiltyModifier}}">
-        </div>
+        <label class="text-right margin-small">{{localize "estate.UI.ARMOR_PENALTY"}}</label> <input type="number"
+          name="system.agiltyModifier" value="{{item.system.agiltyModifier}}">
+      </div>
       <div class="desc-group flexcol">
-      <label class="all-caps fw-600">{{localize "estate.HEAD.DESC"}}</label> <textarea name="system.description"
-        value="{{item.system.description}}">{{item.system.description}}</textarea>
-        </div>
+        <label class="all-caps fw-600">{{localize "estate.HEAD.DESC"}}</label> <textarea name="system.description"
+          value="{{item.system.description}}">{{item.system.description}}</textarea>
+      </div>
 
 
     </div>

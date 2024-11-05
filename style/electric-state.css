@@ -529,6 +529,10 @@ ul.leaders span + span {
   padding: 5px;
 }
 
+padding-top-small {
+  padding-top: 5px;
+}
+
 .padding-medium {
   padding: 10px;
 }

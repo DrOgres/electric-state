@@ -343,7 +343,7 @@ export async function prepareRollDialog(options) {
         if (neurocaster.flags.isEquipped) {
           dialogHTML += buildDialogCheckBox(
             "estate.UI.RW_PENALTY",
-            neurocaster.system.realWorldPenalty,
+            Math.abs(neurocaster.system.realWorldPenalty),
             "penalty"
           );
           options.rwPenalty = neurocaster.system.realWorldPenalty;

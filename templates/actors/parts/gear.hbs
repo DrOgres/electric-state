@@ -47,10 +47,14 @@
 
                 <div class="stat-group grid three-col">
                     {{#if item.flags.isEquipped}}
-                    <div class="toggle-equip"><i class="fa-solid fa-shield"></i></div>
+                    <div class="toggle-equip" title="{{localize "estate.UI.UNEQUIP"}}">
+                        <i class="fa-solid fa-shield"></i>
+                    </div>
                     {{/if}}
                     {{#unless item.flags.isEquipped}}
-                    <div class="toggle-equip"><i class="fa-regular fa-shield"></i></div>
+                    <div class="toggle-equip" title="{{localize "estate.UI.EQUIP"}}">
+                        <i class="fa-regular fa-shield"></i>
+                    </div>
                     {{/unless}}
 
                     <div class="rate">
@@ -67,18 +71,23 @@
                 <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
                     {{#if (eq ../actor.type 'player')}}
                     {{#if item.flags.isFav}}
-                    <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                    <div class="toggle-fav" title="{{localize " estate.UI.TOGGLEFAV"}}"><i class="fa-solid fa-star"></i>
+                    </div>
                     {{/if}}
                     {{#unless item.flags.isFav}}
-                    <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                    <div class="toggle-fav" title="{{localize " estate.UI.TOGGLEFAV"}}"><i
+                            class="fa-regular fa-star"></i></div>
                     {{/unless}}
                     {{/if}}
                     {{#unless (eq ../actor.type 'player')}}
                     <div class="hold"></div>
                     {{/unless}}
-                    <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
-                    <div class="item-edit"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="item-delete"><i class="fa-solid fa-trash"></i></div>
+                    <div class="to-chat"><i class="fa-solid fa-comment-alt-lines" title="{{localize "
+                            estate.UI.TO_CHAT"}}"></i></div>
+                    <div class="item-edit" title="{{localize " estate.UI.EDIT"}}"><i
+                            class="fa-solid fa-pen-to-square"></i></div>
+                    <div class="item-delete" title="{{localize " estate.UI.DELETE"}}"><i class="fa-solid fa-trash"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,7 +122,8 @@
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
 
-                <div class="mw-150px flexrow middle {{#if item.system.isConsumable}}item-use consumable clickable{{/if}}" data-type="armor" data-item-id="{{item._id}}">
+                <div class="mw-150px flexrow middle {{#if item.system.isConsumable}}item-use consumable clickable{{/if}}"
+                    data-type="armor" data-item-id="{{item._id}}">
                     <div class="item-icon">
                         <img src="{{item.img}}" title="{{item.name}}" height="25" width="25" />
                     </div>
@@ -153,18 +163,23 @@
                 <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
                     {{#if (eq ../actor.type 'player')}}
                     {{#if item.flags.isFav}}
-                    <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                    <div class="toggle-fav" title="{{localize " estate.UI.TOGGLEFAV"}}"><i class="fa-solid fa-star"></i>
+                    </div>
                     {{/if}}
                     {{#unless item.flags.isFav}}
-                    <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                    <div class="toggle-fav" title="{{localize " estate.UI.TOGGLEFAV"}}"><i
+                            class="fa-regular fa-star"></i></div>
                     {{/unless}}
                     {{/if}}
                     {{#unless (eq ../actor.type 'player')}}
                     <div class="hold"></div>
                     {{/unless}}
-                    <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
-                    <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
+                    <div class="to-chat"><i class="fa-solid fa-comment-alt-lines" title="{{localize "
+                            estate.UI.TO_CHAT"}}"></i></div>
+                    <div class="item-edit" data-item-id="{{item._id}}" title="{{localize " estate.UI.EDIT"}}"><i
+                            class="fa-solid fa-pen-to-square"></i></div>
+                    <div class="item-delete" data-item-id="{{item._id}}" title="{{localize " estate.UI.DELETE"}}"><i
+                            class="fa-solid fa-trash"></i></div>
                 </div>
             </div>
         </div>
@@ -216,16 +231,20 @@
                 <div class="stat-group grid two-col center middle">
 
                     <div class="attack-group grid three-col">
-                        {{#if item.flags.isEquipped}}
-                        <div class="toggle-equip mw-50px"><i class="fa-solid fa-robot"></i></div>
+                       {{#if item.flags.isEquipped}}
+                        <div class="toggle-equip mw-50px" title="{{localize "estate.UI.UNEQUIP"}}"><i class="fa-solid fa-robot"></i>   
+                        </div>
                         {{/if}}
                         {{#unless item.flags.isEquipped}}
-                        <div class="toggle-equip mw-50px"><i class="fa-regular fa-robot"></i></div>
+                        <div class="toggle-equip mw-50px" title="{{localize "estate.UI.EQUIP"}}"><i class="fa-regular fa-robot"></i>       
+                        </div>
                         {{/unless}}
-                        <div class="drone-attack rollable mw-50px clickable" data-type="drone-attack"
-                            data-item-id="{{item._id}}"><i class="fa-solid fa-gun"></i></div>
-                        <div class="drone-armor rollable mw-50px clickable" data-type="drone-armor"
-                            data-item-id="{{item._id}}"><i class="fa-solid fa-shield"></i></div>
+                        <div class="drone-attack rollable mw-50px clickable" title="{{localize "estate.ROLL.ROLL"}} {{localize "estate.UI.ATTACK" }}" data-type="drone-attack" data-item-id="{{item._id}}"><i
+                                class="fa-solid fa-gun"></i>
+                        </div>
+                        <div class="drone-armor rollable mw-50px clickable" title="{{localize "estate.ROLL.ROLL"}} {{localize "estate.UI.ARMOR" }}" data-type="drone-armor" data-item-id="{{item._id}}"><i
+                                class="fa-solid fa-shield"></i>
+                        </div>
 
                     </div>
 
@@ -240,18 +259,23 @@
                 <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
                     {{#if (eq ../actor.type 'player')}}
                     {{#if item.flags.isFav}}
-                    <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                    <div class="toggle-fav" title="{{localize " estate.UI.TOGGLEFAV"}}"><i class="fa-solid fa-star"></i>
+                    </div>
                     {{/if}}
                     {{#unless item.flags.isFav}}
-                    <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                    <div class="toggle-fav" title="{{localize " estate.UI.TOGGLEFAV"}}"><i
+                            class="fa-regular fa-star"></i></div>
                     {{/unless}}
                     {{/if}}
                     {{#unless (eq ../actor.type 'player')}}
                     <div class="hold"></div>
                     {{/unless}}
-                    <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
-                    <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
+                    <div class="to-chat"><i class="fa-solid fa-comment-alt-lines" title="{{localize "
+                            estate.UI.TO_CHAT"}}"></i></div>
+                    <div class="item-edit" data-item-id="{{item._id}}" title="{{localize " estate.UI.EDIT"}}"><i
+                            class="fa-solid fa-pen-to-square"></i></div>
+                    <div class="item-delete" data-item-id="{{item._id}}" title="{{localize " estate.UI.DELETE"}}"><i
+                            class="fa-solid fa-trash"></i></div>
                 </div>
             </div>
         </div>
@@ -303,35 +327,33 @@
 
                 <div class="stat-group grid cols-50px-1fr-1fr center middle">
                     {{#if item.flags.isEquipped}}
-                    <div class="toggle-equip mw-45px "><i class="fa-solid fa-head-side-gear"></i>
-
+                    <div class="toggle-equip mw-45px" title="{{localize "estate.UI.UNEQUIP"}}"><i class="fa-solid fa-head-side-gear"></i>
                     </div>
                     {{/if}}
                     {{#unless item.flags.isEquipped}}
-                    <div class="toggle-equip mw-45px"><i class="fa-light fa-head-side-gear"></i>
-
+                    <div class="toggle-equip mw-45px" title="{{localize "estate.UI.EQUIP"}}"><i class="fa-light fa-head-side-gear"></i>
                     </div>
                     {{/unless}}
                     <div class="action-group flexrow gap-x-small" data-item-id="{{item._id}}">
-                        <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="info">
+                        <div class="rollable  clickable" title="{{localize " estate.UI.INFO"}}" data-type="neurocaster"
+                            data-cast="info">
                             <i class="fa-solid fa-print-magnifying-glass"></i>
-                            <span class="tooltiptext">{{localize "estate.UI.INFO"}}</span>
                         </div>
-                        <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="hack">
+                        <div class="rollable clickable" title="{{localize " estate.UI.HACK"}}" data-type="neurocaster"
+                            data-cast="hack">
                             <i class="fa-solid fa-gear-code"></i>
-                            <span class="tooltiptext">{{localize "estate.UI.HACK"}}</span>
                         </div>
-                        <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="coms">
+                        <div class="rollable  clickable" title="{{localize " estate.UI.COMS"}}" data-type="neurocaster"
+                            data-cast="coms">
                             <i class="fa-solid fa-signal-stream"></i>
-                            <span class="tooltiptext">{{localize "estate.UI.COMS"}}</span>
                         </div>
-                        <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="block">
+                        <div class="rollable  clickable" title="{{localize " estate.UI.BLOCK"}}" data-type="neurocaster"
+                            data-cast="block">
                             <i class="fa-solid fa-signal-stream-slash"></i>
-                            <span class="tooltiptext">{{localize "estate.UI.BLOCK"}}</span>
                         </div>
-                        <div class="rollable tooltip clickable" data-type="neurocaster" data-cast="combat">
+                        <div class="rollable  clickable" title="{{localize " estate.UI.COMBAT"}}"
+                            data-type="neurocaster" data-cast="combat">
                             <i class="fa-solid fa-hand-fist"></i>
-                            <span class="tooltiptext">{{localize "estate.UI.COMBAT"}}</span>
                         </div>
                     </div>
                     <div class="stat-group flexrow gap-med middle">
@@ -349,18 +371,23 @@
                 <div class="button-group grid four-col mw-100px middle" data-item-id="{{item._id}}">
                     {{#if (eq ../actor.type 'player')}}
                     {{#if item.flags.isFav}}
-                    <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                    <div class="toggle-fav" title="{{localize " estate.UI.TOGGLEFAV"}}"><i class="fa-solid fa-star"></i>
+                    </div>
                     {{/if}}
                     {{#unless item.flags.isFav}}
-                    <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                    <div class="toggle-fav" title="{{localize " estate.UI.TOGGLEFAV"}}"><i class="fa-regular fa-star"
+                            title="{{localize " estate.UI.TOGGLEFAV"}}"></i></div>
                     {{/unless}}
                     {{/if}}
                     {{#unless (eq ../actor.type 'player')}}
                     <div class="hold"></div>
                     {{/unless}}
-                    <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
-                    <div class="item-edit" data-item-id="{{item._id}}"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="item-delete" data-item-id="{{item._id}}"><i class="fa-solid fa-trash"></i></div>
+                    <div class="to-chat"><i class="fa-solid fa-comment-alt-lines" title="{{localize "
+                            estate.UI.TO_CHAT"}}"></i></div>
+                    <div class="item-edit" data-item-id="{{item._id}}" title="{{localize " estate.UI.EDIT"}}"><i
+                            class="fa-solid fa-pen-to-square"></i></div>
+                    <div class="item-delete" data-item-id="{{item._id}}" title="{{localize " estate.UI.DELETE"}}"><i
+                            class="fa-solid fa-trash"></i></div>
                 </div>
             </div>
         </div>

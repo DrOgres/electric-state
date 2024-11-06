@@ -31,6 +31,7 @@
     "UI.EDIT": "Edit",
     "UI.DELETE": "Delete",
     "UI.ADD": "Add",
+    "UI.TO_CHAT": "Display To Chat",
 
     "UI.MAIN": "Main",
     "UI.GEAR": "Gear",
@@ -96,6 +97,7 @@
 
     "UI.USES": "Uses",
     "UI.USEDFOR": "Used For",
+    "UI.USE": "Use",
     "UI.FOOD": "Food",
     "UI.STABALIZE": "Stabalize",
     "UI.HEALTHUP": "Health Up",

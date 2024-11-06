@@ -54,18 +54,18 @@
 
                 {{#if (eq ../actor.type 'player')}}
                 {{#if item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i class="fa-solid fa-star"></i></div>
                 {{/if}}
                 {{#unless item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i class="fa-regular fa-star"></i></div>
                 {{/unless}}
                 {{/if}}
                 {{#unless (eq ../actor.type 'player')}}
                 <div class="hold"></div>
                 {{/unless}}
-                <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
-                <div class="item-edit"><i class="fa-solid fa-pen-to-square"></i></div>
-                <div class="item-delete"><i class="fa-solid fa-trash"></i></div>
+                <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"  title="{{localize "estate.UI.TO_CHAT"}}"></i></div>
+                <div class="item-edit" title="{{localize "estate.UI.EDIT"}}"><i class="fa-solid fa-pen-to-square"></i></div>
+                <div class="item-delete" title="{{localize "estate.UI.DELETE"}}"><i class="fa-solid fa-trash"></i></div>
             </div>
         </div>
     </div>
@@ -116,18 +116,18 @@
             <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
                 {{#if (eq ../actor.type 'player')}}
                 {{#if item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-solid fa-star"></i></div>
+                <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i class="fa-solid fa-star"></i></div>
                 {{/if}}
                 {{#unless item.flags.isFav}}
-                <div class="toggle-fav"><i class="fa-regular fa-star"></i></div>
+                <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i class="fa-regular fa-star"></i></div>
                 {{/unless}}
                 {{/if}}
                 {{#unless (eq ../actor.type 'player')}}
                 <div class="hold"></div>
                 {{/unless}}
-                <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"></i></div>
-                <div class="item-edit"><i class="fa-solid fa-pen-to-square"></i></div>
-                <div class="item-delete"><i class="fa-solid fa-trash"></i></div>
+                <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"  title="{{localize "estate.UI.TO_CHAT"}}"></i></div>
+                <div class="item-edit" title="{{localize "estate.UI.EDIT"}}"><i class="fa-solid fa-pen-to-square"></i></div>
+                <div class="item-delete" title="{{localize "estate.UI.DELETE"}}"><i class="fa-solid fa-trash"></i></div>
             </div>
         </div>
     </div>

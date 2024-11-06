@@ -354,7 +354,7 @@
                     {{#if item.isGear}}
                     {{#if item.flags.isFav}}
                     <div class="flexrow border-bottom-thin space-between gap-med">
-                        <div class="item tooltip mw-100px">
+                        <div class="item tooltip mw-100px {{#if item.system.isConsumable}}item-use{{/if}}" data-item-id="{{item._id}}">
                             <span class="name block overflow-elipsis w-100">
                                 {{item.name}}
                             </span>

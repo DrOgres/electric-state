@@ -25,6 +25,9 @@ TODO LIST:
 
 Version History:
 
+v0.22.0
+- Changed Usable item UI to make use consistent with rollable items now clicking the item name will use it
+
 v0.21.0
 - Cosmetic: added fuel guage to vehicle sheet
 - Added requires Neurocaster to weapon items, allowing to create Neodymium cannons and the like

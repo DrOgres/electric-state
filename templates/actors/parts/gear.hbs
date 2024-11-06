@@ -113,7 +113,7 @@
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
 
-                <div class="mw-150px flexrow middle" data-type="armor" data-item-id="{{item._id}}">
+                <div class="mw-150px flexrow middle {{#if item.system.isConsumable}}item-use consumable clickable{{/if}}" data-type="armor" data-item-id="{{item._id}}">
                     <div class="item-icon">
                         <img src="{{item.img}}" title="{{item.name}}" height="25" width="25" />
                     </div>

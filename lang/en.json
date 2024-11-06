@@ -32,6 +32,7 @@
     "UI.DELETE": "Delete",
     "UI.ADD": "Add",
     "UI.TO_CHAT": "Display To Chat",
+    "UI.CREATE": "Create New",
 
     "UI.MAIN": "Main",
     "UI.GEAR": "Gear",

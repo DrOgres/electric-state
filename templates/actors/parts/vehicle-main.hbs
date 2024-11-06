@@ -27,14 +27,13 @@
                             <input type="number" name="system.maneuverability.max"
                                 value="{{actor.system.maneuverability.max}}" style="width: 25px" data-dtype="Number" />
                         </div>
-                        <div class="tooltip grid three-col middle center">
+                        <div class="grid three-col middle center" title="{{localize "estate.UI.TRAIT_INCLUDED"}}">
                             <div> [</div>
                             <div>
                                 {{calculate actor.system.maneuverability.max actor.flags.electric-state.maneuver "+"}}
                             </div>
                             <div>]</div>
 
-                            <div class="tooltiptext"> {{localize "estate.UI.TRAIT_INCLUDED"}}</div>
                         </div>
                     </div>
 
@@ -66,14 +65,12 @@
                         <input type="number" name="system.speed" value="{{actor.system.speed}}" style="width: 25px"
                             data-dtype="Number" />
                     </div>
-                    <div class="tooltip grid three-col middle center">
+                    <div class="grid three-col middle center" title="{{localize "estate.UI.TRAIT_INCLUDED"}}">
                         <div> [</div>
                         <div>
                             {{calculate actor.system.speed actor.flags.electric-state.speed "+"}}
                         </div>
                         <div>]</div>
-
-                        <div class="tooltiptext"> {{localize "estate.UI.TRAIT_INCLUDED"}}</div>
                     </div>
                 </div>
 
@@ -112,14 +109,12 @@
                             <input type="number" name="system.hull.max" value="{{actor.system.hull.max}}"
                                 style="width: 25px" data-dtype="Number" />
                         </div>
-                        <div class="tooltip grid three-col middle center">
+                        <div class="grid three-col middle center" title="{{localize "estate.UI.TRAIT_INCLUDED"}}">
                             <div> [</div>
                             <div>
                                 {{calculate actor.system.hull.max actor.flags.electric-state.hull "+"}}
                             </div>
                             <div>]</div>
-
-                            <div class="tooltiptext"> {{localize "estate.UI.TRAIT_INCLUDED"}}</div>
                         </div>
                     </div>
 
@@ -151,14 +146,12 @@
                         <input type="number" name="system.armor" value="{{actor.system.armor}}" style="width: 25px"
                             data-dtype="Number" />
                     </div>
-                    <div class="tooltip grid three-col middle center">
+                    <div class="grid three-col middle center" title="{{localize "estate.UI.TRAIT_INCLUDED"}}">
                         <div> [</div>
                         <div>
                             {{calculate actor.system.armor actor.flags.electric-state.armor "+"}}
                         </div>
                         <div>]</div>
-
-                        <div class="tooltiptext"> {{localize "estate.UI.TRAIT_INCLUDED"}}</div>
                     </div>
                 </div>
 
@@ -203,14 +196,12 @@
                             <input type="number" name="system.passengers.max"
                                 value="{{actor.system.passengers.max}}" style="width: 25px" data-dtype="Number" />
                         </div>
-                        <div class="tooltip grid three-col middle center">
+                        <div class="grid three-col middle center" title="{{localize "estate.UI.TRAIT_INCLUDED"}}">
                             <div> [</div>
                             <div>
                                 {{calculate actor.system.passengers.max actor.flags.electric-state.passengers "+"}}
                             </div>
                             <div>]</div>
-
-                            <div class="tooltiptext fs-200"> {{localize "estate.UI.TRAIT_INCLUDED"}}</div>
                         </div>
                     </div>
 
@@ -227,7 +218,7 @@
             </div>
             <div class="button-group mw-75px ">
 
-                <div class="fs-500 text-right">&plus;</div>
+                <div class="fs-500 text-right">&nbsp;</div>
 
             </div>
         </div>
@@ -245,7 +236,7 @@
                 </select>
             </div>
             <div class="button-group mw-75px" data-passenger-id="{{passenger._id}}">
-                <div class="remove-passenger text-right margin-small"><i class="fa-solid fa-trash"></i></div>
+                <div class="remove-passenger text-right margin-small clickable" title="{{localize "estate.UI.DELETE"}}"><i class="fa-solid fa-trash"></i></div>
             </div>
         </div>
         {{/each}}

@@ -27,6 +27,7 @@ Version History:
 
 v0.22.0
 - Changed Usable item UI to make use consistent with rollable items now clicking the item name will use it
+- UI: Standardized tooltips and added where needed for clarity
 
 v0.21.0
 - Cosmetic: added fuel guage to vehicle sheet

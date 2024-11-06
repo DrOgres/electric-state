@@ -156,6 +156,7 @@
 
     "UI.HOPE_LOSS": "Hope Loss",
     "UI.GEAR_DAMAGE": "Gear Damage",
+    "UI.BLISS_RECOVERY": "Reduce Bliss",
     "UI.BLISS_COST": "Neurocaster Failure! Bliss Increased",
     "UI.BLISSREDUCED": "Bliss Reduced by 1",
     "UI.PERM_INCREASE": "Permanent Bliss Increase by 1",
@@ -164,6 +165,8 @@
     "UI.NO": "No",
     "UI.CANCEL": "Cancel",
     "UI.APPLY": "Apply",
+    "UI.LOCK": "Lock",
+    "UI.UNLOCK": "Unlock",
 
     "MSG.NO_USES": "This item is not consumable or out of uses",
     "MSG.HEALTH_MAX": "Health is already at maximum",

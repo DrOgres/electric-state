@@ -56,7 +56,7 @@
                         <div class="type overflow-elipsis">{{localize "estate.UI.TYPE"}}</div>
                         <div class="bonus center">{{localize "estate.UI.MOD"}}</div>
                         <div class="permanent center">{{localize "estate.UI.PERMANENT"}}</div>
-                        <div class="item-create align-bottom mi-small text-right" data-type="injury">&plus;</div>
+                        <div class="item-create align-bottom mi-small text-right" data-type="injury" title="{{localize "estate.UI.CREATE"}} {{localize "estate.UI.INJURY"}}">&plus;</div>
                     </div>
                     {{#each items as |injury|}}
                     {{#if injury.isInjury}}
@@ -82,7 +82,7 @@
                         <div class="name ">{{localize "estate.UI.TRAUMA"}}</div>
                         <div class="type ">{{localize "estate.UI.TYPE"}}</div>
                         <div class="bonus center">{{localize "estate.UI.PENALTY"}}</div>
-                        <div class="item-create align-bottom mi-small text-right" data-type="trauma">&plus;</div>
+                        <div class="item-create align-bottom mi-small text-right" data-type="trauma" title="{{localize "estate.UI.CREATE"}} {{localize "estate.UI.TRAUMA"}}">&plus;</div>
                     </div>
                     {{#each items as |trauma|}}
                     {{#if trauma.isTrauma}}

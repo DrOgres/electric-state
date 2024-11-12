@@ -13,7 +13,7 @@
         <input name="name" type="text" value="{{item.name}}" />
       </div>
       <div class="penalty-group flexrow fw-600 all-caps">
-        <label for="target">{{localize "estate.UI.TARGET_TENSION"}}</label>
+        <label for="target">{{localize "estate.UI.TARGET_TENSION"}} <span title="{{localize "estate.UI.TENSION_HELP"}}"><i class="fa-solid fa-circle-question"></i></span></label>
         <select name="system.actorId">
           {{selectOptions config.actorSelectOptions selected=item.system.actorId valueAttr="id" labelAttr="actor"}}
         </select>

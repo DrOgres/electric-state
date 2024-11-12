@@ -153,6 +153,7 @@
     "UI.DAYS": "Days",
     
     "UI.TARGET_TENSION": "Target of Tension",
+    "UI.TENSION_HELP": "Tension can only be created for characters you have Limited permissions on.",
     "UI.AMOUNT": "Amount",
 
     "UI.HOPE_LOSS": "Hope Loss",

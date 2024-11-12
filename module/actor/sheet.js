@@ -81,7 +81,7 @@ export default class esActorSheet extends ActorSheet {
   activateListeners(html) {
     console.log("E-STATE | Activating Actor Sheet Listeners");
     super.activateListeners(html);
-
+    html.find("input").focusin((ev) => this.onFocusIn(ev));
     html.find(".item-create").click(this._onItemCreate.bind(this));
     html.find(".item-edit").click(this._onItemEdit.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
@@ -106,6 +106,9 @@ export default class esActorSheet extends ActorSheet {
 
 
 
+  onFocusIn(event) {
+    $(event.currentTarget).select();
+  }
 
   async _onChangeTension(event) {
     console.log("E-STATE | Changing Tension", event);
@@ -118,7 +121,7 @@ export default class esActorSheet extends ActorSheet {
       if (tension.system.score > 0) {
         await tension.update({ "system.score": tension.system.score - 1 });
       }
-    } 
+    }
     if (type === "plus") {
       await tension.update({ "system.score": tension.system.score + 1 });
     }
@@ -209,46 +212,49 @@ export default class esActorSheet extends ActorSheet {
             "<p class='item-desc subheader w-100 center red'><b>" +
             game.i18n.localize("estate.UI.BUSTED") +
             "</b></p>";
-        } else { 
-          chatData =
-            "<p class='item-desc subheader'></p>"
+        } else {
+          chatData = "<p class='item-desc subheader'></p>";
         }
 
-        if(item.system.isConsumable){
+        if (item.system.isConsumable) {
           chatData +=
-          "<p class='item-desc subheader'><b>" +
-          game.i18n.localize("estate.UI.USEDFOR") +
-          ": </b> " +
-          game.i18n.localize(eState.useTypeOptions[item.system.useType]) + " &plus; " + item.system.useValue +
-          " | <b>" +
-          game.i18n.localize("estate.UI.DRAWBACK") +
-          ":</b> " +
-          game.i18n.localize(eState.usePenaltyOptions[item.system.usePenaltyType]);
-            if (item.system.usePenalty > 0){
-              chatData += " &minus; " + item.system.usePenalty + "</br>";
-            }
+            "<p class='item-desc subheader'><b>" +
+            game.i18n.localize("estate.UI.USEDFOR") +
+            ": </b> " +
+            game.i18n.localize(eState.useTypeOptions[item.system.useType]) +
+            " &plus; " +
+            item.system.useValue +
+            " | <b>" +
+            game.i18n.localize("estate.UI.DRAWBACK") +
+            ":</b> " +
+            game.i18n.localize(
+              eState.usePenaltyOptions[item.system.usePenaltyType]
+            );
+          if (item.system.usePenalty > 0) {
+            chatData += " &minus; " + item.system.usePenalty + "</br>";
+          }
           chatData +=
-          "</p>"+
-          "<p class='item-desc subheader'><b>" +
-          game.i18n.localize("estate.HEAD.PRICE") +
-          ": $</b> " +
-          item.system.cost +
-          " | <b>" +
-          game.i18n.localize("estate.HEAD.DESC") +
-          ":</b> " +
-          item.system.description +
-          "</br></p>";
+            "</p>" +
+            "<p class='item-desc subheader'><b>" +
+            game.i18n.localize("estate.HEAD.PRICE") +
+            ": $</b> " +
+            item.system.cost +
+            " | <b>" +
+            game.i18n.localize("estate.HEAD.DESC") +
+            ":</b> " +
+            item.system.description +
+            "</br></p>";
         } else {
           chatData =
-          "<p class='item-desc subheader'><b>" +
-          game.i18n.localize("estate.HEAD.PRICE") +
-          ": $</b> " +
-          item.system.cost +
-          " | <b>" +
-          game.i18n.localize("estate.HEAD.DESC") +
-          ":</b> " +
-          item.system.description +
-          "</br></p>";
+            "<p class='item-desc subheader'><b>" +
+            game.i18n.localize("estate.HEAD.PRICE") +
+            ": $</b> " +
+            item.system.cost +
+            " | <b>" +
+            game.i18n.localize("estate.HEAD.DESC") +
+            ":</b> " +
+            item.system.description +
+            "</br></p>";
         }
         break;
       case "drone":
@@ -261,9 +267,13 @@ export default class esActorSheet extends ActorSheet {
           game.i18n.localize("estate.ROLL.DAMAGE") +
           ":</b> " +
           item.system.damage +
-          "</br></p><p class='item-desc subheader'><b>"+
+          "</br></p><p class='item-desc subheader'><b>" +
           game.i18n.localize("estate.UI.RANGE") +
-          ":</b>" + game.i18n.localize(eState.ranges[item.system.range.min]) + " - " + game.i18n.localize(eState.ranges[item.system.range.max]) + "</p>" +
+          ":</b>" +
+          game.i18n.localize(eState.ranges[item.system.range.min]) +
+          " - " +
+          game.i18n.localize(eState.ranges[item.system.range.max]) +
+          "</p>" +
           "<p class='item-desc subheader'><b>" +
           game.i18n.localize("estate.HEAD.PRICE") +
           ": $</b> " +
@@ -632,9 +642,11 @@ export default class esActorSheet extends ActorSheet {
             console.log("E-STATE | No Bliss");
             ui.notifications.info(game.i18n.localize("estate.MSG.NOBLISS"));
             return;
-          } else if (this.actor.system.bliss === this.actor.system.permanent){
+          } else if (this.actor.system.bliss === this.actor.system.permanent) {
             console.log("E-STATE | Permanent Bliss");
-            ui.notifications.info(game.i18n.localize("estate.MSG.PERMANENTBLISS"));
+            ui.notifications.info(
+              game.i18n.localize("estate.MSG.PERMANENTBLISS")
+            );
             return;
           }
           options.testName = game.i18n.localize("estate.ATTRIBUTE.BLISS");
@@ -659,70 +671,72 @@ export default class esActorSheet extends ActorSheet {
           let ncWeapon = false;
           let ncBonus = 0;
           let ncId = "";
-          if(this._isPlayer()){
-          if (item.system.requiresNeurocaster) {
-            ncWeapon = true;
-            const neurocasters = this.actor.items.filter(
-              (item) => item.type === "neurocaster"
-            );
-            console.log("E-STATE | Neurocasters", neurocasters);
-            if (neurocasters.length === 0) {
-              ui.notifications.warn(
-                game.i18n.localize("estate.MSG.NEEDNEUROCASTER")
+          if (this._isPlayer()) {
+            if (item.system.requiresNeurocaster) {
+              ncWeapon = true;
+              const neurocasters = this.actor.items.filter(
+                (item) => item.type === "neurocaster"
               );
-              return;
-            } else {
-              let status = false;
-              for (let neurocaster of neurocasters) {
-                if (neurocaster.flags.isEquipped) {
-                  status = true;
-                  ncId = neurocaster.id;
-                  if (
-                    neurocaster.system.processor.value === 0 ||
-                    neurocaster.system.network.value === 0 ||
-                    neurocaster.system.graphics.value === 0
-                  ) {
-                    ui.notifications.warn(
-                      game.i18n.localize("estate.MSG.BUSTEDCASTER")
-                    );
-                    const update = [
-                      {
-                        _id: neurocaster.id,
-                        "system.isBroken": true,
-                      },
-                    ];
-                    await Item.updateDocuments(update, { parent: this.actor });
-                    return;
-                  }
-                ncBonus += neurocaster.system.network.value;
-                }
-              }
-              if (!status) {
+              console.log("E-STATE | Neurocasters", neurocasters);
+              if (neurocasters.length === 0) {
                 ui.notifications.warn(
-                  game.i18n.localize("estate.MSG.NUEROCASTER")
+                  game.i18n.localize("estate.MSG.NEEDNEUROCASTER")
                 );
                 return;
+              } else {
+                let status = false;
+                for (let neurocaster of neurocasters) {
+                  if (neurocaster.flags.isEquipped) {
+                    status = true;
+                    ncId = neurocaster.id;
+                    if (
+                      neurocaster.system.processor.value === 0 ||
+                      neurocaster.system.network.value === 0 ||
+                      neurocaster.system.graphics.value === 0
+                    ) {
+                      ui.notifications.warn(
+                        game.i18n.localize("estate.MSG.BUSTEDCASTER")
+                      );
+                      const update = [
+                        {
+                          _id: neurocaster.id,
+                          "system.isBroken": true,
+                        },
+                      ];
+                      await Item.updateDocuments(update, {
+                        parent: this.actor,
+                      });
+                      return;
+                    }
+                    ncBonus += neurocaster.system.network.value;
+                  }
+                }
+                if (!status) {
+                  ui.notifications.warn(
+                    game.i18n.localize("estate.MSG.NUEROCASTER")
+                  );
+                  return;
+                }
               }
             }
           }
-        }
-
-          
 
           if (!ncWeapon && item.system.modifier.value <= 0) {
-            ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDWEAPON"));
+            ui.notifications.warn(
+              game.i18n.localize("estate.MSG.BUSTEDWEAPON")
+            );
             return;
           }
 
-          
-          
-          
-
-          if(ncWeapon){
-            options.testName = item.name + " & " + game.i18n.localize("estate.UI.NEUROCASTER");
+          if (ncWeapon) {
+            options.testName =
+              item.name + " & " + game.i18n.localize("estate.UI.NEUROCASTER");
             options.gearDice = ncBonus;
             options.gearUsed.push(ncId);
-            options.gearName =  game.i18n.localize("estate.UI.NEUROCASTER") + " " + game.i18n.localize("estate.UI.NETWORK"); 
+            options.gearName =
+              game.i18n.localize("estate.UI.NEUROCASTER") +
+              " " +
+              game.i18n.localize("estate.UI.NETWORK");
           } else {
             options.gearDice = item.system.modifier.value;
             options.gearUsed.push(itemId);

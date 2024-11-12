@@ -179,7 +179,7 @@ export async function prepareRollDialog(options) {
     console.log(target.document.actorId);
   }
 
-  //TODO if we are rolling bliss we don't need a dialog just roll 1 die and show the result in chat if the result is 1 increase the premanent bliss of the actor by 1 in any case reduce the current bliss by 1
+  //rolling bliss recovery if the result is 1 increase the premanent bliss of the actor by 1 in any case reduce the current bliss by 1
   if (options.type === "bliss") {
     console.log("Bliss Roll", options);
     const formula = "1db";
@@ -281,7 +281,6 @@ export async function prepareRollDialog(options) {
             options.dicePool = drone.system.attributes[options.attribute];
           }
 
-          //TODO prepend [drone] to the test name
           options.testName = "[" + drone.name + "] " + options.testName;
 
           let foundCaster = false;
@@ -349,11 +348,13 @@ export async function prepareRollDialog(options) {
           options.rwPenalty = neurocaster.system.realWorldPenalty;
         }
       }
-      dialogHTML += buildTensionSelectDialog(options, tensions);
+
+      
+      dialogHTML += buildTensionSelectDialog(options, tensions);      
       dialogHTML += buildTalentSelectDialog(options, talents, drones);
       dialogHTML += buildGearSelectDialog(options, gear);
 
-      //TODO if there is a target for the user and the target actorId matches the actorID of any of the tensions use add a check box to allow the user to add the tension to the roll
+     
 
       break;
     case "weapon":
@@ -699,12 +700,26 @@ export async function prepareRollDialog(options) {
               console.log("Checkbox", checkbox.checked);
               neurocasterPenalty = parseInt(checkbox.value);
             }
-
             console.log("Neurocaster Penalty", neurocasterPenalty);
-
             if (neurocasterPenalty > 0) {
               baseDice -= neurocasterPenalty;
             }
+
+
+            let tensionDice = 0;
+            
+            let selectedTensionItemId;
+            if (html.find("#tension")[0] !== undefined) {
+              selectedTensionItemId = html.find("#tension")[0].value;
+            }
+            const tension = tensions.find((i) => i.id === selectedTensionItemId);
+            if (tension !== undefined) {
+              options.tensionUsed = selectedTensionItemId;
+              tensionDice = tension.system.score;
+            }
+          
+         
+
 
             //TODO if there is no gear that matches the attribute this will be an error so we need to check for that
 
@@ -740,18 +755,7 @@ export async function prepareRollDialog(options) {
             }
             console.log("Talent Dice", talentDice);
 
-            let tensionDice = 0;
-            let selectedTensionItemId;
-            if (html.find("#tension")[0] !== undefined) {
-              selectedTensionItemId = html.find("#tension")[0].value;
-            }
-
-            const tension = tensions.find((i) => i.id === selectedTensionItemId);
-            if (tension !== undefined) {
-              options.tensionUsed = selectedTensionItemId;
-              tensionDice = tension.system.score;
-            }
-
+            
 
             let bonus = parseInt(html.find("#bonus")[0].value);
 
@@ -821,10 +825,18 @@ function buildDialogCheckBox(label, value, type) {
 }
 
 function buildTensionSelectDialog(options, tensions) {
+  console.log("Building Tension Select Dialog", options.target);
+  // if we have a target that has a tension just return without building the dialog
+
+  //TODO get the tokens that are targeted and check if they have a tension with the actor if so select that tension as the default
+
   console.log("Building Tension Select Dialog", tensions, options);
   let html = "";
   let selectOptions = "";
   let count = 0;
+  const targets = Array.from(game.user.targets);
+  console.log("Targets", targets);
+
 
   if (tensions.length === 0) {
     return "";
@@ -833,9 +845,22 @@ function buildTensionSelectDialog(options, tensions) {
   for (let tension of tensions) {
     console.log(tension);
     console.log("Tension", tension.system.actorId);
+    let isDefault = false;
+    if(targets.length > 0) {
+      targets.forEach((target) => {
+        console.log("Target", target);
+        if (tension.system.actorId === target.document.actorId) {
+          options.tensionUsed = tension.id;
+          console.log("Tension Used", options.tensionUsed);
+          isDefault = true;
+        }
+      }
+      );
+    }
     count++;
     const actor = game.actors.get(tension.system.actorId);
-    selectOptions += `<option value="${tension.id}">${actor.name} &plus; ${tension.system.score}</option>`;
+    selectOptions += `<option value="${tension.id}" ${isDefault ? "selected" : ""}>${actor.name} &plus; ${tension.system.score}</option>`;
+    // selectOptions += `<option value="${tension.id}" >${actor.name} &plus; ${tension.system.score}</option>`;
   }
 
   if (count === 0) {

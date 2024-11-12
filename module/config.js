@@ -22,7 +22,7 @@ eState.modifierTarget = {
   strength: "estate.ATTRIBUTE.STR",
   wits: "estate.ATTRIBUTE.WIT",
   empathy: "estate.ATTRIBUTE.EMP",
-  damage: "estate.UI.DAMAGE",
+  damage: "estate.ROLL.DAMAGE",
   weapon: "estate.UI.WEAPON",
   hope: "estate.ATTRIBUTE.HOPE",
   health: "estate.ATTRIBUTE.HEALTH",

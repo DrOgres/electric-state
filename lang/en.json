@@ -154,6 +154,8 @@
     
     "UI.TARGET_TENSION": "Target of Tension",
     "UI.TENSION_HELP": "Tension can only be created for characters you have Limited permissions on.",
+    "UI.TENSION_DOWN": "Decrease Tension",
+    "UI.TENSION_UP": "Increase Tension",
     "UI.AMOUNT": "Amount",
 
     "UI.HOPE_LOSS": "Hope Loss",

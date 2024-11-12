@@ -43,7 +43,10 @@
             <div class="item-row grid cols-4-25 fs-300 fw-400 middle w-100 border-bottom-thin">
                 <div>{{#actorName item.system.actorId}}{{/actorName}}</div>
                 <div class="type ">&nbsp;</div>
-                <div class="stat center">{{item.system.score}}</div>
+                <div class="stat center"><span class="change-tension" data-item-id="{{item._id}}" data-type="minus" title="{{localize "estate.UI.TENSION_DOWN"}}">
+                    <i class="fa-solid fa-square-minus"></i></span> {{item.system.score}} <span class="change-tension" data-item-id="{{item._id}}" data-type="plus" title="{{localize "estate.UI.TENSION_UP"}}">
+                    <i class="fa-solid fa-square-plus"></i></span>
+                </div>
                 <div class="button-group grid two-col mw-50px middle" data-item-id="{{item._id}}">
                     <div class="item-edit" data-item-id="{{item._id}}" title="{{localize "estate.UI.EDIT"}}"><i class="fa-solid fa-pen-to-square"></i>
                     </div>

@@ -101,6 +101,24 @@ export default class esActorSheet extends ActorSheet {
     html.find(".to-chat").click(this._onItemToChat.bind(this));
     html.find(".show-details").click(this._onShowDetails.bind(this));
     html.find(".toggle-permedit").click(this._onTogglePermEdit.bind(this));
+    html.find(".change-tension").click(this._onChangeTension.bind(this));
+  }
+
+  async _onChangeTension(event) {
+    console.log("E-STATE | Changing Tension", event);
+    event.preventDefault();
+    const actor = this.actor;
+    const tension = actor.items.get(event.currentTarget.dataset.itemId);
+    const type = event.currentTarget.dataset.type;
+
+    if (type === "minus") {
+      if (tension.system.score > 0) {
+        await tension.update({ "system.score": tension.system.score - 1 });
+      }
+    } 
+    if (type === "plus") {
+      await tension.update({ "system.score": tension.system.score + 1 });
+    }
   }
 
   _onTogglePermEdit(event) {

@@ -28,7 +28,8 @@ Version History:
 v0.22.0
 - Changed Usable item UI to make use consistent with rollable items now clicking the item name will use it
 - UI: Standardized tooltips and added where needed for clarity
-- UI: added info tooltip to tension list to help with clarity on Tension item set up requirements [#30](https://github.com/DrOgres/electric-state/issues/30) and [#34](https://github.com/DrOgres/electric-state/issues/34)    
+- UI: added info tooltip to tension list to help with clarity on Tension item set up requirements [#30](https://github.com/DrOgres/electric-state/issues/30) and [#34](https://github.com/DrOgres/electric-state/issues/34) 
+- UI: added plus and minus buttons to tension score display to allow players to easily adjust the value of these without opening the item editor.  should also help with issues from ownership as described in [#34](https://github.com/DrOgres/electric-state/issues/34)    
 
 v0.21.0
 - Cosmetic: added fuel guage to vehicle sheet

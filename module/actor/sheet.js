@@ -104,9 +104,7 @@ export default class esActorSheet extends ActorSheet {
     html.find(".change-tension").click(this._onChangeTension.bind(this));
   }
 
-  onFocusIn(event) {
-    $(event.currentTarget).select();
-  }
+
 
 
   async _onChangeTension(event) {

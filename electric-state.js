@@ -58,7 +58,7 @@ Hooks.once("init", function () {
     return result;
   });
 
-  Handlebars.registerHelper("calculate", function (a, b, operator) {
+  Handlebars.registerHelper("calculate", function (a, b, operator) {    
     switch (operator) {
       case "+":
         return a + b;
@@ -67,8 +67,14 @@ Hooks.once("init", function () {
       case "*":
         return a * b;
       case "/":
+        if ( b === 0) {
+          return 0;
+        }
         return a / b;
       case "%":
+        if ( b === 0) {
+          return 0 + "%";
+        }
         return Math.round((a / b)*100) + "%";
     }
   });

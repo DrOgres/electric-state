@@ -30,7 +30,7 @@ v0.22.0
 - UI: added info tooltip to tension list to help with clarity on Tension item set up requirements [#30](https://github.com/DrOgres/electric-state/issues/30) and [#34](https://github.com/DrOgres/electric-state/issues/34) 
 - UI: added plus and minus buttons to tension score display to allow players to easily adjust the value of these without opening the item editor.  should also help with issues from ownership as described in [#34](https://github.com/DrOgres/electric-state/issues/34)   
 - Target token to indicate opposed rolls.
-    - If a token targeted the source of that target will now be the default selection in the roll dialog for Tension. 
+    - If a token is targeted the source of that target will now be the default selection in the roll dialog for Tension. 
 
 v0.21.0
 - Cosmetic: added fuel guage to vehicle sheet

@@ -28,6 +28,7 @@ Version History:
 v0.22.0
 - Changed Usable item UI to make use consistent with rollable items now clicking the item name will use it
 - UI: Standardized tooltips and added where needed for clarity
+- UI: added info tooltip to tension list to help with clarity on Tension item set up requirements [#30](https://github.com/DrOgres/electric-state/issues/30) and [#34](https://github.com/DrOgres/electric-state/issues/34)    
 
 v0.21.0
 - Cosmetic: added fuel guage to vehicle sheet

@@ -211,6 +211,7 @@
 
   "CHAT.SUCCESS": "Successes",
   "YZUR.CHAT.ROLL.Push": "Push",
+  "YZUR.CHAT.ROLL.DAMAGE": "Apply Damage",
   "YZUR.DIETYPES.SkillDie": "Success Count",
   "YZUR.DIETERMS.SkillDie": "Skill Success Count",
   "YZUR.DIETERMS.GearDie": "Gear Success Count",

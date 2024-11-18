@@ -1,15 +1,15 @@
 <div class="dice-infos">
-   
- 
+
+
   {{# if (eq roll.options.type "neurocaster")}}
   {{#if (eq roll.options.actorType "player")}}
   {{#unless (gt roll.successCount 0)}}
   <div class="nc-fail-container center margin-small padding-small border-thin flexcol ">
-      <div class="bliss-cost center grid col-80-20 middle fw-600 fs-200 space-between w-100 red">
-       <span class="label subheader">{{localize "estate.UI.BLISS_COST"}}: </span>
-       <span class="result"> 1 </span>
-     </div>
-     </div>
+    <div class="bliss-cost center grid col-80-20 middle fw-600 fs-200 space-between w-100 red">
+      <span class="label subheader">{{localize "estate.UI.BLISS_COST"}}: </span>
+      <span class="result"> 1 </span>
+    </div>
+  </div>
   {{/unless}}
   {{/if}}
   {{/if}}
@@ -36,46 +36,51 @@
 
 
   {{#if (eq roll.game 'es')}}
+
   {{#if (gt roll.options.damage 0)}}
-  {{#unless (eq roll.options.type "explosive")}}
-  <div class="roll-damage center fs-400 fw-700 margin-small">
+   {{#unless (eq roll.options.type "explosive")}}
+     <div class="roll-damage center fs-400 fw-700 margin-small">
+       <span class="label">{{localize "estate.ROLL.DAMAGE"}}: </span>
+       {{#if (gt roll.successCount 1)}}
+         <span class="result">
+           {{calculate roll.options.damage (calculate roll.successCount 1 "-") "+"}} &nbsp;
+           (
+           {{roll.options.damage}} &plus; {{calculate roll.successCount 1 "-"}}
+           )
+         </span>
+       {{/if}}
+       {{#unless (gt roll.successCount 1)}}
+          <span class="result"> {{roll.options.damage}} </span>
+       {{/unless}}
+     </div>
+   {{/unless}}
 
-
-
-    <span class="label">{{localize "estate.ROLL.DAMAGE"}}: </span>
-    {{#if (gt roll.successCount 1)}}
-    <span class="result">
-      {{calculate roll.options.damage (calculate roll.successCount 1 "-") "+"}} &nbsp;
-      (
-      {{roll.options.damage}} &plus; {{calculate roll.successCount 1 "-"}}
-      )
-    </span>
-    {{/if}}
-
-
-
-    {{#unless (gt roll.successCount 1)}}
-    <span class="result"> {{roll.options.damage}} </span>
-    {{/unless}}
-  </div>
-  {{/unless}}
   {{#if (eq roll.options.type "explosive")}}
-  <div class="roll-damage center fs-400 fw-700 margin-small">
-    <span class="label">{{localize "estate.UI.BLASTDAMAGE"}}: </span>
-    {{#if (gt roll.successCount 1)}}
-    <span class="result"> {{calculate roll.options.damage (calculate roll.successCount 1 "-") "+"}} &nbsp;
-      (
-      {{roll.options.damage}}
-      &plus; {{calculate roll.successCount 1 "-"}}
-      )
-    </span>
-    {{/if}}
-    {{#unless (gt roll.successCount 1)}}
-    <span class="result"> {{roll.options.damage}} </span>
-    {{/unless}}
-  </div>
+    <div class="roll-damage center fs-400 fw-700 margin-small">
+      <span class="label">{{localize "estate.UI.BLASTDAMAGE"}}: </span>
+      {{#if (gt roll.successCount 1)}}
+       <span class="result"> {{calculate roll.options.damage (calculate roll.successCount 1 "-") "+"}} &nbsp;
+        (
+        {{roll.options.damage}}
+        &plus; {{calculate roll.successCount 1 "-"}}
+        )
+       </span>
+      {{/if}}
+      {{#unless (gt roll.successCount 1)}}
+        <span class="result"> {{roll.options.damage}} </span>
+       {{/unless}}
+    
+    </div>
   {{/if}}
+  <div class="dice-buttons" data-owner-id="{{roll.owner}}">
+      <button class="dice-button apply-damage" data-action="apply-damage"
+        data-damage="{{calculate roll.options.damage (calculate roll.successCount 1 " -") "+" }}"
+        data-owner-id="{{roll.owner}}">{{localize
+        "YZUR.CHAT.ROLL.DAMAGE"}}</button>
+    </div>
   {{/if}}
+  
+
   {{/if}}
 
 </div>

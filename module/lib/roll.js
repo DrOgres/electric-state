@@ -1215,7 +1215,43 @@ function buildDivHtmlDialog(divContent) {
 
 Hooks.on("renderChatLog", (app, html, data) => {
   html.on("click", ".dice-button.push", _onPush);
+  html.on("click", ".dice-button.apply-damage", _onApplyDamage);
 });
+
+
+async function _onApplyDamage(event) {
+  console.log("Applying Damage");
+  event.preventDefault();
+  let chatCard = event.currentTarget.closest(".chat-message");
+  let messageId = chatCard.dataset.messageId;
+  let message = game.messages.get(messageId);
+  let actor = game.actors.get(message.speaker.actor);
+  let sheet = actor.sheet;
+
+  let roll = message.rolls[0].duplicate();
+
+  console.log("Roll", roll);
+  //get the user that clicked the button, if they are the owner of the actor or tHE GM, find any targeted tokens.
+  let user = game.user;
+  let targets = Array.from(game.user.targets);
+  console.log("User", user);
+  console.log("Targets", targets);
+
+  // if the targets is more than one check to see if the damage source is an explosion if so apply to all targets
+  // if not do nothing and warn the user that they can only apply damage to one target at a time
+
+  if (targets.length > 1) {
+    if (roll.options.type === "explosive") {
+      console.log("Explosive Damage", roll);
+    } else {
+      ui.notifications.warn(
+        game.i18n.localize("estate.MSG.DAMAGEONE")
+      );
+      return;
+    }
+  }
+  
+}
 
 async function _onPush(event) {
   event.preventDefault();

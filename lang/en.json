@@ -194,6 +194,7 @@
     "MSG.VEHICLE_WRECKED": "The Vehicle is Wrecked, it won't drive",
     "MSG.BUSTEDDRONE": "Drone is busted, you must repair it before you can use it",
     "MSG.BUSTEDWEAPON": "Weapon is busted, you must repair it before you can use it",
+    "MSG.DAMAGEONE": "This Damage Source cannot be applied to more than one target",
     
 
     

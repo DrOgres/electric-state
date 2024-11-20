@@ -25,7 +25,7 @@ TODO LIST:
 Version History:
 
 v0.23.0
-
+- UI: Added button to reset Health and Hope to maximums
 
 v0.22.0
 - Changed Usable item UI to make use consistent with rollable items now clicking the item name will use it

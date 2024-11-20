@@ -102,6 +102,25 @@ export default class esActorSheet extends ActorSheet {
     html.find(".show-details").click(this._onShowDetails.bind(this));
     html.find(".toggle-permedit").click(this._onTogglePermEdit.bind(this));
     html.find(".change-tension").click(this._onChangeTension.bind(this));
+    html.find(".set-max").click(this._onSetMax.bind(this));
+  }
+
+
+  async _onSetMax(event) {
+    console.log("E-STATE | Setting Max", event);
+    event.preventDefault();
+    const actor = this.actor;
+    const type = event.currentTarget.dataset.stat;
+    console.log("E-STATE | Type", type, actor); 
+
+    const stat = actor.system[type].value;
+    const max = actor.system[type].max;
+    if (stat === max) {
+      return;
+    } else {
+      await actor.update({ [`system.${type}.value`]: max });
+    }
+
   }
 
 
@@ -135,6 +154,7 @@ export default class esActorSheet extends ActorSheet {
     actor.setFlag("world", "isPermEdit", !editStatus);
   }
 
+  //@override
   async close() {
     console.log("E-STATE | Closing Actor Sheet", this);
     //if the user is not the owner of the actor do not save the data

@@ -1225,14 +1225,25 @@ async function _onApplyDamage(event) {
   let chatCard = event.currentTarget.closest(".chat-message");
   let messageId = chatCard.dataset.messageId;
   let message = game.messages.get(messageId);
+  console.log("Message", message);
   let actor = game.actors.get(message.speaker.actor);
-  let sheet = actor.sheet;
+  console.log("Actor", actor);
+  if (actor === null || actor === undefined) {
+    ui.notifications.warn( game.i18n.localize("estate.MSG.NOACTOR")); 
+    console.log("No Actor");
+    return;
+  }
 
   let roll = message.rolls[0].duplicate();
 
   console.log("Roll", roll);
   //get the user that clicked the button, if they are the owner of the actor or tHE GM, find any targeted tokens.
   let user = game.user;
+  if (!actor.isOwner || !user.isGM) {
+    console.log("NOT Owner or GM");
+    return;
+  }
+
   let targets = Array.from(game.user.targets);
   console.log("User", user);
   console.log("Targets", targets);
@@ -1243,6 +1254,40 @@ async function _onApplyDamage(event) {
   if (targets.length > 1) {
     if (roll.options.type === "explosive") {
       console.log("Explosive Damage", roll);
+      const damage = roll.options.damage;
+      console.log("Damage", damage);
+      for (let target of targets){
+        const token = canvas.tokens.get(target.id);
+        const actor = token.actor;
+
+        console.log("Target", target);
+        console.log("Token", token);
+        console.log("Actor", actor);
+
+
+        switch (actor.type) {
+          case "player":
+          case "npc":
+            let health = actor.system.health.value;
+            health -= damage;
+            if (health < 0) {
+              health = 0;
+            }
+            await actor.update({ "system.health.value": health });
+            break;
+          case "vehicle":
+          case "robot":
+            let hull = actor.system.hull.value;
+            hull -= damage;
+            if (hull < 0) {
+              hull = 0;
+            }
+            await actor.update({ "system.hull.value": hull });
+            break;
+          }
+        
+
+      }
     } else {
       ui.notifications.warn(
         game.i18n.localize("estate.MSG.DAMAGEONE")
@@ -1250,7 +1295,9 @@ async function _onApplyDamage(event) {
       return;
     }
   }
-  
+
+  // 
+
 }
 
 async function _onPush(event) {

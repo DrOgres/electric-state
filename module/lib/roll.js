@@ -205,7 +205,7 @@ export async function prepareRollDialog(options) {
       actorType: actor.type,
       formula: formula,
       type: options.type,
-      maxPush: 0
+      maxPush: 0,
     };
 
     let r;
@@ -215,7 +215,6 @@ export async function prepareRollDialog(options) {
     await r.evaluate();
     console.log("Roll", r);
 
-
     console.log("Bliss Roll Result", r.result);
 
     if (Number(r.result) === 1) {
@@ -223,14 +222,21 @@ export async function prepareRollDialog(options) {
       let permanent = actor.system.permanent;
       bliss--;
       permanent++;
-      if (bliss < permanent) { bliss = permanent; }
-      await actor.update({ "system.bliss": bliss, "system.permanent": permanent } );
+      if (bliss < permanent) {
+        bliss = permanent;
+      }
+      await actor.update({
+        "system.bliss": bliss,
+        "system.permanent": permanent,
+      });
     } else {
       let bliss = actor.system.bliss;
       let permanent = actor.system.permanent;
       bliss--;
-      if (bliss < permanent) { bliss = permanent; }
-      await actor.update({ "system.bliss": bliss } );
+      if (bliss < permanent) {
+        bliss = permanent;
+      }
+      await actor.update({ "system.bliss": bliss });
     }
     await r.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),
@@ -239,8 +245,6 @@ export async function prepareRollDialog(options) {
 
     return;
   }
-
-
 
   const actor = options.sheet.object;
   console.log(actor);
@@ -349,12 +353,9 @@ export async function prepareRollDialog(options) {
         }
       }
 
-      
-      dialogHTML += buildTensionSelectDialog(options, tensions);      
+      dialogHTML += buildTensionSelectDialog(options, tensions);
       dialogHTML += buildTalentSelectDialog(options, talents, drones);
       dialogHTML += buildGearSelectDialog(options, gear);
-
-     
 
       break;
     case "weapon":
@@ -641,8 +642,6 @@ export async function prepareRollDialog(options) {
       break;
   }
 
-
-
   let bonusHtml = buildInputDialog(
     game.i18n.localize("estate.ROLL.MODIFIER"),
     options.bonusDefault,
@@ -705,21 +704,19 @@ export async function prepareRollDialog(options) {
               baseDice -= neurocasterPenalty;
             }
 
-
             let tensionDice = 0;
-            
+
             let selectedTensionItemId;
             if (html.find("#tension")[0] !== undefined) {
               selectedTensionItemId = html.find("#tension")[0].value;
             }
-            const tension = tensions.find((i) => i.id === selectedTensionItemId);
+            const tension = tensions.find(
+              (i) => i.id === selectedTensionItemId
+            );
             if (tension !== undefined) {
               options.tensionUsed = selectedTensionItemId;
               tensionDice = tension.system.score;
             }
-          
-         
-
 
             //TODO if there is no gear that matches the attribute this will be an error so we need to check for that
 
@@ -728,9 +725,7 @@ export async function prepareRollDialog(options) {
               selectedGearItemId = html.find("#gear")[0].value;
             }
 
-           
             const item = gear.find((i) => i.id === selectedGearItemId);
-            
 
             console.log("Item", item);
             //TODO if the gear selected is consumable we need to reduce the uses value by 1
@@ -754,8 +749,6 @@ export async function prepareRollDialog(options) {
               console.log("Talent", talent);
             }
             console.log("Talent Dice", talentDice);
-
-            
 
             let bonus = parseInt(html.find("#bonus")[0].value);
 
@@ -785,8 +778,6 @@ export async function prepareRollDialog(options) {
 
   dialog.render(true);
 }
-
-
 
 function buildDialogCheckBox(label, value, type) {
   let sign = "";
@@ -837,7 +828,6 @@ function buildTensionSelectDialog(options, tensions) {
   const targets = Array.from(game.user.targets);
   console.log("Targets", targets);
 
-
   if (tensions.length === 0) {
     return "";
   }
@@ -846,7 +836,7 @@ function buildTensionSelectDialog(options, tensions) {
     console.log(tension);
     console.log("Tension", tension.system.actorId);
     let isDefault = false;
-    if(targets.length > 0) {
+    if (targets.length > 0) {
       targets.forEach((target) => {
         console.log("Target", target);
         if (tension.system.actorId === target.document.actorId) {
@@ -854,12 +844,13 @@ function buildTensionSelectDialog(options, tensions) {
           console.log("Tension Used", options.tensionUsed);
           isDefault = true;
         }
-      }
-      );
+      });
     }
     count++;
     const actor = game.actors.get(tension.system.actorId);
-    selectOptions += `<option value="${tension.id}" ${isDefault ? "selected" : ""}>${actor.name} &plus; ${tension.system.score}</option>`;
+    selectOptions += `<option value="${tension.id}" ${
+      isDefault ? "selected" : ""
+    }>${actor.name} &plus; ${tension.system.score}</option>`;
     // selectOptions += `<option value="${tension.id}" >${actor.name} &plus; ${tension.system.score}</option>`;
   }
 
@@ -886,9 +877,6 @@ function buildTensionSelectDialog(options, tensions) {
     </ul>`;
   return html;
 }
-
-    
-
 
 function buildGearSelectDialog(options, gear) {
   console.log("Building Gear Select Dialog", gear);
@@ -1218,26 +1206,18 @@ Hooks.on("renderChatLog", (app, html, data) => {
   html.on("click", ".dice-button.apply-damage", _onApplyDamage);
 });
 
-
 async function _onApplyDamage(event) {
   console.log("Applying Damage");
   event.preventDefault();
   let chatCard = event.currentTarget.closest(".chat-message");
   let messageId = chatCard.dataset.messageId;
   let message = game.messages.get(messageId);
-  console.log("Message", message);
   let actor = game.actors.get(message.speaker.actor);
-  console.log("Actor", actor);
   if (actor === null || actor === undefined) {
-    ui.notifications.warn( game.i18n.localize("estate.MSG.NOACTOR")); 
-    console.log("No Actor");
+    ui.notifications.warn(game.i18n.localize("estate.MSG.NOACTOR"));
     return;
   }
-
   let roll = message.rolls[0].duplicate();
-
-  console.log("Roll", roll);
-  //get the user that clicked the button, if they are the owner of the actor or tHE GM, find any targeted tokens.
   let user = game.user;
   if (!actor.isOwner || !user.isGM) {
     console.log("NOT Owner or GM");
@@ -1245,59 +1225,43 @@ async function _onApplyDamage(event) {
   }
 
   let targets = Array.from(game.user.targets);
-  console.log("User", user);
-  console.log("Targets", targets);
-
-  // if the targets is more than one check to see if the damage source is an explosion if so apply to all targets
-  // if not do nothing and warn the user that they can only apply damage to one target at a time
 
   if (targets.length > 1) {
     if (roll.options.type === "explosive") {
       console.log("Explosive Damage", roll);
-      const damage = roll.options.damage;
-      console.log("Damage", damage);
-      for (let target of targets){
-        const token = canvas.tokens.get(target.id);
-        const actor = token.actor;
-
-        console.log("Target", target);
-        console.log("Token", token);
-        console.log("Actor", actor);
-
-
-        switch (actor.type) {
-          case "player":
-          case "npc":
-            let health = actor.system.health.value;
-            health -= damage;
-            if (health < 0) {
-              health = 0;
-            }
-            await actor.update({ "system.health.value": health });
-            break;
-          case "vehicle":
-          case "robot":
-            let hull = actor.system.hull.value;
-            hull -= damage;
-            if (hull < 0) {
-              hull = 0;
-            }
-            await actor.update({ "system.hull.value": hull });
-            break;
-          }
-        
-
-      }
     } else {
-      ui.notifications.warn(
-        game.i18n.localize("estate.MSG.DAMAGEONE")
-      );
+      ui.notifications.warn(game.i18n.localize("estate.MSG.DAMAGEONE"));
       return;
     }
   }
 
-  // 
-
+  let damage = roll.options.damage;
+  const successCount = roll.successCount;
+  damage += successCount-1;
+  for (let target of targets) {
+    const token = canvas.tokens.get(target.id);
+    const actor = token.actor;
+    switch (actor.type) {
+      case "player":
+      case "npc":
+        let health = actor.system.health.value;
+        health -= damage;
+        if (health < 0) {
+          health = 0;
+        }
+        await actor.update({ "system.health.value": health });
+        break;
+      case "vehicle":
+      case "robot":
+        let hull = actor.system.hull.value;
+        hull -= damage;
+        if (hull < 0) {
+          hull = 0;
+        }
+        await actor.update({ "system.hull.value": hull });
+        break;
+    }
+  }
 }
 
 async function _onPush(event) {

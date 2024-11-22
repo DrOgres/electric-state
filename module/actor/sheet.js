@@ -333,7 +333,7 @@ export default class esActorSheet extends ActorSheet {
         case "talent":
         case "trauma":
         chatData =
-          "<div class='item-desc subheader flexrow span-all'><b>" +
+          "<div class='item-desc subheader flexrow span-all grid col-30-70'><b>" +
           game.i18n.localize("estate.HEAD.DESC") +
           ":</b> <span>" +
           item.system.description +

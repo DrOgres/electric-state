@@ -6,7 +6,8 @@
                 {{localize "estate.ATTRIBUTE.HEALTH"}}
                 <div class="input-container mi-small center flexrow"> <input type="number" name="system.health.value"
                         value="{{actor.system.health.value}}" style="width: 50px" data-dtype="Number" />
-                    <div class="set-max clickable fs-120 padding-inline-small  mw-25px text-left" title="{{localize "estate.UI.SETMAXHEALTH"}}" data-stat="health">
+                    <div class="set-max clickable fs-120 padding-inline-small  mw-25px text-left" title="{{localize "
+                        estate.UI.SETMAXHEALTH"}}" data-stat="health">
                         <i class="fa-solid fa-square-up"></i>
                     </div>
                 </div>
@@ -20,7 +21,8 @@
                 <div class="input-container mi-small center flexrow">
                     <input type="number" name="system.hope.value" value="{{actor.system.hope.value}}"
                         data-dtype="Number" style="width: 50px" />
-                    <div class="set-max clickable fs-120 padding-inline-small mw-25px text-left" title="{{localize "estate.UI.SETMAXHOPE"}}" data-stat="hope">
+                    <div class="set-max clickable fs-120 padding-inline-small mw-25px text-left" title="{{localize "
+                        estate.UI.SETMAXHOPE"}}" data-stat="hope">
                         <i class="fa-solid fa-square-up"></i>
                     </div>
                 </div>
@@ -37,8 +39,7 @@
                     <input type="number" name="system.bliss" value="{{actor.system.bliss}}" data-dtype="Number" />
                 </div>
             </div>
-            <div class="recovery mw-50px clickable rollable middle center" title="{{localize "
-                estate.UI.BLISS_RECOVERY"}}" data-type="bliss">
+            <div class="recovery mw-50px clickable rollable middle center" title="{{localize "estate.UI.BLISS_RECOVERY"}}" data-type="bliss">
                 <i class="fas fa-dice-d6"></i>
             </div>
             <div class="flexrow all-caps fw-700 border-bottom-thin align-bottom mi-small">
@@ -101,8 +102,11 @@
                     </div>
                     {{#each items as |trauma|}}
                     {{#if trauma.isTrauma}}
-                    <div class="item grid cols-4-25 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin"
+                    <div class="item grid cols-5-20 all-caps fw-500 fs-200 align-start w-100 border-bottom-thin"
                         data-item-id="{{trauma._id}}">
+                        <div class="show-details mw-25px clickable" data-item-id="{{item._id}}">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
                         <div class="item overflow-elipsis" data-item-id="{{trauma._id}}">{{trauma.name}}</div>
                         <div class="modify text-left overflow-elipsis">{{trauma.system.type}}</div>
                         <div class="mod center">&minus;{{trauma.system.modifier.value}}</div>

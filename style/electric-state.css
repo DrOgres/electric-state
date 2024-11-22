@@ -330,7 +330,7 @@ ul.leaders span + span {
 }
 
 .cols-5-20 {
-  grid-template-columns: repeat(5, 20%);
+  grid-template-columns: auto repeat(4, 1fr);
 }
 
 .col-160-1fr {

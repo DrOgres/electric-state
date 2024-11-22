@@ -204,6 +204,7 @@ export default class esActorSheet extends ActorSheet {
     const div = $(event.currentTarget).parents(".item");
     console.log("E-STATE | Div", div);
     const item = this.actor.items.get(div.data("itemId"));
+    console.log("ESTATE | Actor ", this.actor);
     console.log("E-STATE | Item", item);
 
     const type = item.type;
@@ -321,6 +322,17 @@ export default class esActorSheet extends ActorSheet {
           item.system.description +
           "</br></p>";
         break;
+        case "tension":
+        case "trait":
+        case "talent":
+        case "trauma":
+        chatData =
+          "<div class='item-desc subheader flexrow'><b>" +
+          game.i18n.localize("estate.HEAD.DESC") +
+          ":</b> <span>" +
+          item.system.description +
+          "</span></div>";
+          break
     }
 
     if (chatData === null) {

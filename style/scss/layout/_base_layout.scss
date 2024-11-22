@@ -180,6 +180,21 @@
     padding: 10px;
   }
 
+  .es-button{
+    border: 5px solid $text-color;
+    border-radius: 0px;
+    background: $background-color;
+    margin: 2px;
+    font-weight: 700;
+    font-size: medium;
+    font-variant: small-caps;
+
+    &:hover {
+      background: $background-color-highlight;
+      color: $highlight-interactive-element;
+    }
+  }
+
   .border-thick {
     border: 5px solid $text-color;
   }
@@ -397,3 +412,6 @@
   .mw-fit{
     max-width: fit-content;
   }
+
+
+  

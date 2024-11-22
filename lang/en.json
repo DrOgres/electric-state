@@ -199,8 +199,6 @@
     "MSG.DAMAGEONE": "This Damage Source cannot be applied to more than one target",
     "MSG.NOACTOR": "The roll was not made from a valid actor sheet",
     
-
-    
     "ROLL.BASE.POOL": "Base Dice Pool",
     "ROLL.TEST": "Test",
     "ROLL.ROLL": "Roll",

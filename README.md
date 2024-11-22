@@ -13,7 +13,6 @@ please put any and all bug reports and feature requests in the issues of this re
 TODO LIST:
 
 - Player Character Sheets
-    - Target to allow damage to be applied for attacks
     - Item Detail roll Down for: Talents, Injuries, Traumas, Traits and Tension
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
@@ -26,6 +25,7 @@ Version History:
 
 v0.23.0
 - UI: Added button to reset Health and Hope to maximums
+- UI: Damage can be applied to targeted tokens via chat card.
 
 v0.22.0
 - Changed Usable item UI to make use consistent with rollable items now clicking the item name will use it

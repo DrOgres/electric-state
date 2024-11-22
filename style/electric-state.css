@@ -453,6 +453,20 @@ ul.leaders span + span {
   padding: 10px;
 }
 
+.es-button {
+  border: 5px solid #2c2e35;
+  border-radius: 0px;
+  background: #f0f7f5;
+  margin: 2px;
+  font-weight: 700;
+  font-size: medium;
+  font-variant: small-caps;
+}
+.es-button:hover {
+  background: #cdeef0;
+  color: #ff2121;
+}
+
 .border-thick {
   border: 5px solid #2c2e35;
 }

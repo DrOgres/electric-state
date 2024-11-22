@@ -92,6 +92,7 @@ export function prepareDeathRollDialog(options) {
       buttons: {
         roll: {
           icon: '<i class="fas fa-dice-d6"></i>',
+          class: "es-button",
           label: game.i18n.localize("estate.ROLL.ROLL"),
           callback: async () => {
             console.log("Rolling", options);
@@ -668,6 +669,7 @@ export async function prepareRollDialog(options) {
         roll: {
           icon: '<i class="fas fa-dice-d6"></i>',
           label: game.i18n.localize("estate.ROLL.ROLL"),
+          class: "es-button",
           callback: (html) => {
             console.log("Rolling", options);
             let baseDice = options.dicePool - options.penalty;

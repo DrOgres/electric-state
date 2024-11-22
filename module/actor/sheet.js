@@ -103,8 +103,14 @@ export default class esActorSheet extends ActorSheet {
     html.find(".toggle-permedit").click(this._onTogglePermEdit.bind(this));
     html.find(".change-tension").click(this._onChangeTension.bind(this));
     html.find(".set-max").click(this._onSetMax.bind(this));
+    html.find(".item-field-edit").change(this._updateItemData.bind(this));
   }
 
+
+  async _updateItemData(event) {
+    console.log("E-STATE | Updating Item Data", event);
+    event.preventDefault();
+  }
 
   async _onSetMax(event) {
     console.log("E-STATE | Setting Max", event);
@@ -327,7 +333,7 @@ export default class esActorSheet extends ActorSheet {
         case "talent":
         case "trauma":
         chatData =
-          "<div class='item-desc subheader flexrow'><b>" +
+          "<div class='item-desc subheader flexrow span-all'><b>" +
           game.i18n.localize("estate.HEAD.DESC") +
           ":</b> <span>" +
           item.system.description +
@@ -344,7 +350,7 @@ export default class esActorSheet extends ActorSheet {
       sum.slideUp(200, () => sum.remove());
     } else {
       console.log("E-STATE | Not Expanded", chatData);
-      let sum = $(`<div class="item-summary bg-hatch2">${chatData}</div>`);
+      let sum = $(`<div class="item-summary bg-hatch2 span-all">${chatData}</div>`);
       div.append(sum.hide());
       console.log("E-STATE | Sum", sum);
       console.log("E-STATE | Div", div);

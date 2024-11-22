@@ -287,6 +287,12 @@ ul.leaders span + span {
   white-space: nowrap;
 }
 
+.span-all {
+  -moz-column-span: all;
+       column-span: all;
+  grid-column: 1/-1;
+}
+
 .gap-x-small {
   gap: 1px;
 }

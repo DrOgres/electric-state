@@ -207,11 +207,23 @@ export default class esActorSheet extends ActorSheet {
 
   async _onShowDetails(event) {
     console.log("E-STATE | Showing Details", event);
+    let chevron = event.currentTarget.children[0];
+    console.log("E-STATE | Chevron", chevron);
     const div = $(event.currentTarget).parents(".item");
     console.log("E-STATE | Div", div);
     const item = this.actor.items.get(div.data("itemId"));
     console.log("ESTATE | Actor ", this.actor);
     console.log("E-STATE | Item", item);
+
+    // change the class of chevron from fa-chevron-down to fa-chevron-up or vice versa
+    if (chevron.classList.contains("fa-chevron-down")) {
+      chevron.classList.remove("fa-chevron-down");
+      chevron.classList.add("fa-chevron-up");
+    } else {
+      chevron.classList.remove("fa-chevron-up");
+      chevron.classList.add("fa-chevron-down");
+    }
+
 
     const type = item.type;
     let chatData = null;

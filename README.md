@@ -13,7 +13,7 @@ please put any and all bug reports and feature requests in the issues of this re
 TODO LIST:
 
 - Player Character Sheets
-    - Item Detail roll Down for: Injuries
+
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
@@ -26,7 +26,7 @@ Version History:
 v0.23.0
 - UI: Added button to reset Health and Hope to maximums
 - UI: Damage can be applied to targeted tokens via chat card.
-- Added Item Detail roll down for Tension, Talents, Trauma and Traits
+- Added Item Detail roll down for Tension, Talents, Injury, Trauma and Traits
 
 v0.22.0
 - Changed Usable item UI to make use consistent with rollable items now clicking the item name will use it

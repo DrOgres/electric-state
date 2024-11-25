@@ -333,6 +333,10 @@ ul.leaders span + span {
   grid-template-columns: auto repeat(4, 1fr);
 }
 
+.cols-6-20 {
+  grid-template-columns: auto repeat(5, 1fr);
+}
+
 .col-160-1fr {
   grid-template-columns: 160px 1fr;
 }

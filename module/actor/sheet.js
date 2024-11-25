@@ -350,7 +350,20 @@ export default class esActorSheet extends ActorSheet {
           ":</b> <span>" +
           item.system.description +
           "</span></div>";
-          break
+          break;
+        case "injury":
+          chatData = 
+          "<div class='item-desc subheader flexrow span-all grid '><div><b>" +
+          game.i18n.localize("estate.UI.TIMETO") + " :</b> <span>" +
+          item.system.healingTime +
+          "</span> <span>" +
+          game.i18n.localize("estate.UI.DAYS")
+          + "</span> </div><div>" + "<b>" +
+          game.i18n.localize("estate.HEAD.DESC") +
+          ":</b> <span>" +
+          item.system.description +
+          "</span></div></div>";
+          break;
     }
 
     if (chatData === null) {

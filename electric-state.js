@@ -116,6 +116,7 @@ Hooks.once("init", function () {
         string = game.i18n.localize(`${trait}`);
         break;
       case "talent":
+       
         const talent = eState.modifierTarget[data];
         string = game.i18n.localize(`${talent}`);
         break;
@@ -124,8 +125,16 @@ Hooks.once("init", function () {
         string = game.i18n.localize(`${injury}`);
         break;
       case "trauma":
-        const trauma = eState.traumaTarget[data];
-        string = game.i18n.localize(`${trauma}`);
+        console.log("E-STATE | Trauma", data);
+        if (data.length === 0) {
+          string = game.i18n.localize("estate.UI.NONE");
+        } else {
+          for (const t of data) {
+            const trauma = eState.traumaTarget[t];
+            string += game.i18n.localize(`${trauma}`) + ", ";
+          }
+          string = string.slice(0, -2);
+        }
         break;
     }
 

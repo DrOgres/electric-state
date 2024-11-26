@@ -12,8 +12,8 @@
             <div class="show-details mw-25px clickable" data-item-id="{{item._id}}">
                     <i class="fa-solid fa-chevron-down"></i>
             </div>
-            <div class="item overflow-elipsis" data-item-id="{{talent._id}}">{{talent.name}}</div>
-            <div class="modify text-left overflow-elipsis">{{#dataLocalization talent.system.type 'talent'}}{{/dataLocalization}}</div>
+            <div class="item overflow-elipsis" data-item-id="{{talent._id}}" title="{{talent.name}}">{{talent.name}}</div>
+            <div class="modify text-left overflow-elipsis" title="{{dataLocalization talent.system.type 'talent'}}">{{#dataLocalization talent.system.type 'talent'}}{{/dataLocalization}}</div>
             <div class="mod center">{{talent.system.modifier.value}}</div>
             <div class="button-group align-bottom flexrow text-right justify-content-end gap-small"  data-item-id="{{talent._id}}">
                 <div class="to-chat"><i class="fa-solid fa-comment-alt-lines"  title="{{localize "estate.UI.TO_CHAT"}}"></i></div>

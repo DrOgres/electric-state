@@ -511,6 +511,8 @@ export async function prepareRollDialog(options) {
         console.log("Damage", options.damage);
       }
 
+      //TODO check for a damage talent and add it to the bonus
+
       dialogHTML += buildHTMLDialog(
         game.i18n.localize("estate.ATTRIBUTE.AGI"),
         options.dicePool,
@@ -738,15 +740,23 @@ export async function prepareRollDialog(options) {
               gearDice += item.system.modifier.value;
             }
             console.log("Gear Dice", gearDice);
-
+            //TODO if the talent selected is a damage talent we need to add the value to the damage not the dice pool
             let talentDice = 0;
             if (html.find("#talent")[0] !== undefined) {
               const selectedTalentItemId = html.find("#talent")[0].value;
               const talent = talents.find((i) => i.id === selectedTalentItemId);
 
               if (talent !== undefined) {
+                console.log("Talent", talent);
+                if (talent.system.type.includes("damage")) {
+                  console.log("Damage Talent", talent);
+                  options.talentUsed = selectedTalentItemId;
+                  options.damage += talent.system.modifier.value;
+                } else {
+              
                 options.talentUsed = selectedTalentItemId;
                 talentDice = talent.system.modifier.value;
+                }
               }
               console.log("Talent", talent);
             }
@@ -998,9 +1008,10 @@ function buildTalentSelectDialog(options, talents, actor, drones) {
     }
 
     if (options.type === "weapon") {
-      if (talent.system.type.includes("weapon")) {
+      if (talent.system.type.includes("weapon") || talent.system.type.includes("damage")) {
+        const suffix = talent.system.type.includes("weapon") ? game.i18n.localize("estate.UI.DICE") : game.i18n.localize("estate.ROLL.DAMAGE");
         count++;
-        selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
+        selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value} ${suffix}</option>`;
       }
     }
   }

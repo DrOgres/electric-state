@@ -27,6 +27,7 @@ v0.23.0
 - UI: Added button to reset Health and Hope to maximums
 - UI: Damage can be applied to targeted tokens via chat card.
 - Added Item Detail roll down for Tension, Talents, Injury, Trauma and Traits
+- Fix: Damage Talents now populate talent select for rolls using weapons and apply to damage on roll results
 
 v0.22.0
 - Changed Usable item UI to make use consistent with rollable items now clicking the item name will use it

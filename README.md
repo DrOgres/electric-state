@@ -12,8 +12,6 @@ please put any and all bug reports and feature requests in the issues of this re
 
 TODO LIST:
 
-- Player Character Sheets
-
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements

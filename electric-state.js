@@ -220,6 +220,10 @@ Hooks.on("dropActorSheetData", async (actor, actorSheet, data) => {
 });
 
 function setLogo() {
+  // if the game version is 13 or higher do not set the logo
+  const version = game.version;
+  console.log("E-STATE | Game Version", version);
+  if (version >= 13) return;
   $("#logo")[0].src = "systems/electric-state/assets/logo.webp";
 }
 

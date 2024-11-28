@@ -104,8 +104,51 @@ export default class esActorSheet extends ActorSheet {
     html.find(".change-tension").click(this._onChangeTension.bind(this));
     html.find(".set-max").click(this._onSetMax.bind(this));
     html.find(".item-field-edit").change(this._updateItemData.bind(this));
+
+    html.find('.attribute').each((i, item) => {
+      console.log("E-STATE | Attribute", item);
+      const div = $(item).parents(".attribute");
+      let attributeName = $(item).text();
+      attributeName = attributeName.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+      console.log("E-STATE | Attribute Name", attributeName);
+      
+
+      item.setAttribute("data-item-id", this.actor.id);
+      item.setAttribute("draggable", true);
+      item.addEventListener("dragstart", ev => {
+        const attributeKey = ev.currentTarget.dataset.attribute;
+        const data = {
+          type: "attribute",
+          attribute: attributeKey,
+          text: `${game.i18n.localize("estate.ROLL.ROLL")} ${attributeName}`
+        };
+        ev.dataTransfer.setData("text/plain", JSON.stringify(data));
+      }, false);
+    });
   }
 
+
+  async rollAttribute(attribute) {
+    console    .log("E-STATE | Rolling Attribute", attribute);
+    const actor = this.actor;
+
+    let options = {
+      type: "attribute",
+      sheet: this,
+      actorType: this.actor.type,
+      testName: "",
+      testModifier: 0,
+      dicePool: 0,
+      gearUsed: [],
+    };
+
+    options.attribute = attribute;
+    options.testName = game.i18n.localize(
+      `estate.ATTRIBUTE.${eState.attributesAbv[attribute]}`
+    );
+    options.dicePool += this.actor.system[attribute];
+    prepareRollDialog(options);
+  }
 
   async _updateItemData(event) {
     console.log("E-STATE | Updating Item Data", event);
@@ -479,12 +522,29 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _onItemDrag(event) {
-    // console.log("E-STATE | Dragging Item", event);
-    event.preventDefault();
+    const type = event.currentTarget.dataset.type;
+    
+    if (type === "attribute") {
+      console.log("E-STATE | Dragging Attribute", event);
+      const attribute = event.currentTarget.dataset.attribute;
+      const data = {
+        type: "attribute",
+        attribute: attribute,
+        text: `${game.i18n.localize("estate.ROLL.ROLL")} ${attribute}`
+      }
+      console.log("E-STATE | Attribute Data", data);
+      let eventData = event.dataTransfer.getData("text/plain");
+      console.log("E-STATE | Event Data", eventData);
+      event.dataTransfer.setData("text/plain", JSON.stringify(data));
+      console.log("E-STATE | Drag Data", event);
+
+    } else if (type === "item") {
     game.data.item = this.actor.getEmbeddedDocument(
       "Item",
       event.currentTarget.closest(".item").dataset.itemId
     );
+    console.log("E-STATE | Item", game.data.item);
+  }
     // console.log("E-STATE | Game Data Item", game.data.item);
   }
 

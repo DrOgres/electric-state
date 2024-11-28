@@ -207,6 +207,11 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
   });
 });
 
+Hooks.once("ready", async function () {
+  console.log("E-STATE | Ready");
+  Hooks.on("hotbarDrop", (bar, data, slot) => createElectricStateMacro(data, slot));
+});
+
 Hooks.on("dropActorSheetData", async (actor, actorSheet, data) => {
   if (actor.type !== "vehicle" || data.type !== "Actor") {
     console.log("E-STATE | Not a Vehicle nor dropping an Actor");
@@ -227,3 +232,33 @@ function setLogo() {
   $("#logo")[0].src = "systems/electric-state/assets/logo.webp";
 }
 
+async function createElectricStateMacro(data, slot) {
+  console.log("E-STATE | Macro Drop", data);
+
+  let command = '';
+  if (data.type === "attribute"){
+    console.log("E-STATE | Attribute Macro Drop", data);
+    command =  `
+      if (actor === null || actor.type !== "player") return;
+      actor.sheet.rollAttribute("${data.attribute}");
+    `
+  }
+
+  if (command === '') {
+    return;
+  }
+
+  let macro = game.macros.find((m) => m.name === data.text);
+  console.log("E-STATE | Macro", macro);
+  if (!macro) {
+    macro = await Macro.create({
+      name: data.text,
+      type: "script",
+      img: data.img,
+      command: command,
+    });
+  }
+
+  game.user.assignHotbarMacro(macro, slot);
+  return false;
+}

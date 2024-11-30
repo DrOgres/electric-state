@@ -943,111 +943,27 @@ export default class esActorSheet extends ActorSheet {
           }
           options.testName = game.i18n.localize("estate.ATTRIBUTE.BLISS");
           options.dicePool = 1;
+          prepareRollDialog(options);
         }
         break;
       case "attribute":
         {
           const attribute = event.currentTarget.dataset.attribute;
-          options.attribute = attribute;
-          options.testName = game.i18n.localize(
-            `estate.ATTRIBUTE.${eState.attributesAbv[attribute]}`
-          );
-          options.dicePool += this.actor.system[attribute];
+          this.rollAttribute(attribute); 
         }
         break;
       case "weapon":
         {
           console.log("E-STATE | Rolling Weapon");
           const itemId = event.currentTarget.dataset.itemId;
-          const item = this.actor.items.get(itemId);
-          let ncWeapon = false;
-          let ncBonus = 0;
-          let ncId = "";
-          if (this._isPlayer()) {
-            if (item.system.requiresNeurocaster) {
-              ncWeapon = true;
-              const neurocasters = this.actor.items.filter(
-                (item) => item.type === "neurocaster"
-              );
-              console.log("E-STATE | Neurocasters", neurocasters);
-              if (neurocasters.length === 0) {
-                ui.notifications.warn(
-                  game.i18n.localize("estate.MSG.NEEDNEUROCASTER")
-                );
-                return;
-              } else {
-                let status = false;
-                for (let neurocaster of neurocasters) {
-                  if (neurocaster.flags.isEquipped) {
-                    status = true;
-                    ncId = neurocaster.id;
-                    if (
-                      neurocaster.system.processor.value === 0 ||
-                      neurocaster.system.network.value === 0 ||
-                      neurocaster.system.graphics.value === 0
-                    ) {
-                      ui.notifications.warn(
-                        game.i18n.localize("estate.MSG.BUSTEDCASTER")
-                      );
-                      const update = [
-                        {
-                          _id: neurocaster.id,
-                          "system.isBroken": true,
-                        },
-                      ];
-                      await Item.updateDocuments(update, {
-                        parent: this.actor,
-                      });
-                      return;
-                    }
-                    ncBonus += neurocaster.system.network.value;
-                  }
-                }
-                if (!status) {
-                  ui.notifications.warn(
-                    game.i18n.localize("estate.MSG.NUEROCASTER")
-                  );
-                  return;
-                }
-              }
-            }
-          }
-
-          if (!ncWeapon && item.system.modifier.value <= 0) {
-            ui.notifications.warn(
-              game.i18n.localize("estate.MSG.BUSTEDWEAPON")
-            );
-            return;
-          }
-
-          if (ncWeapon) {
-            options.testName =
-              item.name + " & " + game.i18n.localize("estate.UI.NEUROCASTER");
-            options.gearDice = ncBonus;
-            options.gearUsed.push(ncId);
-            options.gearName =
-              game.i18n.localize("estate.UI.NEUROCASTER") +
-              " " +
-              game.i18n.localize("estate.UI.NETWORK");
-          } else {
-            options.gearDice = item.system.modifier.value;
-            options.gearUsed.push(itemId);
-            options.testName = item.name;
-            options.gearName = item.name;
-          }
-          options.damage = item.system.damage;
-          options.attribute = item.system.attribute;
-          options.weaponId = itemId;
+          this.rollWeapon(itemId);
         }
         break;
       case "armor":
         {
           console.log("E-STATE | Rolling Armor");
           const itemId = event.currentTarget.dataset.itemId;
-          const item = this.actor.items.get(itemId);
-          options.testName = item.name;
-          options.dicePool = item.system.modifier.value;
-          options.armorId = itemId;
+          this.rollArmor(itemId);
         }
         break;
       case "vehicle-armor":
@@ -1057,6 +973,7 @@ export default class esActorSheet extends ActorSheet {
           console.log("E-STATE | Rolling Vehicle Armor");
           options.testName = game.i18n.localize(`estate.UI.VEHICLEARMOR`);
           options.dicePool += this.actor.system.armor;
+          prepareRollDialog(options);
         }
         break;
       case "vehicle-maneuverability":
@@ -1091,6 +1008,7 @@ export default class esActorSheet extends ActorSheet {
           options.dicePool = driver.system.agility;
           options.gearName = game.i18n.localize(`estate.UI.MANEUVER`);
           options.gearDice = this.actor.system.maneuverability.value;
+          prepareRollDialog(options);
         }
         break;
       case "robot-armor":
@@ -1100,6 +1018,7 @@ export default class esActorSheet extends ActorSheet {
           console.log("E-STATE | Rolling Robot Armor");
           options.testName = game.i18n.localize(`estate.UI.ROBOTARMOR`);
           options.dicePool += this.actor.system.armor;
+          prepareRollDialog(options);
         }
         break;
       case "drone-attack":
@@ -1179,6 +1098,7 @@ export default class esActorSheet extends ActorSheet {
           }
 
           //TODO set the dice pool based on the max and min ranges of the drone
+          prepareRollDialog(options);
         }
         break;
       case "drone-armor":
@@ -1244,6 +1164,7 @@ export default class esActorSheet extends ActorSheet {
             item.name + " " + game.i18n.localize("estate.UI.ARMOR");
           options.dicePool = item.system.armor;
           options.type = "drone";
+          prepareRollDialog(options);
         }
         break;
       case "neurocaster":
@@ -1289,6 +1210,7 @@ export default class esActorSheet extends ActorSheet {
             game.i18n.localize(eState.castType[options.cast]);
           options.dicePool = item.system.modifier.value;
           options.type = "neurocaster";
+          prepareRollDialog(options);
         }
         break;
       case "explosive":
@@ -1300,11 +1222,12 @@ export default class esActorSheet extends ActorSheet {
           options.dicePool = 0;
           options.explosiveId = itemId;
           options.type = "explosive";
+          prepareRollDialog(options);
         }
         break;
     }
 
-    prepareRollDialog(options);
+    // prepareRollDialog(options);
   }
 
   _deathRoll(actor) {

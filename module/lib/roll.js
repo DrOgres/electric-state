@@ -1480,8 +1480,8 @@ export async function roll(options) {
   return r;
 }
 
-function isRollPushable(actor, optioms) {
-  if (actor.type === "player" && optioms.type !== "death") return true;
-  if (optioms.type === "vehicle-maneuverability") return true;
+function isRollPushable(actor, options) {
+  if (actor.type === "player" && options.type !== "death" && options.type !== "armor") return true;
+  if (options.type === "vehicle-maneuverability") return true;
   return false;
 }

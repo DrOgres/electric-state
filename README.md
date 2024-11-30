@@ -27,6 +27,8 @@ v0.23.0
 - Added Item Detail roll down for Tension, Talents, Injury, Trauma and Traits
 - Fix: Damage Talents now populate talent select for rolls using weapons and apply to damage on roll results
 - Added: Drag attributes to hotbar to create an easy roll macro
+- Added: Drag and drop Armor items to hopbar to create an easy roll macro
+- Fixed: Armor should not have been Pushable 
 
 v0.22.0
 - Changed Usable item UI to make use consistent with rollable items now clicking the item name will use it

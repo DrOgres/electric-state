@@ -105,32 +105,178 @@ export default class esActorSheet extends ActorSheet {
     html.find(".set-max").click(this._onSetMax.bind(this));
     html.find(".item-field-edit").change(this._updateItemData.bind(this));
 
-    html.find('.attribute').each((i, item) => {
+    html.find(".attribute").each((i, item) => {
       console.log("E-STATE | Attribute", item);
-      const div = $(item).parents(".attribute");
+     
       let attributeName = $(item).text();
-      attributeName = attributeName.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+      attributeName = attributeName.replace(/[\n\r]+|[\s]{2,}/g, " ").trim();
       console.log("E-STATE | Attribute Name", attributeName);
-      
 
       item.setAttribute("data-item-id", this.actor.id);
       item.setAttribute("draggable", true);
-      item.addEventListener("dragstart", ev => {
-        const attributeKey = ev.currentTarget.dataset.attribute;
-        const data = {
-          type: "attribute",
-          attribute: attributeKey,
-          text: `${game.i18n.localize("estate.ROLL.ROLL")} ${attributeName}`
-        };
-        ev.dataTransfer.setData("text/plain", JSON.stringify(data));
-      }, false);
+      item.addEventListener(
+        "dragstart",
+        (ev) => {
+          const attributeKey = ev.currentTarget.dataset.attribute;
+          const data = {
+            type: "attribute",
+            actorId: this.actor.id,
+            attribute: attributeKey,
+            text: `${game.i18n.localize("estate.ROLL.ROLL")} ${attributeName}`,
+          };
+          ev.dataTransfer.setData("text/plain", JSON.stringify(data));
+        },
+        false
+      );
+    });
+
+    html.find(".armor").each((i, item) => {
+      console.log("E-STATE | Armor", item);
+    
+      item.setAttribute("draggable", true);
+      item.addEventListener(
+        "dragstart",
+        (ev) => {
+          const armorId = ev.currentTarget.dataset.itemId;
+          const armorItem = this.actor.items.get(armorId);
+          const armorName = armorItem.name;
+
+          const data = {
+            type: "armor",
+            actorId: this.actor.id,
+            armorId: armorId,
+            img: armorItem.img,
+            text: `${game.i18n.localize("estate.ROLL.ROLL")} ${armorName}`,
+          };
+          ev.dataTransfer.setData("text/plain", JSON.stringify(data));
+        },
+        false
+      );
+    });
+
+    html.find(".weapon").each((i, item) => {
+      console.log("E-STATE | Weapon", item);
+      const div = $(item).parents(".weapon");
+      item.setAttribute("draggable", true);
+      item.addEventListener(
+        "dragstart",
+        (ev) => {
+          const weaponId = ev.currentTarget.dataset.itemId;
+          const weaponItem = this.actor.items.get(weaponId);
+          const weaponName = weaponItem.name;
+
+          const data = {
+            type: "weapon",
+            weaponId: weaponId,
+            actorId: this.actor.id,
+            img: weaponItem.img,
+            text: `${game.i18n.localize("estate.ROLL.ROLL")} ${weaponName}`,
+          };
+          ev.dataTransfer.setData("text/plain", JSON.stringify(data));
+        },
+        false
+      );
     });
   }
 
+  async rollWeapon(weaponId) {
+    console.log("E-STATE | Rolling Weapon", weaponId);
+    const itemId = weaponId;
+    const item = this.actor.items.get(itemId);
+
+    let options = {
+      type: "weapon",
+      sheet: this,
+      actorType: this.actor.type,
+      testName: "",
+      testModifier: 0,
+      dicePool: 0,
+      gearUsed: [],
+    };
+
+    console.log("E-STATE | Rolling Weapon");
+
+    let ncWeapon = false;
+    let ncBonus = 0;
+    let ncId = "";
+    if (this._isPlayer()) {
+      if (item.system.requiresNeurocaster) {
+        ncWeapon = true;
+        const neurocasters = this.actor.items.filter(
+          (item) => item.type === "neurocaster"
+        );
+        console.log("E-STATE | Neurocasters", neurocasters);
+        if (neurocasters.length === 0) {
+          ui.notifications.warn(
+            game.i18n.localize("estate.MSG.NEEDNEUROCASTER")
+          );
+          return;
+        } else {
+          let status = false;
+          for (let neurocaster of neurocasters) {
+            if (neurocaster.flags.isEquipped) {
+              status = true;
+              ncId = neurocaster.id;
+              if (
+                neurocaster.system.processor.value === 0 ||
+                neurocaster.system.network.value === 0 ||
+                neurocaster.system.graphics.value === 0
+              ) {
+                ui.notifications.warn(
+                  game.i18n.localize("estate.MSG.BUSTEDCASTER")
+                );
+                const update = [
+                  {
+                    _id: neurocaster.id,
+                    "system.isBroken": true,
+                  },
+                ];
+                await Item.updateDocuments(update, {
+                  parent: this.actor,
+                });
+                return;
+              }
+              ncBonus += neurocaster.system.network.value;
+            }
+          }
+          if (!status) {
+            ui.notifications.warn(game.i18n.localize("estate.MSG.NUEROCASTER"));
+            return;
+          }
+        }
+      }
+    }
+
+    if (!ncWeapon && item.system.modifier.value <= 0) {
+      ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDWEAPON"));
+      return;
+    }
+
+    if (ncWeapon) {
+      options.testName =
+        item.name + " & " + game.i18n.localize("estate.UI.NEUROCASTER");
+      options.gearDice = ncBonus;
+      options.gearUsed.push(ncId);
+      options.gearName =
+        game.i18n.localize("estate.UI.NEUROCASTER") +
+        " " +
+        game.i18n.localize("estate.UI.NETWORK");
+    } else {
+      options.gearDice = item.system.modifier.value;
+      options.gearUsed.push(itemId);
+      options.testName = item.name;
+      options.gearName = item.name;
+    }
+    options.damage = item.system.damage;
+    options.attribute = item.system.attribute;
+    options.weaponId = itemId;
+
+    prepareRollDialog(options);
+  }
 
   async rollAttribute(attribute) {
-    console    .log("E-STATE | Rolling Attribute", attribute);
-    const actor = this.actor;
+    console.log("E-STATE | Rolling Attribute", attribute);
+
 
     let options = {
       type: "attribute",
@@ -150,6 +296,30 @@ export default class esActorSheet extends ActorSheet {
     prepareRollDialog(options);
   }
 
+  async rollArmor(armorId) {
+    console.log("E-STATE | Rolling Armor", armorId);
+
+    const itemId = armorId;
+    const item = this.actor.items.get(itemId);
+
+    let options = {
+      type: "armor",
+      sheet: this,
+      actorType: this.actor.type,
+      testName: "",
+      testModifier: 0,
+      dicePool: 0,
+      gearUsed: [],
+      maxPush: 0,
+    };
+
+    options.testName = item.name;
+    options.dicePool = item.system.modifier.value;
+    options.armorId = itemId;
+
+    prepareRollDialog(options);
+  }
+
   async _updateItemData(event) {
     console.log("E-STATE | Updating Item Data", event);
     event.preventDefault();
@@ -160,7 +330,7 @@ export default class esActorSheet extends ActorSheet {
     event.preventDefault();
     const actor = this.actor;
     const type = event.currentTarget.dataset.stat;
-    console.log("E-STATE | Type", type, actor); 
+    console.log("E-STATE | Type", type, actor);
 
     const stat = actor.system[type].value;
     const max = actor.system[type].max;
@@ -169,10 +339,7 @@ export default class esActorSheet extends ActorSheet {
     } else {
       await actor.update({ [`system.${type}.value`]: max });
     }
-
   }
-
-
 
   onFocusIn(event) {
     $(event.currentTarget).select();
@@ -266,7 +433,6 @@ export default class esActorSheet extends ActorSheet {
       chevron.classList.remove("fa-chevron-up");
       chevron.classList.add("fa-chevron-down");
     }
-
 
     const type = item.type;
     let chatData = null;
@@ -383,30 +549,32 @@ export default class esActorSheet extends ActorSheet {
           item.system.description +
           "</br></p>";
         break;
-        case "tension":
-        case "trait":
-        case "talent":
-        case "trauma":
+      case "tension":
+      case "trait":
+      case "talent":
+      case "trauma":
         chatData =
           "<div class='item-desc subheader flexrow span-all grid col-30-70'><b>" +
           game.i18n.localize("estate.HEAD.DESC") +
           ":</b> <span>" +
           item.system.description +
           "</span></div>";
-          break;
-        case "injury":
-          chatData = 
+        break;
+      case "injury":
+        chatData =
           "<div class='item-desc subheader flexrow span-all grid '><div><b>" +
-          game.i18n.localize("estate.UI.TIMETO") + " :</b> <span>" +
+          game.i18n.localize("estate.UI.TIMETO") +
+          " :</b> <span>" +
           item.system.healingTime +
           "</span> <span>" +
-          game.i18n.localize("estate.UI.DAYS")
-          + "</span> </div><div>" + "<b>" +
+          game.i18n.localize("estate.UI.DAYS") +
+          "</span> </div><div>" +
+          "<b>" +
           game.i18n.localize("estate.HEAD.DESC") +
           ":</b> <span>" +
           item.system.description +
           "</span></div></div>";
-          break;
+        break;
     }
 
     if (chatData === null) {
@@ -418,7 +586,9 @@ export default class esActorSheet extends ActorSheet {
       sum.slideUp(200, () => sum.remove());
     } else {
       console.log("E-STATE | Not Expanded", chatData);
-      let sum = $(`<div class="item-summary bg-hatch2 span-all">${chatData}</div>`);
+      let sum = $(
+        `<div class="item-summary bg-hatch2 span-all">${chatData}</div>`
+      );
       div.append(sum.hide());
       console.log("E-STATE | Sum", sum);
       console.log("E-STATE | Div", div);
@@ -523,28 +693,27 @@ export default class esActorSheet extends ActorSheet {
 
   async _onItemDrag(event) {
     const type = event.currentTarget.dataset.type;
-    
+
     if (type === "attribute") {
       console.log("E-STATE | Dragging Attribute", event);
       const attribute = event.currentTarget.dataset.attribute;
       const data = {
         type: "attribute",
         attribute: attribute,
-        text: `${game.i18n.localize("estate.ROLL.ROLL")} ${attribute}`
-      }
+        text: `${game.i18n.localize("estate.ROLL.ROLL")} ${attribute}`,
+      };
       console.log("E-STATE | Attribute Data", data);
       let eventData = event.dataTransfer.getData("text/plain");
       console.log("E-STATE | Event Data", eventData);
       event.dataTransfer.setData("text/plain", JSON.stringify(data));
       console.log("E-STATE | Drag Data", event);
-
     } else if (type === "item") {
-    game.data.item = this.actor.getEmbeddedDocument(
-      "Item",
-      event.currentTarget.closest(".item").dataset.itemId
-    );
-    console.log("E-STATE | Item", game.data.item);
-  }
+      game.data.item = this.actor.getEmbeddedDocument(
+        "Item",
+        event.currentTarget.closest(".item").dataset.itemId
+      );
+      console.log("E-STATE | Item", game.data.item);
+    }
     // console.log("E-STATE | Game Data Item", game.data.item);
   }
 

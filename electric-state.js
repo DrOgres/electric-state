@@ -235,12 +235,43 @@ function setLogo() {
 async function createElectricStateMacro(data, slot) {
   console.log("E-STATE | Macro Drop", data);
 
+  const actor = game.actors.get(data.actorId);
+
+  console.log("E-STATE | User Owner Level ", actor.getUserLevel(game.user));
+  // if the user is not a GM or doesn't have owner permissions on the actor return
+  if (!game.user.isGM && !actor.getUserLevel(game.user) >= 3) {
+    return;
+  }
+
   let command = '';
   if (data.type === "attribute"){
     console.log("E-STATE | Attribute Macro Drop", data);
     command =  `
-      if (actor === null || actor.type !== "player") return;
-      actor.sheet.rollAttribute("${data.attribute}");
+      const thisActor = game.actors.get("${data.actorId}");
+      if (thisActor === null || thisActor.type !== "player") return;
+      thisActor.sheet.rollAttribute("${data.attribute}");
+    `
+  } else if (data.type === "armor") {
+    console.log("E-STATE | Armor Macro Drop", data);
+
+    command = `
+      const thisActor = game.actors.get("${data.actorId}");
+      if (thisActor === null || thisActor.type !== "player") return;
+      thisActor.sheet.rollArmor("${data.armorId}");
+    `
+  } else if (data.type === "weapon") {
+    console.log("E-STATE | Weapon Macro Drop", data);
+    command = `
+      const thisActor = game.actors.get("${data.actorId}");
+      if (thisActor === null || thisActor.type !== "player") return;
+      thisActor.sheet.rollWeapon("${data.weaponId}");
+    `
+  } else if (data.type === "gear") {
+    console.log("E-STATE | Gear Macro Drop", data);
+    command = `
+      const thisActor = game.actors.get("${data.actorId}");
+      if (thisActor === null || thisActor.type !== "player") return;
+      thisActor.sheet.rollGear("${data.gear}");
     `
   }
 

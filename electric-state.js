@@ -273,6 +273,13 @@ async function createElectricStateMacro(data, slot) {
       if (thisActor === null || thisActor.type !== "player") return;
       thisActor.sheet.rollGear("${data.gear}");
     `
+  } else if (data.type === "bliss") {
+    console.log("E-STATE | Bliss Macro Drop", data);
+    command = `
+      const thisActor = game.actors.get("${data.actorId}");
+      if (thisActor === null || thisActor.type !== "player") return;
+      thisActor.sheet.rollBliss();
+    `
   }
 
   if (command === '') {

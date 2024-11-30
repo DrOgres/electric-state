@@ -177,6 +177,53 @@ export default class esActorSheet extends ActorSheet {
         false
       );
     });
+
+    html.find(".bliss").each((i, item) => {
+      console.log("E-STATE | Bliss", item);
+      item.setAttribute("draggable", true);
+      item.addEventListener(
+        "dragstart",
+        (ev) => {
+         
+          const data = {
+            type: "bliss",
+            actorId: this.actor.id,
+            text: `${game.i18n.localize("estate.UI.BLISS_RECOVERY")}`,
+          };
+          ev.dataTransfer.setData("text/plain", JSON.stringify(data));
+        },
+        false
+      );
+    });
+  }
+
+  async rollBliss() {
+
+    let options = {
+      type: "bliss",
+      sheet: this,
+      actorType: this.actor.type,
+      testName: "",
+      testModifier: 0,
+      dicePool: 0,
+      gearUsed: [],
+    };
+
+
+    if (this.actor.system.bliss <= 0) {
+      console.log("E-STATE | No Bliss");
+      ui.notifications.info(game.i18n.localize("estate.MSG.NOBLISS"));
+      return;
+    } else if (this.actor.system.bliss === this.actor.system.permanent) {
+      console.log("E-STATE | Permanent Bliss");
+      ui.notifications.info(
+        game.i18n.localize("estate.MSG.PERMANENTBLISS")
+      );
+      return;
+    }
+    options.testName = game.i18n.localize("estate.ATTRIBUTE.BLISS");
+    options.dicePool = 1;
+    prepareRollDialog(options);
   }
 
   async rollWeapon(weaponId) {
@@ -930,20 +977,7 @@ export default class esActorSheet extends ActorSheet {
     switch (rollSource) {
       case "bliss":
         {
-          if (this.actor.system.bliss <= 0) {
-            console.log("E-STATE | No Bliss");
-            ui.notifications.info(game.i18n.localize("estate.MSG.NOBLISS"));
-            return;
-          } else if (this.actor.system.bliss === this.actor.system.permanent) {
-            console.log("E-STATE | Permanent Bliss");
-            ui.notifications.info(
-              game.i18n.localize("estate.MSG.PERMANENTBLISS")
-            );
-            return;
-          }
-          options.testName = game.i18n.localize("estate.ATTRIBUTE.BLISS");
-          options.dicePool = 1;
-          prepareRollDialog(options);
+          this.rollBliss();
         }
         break;
       case "attribute":

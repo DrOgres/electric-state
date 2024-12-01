@@ -759,7 +759,7 @@ export default class esActorSheet extends ActorSheet {
         "Item",
         event.currentTarget.closest(".item").dataset.itemId
       );
-      console.log("E-STATE | Item", game.data.item);
+    
     }
     // console.log("E-STATE | Game Data Item", game.data.item);
   }

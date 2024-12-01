@@ -236,8 +236,8 @@ async function createElectricStateMacro(data, slot) {
   console.log("E-STATE | Macro Drop", data);
 
   const actor = game.actors.get(data.actorId);
-
-  console.log("E-STATE | User Owner Level ", actor.getUserLevel(game.user));
+  if (actor === undefined) return;
+  
   // if the user is not a GM or doesn't have owner permissions on the actor return
   if (!game.user.isGM && !actor.getUserLevel(game.user) >= 3) {
     return;

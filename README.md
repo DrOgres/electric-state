@@ -15,6 +15,12 @@ TODO LIST:
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements
+    - explosives
+    - usuable items
+    - drone attack
+    - drone armor
+    - all neurocaster actions
+    - ensure this appies to all actor types
 - Look at Robot sheet, stats and equipment may need to be handled differently
     - does it make sense to use this as the Drone Growth as well?
     - How do we handle neuroscape things? 
@@ -27,6 +33,7 @@ v0.23.0
 - Added Item Detail roll down for Tension, Talents, Injury, Trauma and Traits
 - Fix: Damage Talents now populate talent select for rolls using weapons and apply to damage on roll results
 - Added: Drag attributes to hotbar to create an easy roll macro
+- Added: Drag Weapons to hotbar to create an easy roll macro
 - Added: Drag and drop Armor items to hotbar to create an easy roll macro
 - Fixed: Armor should not have been Pushable 
 - Added Drag and Drop Bliss Reduction icon to hotbar to create a roll macro

@@ -27,6 +27,9 @@ TODO LIST:
 
 Version History:
 
+v0.24.0
+- Fix: localization strings had a whitespace preventing them from loading correctly
+
 v0.23.0
 - UI: Added button to reset Health and Hope to maximums
 - UI: Damage can be applied to targeted tokens via chat card.

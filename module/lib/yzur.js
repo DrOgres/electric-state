@@ -1578,7 +1578,7 @@ class YearZeroDie extends foundry.dice.terms.Die {
         }
         if (this.terms.length > 0) {
           // eslint-disable-next-line no-undef
-          this.terms.push(new OperatorTerm({ operator: type === 'neg' ? '-' : '+' }));
+          this.terms.push(new foundry.dice.terms.OperatorTerm({ operator: type === 'neg' ? '-' : '+' }));
         }
         this.terms.push(term);
       }

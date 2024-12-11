@@ -665,6 +665,11 @@ padding-top-small {
   max-width: 300px;
 }
 
+.mw-fit {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
 .mn-w-300px {
   min-width: 300px;
 }
@@ -689,9 +694,12 @@ padding-top-small {
   margin-inline: 5px;
 }
 
-.mw-fit {
-  max-width: -moz-fit-content;
-  max-width: fit-content;
+.mh-2-5rem {
+  max-height: 2.5rem;
+}
+
+.mh-3rem {
+  max-height: 3rem;
 }
 
 :root {
@@ -755,6 +763,7 @@ body .assistant-sc-regular {
 
 .app.sheet .editor {
   min-height: 55px;
+  flex-basis: 100%;
 }
 
 .editor-content {

@@ -67,12 +67,13 @@ export default class esActorSheet extends ActorSheet {
 
     if (this._isVehicle()) {
       this._preparePassengers(data, actor);
-      //TODO apply any traits that affect the vehicle
       this._applyVehicleTraits(data, actor);
     }
 
     data.notesHTML = await TextEditor.enrichHTML(actor.system.notes, {
+      secrets: this.actor.isOwner,
       async: true,
+      relativeTo: this.actor,
     });
 
     return data;
@@ -107,7 +108,7 @@ export default class esActorSheet extends ActorSheet {
 
     html.find(".attribute").each((i, item) => {
       console.log("E-STATE | Attribute", item);
-     
+
       let attributeName = $(item).text();
       attributeName = attributeName.replace(/[\n\r]+|[\s]{2,}/g, " ").trim();
       console.log("E-STATE | Attribute Name", attributeName);
@@ -132,7 +133,7 @@ export default class esActorSheet extends ActorSheet {
 
     html.find(".armor").each((i, item) => {
       console.log("E-STATE | Armor", item);
-    
+
       item.setAttribute("draggable", true);
       item.addEventListener(
         "dragstart",
@@ -184,7 +185,6 @@ export default class esActorSheet extends ActorSheet {
       item.addEventListener(
         "dragstart",
         (ev) => {
-         
           const data = {
             type: "bliss",
             actorId: this.actor.id,
@@ -198,7 +198,6 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async rollBliss() {
-
     let options = {
       type: "bliss",
       sheet: this,
@@ -209,16 +208,13 @@ export default class esActorSheet extends ActorSheet {
       gearUsed: [],
     };
 
-
     if (this.actor.system.bliss <= 0) {
       console.log("E-STATE | No Bliss");
       ui.notifications.info(game.i18n.localize("estate.MSG.NOBLISS"));
       return;
     } else if (this.actor.system.bliss === this.actor.system.permanent) {
       console.log("E-STATE | Permanent Bliss");
-      ui.notifications.info(
-        game.i18n.localize("estate.MSG.PERMANENTBLISS")
-      );
+      ui.notifications.info(game.i18n.localize("estate.MSG.PERMANENTBLISS"));
       return;
     }
     options.testName = game.i18n.localize("estate.ATTRIBUTE.BLISS");
@@ -323,7 +319,6 @@ export default class esActorSheet extends ActorSheet {
 
   async rollAttribute(attribute) {
     console.log("E-STATE | Rolling Attribute", attribute);
-
 
     let options = {
       type: "attribute",
@@ -759,7 +754,6 @@ export default class esActorSheet extends ActorSheet {
         "Item",
         event.currentTarget.closest(".item").dataset.itemId
       );
-    
     }
     // console.log("E-STATE | Game Data Item", game.data.item);
   }
@@ -983,7 +977,7 @@ export default class esActorSheet extends ActorSheet {
       case "attribute":
         {
           const attribute = event.currentTarget.dataset.attribute;
-          this.rollAttribute(attribute); 
+          this.rollAttribute(attribute);
         }
         break;
       case "weapon":

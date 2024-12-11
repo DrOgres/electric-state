@@ -1,426 +1,426 @@
 @use "../abstracts" as *;
 
-
-.block{
+.block {
   display: block;
 }
 
-.flex{
+.flex {
   display: flex;
 }
 
-.no-break{
+.no-break {
   white-space: nowrap;
 }
 
-.span-all{
+.span-all {
   column-span: all;
   grid-column: 1 / -1;
 }
 
-.gap-x-small{
+.gap-x-small {
   gap: 1px;
 }
 
-.gap-small{
+.gap-small {
   gap: 3px;
 }
 
-.gap-med{
+.gap-med {
   gap: 10px;
 }
 
-.grid{
+.grid {
   display: grid;
 }
 
-.two-col{
+.two-col {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.three-col{
+.three-col {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.four-col{
+.four-col {
   grid-template-columns: repeat(4, 1fr);
 }
 
-.five-col{
+.five-col {
   grid-template-columns: repeat(5, 1fr);
 }
 
-.cols-4-25{
+.cols-4-25 {
   grid-template-columns: repeat(4, 25%);
 }
 
-.cols-5-20{
+.cols-5-20 {
   grid-template-columns: auto repeat(4, 1fr);
 }
 
-.cols-6-20{
+.cols-6-20 {
   grid-template-columns: auto repeat(5, 1fr);
 }
 
-.col-160-1fr{
+.col-160-1fr {
   grid-template-columns: 160px 1fr;
 }
 
-.col-80-20{
+.col-80-20 {
   grid-template-columns: 80% 20%;
 }
 
-.col-70-30{
+.col-70-30 {
   grid-template-columns: 70% 30%;
 }
 
-.col-66-33{
+.col-66-33 {
   grid-template-columns: 66% 33%;
 }
 
-.col-60-40{
+.col-60-40 {
   grid-template-columns: 60% 40%;
 }
 
-
-.col-20-80{
+.col-20-80 {
   grid-template-columns: 20% 80%;
 }
 
-.col-30-70{
+.col-30-70 {
   grid-template-columns: 30% 70%;
 }
 
-.col-33-67{
+.col-33-67 {
   grid-template-columns: 33% 66%;
 }
 
-.col-35-fr{
+.col-35-fr {
   grid-template-columns: 35px 1fr;
 }
 
-.col-40-fr{
+.col-40-fr {
   grid-template-columns: 40px 1fr;
 }
 
-.col-45-fr{
+.col-45-fr {
   grid-template-columns: 45px 1fr;
 }
 
-.col-50-fr{
+.col-50-fr {
   grid-template-columns: 50px 1fr;
 }
 
-.cols-50px-1fr-1fr{
+.cols-50px-1fr-1fr {
   grid-template-columns: 50px 1fr 1fr;
 }
 
-.center{
+.center {
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-.middle{
+.middle {
   align-items: center;
   align-self: center;
 }
 
-.text-right{
+.text-right {
   text-align: right;
 }
 
-.text-left{
+.text-left {
   text-align: left;
 }
 
-.align-bottom{
+.align-bottom {
   align-items: end;
   align-self: end;
 }
 
-.align-start{
+.align-start {
   align-items: start;
   align-self: start;
   align-content: start;
 }
 
-.align-content-start{
+.align-content-start {
   align-content: flex-start;
- 
 }
 
-.align-content-end{
+.align-content-end {
   align-content: flex-end;
 }
 
-.justify-content-end{
+.justify-content-end {
   justify-content: flex-end;
 }
 
-.space-between{
+.space-between {
   justify-content: space-between;
 }
 
-.shrink{
+.shrink {
   flex-shrink: 1;
 }
 
-.grow{
+.grow {
   flex-grow: 1;
 }
 
 .rollable {
-    cursor: pointer;
-    backdrop-filter: blur(2px);
-    &:hover {
-      text-shadow: $highlight-interactive-element 0 0 5px;
-    }
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+  &:hover {
+    text-shadow: $highlight-interactive-element 0 0 5px;
   }
+}
 
-  .item-use {
-    cursor: pointer;
-    &:hover {
-      text-shadow: $highlight-interactive-element 0 0 5px;
-    }
+.item-use {
+  cursor: pointer;
+  &:hover {
+    text-shadow: $highlight-interactive-element 0 0 5px;
   }
+}
 
-  .portrait {
-    padding: 10px;
-  }
+.portrait {
+  padding: 10px;
+}
 
-  .es-button{
-    border: 5px solid $text-color;
-    border-radius: 0px;
-    background: $background-color;
-    margin: 2px;
-    font-weight: 700;
-    font-size: medium;
-    font-variant: small-caps;
+.es-button {
+  border: 5px solid $text-color;
+  border-radius: 0px;
+  background: $background-color;
+  margin: 2px;
+  font-weight: 700;
+  font-size: medium;
+  font-variant: small-caps;
 
-    &:hover {
-      background: $background-color-highlight;
-      color: $highlight-interactive-element;
-    }
-  }
-
-  .border-thick {
-    border: 5px solid $text-color;
-  }
-
-  .border-right-thick {
-    border-right: 5px solid $text-color;
-  }
-
-  .border-left-thick {
-    border-left: 5px solid $text-color;
-  }
-
-  .border-bottom-thick {
-    border-bottom: 5px solid $text-color;
-  }
-
-  .border-3-4-thick {
-    border-bottom: 5px solid $text-color;
-    border-left: 5px solid $text-color;
-    border-right: 5px solid $text-color;
-  }
-
-  .border-thin {
-    border: 1px solid $text-color;
-  }
-
-  .border-bottom-thin {
-    border-bottom: 1px solid $text-color;
-  }
-
-  .border-top-thin {
-    border-top: 1px solid $text-color;
-  }
-
-  .border-right-thin {
-    border-right: 1px solid $text-color;
-  }
-
-  .border-left-thin {
-    border-left: 1px solid $text-color;
-  }
-
-  .border-3-4-thin {
-    border-bottom: 1px solid $text-color;
-    border-left: 1px solid $text-color;
-    border-right: 1px solid $text-color;
-  }
-
-
-
-  .margin-small {
-    margin: 5px;
-  }
-
-  .margin-top-med{
-    margin-top: 10px;
-  }
-
-  .margin-top-large{
-    margin-top: 20px;
-  }
-
-  .margin-top-close{
-    margin-top: -10px;
-  }
-
-  .margin-inline-small{
-    margin-inline: 5px;
-  }
-
-  .padding-x-small {
-    padding: 2px;
-  }
-
-  .padding-small {
-    padding: 5px;
-  }
-
-  padding-top-small{
-    padding-top: 5px;
-  }
-
-  .padding-medium {
-    padding: 10px;
-  }
-
-  .padding-large {
-    padding: 20px;
-  }
-
-  .padding-inline-small{
-    padding-inline: 5px;
-  }
-
-  .padding-left-small{
-    padding-left: 5px;
-  }
-
-  .padding-right-small{
-    padding-right: 5px;
-  }
-
-  .w-100 {
-    width: 100%;
-  }
-
-  .w-75{
-    width: 75%;
-  }
-
-  .h-100 {
-    height: 100%;
-  }
-
-  .w-50px {
-    width: 50px;
-  }
-
-  .mw-25px{
-    max-width: 25px;
-  }
-
-  .mw-30px{
-    max-width: 30px;
-  }
-
-  .mw-35px {
-    max-width: 35px;
-  }
-
-  .mn-w-35px {
-    min-width: 35px;
-  }
-
-  .mw-50px {
-    max-width: 50px;
-  }
-
-  .mn-w-50px {
-    min-width: 50px;
-  }
-
-  .mw-65px {
-    max-width: 65px;
-  }
-
-  .mw-75px {
-    max-width: 75px;
-  }
-
-  .mn-w-75px {
-    min-width: 75px;
-  }
-
-  .mw-100px {
-    max-width: 100px;
-  }
-
-  .mn-w-100px {
-    min-width: 100px;
-  }
-
-  .mw-150px {
-    max-width: 150px;
-  }
-
-  .mn-w-150px {
-    min-width: 150px;
-  }
-
-  .mw-200px {
-    max-width: 200px;
-  }
-
-  .mn-w-200px {
-    min-width: 200px;
-  }
-
-  .mw-250px {
-    max-width: 250px;
-  }
-
-  .mn-w-250px {
-    min-width: 250px;
-  }
-
-  .mw-300px {
-    max-width: 300px;
-  }
-
-  .mn-w-300px {
-    min-width: 300px;
-  }
-
-  .h-3{
-    height: 3rem;
-  }
-
-  .min-h-200px{
-    min-height: 200px;
-  }
-
-  .min-h-300px{
-    min-height: 300px;
-  }
-
-  .bg-color-highlight {
+  &:hover {
     background: $background-color-highlight;
+    color: $highlight-interactive-element;
   }
+}
 
-  .mi-small{
-    margin-inline: 5px;
-  }
+.border-thick {
+  border: 5px solid $text-color;
+}
 
-  .mw-fit{
-    max-width: fit-content;
-  }
+.border-right-thick {
+  border-right: 5px solid $text-color;
+}
 
+.border-left-thick {
+  border-left: 5px solid $text-color;
+}
 
-  
+.border-bottom-thick {
+  border-bottom: 5px solid $text-color;
+}
+
+.border-3-4-thick {
+  border-bottom: 5px solid $text-color;
+  border-left: 5px solid $text-color;
+  border-right: 5px solid $text-color;
+}
+
+.border-thin {
+  border: 1px solid $text-color;
+}
+
+.border-bottom-thin {
+  border-bottom: 1px solid $text-color;
+}
+
+.border-top-thin {
+  border-top: 1px solid $text-color;
+}
+
+.border-right-thin {
+  border-right: 1px solid $text-color;
+}
+
+.border-left-thin {
+  border-left: 1px solid $text-color;
+}
+
+.border-3-4-thin {
+  border-bottom: 1px solid $text-color;
+  border-left: 1px solid $text-color;
+  border-right: 1px solid $text-color;
+}
+
+.margin-small {
+  margin: 5px;
+}
+
+.margin-top-med {
+  margin-top: 10px;
+}
+
+.margin-top-large {
+  margin-top: 20px;
+}
+
+.margin-top-close {
+  margin-top: -10px;
+}
+
+.margin-inline-small {
+  margin-inline: 5px;
+}
+
+.padding-x-small {
+  padding: 2px;
+}
+
+.padding-small {
+  padding: 5px;
+}
+
+padding-top-small {
+  padding-top: 5px;
+}
+
+.padding-medium {
+  padding: 10px;
+}
+
+.padding-large {
+  padding: 20px;
+}
+
+.padding-inline-small {
+  padding-inline: 5px;
+}
+
+.padding-left-small {
+  padding-left: 5px;
+}
+
+.padding-right-small {
+  padding-right: 5px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.w-50px {
+  width: 50px;
+}
+
+.mw-25px {
+  max-width: 25px;
+}
+
+.mw-30px {
+  max-width: 30px;
+}
+
+.mw-35px {
+  max-width: 35px;
+}
+
+.mn-w-35px {
+  min-width: 35px;
+}
+
+.mw-50px {
+  max-width: 50px;
+}
+
+.mn-w-50px {
+  min-width: 50px;
+}
+
+.mw-65px {
+  max-width: 65px;
+}
+
+.mw-75px {
+  max-width: 75px;
+}
+
+.mn-w-75px {
+  min-width: 75px;
+}
+
+.mw-100px {
+  max-width: 100px;
+}
+
+.mn-w-100px {
+  min-width: 100px;
+}
+
+.mw-150px {
+  max-width: 150px;
+}
+
+.mn-w-150px {
+  min-width: 150px;
+}
+
+.mw-200px {
+  max-width: 200px;
+}
+
+.mn-w-200px {
+  min-width: 200px;
+}
+
+.mw-250px {
+  max-width: 250px;
+}
+
+.mn-w-250px {
+  min-width: 250px;
+}
+
+.mw-300px {
+  max-width: 300px;
+}
+
+.mw-fit {
+  max-width: fit-content;
+}
+
+.mn-w-300px {
+  min-width: 300px;
+}
+
+.h-3 {
+  height: 3rem;
+}
+
+.min-h-200px {
+  min-height: 200px;
+}
+
+.min-h-300px {
+  min-height: 300px;
+}
+
+.bg-color-highlight {
+  background: $background-color-highlight;
+}
+
+.mi-small {
+  margin-inline: 5px;
+}
+
+.mh-2-5rem {
+  max-height: 2.5rem;
+}
+
+.mh-3rem {
+  max-height: 3rem;
+}

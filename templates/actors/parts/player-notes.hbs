@@ -1,5 +1,5 @@
 <div class="container grid col-60-40">
-    <div class="left-col">
+    <div class="left-col flexcol">
         <div class="flexcol">
             <div class="fs-400 fw-800 all-caps border-thick margin-small padding-small">{{localize "estate.UI.JOURNEY"}}
             </div>
@@ -20,11 +20,11 @@
             </div>
         </div>
 
-        <div class="container flex-col margin-top-large">
-            <div class="title fs-400 fw-800 all-caps margin-small padding-small border-thick">{{localize
+        <div class="container flexcol margin-top-large">
+            <div class="title fs-400 fw-800 all-caps margin-small padding-small border-thick mh-2-5rem">{{localize
                 "estate.UI.NOTES"}}</div>
-            <div class="full-size border-thick margin-small padding-small margin-top-close min-h-200px">
-                {{editor notesHTML target="system.notes" button=true owner=owner editable=editable}}
+            <div class="full-size border-thick margin-small padding-small margin-top-close min-h-200px flex">
+                {{editor notesHTML target="system.notes" button=true owner=owner editable=editable engine="prosemirror" collaborate=false }}
             </div>
         </div>
     </div>

@@ -71,6 +71,7 @@ body{
 
 .app.sheet .editor {
     min-height: 55px;
+    flex-basis: 100%;
   }
   
   
@@ -207,3 +208,4 @@ text {
     min-height: 200px !important;
     border: none;
   }
+

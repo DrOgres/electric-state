@@ -146,7 +146,7 @@
 
                     {{#if item.system.isConsumable}}
                     <div class="item-use consumable clickable" data-item-id="{{item._id}}">
-                        Uses: {{item.system.uses}}
+                        {{localize "estate.UI.USES"}}: {{item.system.uses}}
                     </div>
                     <div class="use-type">
                         {{#dataLocalization item.system.useType 'useType'}}{{/dataLocalization}}

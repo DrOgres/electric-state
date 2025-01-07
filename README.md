@@ -27,6 +27,9 @@ TODO LIST:
 
 Version History:
 
+v0.25.0
+- Chore: Update Chat Buttons to work in v13
+
 v0.24.0
 - Fix: localization strings had a whitespace preventing them from loading correctly
 

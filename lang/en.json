@@ -197,6 +197,7 @@
     "MSG.BUSTEDDRONE": "Drone is busted, you must repair it before you can use it",
     "MSG.BUSTEDWEAPON": "Weapon is busted, you must repair it before you can use it",
     "MSG.DAMAGEONE": "This Damage Source cannot be applied to more than one target",
+    "MSG.DAMAGENONE": "No Target Selected",
     "MSG.NOACTOR": "The roll was not made from a valid actor sheet",
     
     "ROLL.BASE.POOL": "Base Dice Pool",

@@ -32,7 +32,7 @@
   "version": "0.24.0",
   "compatibility": {
     "minimum": "12",
-    "maximum": "12",
+    "maximum": "13",
     "verified": "12.331"
   },
   "esmodules": [

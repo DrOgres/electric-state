@@ -6,6 +6,7 @@ import electricStateActorSheet from "./module/actor/sheet.js";
 import electricStateActor from "./module/actor/entity.js";
 import electricStateItemSheet from "./module/item/sheet.js";
 import electricStateItem from "./module/item/entity.js";
+import { ChatMessageES } from "./module/lib/chat.js";
 
 
 
@@ -29,6 +30,7 @@ Hooks.once("init", function () {
   CONFIG.eState = eState;
   console.log(CONFIG.eState);
   CONFIG.Actor.documentClass = electricStateActor;
+  CONFIG.ChatMessage.documentClass = ChatMessageES;
   // CONFIG.Item.documentClass = tftloopItem;
 
   // Register System Settings
@@ -44,6 +46,13 @@ Hooks.once("init", function () {
     smakeDefault: true,
   });
 
+
+  Hooks.on("renderChatMessage", (app, html, data) => {
+    console.log("renderChatMessage", app, html, data);
+    console.log("ChatMessageVaesen", ChatMessageES);
+    ChatMessageES.activateListeners(html);
+    // ChatMessageVaesen.hideChatActionButtons(app, html, data);
+  });
   
 
   preloadHandlebarsTemplates();

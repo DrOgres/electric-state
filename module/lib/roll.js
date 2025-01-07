@@ -1214,9 +1214,31 @@ function buildDivHtmlDialog(divContent) {
   );
 }
 
+let chatLog = game.sidebarTab;
+console.log("Chat Log", chatLog);
+
+//TODO add a version check here as this will not work in v13
 Hooks.on("renderChatLog", (app, html, data) => {
-  html.on("click", ".dice-button.push", _onPush);
-  html.on("click", ".dice-button.apply-damage", _onApplyDamage);
+  console.log("Chat Log Rendered", app, html, data);
+  console.log("HTML length", html);
+  let div = document.createElement("div");
+  // the html in the div is represented with [object HTMLElement] so we need to convert it to a string
+  let htmlString = html.outerHTML;
+  console.log("HTML String", htmlString);
+  div.innerHTML = htmlString;
+  console.log("Div", div);
+  for (let element of div.getElementsByClassName("dice-button")) {
+    console.log("Element", element);
+    if (element.classList.contains("push")) {
+      element.addEventListener("click", _onPush);
+    } else if (element.classList.contains("apply-damage")) {
+    element.addEventListener("click", _onApplyDamage);
+    }
+  }
+  
+  // html.getElementById(".dice-button.apply-damage").addEventListener("click", _onApplyDamage);
+  // html.on("click", ".dice-button.push", _onPush);
+  // html.on("click", ".dice-button.apply-damage", _onApplyDamage);
 });
 
 async function _onApplyDamage(event) {

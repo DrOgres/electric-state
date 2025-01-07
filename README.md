@@ -12,6 +12,9 @@ please put any and all bug reports and feature requests in the issues of this re
 
 TODO LIST:
 
+- V13
+    - fix card styling for chat cards
+    - remove deprecations and verify v12 backwards compatibility
 - General styling and UI improvement for clarity and use
 - Organize localization fields to make sense
 - set up macro drag to hot bar for rollable elements

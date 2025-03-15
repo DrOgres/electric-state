@@ -859,11 +859,15 @@ function buildTensionSelectDialog(options, tensions) {
       });
     }
     count++;
-    const actor = game.actors.get(tension.system.actorId);
-    selectOptions += `<option value="${tension.id}" ${
-      isDefault ? "selected" : ""
-    }>${actor.name} &plus; ${tension.system.score}</option>`;
-    // selectOptions += `<option value="${tension.id}" >${actor.name} &plus; ${tension.system.score}</option>`;
+
+    // if a tension of an actor has no tension actor assigned, we need to check if the actor var is valid otherwise the complete roll dialog won't work
+    if(actor){
+      const actor = game.actors.get(tension.system.actorId);
+      selectOptions += `<option value="${tension.id}" ${
+        isDefault ? "selected" : ""
+      }>${actor.name} &plus; ${tension.system.score}</option>`;
+      // selectOptions += `<option value="${tension.id}" >${actor.name} &plus; ${tension.system.score}</option>`;
+    }
   }
 
   if (count === 0) {

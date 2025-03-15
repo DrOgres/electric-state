@@ -29,9 +29,12 @@ TODO LIST:
     - How do we handle neuroscape things? 
 
 Version History:
+v0.26.0
+- Chore: Update Chat Buttons to work in v13
 
 v0.25.0
-- Chore: Update Chat Buttons to work in v13
+- Fix: a small fix for the roll dialog if the tensions of an actor has no other actor assigned [#35](https://github.com/DrOgres/electric-state/pull/35)
+
 
 v0.24.0
 - Fix: localization strings had a whitespace preventing them from loading correctly

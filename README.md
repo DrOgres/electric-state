@@ -29,6 +29,7 @@ TODO LIST:
     - How do we handle neuroscape things? 
 
 Version History:
+
 v0.27.0
 - Chore: Update Chat Buttons to work in v13
 - Feature: Added option to tally hope loss based on new ones rather than all ones (request from Maia)

@@ -49,7 +49,7 @@ Hooks.once("init", function () {
 
   Hooks.on("renderChatMessage", (app, html, data) => {
     console.log("renderChatMessage", app, html, data);
-    console.log("ChatMessageVaesen", ChatMessageES);
+    console.log("ChatMessageElectricState", ChatMessageES);
     ChatMessageES.activateListeners(html);
     // ChatMessageVaesen.hideChatActionButtons(app, html, data);
   });

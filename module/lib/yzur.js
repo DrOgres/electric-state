@@ -188,6 +188,7 @@ class YearZeroDie extends foundry.dice.terms.Die {
      * @returns {YearZeroDie} this dice, pushed
      */
     push() {
+      console.log ("line 191 push!")
       if (!this.pushable) return this;
       const indexPush = this.pushCount + 1;
       const indexesResult = [];
@@ -1210,6 +1211,7 @@ class YearZeroDie extends foundry.dice.terms.Die {
      * @readonly
      */
     get attributeTrauma() {
+      //TODO add 'kid gloves mode, only count 1 from base dice in the pool post push
       return this.count('base', 1);
     }
   
@@ -1656,11 +1658,18 @@ class YearZeroDie extends foundry.dice.terms.Die {
      * @async
      */
     async push({ async } = {}) {
+      console.log("line 1661 push!")
       if (!this._evaluated) await this.evaluate({ async });
       if (!this.pushable) return this;
+
+      //TODO kid gloves mode: 1's before the push don't count for attributeTrauma
+      let originalOnesCount = this.count('base', 1);
+      console.log("Ones from before the push?", originalOnesCount);
   
       // Step 1 — Pushes the terms.
       this.terms.forEach(t => t instanceof YearZeroDie ? t.push() : t);
+
+      console.log("pushing roll:", this.terms)
   
       // Step 2 — Re-evaluates all pushed terms.
       //   The evaluate() method iterates each terms and runs only

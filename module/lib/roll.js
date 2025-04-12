@@ -1326,7 +1326,7 @@ async function _onPush(event) {
   const gearDamage = roll.gearDamage;
   console.log("Gear Damage", gearDamage);
   const hopeDamage = roll.attributeTrauma;
-  console.log("Hope Damage", hopeDamage);
+  console.log("TO FIX Hope Damage", hopeDamage);
 
   console.log("ROll", roll);
   console.log("actor", actor);

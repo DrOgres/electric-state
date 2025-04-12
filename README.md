@@ -31,6 +31,7 @@ TODO LIST:
 Version History:
 v0.27.0
 - Chore: Update Chat Buttons to work in v13
+- Feature: Added option to tally hope loss based on new ones rather than all ones (request from Maia)
 
 v0.26.0
 - Hotfix: check missed initialization [#36](https://github.com/DrOgres/electric-state/pull/36)

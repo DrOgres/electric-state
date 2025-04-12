@@ -1324,28 +1324,32 @@ async function _onPush(event) {
 
   console.log("Pushing", roll);
   const gearDamage = roll.gearDamage;
-  console.log("Gear Damage", gearDamage);
+  // console.log("Gear Damage", gearDamage);
+
+
   const hopeDamage = roll.attributeTrauma;
+  // here is where we need to have a different number for the damage, if we have kid gloves mode enabled
+
   console.log("TO FIX Hope Damage", hopeDamage);
 
-  console.log("ROll", roll);
-  console.log("actor", actor);
+  // console.log("ROll", roll);
+  // console.log("actor", actor);
   let gearArray = [];
-  console.log("GearId", roll.options.gearId);
+  // console.log("GearId", roll.options.gearId);
   if (roll.options.gearId === undefined) {
-    console.log("No Gear");
+    // console.log("No Gear");
     return;
   } else {
-    console.log("GearId", roll.options.gearId);
+    // console.log("GearId", roll.options.gearId);
     for (let gear of roll.options.gearId) {
-      console.log("Gear", gear);
+      // console.log("Gear", gear);
       gearArray.push(actor.items.find((i) => i.id === gear));
     }
   }
-  console.log("GearArray", gearArray);
+  // console.log("GearArray", gearArray);
   if (gearDamage > 0) {
     if (gearArray !== undefined) {
-      console.log("Gear", gearArray);
+      // console.log("Gear", gearArray);
       for (let gear of gearArray) {
         if (gear.type !== "neurocaster") {
           gear.system.modifier.value -= gearDamage;
@@ -1356,10 +1360,10 @@ async function _onPush(event) {
             },
           ];
           await Item.updateDocuments(update, { parent: actor });
-          console.log("Gear", gear);
-          console.log("actor", actor);
+          // console.log("Gear", gear);
+          // console.log("actor", actor);
         } else {
-          console.log("Neurocaster Damage", roll);
+          // console.log("Neurocaster Damage", roll);
           const str = "system." + roll.options.castAttribute + ".value";
           // console.log("STR", str);
 
@@ -1369,11 +1373,11 @@ async function _onPush(event) {
               [str]: gear.system[roll.options.castAttribute].value - gearDamage,
             },
           ];
-          console.log("Update", update);
+          // console.log("Update", update);
           await Item.updateDocuments(update, { parent: actor });
 
           if (gear.system[roll.options.castAttribute].value <= 0) {
-            console.log("neurocaster broken", gear);
+            // console.log("neurocaster broken", gear);
             await actor.update({ "system.hope.value": 0 });
 
             const update = [
@@ -1383,7 +1387,7 @@ async function _onPush(event) {
               },
             ];
             await Item.updateDocuments(update, { parent: actor });
-            console.log("actor", actor);
+            // console.log("actor", actor);
             ui.notifications.info(
               game.i18n.localize("estate.MSG.NEUROCASTERBROKEN")
             );
@@ -1393,34 +1397,34 @@ async function _onPush(event) {
     }
 
     if (actor.type === "vehicle") {
-      console.log("Vehicle Damage", gearDamage);
+      // console.log("Vehicle Damage", gearDamage);
       // the vehicle takes damage to the maneuverability trait
       let maneuverability = actor.system.maneuverability.value;
       maneuverability -= gearDamage;
       await actor.update({ "system.maneuverability.value": maneuverability });
-      console.log("Vehicle", actor);
+      // console.log("Vehicle", actor);
     }
   }
 
   if (hopeDamage > 0 && actor.type === "player") {
-    console.log("damage to hope", hopeDamage);
+    // console.log("damage to hope", hopeDamage);
     let hope = actor.system.hope.value;
     hope -= hopeDamage;
     if (hope < 0) {
       hope = 0;
     }
-    console.log("Hope", hope);
+    // console.log("Hope", hope);
     await actor.update({ "system.hope.value": hope });
   } else if (hopeDamage > 0 && actor.type === "vehicle") {
     // get the actor that is the driver of the vehicle and apply the hope damage to them
-    console.log("Vehicle Hope Damage", actor);
+    // console.log("Vehicle Hope Damage", actor);
     let driverId = actor.system.passengers.driverId;
-    console.log("DriverId", driverId);
+    // console.log("DriverId", driverId);
     let driver = game.actors.get(driverId);
-    console.log("Driver", driver);
+    // console.log("Driver", driver);
     let hope = driver.system.hope.value;
     hope -= hopeDamage;
-    console.log("Hope", hope);
+    // console.log("Hope", hope);
     await driver.update({ "system.hope.value": hope });
   }
 
@@ -1428,7 +1432,7 @@ async function _onPush(event) {
 }
 
 export async function roll(options) {
-  console.log("Rolling", options);
+  // console.log("Rolling", options);
 
   const sheet = options.sheet;
   sheet.roll = new YearZeroRoll();
@@ -1471,7 +1475,7 @@ export async function roll(options) {
     // rollOptions.cast = options.cast;
     // rollOptions.castAttribute = options.castAttribute;
   }
-  console.log("Roll Options", rollOptions);
+  // console.log("Roll Options", rollOptions);
 
   rollOptions.maxPush = isRollPushable(actor, options) ? 1 : 0;
 
@@ -1484,20 +1488,20 @@ export async function roll(options) {
   }
 
   await r.evaluate();
-  console.log("Roll", r);
+  // console.log("Roll", r);
 
   if (r.options.type === "neurocaster" && actor.type === "player") {
     if (r.successCount === 0) {
       // add a point of bliss to te actor who made the roll
-      console.log("No Success", actor);
+      // console.log("No Success", actor);
       let bliss = actor.system.bliss;
-      console.log("Bliss", bliss);
+      // console.log("Bliss", bliss);
       bliss += 1;
       await actor.update({ "system.bliss": bliss });
     }
   }
 
-  console.log("Roll", r);
+  // console.log("Roll", r);
 
   await r.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),

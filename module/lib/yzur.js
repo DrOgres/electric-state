@@ -1211,7 +1211,10 @@ class YearZeroDie extends foundry.dice.terms.Die {
      * @readonly
      */
     get attributeTrauma() {
+      let hopeSettingState = game.settings.get("electric-state", "easierHope");
+      console.log("hope setting state", hopeSettingState);
       //TODO add 'kid gloves mode, only count 1 from base dice in the pool post push
+      // set a count based on 1's only from new dice on push
       return this.count('base', 1);
     }
   
@@ -1658,25 +1661,25 @@ class YearZeroDie extends foundry.dice.terms.Die {
      * @async
      */
     async push({ async } = {}) {
-      console.log("line 1661 push!")
+      
       if (!this._evaluated) await this.evaluate({ async });
       if (!this.pushable) return this;
 
-      //TODO kid gloves mode: 1's before the push don't count for attributeTrauma
-      let originalOnesCount = this.count('base', 1);
-      console.log("Ones from before the push?", originalOnesCount);
+      let hopeSettingState = game.settings.get("electric-state", "easierHope");
+         let originalOnesCount = this.count('base', 1); 
   
       // Step 1 — Pushes the terms.
       this.terms.forEach(t => t instanceof YearZeroDie ? t.push() : t);
-
-      console.log("pushing roll:", this.terms)
-  
       // Step 2 — Re-evaluates all pushed terms.
       //   The evaluate() method iterates each terms and runs only
       //   the term's own evaluate() method on new (pushed) dice.
       this._evaluated = false;
       await this.evaluate();
-  
+      if (hopeSettingState){
+      this.options.originalOnesCount = originalOnesCount;
+      } else {
+        this.options.originalOnesCount = 0;
+      }
       return this;
     }
   
@@ -1975,6 +1978,7 @@ class YearZeroDie extends foundry.dice.terms.Die {
      * @override
      */
     async toMessage(messageData = {}, { rollMode = null, create = true } = {}) {
+      console.log("yzur to message");
       messageData = foundry.utils.mergeObject({
         user: game.user.id,
         speaker: ChatMessage.getSpeaker(),
@@ -1988,6 +1992,7 @@ class YearZeroDie extends foundry.dice.terms.Die {
         // sound: CONFIG.sounds.dice, // Already added in super.
       }, messageData);
       // messageData.roll = this; // Already added in super.
+      console.log("yzur to message data", messageData);
       return await super.toMessage(messageData, { rollMode, create });
     }
   

@@ -14,7 +14,7 @@
   {{/if}}
   {{/if}}
   {{#if (gt roll.pushCount 0)}}
-  {{#if (gt roll.baneCount 0)}}
+  {{#if (gt (calculate roll.baneCount roll.options.originalOnesCount "-") 0)}}
   <div class="bane-container center margin-small padding-small border-thin flexcol ">
     {{#if (gt roll.gearDamage 0)}}
     <div class="gear-damage center flexrow middle fw-600 space-between w-100">
@@ -22,10 +22,10 @@
       <span class="result">{{roll.gearDamage}}</span>
     </div>
     {{/if}}
-    {{#if (gt roll.attributeTrauma 0)}}
+    {{#if (gt (calculate roll.attributeTrauma roll.options.originalOnesCount "-") 0)}}
     <div class="hope-loss center flexrow middle fw-600 space-between w-100">
       <span class="label">{{localize "estate.UI.HOPE_LOSS"}}: </span>
-      <span class="result">{{roll.attributeTrauma}}</span>
+      <span class="result">{{calculate roll.attributeTrauma roll.options.originalOnesCount "-"}}</span>
     </div>
 
     {{/if}}

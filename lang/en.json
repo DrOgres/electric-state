@@ -1,4 +1,7 @@
 {
+  "SETTINGS.easierHope": "Hope loss only on new 1's",
+  "SETTINGS.easierHopeDesc": "1's rolled before the push are not counted in the total for hope lost",
+
   "estate": {
     "ATTRIBUTE.STR": "Strength",
     "ATTRIBUTE.AGI": "Agility",

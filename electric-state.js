@@ -28,7 +28,7 @@ Hooks.once("init", function () {
   };
 
   CONFIG.eState = eState;
-  console.log(CONFIG.eState);
+  // console.log(CONFIG.eState);
   CONFIG.Actor.documentClass = electricStateActor;
   CONFIG.ChatMessage.documentClass = ChatMessageES;
   // CONFIG.Item.documentClass = tftloopItem;
@@ -48,8 +48,8 @@ Hooks.once("init", function () {
 
 
   Hooks.on("renderChatMessage", (app, html, data) => {
-    console.log("renderChatMessage", app, html, data);
-    console.log("ChatMessageElectricState", ChatMessageES);
+    // console.log("renderChatMessage", app, html, data);
+    // console.log("ChatMessageElectricState", ChatMessageES);
     ChatMessageES.activateListeners(html);
     // ChatMessageVaesen.hideChatActionButtons(app, html, data);
   });
@@ -109,7 +109,7 @@ Hooks.once("init", function () {
         break;
       case "w_type":
         const weaponType = eState.weaponType[data];
-        console.log("E-STATE | Weapon Type", weaponType);
+        // console.log("E-STATE | Weapon Type", weaponType);
         string = game.i18n.localize(`${weaponType}`);
         break;
       case "range":
@@ -134,7 +134,7 @@ Hooks.once("init", function () {
         string = game.i18n.localize(`${injury}`);
         break;
       case "trauma":
-        console.log("E-STATE | Trauma", data);
+        // console.log("E-STATE | Trauma", data);
         if (data.length === 0) {
           string = game.i18n.localize("estate.UI.NONE");
         } else {
@@ -223,7 +223,7 @@ Hooks.once("ready", async function () {
 
 Hooks.on("dropActorSheetData", async (actor, actorSheet, data) => {
   if (actor.type !== "vehicle" || data.type !== "Actor") {
-    console.log("E-STATE | Not a Vehicle nor dropping an Actor");
+    // console.log("E-STATE | Not a Vehicle nor dropping an Actor");
     return;
   }
 
@@ -242,7 +242,7 @@ function setLogo() {
 }
 
 async function createElectricStateMacro(data, slot) {
-  console.log("E-STATE | Macro Drop", data);
+  // console.log("E-STATE | Macro Drop", data);
 
   const actor = game.actors.get(data.actorId);
   if (actor === undefined) return;
@@ -254,14 +254,14 @@ async function createElectricStateMacro(data, slot) {
 
   let command = '';
   if (data.type === "attribute"){
-    console.log("E-STATE | Attribute Macro Drop", data);
+    // console.log("E-STATE | Attribute Macro Drop", data);
     command =  `
       const thisActor = game.actors.get("${data.actorId}");
       if (thisActor === null || thisActor.type !== "player") return;
       thisActor.sheet.rollAttribute("${data.attribute}");
     `
   } else if (data.type === "armor") {
-    console.log("E-STATE | Armor Macro Drop", data);
+    // console.log("E-STATE | Armor Macro Drop", data);
 
     command = `
       const thisActor = game.actors.get("${data.actorId}");
@@ -269,21 +269,21 @@ async function createElectricStateMacro(data, slot) {
       thisActor.sheet.rollArmor("${data.armorId}");
     `
   } else if (data.type === "weapon") {
-    console.log("E-STATE | Weapon Macro Drop", data);
+    // console.log("E-STATE | Weapon Macro Drop", data);
     command = `
       const thisActor = game.actors.get("${data.actorId}");
       if (thisActor === null || thisActor.type !== "player") return;
       thisActor.sheet.rollWeapon("${data.weaponId}");
     `
   } else if (data.type === "gear") {
-    console.log("E-STATE | Gear Macro Drop", data);
+    // console.log("E-STATE | Gear Macro Drop", data);
     command = `
       const thisActor = game.actors.get("${data.actorId}");
       if (thisActor === null || thisActor.type !== "player") return;
       thisActor.sheet.rollGear("${data.gear}");
     `
   } else if (data.type === "bliss") {
-    console.log("E-STATE | Bliss Macro Drop", data);
+    // console.log("E-STATE | Bliss Macro Drop", data);
     command = `
       const thisActor = game.actors.get("${data.actorId}");
       if (thisActor === null || thisActor.type !== "player") return;
@@ -296,7 +296,7 @@ async function createElectricStateMacro(data, slot) {
   }
 
   let macro = game.macros.find((m) => m.name === data.text);
-  console.log("E-STATE | Macro", macro);
+  // console.log("E-STATE | Macro", macro);
   if (!macro) {
     macro = await Macro.create({
       name: data.text,

@@ -26,7 +26,7 @@ export default class esActorSheet extends ActorSheet {
         CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER &&
       this._isPlayer()
     ) {
-      console.log("E-STATE | User is not the owner of the actor");
+      // console.log("E-STATE | User is not the owner of the actor");
       return `systems/electric-state/templates/actors/${this.actor.type}-limited.hbs`;
     }
     return `systems/electric-state/templates/actors/${this.actor.type}.hbs`;
@@ -34,7 +34,7 @@ export default class esActorSheet extends ActorSheet {
 
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
-    console.log("E-STATE | Header Buttons", buttons);
+    // console.log("E-STATE | Header Buttons", buttons);
     if (this.actor.isOwner && this._isPlayer()) {
       buttons = [
         {
@@ -80,7 +80,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   activateListeners(html) {
-    console.log("E-STATE | Activating Actor Sheet Listeners");
+    // console.log("E-STATE | Activating Actor Sheet Listeners");
     super.activateListeners(html);
     html.find("input").focusin((ev) => this.onFocusIn(ev));
     html.find(".item-create").click(this._onItemCreate.bind(this));
@@ -107,11 +107,11 @@ export default class esActorSheet extends ActorSheet {
     html.find(".item-field-edit").change(this._updateItemData.bind(this));
 
     html.find(".attribute").each((i, item) => {
-      console.log("E-STATE | Attribute", item);
+      // console.log("E-STATE | Attribute", item);
 
       let attributeName = $(item).text();
       attributeName = attributeName.replace(/[\n\r]+|[\s]{2,}/g, " ").trim();
-      console.log("E-STATE | Attribute Name", attributeName);
+      // console.log("E-STATE | Attribute Name", attributeName);
 
       item.setAttribute("data-item-id", this.actor.id);
       item.setAttribute("draggable", true);
@@ -132,7 +132,7 @@ export default class esActorSheet extends ActorSheet {
     });
 
     html.find(".armor").each((i, item) => {
-      console.log("E-STATE | Armor", item);
+      // console.log("E-STATE | Armor", item);
 
       item.setAttribute("draggable", true);
       item.addEventListener(
@@ -156,7 +156,7 @@ export default class esActorSheet extends ActorSheet {
     });
 
     html.find(".weapon").each((i, item) => {
-      console.log("E-STATE | Weapon", item);
+      // console.log("E-STATE | Weapon", item);
       const div = $(item).parents(".weapon");
       item.setAttribute("draggable", true);
       item.addEventListener(
@@ -180,7 +180,7 @@ export default class esActorSheet extends ActorSheet {
     });
 
     html.find(".bliss").each((i, item) => {
-      console.log("E-STATE | Bliss", item);
+      // console.log("E-STATE | Bliss", item);
       item.setAttribute("draggable", true);
       item.addEventListener(
         "dragstart",
@@ -209,11 +209,11 @@ export default class esActorSheet extends ActorSheet {
     };
 
     if (this.actor.system.bliss <= 0) {
-      console.log("E-STATE | No Bliss");
+      // console.log("E-STATE | No Bliss");
       ui.notifications.info(game.i18n.localize("estate.MSG.NOBLISS"));
       return;
     } else if (this.actor.system.bliss === this.actor.system.permanent) {
-      console.log("E-STATE | Permanent Bliss");
+      // console.log("E-STATE | Permanent Bliss");
       ui.notifications.info(game.i18n.localize("estate.MSG.PERMANENTBLISS"));
       return;
     }
@@ -223,7 +223,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async rollWeapon(weaponId) {
-    console.log("E-STATE | Rolling Weapon", weaponId);
+    // console.log("E-STATE | Rolling Weapon", weaponId);
     const itemId = weaponId;
     const item = this.actor.items.get(itemId);
 
@@ -237,7 +237,7 @@ export default class esActorSheet extends ActorSheet {
       gearUsed: [],
     };
 
-    console.log("E-STATE | Rolling Weapon");
+    // console.log("E-STATE | Rolling Weapon");
 
     let ncWeapon = false;
     let ncBonus = 0;
@@ -248,7 +248,7 @@ export default class esActorSheet extends ActorSheet {
         const neurocasters = this.actor.items.filter(
           (item) => item.type === "neurocaster"
         );
-        console.log("E-STATE | Neurocasters", neurocasters);
+        // console.log("E-STATE | Neurocasters", neurocasters);
         if (neurocasters.length === 0) {
           ui.notifications.warn(
             game.i18n.localize("estate.MSG.NEEDNEUROCASTER")
@@ -318,7 +318,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async rollAttribute(attribute) {
-    console.log("E-STATE | Rolling Attribute", attribute);
+    // console.log("E-STATE | Rolling Attribute", attribute);
 
     let options = {
       type: "attribute",
@@ -339,7 +339,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async rollArmor(armorId) {
-    console.log("E-STATE | Rolling Armor", armorId);
+    // console.log("E-STATE | Rolling Armor", armorId);
 
     const itemId = armorId;
     const item = this.actor.items.get(itemId);
@@ -363,16 +363,16 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _updateItemData(event) {
-    console.log("E-STATE | Updating Item Data", event);
+    // console.log("E-STATE | Updating Item Data", event);
     event.preventDefault();
   }
 
   async _onSetMax(event) {
-    console.log("E-STATE | Setting Max", event);
+    // console.log("E-STATE | Setting Max", event);
     event.preventDefault();
     const actor = this.actor;
     const type = event.currentTarget.dataset.stat;
-    console.log("E-STATE | Type", type, actor);
+    // console.log("E-STATE | Type", type, actor);
 
     const stat = actor.system[type].value;
     const max = actor.system[type].max;
@@ -388,7 +388,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _onChangeTension(event) {
-    console.log("E-STATE | Changing Tension", event);
+    // console.log("E-STATE | Changing Tension", event);
     event.preventDefault();
     const actor = this.actor;
     const tension = actor.items.get(event.currentTarget.dataset.itemId);
@@ -405,7 +405,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   _onTogglePermEdit(event) {
-    console.log("E-STATE | Toggling Permission Edit", event);
+    // console.log("E-STATE | Toggling Permission Edit", event);
     event.preventDefault();
     const actor = this.actor;
     const editStatus = actor.getFlag("world", "isPermEdit") || false;
@@ -414,7 +414,7 @@ export default class esActorSheet extends ActorSheet {
 
   //@override
   async close() {
-    console.log("E-STATE | Closing Actor Sheet", this);
+    // console.log("E-STATE | Closing Actor Sheet", this);
     //if the user is not the owner of the actor do not save the data
     if (
       this.actor.getUserLevel(game.user) !==
@@ -458,14 +458,14 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _onShowDetails(event) {
-    console.log("E-STATE | Showing Details", event);
+    // console.log("E-STATE | Showing Details", event);
     let chevron = event.currentTarget.children[0];
-    console.log("E-STATE | Chevron", chevron);
+    // console.log("E-STATE | Chevron", chevron);
     const div = $(event.currentTarget).parents(".item");
-    console.log("E-STATE | Div", div);
+    // console.log("E-STATE | Div", div);
     const item = this.actor.items.get(div.data("itemId"));
-    console.log("ESTATE | Actor ", this.actor);
-    console.log("E-STATE | Item", item);
+    // console.log("ESTATE | Actor ", this.actor);
+    // console.log("E-STATE | Item", item);
 
     // change the class of chevron from fa-chevron-down to fa-chevron-up or vice versa
     if (chevron.classList.contains("fa-chevron-down")) {
@@ -495,7 +495,7 @@ export default class esActorSheet extends ActorSheet {
           "</br></p>";
         break;
       case "gear":
-        console.log("E-STATE | Gear display", item);
+        // console.log("E-STATE | Gear display", item);
         //TODO if the gear is not consumable just show the description, otherwise show the uses, the drawback etc. as well as the description
         if (item.system.modifier.value <= 0) {
           chatData =
@@ -620,20 +620,20 @@ export default class esActorSheet extends ActorSheet {
     }
 
     if (chatData === null) {
-      console.log("E-STATE | No Chat Data", chatData);
+      // console.log("E-STATE | No Chat Data", chatData);
       return;
     } else if (div.hasClass("expanded")) {
-      console.log("E-STATE | Expanded", chatData);
+      // console.log("E-STATE | Expanded", chatData);
       let sum = div.children(".item-summary");
       sum.slideUp(200, () => sum.remove());
     } else {
-      console.log("E-STATE | Not Expanded", chatData);
+      // console.log("E-STATE | Not Expanded", chatData);
       let sum = $(
         `<div class="item-summary bg-hatch2 span-all">${chatData}</div>`
       );
       div.append(sum.hide());
-      console.log("E-STATE | Sum", sum);
-      console.log("E-STATE | Div", div);
+      // console.log("E-STATE | Sum", sum);
+      // console.log("E-STATE | Div", div);
       sum.slideDown(200);
     }
     div.toggleClass("expanded");
@@ -643,7 +643,7 @@ export default class esActorSheet extends ActorSheet {
     event.preventDefault();
     const div = $(event.currentTarget).parents(".item");
     const item = this.actor.items.get(div.data("itemId"));
-    console.log("E-STATE | Item to Chat", item);
+    // console.log("E-STATE | Item to Chat", item);
     let type = item.type;
     buildChatCard(type, item);
   }
@@ -651,31 +651,31 @@ export default class esActorSheet extends ActorSheet {
   async _updateData(event) {
     event.preventDefault();
     const field = event.currentTarget.dataset.field;
-    console.log("E-STATE | event", event);
-    console.log("E-STATE | Field", field);
+    // console.log("E-STATE | event", event);
+    // console.log("E-STATE | Field", field);
     const value = event.currentTarget.innerText;
-    console.log("E-STATE | Value", value);
+    // console.log("E-STATE | Value", value);
     // strip empty tags from value
     const cleanValue = value.replace(/<[^>]*>?/gm, "").trim();
-    console.log("E-STATE | Value", cleanValue);
+    // console.log("E-STATE | Value", cleanValue);
     await this.actor.update({ [field]: cleanValue });
   }
 
   _onEditToggle(event) {
-    console.log("E-STATE | Toggling Edit Mode", event);
+    // console.log("E-STATE | Toggling Edit Mode", event);
     event.preventDefault();
     const type = event.currentTarget.dataset.edit;
     const actor = this.actor;
     if (type === "goal") {
-      console.log("E-STATE | Toggling Goal Edit Mode");
+      // console.log("E-STATE | Toggling Goal Edit Mode");
       let goal = actor.getFlag("electric-state", "isEditGoal") || false;
       actor.setFlag("electric-state", "isEditGoal", !goal);
-      console.log("E-STATE | Goal Edit Mode", goal, actor);
+      // console.log("E-STATE | Goal Edit Mode", goal, actor);
     }
   }
 
   async _onItemDrop(event) {
-    console.log("E-STATE | Dropping Item on Actor", event);
+    // console.log("E-STATE | Dropping Item on Actor", event);
 
     event.preventDefault();
     let actor = this.actor;
@@ -707,27 +707,27 @@ export default class esActorSheet extends ActorSheet {
   }
 
   _onDragStart(event) {
-    console.log(
-      "start drag",
-      event.srcElement.firstElementChild.dataset.rolled
-    );
-    console.log(
-      "start drag skill?",
-      event.currentTarget.classList.contains("skill")
-    );
-    console.log(
-      "start drag attribute?",
-      event.currentTarget.classList.contains("attribute")
-    );
+    // console.log(
+    //   "start drag",
+    //   event.srcElement.firstElementChild.dataset.rolled
+    // );
+    // console.log(
+    //   "start drag skill?",
+    //   event.currentTarget.classList.contains("skill")
+    // );
+    // console.log(
+    //   "start drag attribute?",
+    //   event.currentTarget.classList.contains("attribute")
+    // );
 
     if (event.currentTarget.classList.contains("attribute")) {
-      console.log("a skill or attribute");
+      // console.log("a skill or attribute");
       const rollItemDragged = event.srcElement.firstElementChild.dataset.rolled;
-      console.log("rollItemDragged", rollItemDragged);
+      // console.log("rollItemDragged", rollItemDragged);
 
       return;
     } else {
-      console.log("not a skill or attribute");
+      // console.log("not a skill or attribute");
       super._onDragStart(event);
       return;
     }
@@ -737,18 +737,18 @@ export default class esActorSheet extends ActorSheet {
     const type = event.currentTarget.dataset.type;
 
     if (type === "attribute") {
-      console.log("E-STATE | Dragging Attribute", event);
+      // console.log("E-STATE | Dragging Attribute", event);
       const attribute = event.currentTarget.dataset.attribute;
       const data = {
         type: "attribute",
         attribute: attribute,
         text: `${game.i18n.localize("estate.ROLL.ROLL")} ${attribute}`,
       };
-      console.log("E-STATE | Attribute Data", data);
+      // console.log("E-STATE | Attribute Data", data);
       let eventData = event.dataTransfer.getData("text/plain");
-      console.log("E-STATE | Event Data", eventData);
+      // console.log("E-STATE | Event Data", eventData);
       event.dataTransfer.setData("text/plain", JSON.stringify(data));
-      console.log("E-STATE | Drag Data", event);
+      // console.log("E-STATE | Drag Data", event);
     } else if (type === "item") {
       game.data.item = this.actor.getEmbeddedDocument(
         "Item",
@@ -759,9 +759,9 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _applyVehicleTraits(data, actor) {
-    console.log("E-STATE | Applying Vehicle Traits", data, actor);
+    // console.log("E-STATE | Applying Vehicle Traits", data, actor);
     const traits = actor.items.filter((item) => item.type === "trait");
-    console.log("E-STATE | Traits", traits, traits.length);
+    // console.log("E-STATE | Traits", traits, traits.length);
 
     if (traits.length === 0) {
       actor.setFlag("electric-state", "speed", 0);
@@ -778,7 +778,7 @@ export default class esActorSheet extends ActorSheet {
     let totalPassengerModifier = 0;
 
     for (let trait of traits) {
-      console.log("E-STATE | Trait", trait);
+      // console.log("E-STATE | Trait", trait);
       // none: "estate.UI.NONE",
       // general: "estate.UI.GENERAL",
       // speed: "estate.UI.SPEED",
@@ -799,39 +799,39 @@ export default class esActorSheet extends ActorSheet {
         case "speed":
           const speed = trait.system.modifier.value;
           totalSpeedModifier += speed;
-          console.log("E-STATE | Speed", speed, actor);
+          // console.log("E-STATE | Speed", speed, actor);
           break;
         case "maneuver":
           const maneuver = trait.system.modifier.value;
           totalManeuverModifier += maneuver;
-          console.log("E-STATE | Maneuver", maneuver);
+          // console.log("E-STATE | Maneuver", maneuver);
           break;
         case "armor":
           const armor = trait.system.modifier.value;
           totalArmorModifier += armor;
-          console.log("E-STATE | Armor", armor);
+          // console.log("E-STATE | Armor", armor);
           break;
         case "hull":
           const hull = trait.system.modifier.value;
           totalHullModifier += hull;
-          console.log("E-STATE | Hull", hull);
+          // console.log("E-STATE | Hull", hull);
           break;
         case "passengers":
           const passengers = trait.system.modifier.value;
           totalPassengerModifier += passengers;
-          console.log("E-STATE | Passengers", passengers);
+          // console.log("E-STATE | Passengers", passengers);
           break;
       }
     }
 
-    console.log(
-      "E-STATE | Total Modifiers",
-      totalSpeedModifier,
-      totalManeuverModifier,
-      totalArmorModifier,
-      totalHullModifier,
-      totalPassengerModifier
-    );
+    // console.log(
+    //   "E-STATE | Total Modifiers",
+    //   totalSpeedModifier,
+    //   totalManeuverModifier,
+    //   totalArmorModifier,
+    //   totalHullModifier,
+    //   totalPassengerModifier
+    // );
 
     actor.setFlag("electric-state", "speed", totalSpeedModifier);
     actor.setFlag("electric-state", "maneuver", totalManeuverModifier);
@@ -840,10 +840,10 @@ export default class esActorSheet extends ActorSheet {
     actor.setFlag("electric-state", "passengers", totalPassengerModifier);
   }
   async _onItemUse(event) {
-    console.log("E-STATE | Using Item");
+    // console.log("E-STATE | Using Item");
     const itemId = event.currentTarget.dataset.itemId;
     const item = this.actor.items.get(itemId);
-    console.log("E-STATE | Item", item);
+    // console.log("E-STATE | Item", item);
     if (!item.system.isConsumable || item.system.uses <= 0) {
       ui.notifications.warn(game.i18n.localize("estate.MSG.NO_USES"));
       return;
@@ -852,7 +852,7 @@ export default class esActorSheet extends ActorSheet {
     const penalty = item.system.usePenaltyType;
     let uses = item.system.uses;
 
-    console.log("E-STATE | Item Type", type);
+    // console.log("E-STATE | Item Type", type);
     //   none: "estate.UI.NONE",
     // food: "estate.UI.FOOD",
     // stabalize: "estate.UI.STABALIZE",
@@ -890,7 +890,7 @@ export default class esActorSheet extends ActorSheet {
         uses -= 1;
     }
 
-    console.log("Penalty", penalty);
+    // console.log("Penalty", penalty);
     // apply any penaties to the actor
     // none: "estate.UI.NONE",
     // healthDown: "estate.UI.HEALTHDOWN",
@@ -917,7 +917,7 @@ export default class esActorSheet extends ActorSheet {
 
   async _onToggleEquip(event) {
     const parent = $(event.currentTarget).parents(".item");
-    console.log("E-STATE | Toggling Equip", parent);
+    // console.log("E-STATE | Toggling Equip", parent);
     event.preventDefault();
     const itemId = parent[0].dataset.itemId;
     const item = this.actor.items.get(itemId);
@@ -926,25 +926,25 @@ export default class esActorSheet extends ActorSheet {
     //TODO unequip all other items of the same type ensuring that only one item of that type is equipped
 
     await item.update({ "flags.isEquipped": equipStatus });
-    console.log("E-STATE | Item", item);
+    // console.log("E-STATE | Item", item);
   }
 
   async _onToggleFav(event) {
-    console.log("E-STATE | Toggling Favorite", event);
+    // console.log("E-STATE | Toggling Favorite", event);
 
     const parent = event.currentTarget.parentElement;
-    console.log("E-STATE | Parent", parent);
+    // console.log("E-STATE | Parent", parent);
     event.preventDefault();
     const itemId = parent.dataset.itemId;
-    console.log("E-STATE | Item Id", itemId);
+    // console.log("E-STATE | Item Id", itemId);
     const item = this.actor.items.get(itemId);
-    console.log("E-STATE | Item", item);
+    // console.log("E-STATE | Item", item);
     let favStatus = !item.flags.isFav;
     await item.update({ "flags.isFav": favStatus });
   }
 
   async _onRoll(event) {
-    console.log("E-STATE | Rolling", event);
+    // console.log("E-STATE | Rolling", event);
     const rollSource = event.currentTarget.dataset.type;
 
     if (this._isPlayer()) {
@@ -982,14 +982,14 @@ export default class esActorSheet extends ActorSheet {
         break;
       case "weapon":
         {
-          console.log("E-STATE | Rolling Weapon");
+          // console.log("E-STATE | Rolling Weapon");
           const itemId = event.currentTarget.dataset.itemId;
           this.rollWeapon(itemId);
         }
         break;
       case "armor":
         {
-          console.log("E-STATE | Rolling Armor");
+          // console.log("E-STATE | Rolling Armor");
           const itemId = event.currentTarget.dataset.itemId;
           this.rollArmor(itemId);
         }
@@ -998,7 +998,7 @@ export default class esActorSheet extends ActorSheet {
         {
           if (this.actor.type !== "vehicle") return;
 
-          console.log("E-STATE | Rolling Vehicle Armor");
+          // console.log("E-STATE | Rolling Vehicle Armor");
           options.testName = game.i18n.localize(`estate.UI.VEHICLEARMOR`);
           options.dicePool += this.actor.system.armor;
           prepareRollDialog(options);
@@ -1018,7 +1018,7 @@ export default class esActorSheet extends ActorSheet {
             return;
           }
 
-          console.log("E-STATE | Rolling Vehicle Maneuverability");
+          // console.log("E-STATE | Rolling Vehicle Maneuverability");
           const driverId = this.actor.system.passengers.driverId;
           const driver = driverId ? game.actors.get(driverId) : null;
           if (!driver) {
@@ -1043,7 +1043,7 @@ export default class esActorSheet extends ActorSheet {
         {
           if (this.actor.type !== "robot") return;
 
-          console.log("E-STATE | Rolling Robot Armor");
+          // console.log("E-STATE | Rolling Robot Armor");
           options.testName = game.i18n.localize(`estate.UI.ROBOTARMOR`);
           options.dicePool += this.actor.system.armor;
           prepareRollDialog(options);
@@ -1051,10 +1051,10 @@ export default class esActorSheet extends ActorSheet {
         break;
       case "drone-attack":
         {
-          console.log("E-STATE | Rolling Drone Attack");
+          // console.log("E-STATE | Rolling Drone Attack");
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
-          console.log("E-STATE | Item", item);
+          // console.log("E-STATE | Item", item);
           if (item.system.hull.value === 0) {
             ui.notifications.warn(game.i18n.localize("estate.MSG.BUSTEDDRONE"));
             return;
@@ -1063,7 +1063,7 @@ export default class esActorSheet extends ActorSheet {
           const neurocasters = this.actor.items.filter(
             (item) => item.type === "neurocaster"
           );
-          console.log("E-STATE | Neurocasters", neurocasters);
+          // console.log("E-STATE | Neurocasters", neurocasters);
 
           if (!item.flags.isEquipped) {
             ui.notifications.warn(
@@ -1114,7 +1114,7 @@ export default class esActorSheet extends ActorSheet {
           options.type = "drone";
           const maxRange = item.system.range.max;
           const minRange = item.system.range.min;
-          console.log("E-STATE | Max Range", maxRange, "Min Range", minRange);
+          // console.log("E-STATE | Max Range", maxRange, "Min Range", minRange);
           if (maxRange === "engaged") {
             options.dicePool = item.system.attributes.strength;
             options.attribute = "strength";
@@ -1131,7 +1131,7 @@ export default class esActorSheet extends ActorSheet {
         break;
       case "drone-armor":
         {
-          console.log("E-STATE | Rolling Drone Armor");
+          // console.log("E-STATE | Rolling Drone Armor");
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
 
@@ -1143,7 +1143,7 @@ export default class esActorSheet extends ActorSheet {
           const neurocasters = this.actor.items.filter(
             (item) => item.type === "neurocaster"
           );
-          console.log("E-STATE | Neurocasters", neurocasters);
+          // console.log("E-STATE | Neurocasters", neurocasters);
 
           if (!item.flags.isEquipped) {
             ui.notifications.warn(
@@ -1197,7 +1197,7 @@ export default class esActorSheet extends ActorSheet {
         break;
       case "neurocaster":
         {
-          console.log("E-STATE | Rolling Neurocaster");
+          // console.log("E-STATE | Rolling Neurocaster");
           //TODO check if the neurocaster is broken
 
           const itemId = event.currentTarget.parentElement.dataset.itemId;
@@ -1243,7 +1243,7 @@ export default class esActorSheet extends ActorSheet {
         break;
       case "explosive":
         {
-          console.log("E-STATE | Rolling Explosive");
+          // console.log("E-STATE | Rolling Explosive");
           const itemId = event.currentTarget.dataset.itemId;
           const item = this.actor.items.get(itemId);
           options.testName = item.name;
@@ -1259,7 +1259,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   _deathRoll(actor) {
-    console.log("E-STATE | Death Roll", actor);
+    // console.log("E-STATE | Death Roll", actor);
 
     if (actor.object.system.health.value > 0) {
       ui.notifications.info(game.i18n.localize("estate.MSG.NOTDYING"));
@@ -1286,7 +1286,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   _onItemDelete(event) {
-    console.log("E-STATE | Deleting Item");
+    // console.log("E-STATE | Deleting Item");
     const parent = $(event.currentTarget).parents(".button-group");
     event.preventDefault();
     const itemId = parent[0].dataset.itemId;
@@ -1298,7 +1298,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   resetVehicleFlags(item) {
-    console.log("E-STATE | Resetting Vehicle Flags", item);
+    // console.log("E-STATE | Resetting Vehicle Flags", item);
     const traitType = item.system.type;
     const actor = this.actor;
     switch (traitType) {
@@ -1342,7 +1342,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _onRemovePassenger(event) {
-    console.log("E-STATE | Removing Passenger", event);
+    // console.log("E-STATE | Removing Passenger", event);
     event.preventDefault();
     const parent = $(event.currentTarget).parents(".button-group");
     const passengerId = parent[0].dataset.passengerId;
@@ -1350,7 +1350,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _onAssignPassengerPosition(event) {
-    console.log("E-STATE | Assigning Passenger Position", event);
+    // console.log("E-STATE | Assigning Passenger Position", event);
     event.preventDefault();
     const parent = $(event.currentTarget).parents(".passenger");
     const passengerId = parent[0].dataset.passengerId;
@@ -1358,7 +1358,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async checkHope(actor) {
-    console.log("E-STATE | Checking Hope");
+    // console.log("E-STATE | Checking Hope");
     let hope = 0;
     let maxHope = 0;
 
@@ -1376,7 +1376,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async checkHealth(actor) {
-    console.log("E-STATE | Checking Health");
+    // console.log("E-STATE | Checking Health");
     let health = 0;
     let maxHealth = 0;
 
@@ -1394,7 +1394,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async checkBliss(actor) {
-    console.log("E-STATE | Checking Bliss");
+    // console.log("E-STATE | Checking Bliss");
     let bliss = 0;
     let permanentBliss = 0;
 
@@ -1408,7 +1408,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async computeMaxStats(actor) {
-    console.log("E-STATE | Computing Max Stats");
+    // console.log("E-STATE | Computing Max Stats");
     let health = 0;
     let hope = 0;
 
@@ -1446,7 +1446,7 @@ export default class esActorSheet extends ActorSheet {
   async _preparePassengers(data, actor) {
     if (actor.system.passengers.passengerIds === undefined) return;
     data.passengers = actor.system.passengers.passengerIds.reduce((arr, a) => {
-      console.log("E-STATE | Preparing Passengers", a.id);
+      // console.log("E-STATE | Preparing Passengers", a.id);
       const passenger = game.actors.get(a.id);
       if (passenger) {
         passenger.position =
@@ -1467,7 +1467,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async dropPassenger(actorId) {
-    console.log("E-STATE | Dropping Passenger on Vehicle", actorId);
+    // console.log("E-STATE | Dropping Passenger on Vehicle", actorId);
     const passenger = game.actors.get(actorId);
     const actorData = this.actor;
 
@@ -1479,7 +1479,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   computeItems(data) {
-    console.log("E-STATE | Computing Items", data);
+    // console.log("E-STATE | Computing Items", data);
     for (let item of Object.values(data.items)) {
       item.isGear = item.type === "gear";
       item.isWeapon = item.type === "weapon";
@@ -1514,7 +1514,7 @@ export default class esActorSheet extends ActorSheet {
   /** @override */
   async _onDropItemCreate(itemData) {
     const type = itemData.type;
-    console.log("E-State | drag and drop items", this);
+    // console.log("E-State | drag and drop items", this);
     const alwaysAllowedItems = [];
 
     const allowedItems = {

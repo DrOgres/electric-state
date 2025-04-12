@@ -22,13 +22,13 @@ export class ChatMessageES extends ChatMessage {
 
 
     static activateListeners(html) {
-      console.log("Activating listeners", html);
+      // console.log("Activating listeners", html);
       html.find(".dice-button.push").click((ev) => {
-        console.log("Button clicked", ev); 
+        // console.log("Button clicked", ev); 
         _onPush(ev);
         });
       html.find(".dice-button.apply-damage").click((ev) => {
-        console.log("Button clicked", ev);
+        // console.log("Button clicked", ev);
         _onApplyDamage(ev);
       });
 
@@ -39,28 +39,28 @@ export class ChatMessageES extends ChatMessage {
 
 
 async function _onApplyDamage(event) {
-  console.log("Applying Damage");
+  // console.log("Applying Damage");
   event.preventDefault();
   let chatCard = event.currentTarget.closest(".chat-message");
-  console.log("Chat Card", chatCard);
+  // console.log("Chat Card", chatCard);
   let messageId = chatCard.dataset.messageId;
   let message = game.messages.get(messageId);
   let actor = game.actors.get(message.speaker.actor);
-  console.log("Actor", actor);
+  // console.log("Actor", actor);
   if (actor === null || actor === undefined) {
     ui.notifications.warn(game.i18n.localize("estate.MSG.NOACTOR"));
     return;
   }
   let roll = message.rolls[0].duplicate();
-  console.log("Roll", roll);
+  // console.log("Roll", roll);
   let user = game.user;
   if (!actor.isOwner || !user.isGM) {
-    console.log("NOT Owner or GM");
+    // console.log("NOT Owner or GM");
     return;
   }
 
   let targets = Array.from(game.user.targets);
-  console.log("Targets", targets);
+  // console.log("Targets", targets);
   if (targets.length === 0) {
     ui.notifications.warn(game.i18n.localize("estate.MSG.DAMAGENONE"));
     return;
@@ -68,7 +68,7 @@ async function _onApplyDamage(event) {
 
   if (targets.length > 1) {
     if (roll.options.type === "explosive") {
-      console.log("Explosive Damage", roll);
+      // console.log("Explosive Damage", roll);
     } else {
       ui.notifications.warn(game.i18n.localize("estate.MSG.DAMAGEONE"));
       return;
@@ -122,31 +122,35 @@ async function _onPush(event) {
 
   // Push the roll and send it.
   await roll.push();
-
-  console.log("Pushing", roll);
+  // console.log("Pushing", roll);
   const gearDamage = roll.gearDamage;
-  console.log("Gear Damage", gearDamage);
-  const hopeDamage = roll.attributeTrauma;
-  console.log("Hope Damage", hopeDamage);
+  // console.log("Gear Damage", gearDamage);
+  let hopeDamage = roll.attributeTrauma;
 
-  console.log("ROll", roll);
-  console.log("actor", actor);
+
+  let kidGloves = game.settings.get("electric-state", "easierHope");
+  if (kidGloves){
+    hopeDamage -= roll.options.originalOnesCount;
+  }
+
+  // console.log("ROll", roll);
+  // console.log("actor", actor);
   let gearArray = [];
-  console.log("GearId", roll.options.gearId);
+  // console.log("GearId", roll.options.gearId);
   if (roll.options.gearId === undefined) {
-    console.log("No Gear");
+    // console.log("No Gear");
     return;
   } else {
-    console.log("GearId", roll.options.gearId);
+    // console.log("GearId", roll.options.gearId);
     for (let gear of roll.options.gearId) {
-      console.log("Gear", gear);
+      // console.log("Gear", gear);
       gearArray.push(actor.items.find((i) => i.id === gear));
     }
   }
-  console.log("GearArray", gearArray);
+  // console.log("GearArray", gearArray);
   if (gearDamage > 0) {
     if (gearArray !== undefined) {
-      console.log("Gear", gearArray);
+      // console.log("Gear", gearArray);
       for (let gear of gearArray) {
         if (gear.type !== "neurocaster") {
           gear.system.modifier.value -= gearDamage;
@@ -157,10 +161,10 @@ async function _onPush(event) {
             },
           ];
           await Item.updateDocuments(update, { parent: actor });
-          console.log("Gear", gear);
-          console.log("actor", actor);
+          // console.log("Gear", gear);
+          // console.log("actor", actor);
         } else {
-          console.log("Neurocaster Damage", roll);
+          // console.log("Neurocaster Damage", roll);
           const str = "system." + roll.options.castAttribute + ".value";
           // console.log("STR", str);
 
@@ -170,11 +174,11 @@ async function _onPush(event) {
               [str]: gear.system[roll.options.castAttribute].value - gearDamage,
             },
           ];
-          console.log("Update", update);
+          // console.log("Update", update);
           await Item.updateDocuments(update, { parent: actor });
 
           if (gear.system[roll.options.castAttribute].value <= 0) {
-            console.log("neurocaster broken", gear);
+            // console.log("neurocaster broken", gear);
             await actor.update({ "system.hope.value": 0 });
 
             const update = [
@@ -184,7 +188,7 @@ async function _onPush(event) {
               },
             ];
             await Item.updateDocuments(update, { parent: actor });
-            console.log("actor", actor);
+            // console.log("actor", actor);
             ui.notifications.info(
               game.i18n.localize("estate.MSG.NEUROCASTERBROKEN")
             );
@@ -194,37 +198,38 @@ async function _onPush(event) {
     }
 
     if (actor.type === "vehicle") {
-      console.log("Vehicle Damage", gearDamage);
+      // console.log("Vehicle Damage", gearDamage);
       // the vehicle takes damage to the maneuverability trait
       let maneuverability = actor.system.maneuverability.value;
       maneuverability -= gearDamage;
       await actor.update({ "system.maneuverability.value": maneuverability });
-      console.log("Vehicle", actor);
+      // console.log("Vehicle", actor);
     }
   }
 
   if (hopeDamage > 0 && actor.type === "player") {
-    console.log("damage to hope", hopeDamage);
+ 
     let hope = actor.system.hope.value;
     hope -= hopeDamage;
     if (hope < 0) {
       hope = 0;
     }
-    console.log("Hope", hope);
+    // console.log("Hope", hope);
     await actor.update({ "system.hope.value": hope });
   } else if (hopeDamage > 0 && actor.type === "vehicle") {
     // get the actor that is the driver of the vehicle and apply the hope damage to them
-    console.log("Vehicle Hope Damage", actor);
+    // console.log("Vehicle Hope Damage", actor);
     let driverId = actor.system.passengers.driverId;
-    console.log("DriverId", driverId);
+    // console.log("DriverId", driverId);
     let driver = game.actors.get(driverId);
-    console.log("Driver", driver);
+    // console.log("Driver", driver);
     let hope = driver.system.hope.value;
     hope -= hopeDamage;
-    console.log("Hope", hope);
+    // console.log("Hope", hope);
     await driver.update({ "system.hope.value": hope });
   }
 
+  console.log("just before to message on roll", roll);
   await roll.toMessage();
 }
 
@@ -235,7 +240,7 @@ async function renderChatMessage(chatOptions, dataSource) {
 }
 
 export const buildChatCard = function (type, item, chatOptions = {}) {
-  console.log("E-STATE | Building Chat Card", type, item);
+  // console.log("E-STATE | Building Chat Card", type, item);
 
   let token = "";
   const actor = game.actors.get(ChatMessage.getSpeaker().actor);

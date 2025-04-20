@@ -762,7 +762,8 @@ body .assistant-sc-regular {
 }
 
 .app.sheet .editor {
-  min-height: 55px;
+  min-height: 400px;
+  height: -webkit-fill-available;
   flex-basis: 100%;
 }
 

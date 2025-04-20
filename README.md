@@ -33,6 +33,7 @@ v0.28.0
 - Fix: CSS hiding the notes field on NPC sheets 
 
 
+
 v0.27.0
 - Chore: Update Chat Buttons to work in v13
 - Feature: Added option to tally hope loss based on new ones rather than all ones (request from Maia)

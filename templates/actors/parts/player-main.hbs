@@ -213,12 +213,12 @@
                             </div>
                         </div>
 
-                        {{#if item.flags.isEquipped}}
+                        {{#if item.system.isEquipped}}
                         <div class="toggle-equip" title="{{localize "estate.UI.UNEQUIP"}}">
                             <i class="fa-solid fa-shield"></i>
                         </div>
                         {{/if}}
-                        {{#unless item.flags.isEquipped}}
+                        {{#unless item.system.isEquipped}}
                         <div class="toggle-equip" title="{{localize "estate.UI.EQUIP"}}">
                             <i class="fa-regular fa-shield"></i>
                         </div>
@@ -258,13 +258,13 @@
                         </div>
 
                         <div class="item attack-group grid three-col" data-item-id="{{item._id}}">
-                            {{#if item.flags.isEquipped}}
+                            {{#if item.system.isEquipped}}
                             <div class="toggle-equip mw-50px" title="{{localize "estate.UI.UNEQUIP"}}"><i
                                     class="fa-solid fa-robot"></i>
 
                             </div>
                             {{/if}}
-                            {{#unless item.flags.isEquipped}}
+                            {{#unless item.system.isEquipped}}
                             <div class="toggle-equip mw-50px" title="{{localize "estate.UI.EQUIP"}}"><i
                                     class="fa-regular fa-robot"></i>
 
@@ -311,12 +311,13 @@
                         </div>
 
                         <div class="stat-group grid col-35-fr center middle">
-                            {{#if item.flags.isEquipped}}
+                            {{#if item.system.isEquipped}}
                             <div class="toggle-equip mw-45px" title="{{localize "estate.UI.UNEQUIP"}}"><i
                                     class="fa-solid fa-head-side-gear"></i>
                             </div>
                             {{/if}}
-                            {{#unless item.flags.isEquipped}}
+                            
+                            {{#unless item.system.isEquipped}}
                             <div class="toggle-equip mw-45px" title="{{localize "estate.UI.EQUIP"}}"><i
                                     class="fa-light fa-head-side-gear"></i>
 

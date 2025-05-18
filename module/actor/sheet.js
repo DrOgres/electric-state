@@ -917,20 +917,25 @@ export default class esActorSheet extends ActorSheet {
 
   async _onToggleEquip(event) {
     const parent = $(event.currentTarget).parents(".item");
-    // console.log("E-STATE | Toggling Equip", parent);
+    console.log("E-STATE | Toggling Equip", parent);
     event.preventDefault();
     const itemId = parent[0].dataset.itemId;
     const item = this.actor.items.get(itemId);
-    let equipStatus = !item.flags.isEquipped;
+    console.log(item);
+    let equipStatus = !item.system.isEquipped;
+    
+    console.log(equipStatus);
 
     //TODO unequip all other items of the same type ensuring that only one item of that type is equipped
 
-    await item.update({ "flags.isEquipped": equipStatus });
-    // console.log("E-STATE | Item", item);
+    // await item.update({ "system.isEquipped": false})
+
+    await item.update({ "system.isEquipped": equipStatus });
+    console.log("E-STATE | Item", item);
   }
 
   async _onToggleFav(event) {
-    // console.log("E-STATE | Toggling Favorite", event);
+    console.log("E-STATE | Toggling Favorite", event);
 
     const parent = event.currentTarget.parentElement;
     // console.log("E-STATE | Parent", parent);
@@ -944,7 +949,7 @@ export default class esActorSheet extends ActorSheet {
   }
 
   async _onRoll(event) {
-    // console.log("E-STATE | Rolling", event);
+    console.log("E-STATE | Rolling", event);
     const rollSource = event.currentTarget.dataset.type;
 
     if (this._isPlayer()) {

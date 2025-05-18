@@ -32,7 +32,7 @@
   "version": "0.28.0",
   "compatibility": {
     "minimum": "12",
-    "maximum": "12",
+    "maximum": "13",
     "verified": "12.331"
   },
   "esmodules": [
@@ -53,6 +53,7 @@
   "manifest": "https://github.com/DrOgres/electric-state/releases/latest/download/system.json",
   "download": "https://github.com/DrOgres/electric-state/releases/download/0.28.0/system.zip",
   "grid": {
+    "distance": 1,
     "units": "meter"
   }
 }

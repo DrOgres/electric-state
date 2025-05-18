@@ -96,7 +96,9 @@
         "modifier": {
           "max": 0,
           "value": 0
-        }
+        },
+        "isEquipped": false,
+        "isFav": false
       }
     },
     "gear": {

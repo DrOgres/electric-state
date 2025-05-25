@@ -127,7 +127,7 @@
 
                     {{#each items as |item|}}
                     {{#if item.isWeapon}}
-                    {{#if item.flags.isFav}}
+                    {{#if item.system.isFav}}
                     <div class=" item item-row flexrow  border-bottom-thin space-between gap-small"
                         data-item-id="{{item._id}}">
                         <div class="rollable mw-65px clickable" data-type="weapon" data-item-id="{{item._id}}">
@@ -147,7 +147,7 @@
 
                         <div class="button-group  grid two-col shrink mw-30px text-right justify-content-end"
                             data-item-id="{{item._id}}">
-                            {{#if item.flags.isFav}}
+                            {{#if item.system.isFav}}
                             <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}">
                                 <i class="fa-solid fa-star"></i>
 
@@ -167,7 +167,7 @@
 
                     {{#each items as |item|}}
                     {{#if item.isExplosive}}
-                    {{#if item.flags.isFav}}
+                    {{#if item.system.isFav}}
                     <div class="flexrow border-bottom-thin space-between gap-med" data-item-id="{{item._id}}">
                         <div class="rollable clickable" data-type="explosive" data-item-id="{{item._id}}">
                             <div class="item  no-break mw-100px" title="{{localize "estate.ROLL.ROLL"}} {{item.name}}">
@@ -185,7 +185,7 @@
 
                         <div class="button-group grid two-col shrink mw-30px text-right justify-content-end"
                             data-item-id="{{item._id}}">
-                            {{#if item.flags.isFav}}
+                            {{#if item.system.isFav}}
                             <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}">
                                 <i class="fa-solid fa-star"></i>
 
@@ -203,7 +203,7 @@
 
                     {{#each items as |item|}}
                     {{#if item.isArmor}}
-                    {{#if item.flags.isFav}}
+                    {{#if item.system.isFav}}
                     <div class="item flexrow  border-bottom-thin space-between gap-med" data-item-id="{{item._id}}">
                         <div class="item rollable mw-100px clickable" data-type="armor" data-item-id="{{item._id}}">
                             <div class="item  no-break mw-100px" title="{{localize "estate.ROLL.ROLL"}} {{item.name}}">
@@ -230,7 +230,7 @@
 
                         <div class="button-group grid two-col shrink mw-30px text-right justify-content-end"
                             data-item-id="{{item._id}}">
-                            {{#if item.flags.isFav}}
+                            {{#if item.system.isFav}}
                             <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}">
                                 <i class="fa-solid fa-star"></i>
 
@@ -249,7 +249,7 @@
 
                     {{#each items as |item|}}
                     {{#if item.isDrone}}
-                    {{#if item.flags.isFav}}
+                    {{#if item.system.isFav}}
                     <div class="flexrow border-bottom-thin space-between gap-med">
                         <div class="item mw-100px" title="{{item.name}}" data-item-id="{{item._id}}">
                             <span class="name block overflow-elipsis w-100">
@@ -283,7 +283,7 @@
 
                         <div class="button-group grid two-col shrink mw-30px text-right justify-content-end"
                             data-item-id="{{item._id}}">
-                            {{#if item.flags.isFav}}
+                            {{#if item.system.isFav}}
                             <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}">
                                 <i class="fa-solid fa-star"></i>
 
@@ -301,7 +301,7 @@
 
                     {{#each items as |item|}}
                     {{#if item.isNeurocaster}}
-                    {{#if item.flags.isFav}}
+                    {{#if item.system.isFav}}
                     <div class=" item item-row flexrow  border-bottom-thin space-between gap-med"
                         data-item-id="{{item._id}}">
                         <div class="item  mw-75px" title="{{item.name}}">
@@ -350,7 +350,7 @@
 
                         <div class="button-group grid two-col shrink mw-30px text-right justify-content-end"
                             data-item-id="{{item._id}}">
-                            {{#if item.flags.isFav}}
+                            {{#if item.system.isFav}}
                             <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}">
                                 <i class="fa-solid fa-star"></i>
 
@@ -368,7 +368,7 @@
 
                     {{#each items as |item|}}
                     {{#if item.isGear}}
-                    {{#if item.flags.isFav}}
+                    {{#if item.system.isFav}}
                     <div class="flexrow border-bottom-thin space-between gap-med">
                         <div class="item mw-100px {{#if item.system.isConsumable}}item-use{{/if}}" title="{{localize "estate.UI.USE"}} {{item.name}}" data-item-id="{{item._id}}">
                             <span class="name block overflow-elipsis w-100">
@@ -408,7 +408,7 @@
 
                         <div class="button-group grid two-col shrink mw-30px text-right justify-content-end"
                             data-item-id="{{item._id}}">
-                            {{#if item.flags.isFav}}
+                            {{#if item.system.isFav}}
                             <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i
                                     class="fa-solid fa-star"></i>
                             </div>

@@ -70,11 +70,11 @@
 
                 <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
                     {{#if (eq ../actor.type 'player')}}
-                    {{#if item.flags.isFav}}
+                    {{#if item.system.isFav}}
                     <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i class="fa-solid fa-star"></i>
                     </div>
                     {{/if}}
-                    {{#unless item.flags.isFav}}
+                    {{#unless item.system.isFav}}
                     <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i
                             class="fa-regular fa-star"></i></div>
                     {{/unless}}
@@ -161,11 +161,11 @@
 
                 <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
                     {{#if (eq ../actor.type 'player')}}
-                    {{#if item.flags.isFav}}
+                    {{#if item.system.isFav}}
                     <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i class="fa-solid fa-star"></i>
                     </div>
                     {{/if}}
-                    {{#unless item.flags.isFav}}
+                    {{#unless item.system.isFav}}
                     <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i
                             class="fa-regular fa-star"></i></div>
                     {{/unless}}
@@ -256,11 +256,11 @@
 
                 <div class="button-group grid four-col mw-100px" data-item-id="{{item._id}}">
                     {{#if (eq ../actor.type 'player')}}
-                    {{#if item.flags.isFav}}
+                    {{#if item.system.isFav}}
                     <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i class="fa-solid fa-star"></i>
                     </div>
                     {{/if}}
-                    {{#unless item.flags.isFav}}
+                    {{#unless item.system.isFav}}
                     <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i
                             class="fa-regular fa-star"></i></div>
                     {{/unless}}
@@ -367,11 +367,11 @@
                 </div>
                 <div class="button-group grid four-col mw-100px middle" data-item-id="{{item._id}}">
                     {{#if (eq ../actor.type 'player')}}
-                    {{#if item.flags.isFav}}
+                    {{#if item.system.isFav}}
                     <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i class="fa-solid fa-star"></i>
                     </div>
                     {{/if}}
-                    {{#unless item.flags.isFav}}
+                    {{#unless item.system.isFav}}
                     <div class="toggle-fav" title="{{localize "estate.UI.TOGGLEFAV"}}"><i class="fa-regular fa-star"
                             title="{{localize "estate.UI.TOGGLEFAV"}}"></i></div>
                     {{/unless}}

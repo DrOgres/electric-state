@@ -278,7 +278,7 @@ export async function prepareRollDialog(options) {
       options.dicePool = actor.system[options.attribute];
       for (let drone of drones) {
         /** set dice pool equal to drone str or agi depending on the attribute we passed in */
-        if (drone.flags.isEquipped.equipStatus) {
+        if (drone.system.isEquipped) {
           if (
             options.attribute === "strength" ||
             options.attribute === "agility"
@@ -290,7 +290,7 @@ export async function prepareRollDialog(options) {
 
           let foundCaster = false;
           for (let neurocaster of neurocasters) {
-            if (neurocaster.flags.isEquipped.equipStatus) {
+            if (neurocaster.system.isEquipped) {
               // options.dicePool += neurocaster.system.network.value;
               // console.log("dicepool after neurocaster", options.dicePool);
               options.cast = "realworld";
@@ -313,11 +313,11 @@ export async function prepareRollDialog(options) {
 
       for (let armor of armors) {
         console.log(armor);
-        // const status = await armor.flags.isEquipped.equipStatus;
+        // const status = await armor.system.isEquipped.equipStatus;
         const newStatus = armor.system.isEquipped;
         // console.log("ES | equipStatus of armor item: ", status);
          console.log("ES | new equipStatus of armor item: ", newStatus);
-        // console.log(armor.flags.isEquipped.equipStatus);
+        // console.log(armor.system.isEquipped.equipStatus);
         if (newStatus) {
           if (options.attribute === "agility") {
             options.armorPenalty = Math.abs(armor.system.agiltyModifier);
@@ -350,7 +350,7 @@ export async function prepareRollDialog(options) {
 
       dialogHTML += await buildSubtotalDialog(options);
       for (let neurocaster of neurocasters) {
-        if (neurocaster.flags.isEquipped) {
+        if (neurocaster.system.isEquipped) {
           dialogHTML += buildDialogCheckBox(
             "estate.UI.RW_PENALTY",
             Math.abs(neurocaster.system.realWorldPenalty),
@@ -385,7 +385,7 @@ export async function prepareRollDialog(options) {
         console.log("Neuroscape Weapon", actor);
         let foundCaster = false;
         for (let neurocaster of neurocasters) {
-          if (neurocaster.flags.isEquipped.equipStatus) {
+          if (neurocaster.system.isEquipped) {
             options.dicePool += neurocaster.system.graphics.value;
             foundCaster = true;
           }
@@ -467,7 +467,7 @@ export async function prepareRollDialog(options) {
       break;
     case "drone":
       console.log("Drone Roll", options);
-      const neurocaster = neurocasters.find((i) => i.flags.isEquipped.equipStatus);
+      const neurocaster = neurocasters.find((i) => i.system.isEquipped);
       console.log("Neurocaster", neurocaster);
       if (neurocaster !== undefined) {
         options.dicePool += neurocaster.system.network.value;
@@ -538,7 +538,7 @@ export async function prepareRollDialog(options) {
         options.attribute = "wits";
         options.dicePool = actor.system.wits;
         options.castAttribute = "processor";
-        let neurocaster = neurocasters.find((i) => i.flags.isEquipped.equipStatus);
+        let neurocaster = neurocasters.find((i) => i.system.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.processor.value);
           options.gearName =
@@ -561,7 +561,7 @@ export async function prepareRollDialog(options) {
         options.attribute = "wits";
         options.dicePool = actor.system.wits;
         options.castAttribute = "network";
-        let neurocaster = neurocasters.find((i) => i.flags.isEquipped.equipStatus);
+        let neurocaster = neurocasters.find((i) => i.system.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.network.value);
           options.gearName =
@@ -583,7 +583,7 @@ export async function prepareRollDialog(options) {
         options.attribute = "empathy";
         options.dicePool = actor.system.empathy;
         options.castAttribute = "graphics";
-        let neurocaster = neurocasters.find((i) => i.flags.isEquipped.equipStatus);
+        let neurocaster = neurocasters.find((i) => i.system.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.graphics.value);
           options.gearName =
@@ -606,7 +606,7 @@ export async function prepareRollDialog(options) {
         options.attribute = "wits";
         options.dicePool = actor.system.wits;
         options.castAttribute = "network";
-        let neurocaster = neurocasters.find((i) => i.flags.isEquipped.equipStatus);
+        let neurocaster = neurocasters.find((i) => i.system.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.network.value);
           options.gearName =
@@ -628,7 +628,7 @@ export async function prepareRollDialog(options) {
         options.attribute = "wits";
         options.dicePool = actor.system.wits;
         options.castAttribute = "graphics";
-        let neurocaster = neurocasters.find((i) => i.flags.isEquipped.equipStatus);
+        let neurocaster = neurocasters.find((i) => i.system.isEquipped);
         if (neurocaster !== undefined) {
           console.log("Neurocaster", neurocaster.system.graphics.value);
           options.gearName =
@@ -978,7 +978,7 @@ function buildTalentSelectDialog(options, talents, actor, drones) {
 
   let drone = undefined;
   if (drones !== undefined) {
-    drone = drones.find((i) => i.flags.isEquipped.equipStatus);
+    drone = drones.find((i) => i.system.isEquipped);
     console.log("Drone", drone);
   }
 
@@ -992,7 +992,7 @@ function buildTalentSelectDialog(options, talents, actor, drones) {
     console.log(talent);
     // check the array talent.system.attribute to see if it contains a match for options.attribute
     if (drone !== undefined) {
-      if (options.type === "drone" || drone.flags.isEquipped.equipStatus) {
+      if (options.type === "drone" || drone.system.isEquipped) {
         if (talent.system.type.includes("drone")) {
           count++;
           selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;
@@ -1001,7 +1001,7 @@ function buildTalentSelectDialog(options, talents, actor, drones) {
     }
 
     if (neurocaster) {
-      if (options.type === "neurocaster" || neurocaster.flags.isEquipped.equipStatus) {
+      if (options.type === "neurocaster" || neurocaster.system.isEquipped) {
         if (talent.system.type.includes("neurocaster")) {
           count++;
           selectOptions += `<option value="${talent.id}">${talent.name} &plus; ${talent.system.modifier.value}</option>`;

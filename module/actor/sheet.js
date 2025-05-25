@@ -257,7 +257,7 @@ export default class esActorSheet extends ActorSheet {
         } else {
           let status = false;
           for (let neurocaster of neurocasters) {
-            if (neurocaster.flags.isEquipped) {
+            if (neurocaster.system.isEquipped) {
               status = true;
               ncId = neurocaster.id;
               if (
@@ -944,8 +944,8 @@ export default class esActorSheet extends ActorSheet {
     // console.log("E-STATE | Item Id", itemId);
     const item = this.actor.items.get(itemId);
     // console.log("E-STATE | Item", item);
-    let favStatus = !item.flags.isFav;
-    await item.update({ "flags.isFav": favStatus });
+    let favStatus = !item.system.isFav;
+    await item.update({ "system.isFav": favStatus });
   }
 
   async _onRoll(event) {
@@ -1070,7 +1070,7 @@ export default class esActorSheet extends ActorSheet {
           );
           // console.log("E-STATE | Neurocasters", neurocasters);
 
-          if (!item.flags.isEquipped) {
+          if (!item.system.isEquipped) {
             ui.notifications.warn(
               game.i18n.localize("estate.MSG.DRONENOTEQUIPPED")
             );
@@ -1084,7 +1084,7 @@ export default class esActorSheet extends ActorSheet {
           } else {
             let status = false;
             for (let neurocaster of neurocasters) {
-              if (neurocaster.flags.isEquipped) {
+              if (neurocaster.system.isEquipped) {
                 status = true;
                 if (
                   neurocaster.system.processor.value === 0 ||
@@ -1150,7 +1150,7 @@ export default class esActorSheet extends ActorSheet {
           );
           // console.log("E-STATE | Neurocasters", neurocasters);
 
-          if (!item.flags.isEquipped) {
+          if (!item.system.isEquipped) {
             ui.notifications.warn(
               game.i18n.localize("estate.MSG.DRONENOTEQUIPPED")
             );
@@ -1164,7 +1164,7 @@ export default class esActorSheet extends ActorSheet {
           } else {
             let status = false;
             for (let neurocaster of neurocasters) {
-              if (neurocaster.flags.isEquipped) {
+              if (neurocaster.system.isEquipped) {
                 status = true;
                 if (
                   neurocaster.system.processor.value === 0 ||

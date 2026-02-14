@@ -8,8 +8,6 @@ import electricStateItemSheet from "./module/item/sheet.js";
 import electricStateItem from "./module/item/entity.js";
 import { ChatMessageES } from "./module/lib/chat.js";
 
-
-
 Hooks.once("init", function () {
   console.log("E-STATE | Initializing Electric State");
 
@@ -36,24 +34,28 @@ Hooks.once("init", function () {
   // Register System Settings
   registerSystemSettings();
 
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("electric-state", electricStateActorSheet, {
-    makeDefault: true,
-  });
+  foundry.documents.collections.Actors.registerSheet(
+    "electric-state",
+    electricStateActorSheet,
+    {
+      makeDefault: true,
+    },
+  );
 
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("electric-state", electricStateItemSheet, {
-    smakeDefault: true,
-  });
+  foundry.documents.collections.Items.registerSheet(
+    "electric-state",
+    electricStateItemSheet,
+    {
+      makeDefault: true,
+    },
+  );
 
-
-  Hooks.on("renderChatMessage", (app, html, data) => {
+  Hooks.on("renderChatMessageHTML", (app, html, data) => {
     // console.log("renderChatMessage", app, html, data);
     // console.log("ChatMessageElectricState", ChatMessageES);
     ChatMessageES.activateListeners(html);
     // ChatMessageVaesen.hideChatActionButtons(app, html, data);
   });
-  
 
   preloadHandlebarsTemplates();
 
@@ -67,7 +69,7 @@ Hooks.once("init", function () {
     return result;
   });
 
-  Handlebars.registerHelper("calculate", function (a, b, operator) {    
+  Handlebars.registerHelper("calculate", function (a, b, operator) {
     switch (operator) {
       case "+":
         return a + b;
@@ -76,15 +78,15 @@ Hooks.once("init", function () {
       case "*":
         return a * b;
       case "/":
-        if ( b === 0) {
+        if (b === 0) {
           return 0;
         }
         return a / b;
       case "%":
-        if ( b === 0) {
+        if (b === 0) {
           return 0 + "%";
         }
-        return Math.round((a / b)*100) + "%";
+        return Math.round((a / b) * 100) + "%";
     }
   });
 
@@ -125,7 +127,6 @@ Hooks.once("init", function () {
         string = game.i18n.localize(`${trait}`);
         break;
       case "talent":
-       
         const talent = eState.modifierTarget[data];
         string = game.i18n.localize(`${talent}`);
         break;
@@ -147,7 +148,6 @@ Hooks.once("init", function () {
         break;
     }
 
-
     return string;
   });
 
@@ -164,7 +164,7 @@ Hooks.once("init", function () {
 Hooks.once("diceSoNiceReady", (dice3d) => {
   dice3d.addSystem(
     { id: "electric-state", name: "Electric State RPG - Base" },
-    "preferred"
+    "preferred",
   );
   dice3d.addColorset(
     {
@@ -176,7 +176,7 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
       outline: "black",
       texture: "none",
     },
-    "preferred"
+    "preferred",
   );
   dice3d.addColorset({
     name: "ElectricStateRed",
@@ -218,7 +218,9 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
 
 Hooks.once("ready", async function () {
   console.log("E-STATE | Ready");
-  Hooks.on("hotbarDrop", (bar, data, slot) => createElectricStateMacro(data, slot));
+  Hooks.on("hotbarDrop", (bar, data, slot) =>
+    createElectricStateMacro(data, slot),
+  );
 });
 
 Hooks.on("dropActorSheetData", async (actor, actorSheet, data) => {
@@ -246,20 +248,20 @@ async function createElectricStateMacro(data, slot) {
 
   const actor = game.actors.get(data.actorId);
   if (actor === undefined) return;
-  
+
   // if the user is not a GM or doesn't have owner permissions on the actor return
   if (!game.user.isGM && !actor.getUserLevel(game.user) >= 3) {
     return;
   }
 
-  let command = '';
-  if (data.type === "attribute"){
+  let command = "";
+  if (data.type === "attribute") {
     // console.log("E-STATE | Attribute Macro Drop", data);
-    command =  `
+    command = `
       const thisActor = game.actors.get("${data.actorId}");
       if (thisActor === null || thisActor.type !== "player") return;
       thisActor.sheet.rollAttribute("${data.attribute}");
-    `
+    `;
   } else if (data.type === "armor") {
     // console.log("E-STATE | Armor Macro Drop", data);
 
@@ -267,31 +269,31 @@ async function createElectricStateMacro(data, slot) {
       const thisActor = game.actors.get("${data.actorId}");
       if (thisActor === null || thisActor.type !== "player") return;
       thisActor.sheet.rollArmor("${data.armorId}");
-    `
+    `;
   } else if (data.type === "weapon") {
     // console.log("E-STATE | Weapon Macro Drop", data);
     command = `
       const thisActor = game.actors.get("${data.actorId}");
       if (thisActor === null || thisActor.type !== "player") return;
       thisActor.sheet.rollWeapon("${data.weaponId}");
-    `
+    `;
   } else if (data.type === "gear") {
     // console.log("E-STATE | Gear Macro Drop", data);
     command = `
       const thisActor = game.actors.get("${data.actorId}");
       if (thisActor === null || thisActor.type !== "player") return;
       thisActor.sheet.rollGear("${data.gear}");
-    `
+    `;
   } else if (data.type === "bliss") {
     // console.log("E-STATE | Bliss Macro Drop", data);
     command = `
       const thisActor = game.actors.get("${data.actorId}");
       if (thisActor === null || thisActor.type !== "player") return;
       thisActor.sheet.rollBliss();
-    `
+    `;
   }
 
-  if (command === '') {
+  if (command === "") {
     return;
   }
 

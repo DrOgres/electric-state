@@ -16,31 +16,27 @@
   ],
   "media": [
     {
-        "type": "screenshot",
-        "url": "https://github.com/DrOgres/electric-state/blob/main/assets/cover.webp?raw=true",
-        "loop": false,
-        "flags": {}
+      "type": "screenshot",
+      "url": "https://github.com/DrOgres/electric-state/blob/main/assets/cover.webp?raw=true",
+      "loop": false,
+      "flags": {}
     },
     {
       "type": "cover",
       "url": "https://github.com/DrOgres/electric-state/blob/main/assets/cover.webp?raw=true",
       "loop": false,
       "flags": {}
-  }
-],
+    }
+  ],
   "url": "https://github.com/DrOgres/electric-state",
   "version": "0.28.0",
   "compatibility": {
     "minimum": "12",
     "maximum": "13",
-    "verified": "12.331"
+    "verified": "13"
   },
-  "esmodules": [
-    "electric-state.js"
-  ],
-  "styles": [
-    "style/electric-state.css"
-  ],
+  "esmodules": ["electric-state.js"],
+  "styles": ["style/electric-state.css"],
   "languages": [
     {
       "lang": "en",

@@ -2,7 +2,7 @@ import { eState } from "../config.js";
 import { prepareRollDialog, prepareDeathRollDialog } from "../lib/roll.js";
 import { buildChatCard } from "../lib/chat.js";
 
-export default class esActorSheet extends ActorSheet {
+export default class esActorSheet extends foundry.appv1.sheets.ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["es", "sheet", "actor"],
@@ -70,7 +70,7 @@ export default class esActorSheet extends ActorSheet {
       this._applyVehicleTraits(data, actor);
     }
 
-    data.notesHTML = await TextEditor.enrichHTML(actor.system.notes, {
+    data.notesHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(actor.system.notes, {
       secrets: this.actor.isOwner,
       async: true,
       relativeTo: this.actor,

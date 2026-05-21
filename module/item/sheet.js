@@ -1,6 +1,6 @@
 import { eState } from "../config.js";
 
-export default class esItemSheet extends ItemSheet {
+export default class esItemSheet extends foundry.appv1.sheets.ItemSheet {
   constructor(...args) {
     super(...args);
   }

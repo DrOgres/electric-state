@@ -23,11 +23,11 @@ export class ChatMessageES extends ChatMessage {
 
     static activateListeners(html) {
       // console.log("Activating listeners", html);
-      html.find(".dice-button.push").click((ev) => {
+      $(html).find(".dice-button.push").click((ev) => {
         // console.log("Button clicked", ev); 
         _onPush(ev);
         });
-      html.find(".dice-button.apply-damage").click((ev) => {
+      $(html).find(".dice-button.apply-damage").click((ev) => {
         // console.log("Button clicked", ev);
         _onApplyDamage(ev);
       });
@@ -236,7 +236,7 @@ async function _onPush(event) {
 
 async function renderChatMessage(chatOptions, dataSource) {
   const data = dataSource;
-  return await Promise.resolve(renderTemplate(chatOptions.template, data));
+  return await Promise.resolve(foundry.applications.handlebars.renderTemplate(chatOptions.template, data));
 }
 
 export const buildChatCard = function (type, item, chatOptions = {}) {

@@ -1871,8 +1871,8 @@ class YearZeroDie extends foundry.dice.terms.Die {
           part.rolls = matrix;
         }
       }
-      // // return renderTemplate(this.constructor.TOOLTIP_TEMPLATE, { parts });
-      return renderTemplate(this.constructor.TOOLTIP_TEMPLATE, {
+      // // return foundry.applications.handlebars.renderTemplate(this.constructor.TOOLTIP_TEMPLATE, { parts });
+      return foundry.applications.handlebars.renderTemplate(this.constructor.TOOLTIP_TEMPLATE, {
         parts,
         pushed: this.pushed,
         pushCounts: this.pushed
@@ -1895,7 +1895,7 @@ class YearZeroDie extends foundry.dice.terms.Die {
     async getRollInfos(template = null) {
       template = template ?? CONFIG.YZUR?.Roll?.infosTemplate;
       const context = { roll: this };
-      return renderTemplate(template, context);
+      return foundry.applications.handlebars.renderTemplate(template, context);
     }
   
     /* -------------------------------------------- */
@@ -1950,7 +1950,7 @@ class YearZeroDie extends foundry.dice.terms.Die {
       };
   
       // Renders the roll display template.
-      return renderTemplate(chatOptions.template, chatData);
+      return foundry.applications.handlebars.renderTemplate(chatOptions.template, chatData);
     }
   
     /* -------------------------------------------- */
